@@ -1,1 +1,6 @@
 * 这是我个人的vim配置
+** config
+    - config.vim : 对插件的一些配置
+    - plugin.vim : 插件列表
+    - script.vim : 自定义vim的一些函数
+    - shortcut.vim : 自定义快捷键
