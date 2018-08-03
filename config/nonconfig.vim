@@ -50,6 +50,7 @@ inoremap <C-l> <Right>
 " noremap <C-x>b :reg<CR>
 " inoremap <C-x>b <ESC>:reg<CR>
 noremap  zz ZZ
+noremap <leader>Q :qa<CR>
 noremap  <leader>p "+gp
 noremap <leader>y "+y
 nnoremap <silent><leader><Up> :res +1<CR>
