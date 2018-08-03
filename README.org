@@ -6,8 +6,8 @@
     - shortcut.vim : 自定义快捷键
  
 ** Changelog
-   *** 2018/8/3
-       - 更换自动补全，使用 deoplete 代替 ycm
-       - 加入了对 python、js、c、c++等的支持，js 不能很好的支持 vue
-       - 修改了部分插件的配置
-       - 修改了部分快捷键
+*** 2018/8/3
+- 更换自动补全，使用 deoplete 代替 ycm
+- 加入了对 python、js、c、c++等的支持，js 不能很好的支持 vue
+- 修改了部分插件的配置
+- 修改了部分快捷键
