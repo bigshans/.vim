@@ -4,7 +4,7 @@ noremap <leader>pc :PlugClean<CR>
 noremap <leader>pp :PlugUpdate<CR>
 "NerdTree shortcut
 noremap <leader>ft :NERDTreeToggle<CR>
-noremap <leader>tf :NERDTreeFind<CR>
+noremap <leader>ff :NERDTreeFind<CR>
 "-----------------------*-----------------------------"
 "edit config
 nnoremap <leader>h <C-w><C-h>
@@ -21,7 +21,9 @@ noremap <leader>fk :tabnew ~/.vim/config/shortcut.vim<CR>
 noremap <leader>fp :tabnew ~/.vim/config/plugin.vim<CR>
 noremap <leader>fc :tabnew ~/.vim/config/config.vim<CR>
 noremap <leader>fr :tabnew ~/.vim/config/script.vim<CR>
+noremap <leader><leader>sf :source %<CR>
 noremap <silent><leader>rs :source ~/.vimrc<CR>:nohlsearch<CR>
+noremap <leader>bh :Startify<CR>
 noremap <leader>q :q!<CR>
 noremap <leader>fs :w<CR>
 noremap <leader>a ggVG
@@ -89,6 +91,7 @@ nnoremap <leader>bp :bp<CR> "
 map <F3> :IndentLinesToggle<CR>
 "-----------------------*-----------------------------"
 "leaderf
+let g:Lf_ShortcutF = '<leader><leader>ff'
 noremap <leader>s :LeaderfLine<CR>
 noremap <leader>tf :LeaderfFunction<CR>
 noremap <leader>tb :LeaderfBufTag<CR>
@@ -146,7 +149,49 @@ xmap <leader><tab> <plug>(fzf-maps-n)
 omap <leader><tab> <plug>(fzf-maps-n)
 
 nmap <silent><leader>c :Colors<CR>
+nmap <silent><leader>f<Space> :FZF<CR>
 "-----------------------*-----------------------------"
 "ultimate-colorsheme
 "-----------------------*-----------------------------"
 "javacomplete2
+"-----------------------*-----------------------------"
+"vim-smooth-scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"-----------------------*-----------------------------"
+"vim-expand-region
+if exists("*expand_region#custom_text_objects")
+    call expand_region#custom_text_objects({
+                \ "\/\\n\\n\<CR>": 1,
+                \ 'a]' :1, 'ab' :1, 'aB' :1, 'a"' :1, 'a''': 1,
+                \ 'ii' :0, 'ai' :0,
+                \ 'ic' :0, 'ac' :0,
+                \ }) | endif
+    vmap K <Plug>(expand_region_expand)
+    vmap J <Plug>(expand_region_shrink)
+" -----------------------*-----------------------------"
+"  CompleteParameter.vim
+" nmap <m-d> <Plug>(complete_parameter#goto_next_parameter)
+" imap <m-d> <Plug>(complete_parameter#goto_next_parameter)
+" smap <m-d> <Plug>(complete_parameter#goto_next_parameter)
+" nmap <m-u> <Plug>(complete_parameter#goto_previous_parameter)
+" imap <m-u> <Plug>(complete_parameter#goto_previous_parameter)
+" smap <m-u> <Plug>(complete_parameter#goto_previous_parameter)
+"-----------------------*-----------------------------"
+" deoplete
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+"-----------------------*-----------------------------"
+"UltiSnips config
+let g:UltiSnipsExpandTrigger="<C-z>"
+let g:UltiSnipsJumpForwardTrigger="<C-f>"
+let g:UltiSnipsJumpBackwardTrgger="<C-b>"
+let g:UltiSnipsListSnippets="<C-\>"

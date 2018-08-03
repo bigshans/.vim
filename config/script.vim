@@ -29,7 +29,7 @@ set hlsearch
 set title
 syntax enable
 syntax on
-set guifont=NotoMonoforPowerline\ 10
+set guifont=NotoMonoforPowerline\ 11
 "允许换行
 set whichwrap+=<,>,h,l
 set magic
@@ -131,3 +131,23 @@ func! RunResult()
         exec "!java %<"
     endif
 endfunc 
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction

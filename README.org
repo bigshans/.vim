@@ -1,6 +1,13 @@
-* 这是我个人的vim配置
+* 这是我个人的 vim 配置
 ** config
     - config.vim : 对插件的一些配置
     - plugin.vim : 插件列表
-    - script.vim : 自定义vim的一些函数
+    - script.vim : 自定义 vim 的一些函数
     - shortcut.vim : 自定义快捷键
+ 
+** Changelog
+   *** 2018/8/3
+       - 更换自动补全，使用 deoplete 代替 ycm
+       - 加入了对 python、js、c、c++等的支持，js 不能很好的支持 vue
+       - 修改了部分插件的配置
+       - 修改了部分快捷键
