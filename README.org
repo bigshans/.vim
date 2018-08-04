@@ -2,10 +2,23 @@
 ** config
     - config.vim : 对插件的一些配置
     - plugin.vim : 插件列表
-    - script.vim : 自定义 vim 的一些函数
     - shortcut.vim : 自定义快捷键
+    - nonscript : 无需插件的的脚本，依赖 script.vim
+    - script.vim : 无依赖的一些基本设置以及自定义函数
+
+| 快捷键         | 映射                                                   | 备注                   |
+|-------------------+--------------------------------------------------------+------------------------|
+| nnoremap <C-S-k>  | :call MoveLineCodeUp()<CR>                             | 将一行代码移动向上移动 |
+| nnoremap  <C-S-j> | :call MoveLineCodeDown()<CR>                           | 将一行代码移动向下移动 |
+| inoremap <C-S-k>  | :call MoveLineCodeUp()<CR>:call MoveReselected()<CR>   | 将多行代码移动向上移动 |
+| inoremap  <C-S-j> | :call MoveLineCodeDown()<CR>:call MoveReselected()<CR> | 将多行代码移动向下移动 |
  
 ** Changelog
+*** 2018/8/5
+- js 支持 vue 忽然好了，重启解决
+- 写了几个函数，加入了一些方便编辑的快捷键
+- 新加入 easymotion 等插件
+
 *** 2018/8/3
 - 更换自动补全，使用 deoplete 代替 ycm
 - 加入了对 python、js、c、c++等的支持，js 不能很好的支持 vue

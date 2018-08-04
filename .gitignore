@@ -1,3 +1,6 @@
 autoload/
 bundle/
 session/
+doc/
+plugin/
+syntax/

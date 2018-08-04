@@ -5,6 +5,7 @@ noremap <leader>pp :PlugUpdate<CR>
 "NerdTree shortcut
 noremap <leader>ft :NERDTreeToggle<CR>
 noremap <leader>ff :NERDTreeFind<CR>
+noremap <leader>tt :NERDTree<CR>
 "-----------------------*-----------------------------"
 "edit config
 noremap <leader>bh :Startify<CR>
@@ -121,3 +122,6 @@ let g:UltiSnipsExpandTrigger="<C-z>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
 let g:UltiSnipsJumpBackwardTrgger="<C-b>"
 let g:UltiSnipsListSnippets="<C-\>"
+"-----------------------*-----------------------------"
+" easymotion
+map <leader>e <Plug>(easymotion-prefix)

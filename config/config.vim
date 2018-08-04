@@ -11,7 +11,7 @@ let NERDTreeAutoCenter=1
 let NERDTreeWinPos=1
 " autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd StdinReadPre * let s:std_in=1
+" autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 "-----------------------*-----------------------------"
 "aireline config
@@ -286,3 +286,20 @@ let g:tern#arguments = ["--persistent"]
 "  deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+"-----------------------*-----------------------------"
+" nerdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+"-----------------------*-----------------------------"
+" easymotion
+let g:EasyMotion_do_mappings = 0
