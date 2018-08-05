@@ -1,6 +1,8 @@
 let mapleader="\<Space>"
 set nocompatible
 set mouse=a
+set lazyredraw
+set synmaxcol=200
 " set so=999
 filetype off
 "-----------------------*-----------------------------"
