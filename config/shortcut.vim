@@ -4,7 +4,7 @@ noremap <leader>pc :PlugClean<CR>
 noremap <leader>pp :PlugUpdate<CR>
 "NerdTree shortcut
 noremap <leader>ft :NERDTreeToggle<CR>
-noremap <leader>ff :NERDTreeFind<CR>
+noremap <leader>tf :NERDTreeFind<CR>
 noremap <leader>tt :NERDTree<CR>
 "-----------------------*-----------------------------"
 "edit config
@@ -18,10 +18,10 @@ noremap <leader>bh :Startify<CR>
 map <F3> :IndentLinesToggle<CR>
 "-----------------------*-----------------------------"
 "leaderf
-let g:Lf_ShortcutF = '<leader><leader>ff'
-noremap <leader>s :LeaderfLine<CR>
-noremap <leader>tf :LeaderfFunction<CR>
-noremap <leader>tb :LeaderfBufTag<CR>
+" let g:Lf_ShortcutF = '<leader><leader>ff'
+" noremap <leader>s :LeaderfLine<CR>
+" noremap <leader>tf :LeaderfFunction<CR>
+" noremap <leader>tb :LeaderfBufTag<CR>
 "-----------------------*-----------------------------"
 "terryma/vim-multiple-cursors
 let g:multi_cursor_use_default_mapping=0
@@ -72,11 +72,18 @@ nnoremap <silent><leader>u :UndotreeToggle<CR>
 "-----------------------*-----------------------------"
 "fzf
 nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-n)
-omap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
+nmap <silent><leader>s :BLines<CR>
+nmap <silent><leader>bb :Buffers<CR>
 nmap <silent><leader>c :Colors<CR>
-nmap <silent><leader>f<Space> :FZF<CR>
+nmap <silent><leader>ff :FZF<CR>
+
+augroup Myfzf
+    autocmd! FileType fzf tnoremap <buffer> <Esc> <C-g>
+augroup END
+
 "-----------------------*-----------------------------"
 "ultimate-colorsheme
 "-----------------------*-----------------------------"
