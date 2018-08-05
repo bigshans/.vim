@@ -6,17 +6,19 @@
     - nonscript : 无需插件的的脚本，依赖 script.vim
     - script.vim : 无依赖的一些基本设置以及自定义函数
 
-| 快捷键         | 映射                                                   | 备注                   |
-|-------------------+--------------------------------------------------------+------------------------|
-| nnoremap <C-S-k>  | :call MoveLineCodeUp()<CR>                             | 将一行代码移动向上移动 |
-| nnoremap  <C-S-j> | :call MoveLineCodeDown()<CR>                           | 将一行代码移动向下移动 |
-| inoremap <C-S-k>  | :call MoveLineCodeUp()<CR>:call MoveReselected()<CR>   | 将多行代码移动向上移动 |
-| inoremap  <C-S-j> | :call MoveLineCodeDown()<CR>:call MoveReselected()<CR> | 将多行代码移动向下移动 |
+| 快捷键             | 映射                | 备注                                |
+|--------------------+---------------------+-------------------------------------|
+| nnoremap <C-Up>    | :m .+1<CR>          | normal mode 下将一行代码移动向上移动 |
+| nnoremap  <C-Down> | :m .-2<CR>          | normal mode 将一行代码移动向下移动   |
+| inoremap <C-Up>    | <ESC>:m .+1<CR>==gi | insert mode 将一行代码移动向上移动   |
+| inoremap  <C-Down  | <ESC>:m .-2<CR>==gi | insert mode 将一行代码移动向下移动   |
+| vnoremap <C-Up>    | :m '>+1<CR>gv=gv    | visual mode 将一行代码移动向上移动    |
+| vnoremap <C-Down>  | :m '<-2<CR>gv=gv    | visual mode 将一行代码移动向下移动    |
  
 ** Changelog
 *** 2018/8/5
 - js 支持 vue 忽然好了，重启解决
-- 写了几个函数，加入了一些方便编辑的快捷键
+- 写了几个函数，并绑定快捷键
 - 新加入 easymotion 等插件
 
 *** 2018/8/3
