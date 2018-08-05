@@ -2,7 +2,7 @@ filetype plugin indent on
 " -----------------------*-----------------------------" 
 call plug#begin('~/.vim/bundle')
 
-Plug 'git://github.com/scrooloose/nerdtree.git'
+Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
 Plug 'artur-shaik/vim-javacomplete2'
@@ -35,17 +35,17 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'majutsushi/tagbar'
 Plug 'brooth/far.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-quickrun', {'on':'Quickrun'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-speeddating'
+" Plug 'tpope/vim-speeddating'
 Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular' "必须在markdown插件之前
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown' "实时预览markdown插件
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'biskark/vim-ultimate-colorscheme-utility'
-Plug 'mikelue/vim-maven-plugin'
+" Plug 'mikelue/vim-maven-plugin'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'terryma/vim-expand-region'

@@ -75,7 +75,7 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-nmap <silent><leader>s :BLines<CR>
+nmap <silent><leader>ss :BLines<CR>
 nmap <silent><leader>bb :Buffers<CR>
 nmap <silent><leader>c :Colors<CR>
 nmap <silent><leader>ff :FZF<CR>

@@ -7,7 +7,7 @@ nnoremap <C-j> <C-d>M
 nnoremap <C-k> <C-u>M
 nnoremap <C-h> ^
 nnoremap <C-l> $
-nnoremap <silent><C-m> :call ScreenCenterToggle()<CR>
+nnoremap <silent><leader>st :call ScreenCenterToggle()<CR>
 nnoremap <leader>h <C-w><C-h>
 nnoremap <leader>j <C-w><C-j>
 nnoremap <leader>k <C-w><C-k>
