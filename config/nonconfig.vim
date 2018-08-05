@@ -1,3 +1,7 @@
+noremap <Up> gk
+noremap <Down> gj
+vnoremap <Up> gk
+vnoremap <Down> gj
 nnoremap <leader>; :
 nnoremap <C-j> <C-d>M
 nnoremap <C-k> <C-u>M
@@ -24,6 +28,7 @@ noremap <silent><leader>hn :nohlsearch<CR>
 noremap <silent><leader>R :source ~/.vimrc<CR>:nohlsearch<CR>
 noremap <leader>q :q!<CR>
 noremap <leader>fs :w<CR>
+noremap <leader>fw :w !sudo tee%<CR>
 noremap <leader>a ggVG
 "edit config
 noremap <leader>x "+x

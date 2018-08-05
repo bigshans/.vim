@@ -1,5 +1,7 @@
-* 这是我个人的 vim 配置
-** config
+* Aerian's Vim for Linux
+** Introduction
+ 这是我个人在 Debian 上的 vim 配置，需要 vim8 或者 neovim 支持
+** Config
     - config.vim : 对插件的一些配置
     - plugin.vim : 插件列表
     - shortcut.vim : 自定义快捷键
@@ -20,6 +22,8 @@
 - js 支持 vue 忽然好了，重启解决
 - 写了几个函数，并绑定快捷键
 - 新加入 easymotion 等插件
+- 加入了一些新的快捷键
+- 修改了 startify 的启动画面
 
 *** 2018/8/3
 - 更换自动补全，使用 deoplete 代替 ycm

@@ -44,6 +44,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set wrap
+set formatoptions+=mM
 set smartindent
 set autoindent
 set list

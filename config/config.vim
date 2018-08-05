@@ -15,12 +15,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 "-----------------------*-----------------------------"
 "aireline config
-let g:airline_powerline_fonts = 1 
-"打开tabline功能,方便查看Buffer和切换，这个功能比较不错" 
+let g:airline_powerline_fonts = 1
+"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0 
-"关闭状态显示空白符号计数,这个对我用处不大" 
-let g:airline#extensions#whitespace#enabled = 0 
+let g:airline#extensions#tabline#buffer_nr_show = 0
+"关闭状态显示空白符号计数,这个对我用处不大"
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 "设置主题
 "let g:airline_theme='bubblegum'
@@ -38,7 +38,7 @@ let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_confirm_extra_conf=0
-let g:ycm_semantic_triggers = { 
+let g:ycm_semantic_triggers = {
             \     'c' : ['->', '  ', '.', ' ', '(', '[', '&'],
             \     'cpp,objcpp' : ['->', '.', ' ', '(', '[', '&', '::'],
             \     'perl' : ['->', '::', ' '],
@@ -70,8 +70,8 @@ let g:NERDSpaceDelims=1
 " let g:delimitMate_expand_cr = 1
 "-----------------------*-----------------------------"
 "indentLine  config
-let g:indentLine_char = '┊' 
-let g:indentLine_color_term = 239 
+let g:indentLine_char = '┊'
+let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#A4E57E'
 let g:indentLine_color_tty_light = 7
 let g:indentLine_color_dark = 1
@@ -81,8 +81,36 @@ let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 "-----------------------*-----------------------------"
 "startify config
+source $HOME/.vim/config/logo.vim
+if exists('g:aerian_s_vim_logo')
+    let g:startify_custom_header = g:aerian_s_vim_logo[Rand()%len(g:aerian_s_vim_logo)]
+endif
+function! s:filter_header(lines) abort
+    let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
+    let centered_lines = map(copy(a:lines),
+                \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+    return centered_lines
+endfunction
+" start with NERDTree
+" autocmd VimEnter *
+            " \   if !argc()
+            " \ |   Startify
+            " \ |   NERDTree
+            " \ |   wincmd w
+            " \ | endif
+let g:startify_custom_header = s:filter_header(g:startify_custom_header)
 let g:startify_session_autoload = 1
 let  g:startify_files_number = 20
+
+let g:startify_skiplist = [
+            \ 'COMMIT_EDITMSG',
+            \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+            \ 'bundle/.*/doc',
+            \ '.vim/plugin/.*',
+            \ '.vim/syntax/.*',
+            \ '.vim/plugin/.*',
+            \ '.vim/doc/.*',
+            \ ]
 "-----------------------*-----------------------------"
 "leaderf
 let g:Lf_ShowRelativePath = 0
@@ -90,13 +118,13 @@ let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
 
 let g:Lf_NormalMap = {
-	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-	\ }
+            \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+            \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+            \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+            \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+            \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+            \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+            \ }
 "-----------------------*-----------------------------"
 "vim-mutliple-cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
@@ -166,22 +194,22 @@ let g:quickrun_no_default_key_mappings = 1
 "-----------------------*-----------------------------"
 "rainbow_parenthess
 let g:rbpt_colorpairs = [
-                        \ ['brown',       'RoyalBlue3'],
-                        \ ['Darkblue',    'SeaGreen3'],
-                        \ ['darkgray',    'DarkOrchid3'],
-                        \ ['darkgreen',   'firebrick3'],
-                        \ ['darkcyan',    'RoyalBlue3'],
-                        \ ['darkred',     'SeaGreen3'],
-                        \ ['darkmagenta', 'DarkOrchid3'],
-                        \ ['brown',       'firebrick3'],
-                        \ ['gray',        'RoyalBlue3'],
-                        \ ['darkmagenta', 'DarkOrchid3'],
-                        \ ['Darkblue',    'firebrick3'],
-                        \ ['darkgreen',   'RoyalBlue3'],
-                        \ ['darkcyan',    'SeaGreen3'],
-                        \ ['darkred',     'DarkOrchid3'],
-                        \ ['red',         'firebrick3'],
-                        \ ]
+            \ ['brown',       'RoyalBlue3'],
+            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkgray',    'DarkOrchid3'],
+            \ ['darkgreen',   'firebrick3'],
+            \ ['darkcyan',    'RoyalBlue3'],
+            \ ['darkred',     'SeaGreen3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['brown',       'firebrick3'],
+            \ ['gray',        'RoyalBlue3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['Darkblue',    'firebrick3'],
+            \ ['darkgreen',   'RoyalBlue3'],
+            \ ['darkcyan',    'SeaGreen3'],
+            \ ['darkred',     'DarkOrchid3'],
+            \ ['red',         'firebrick3'],
+            \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
@@ -210,11 +238,11 @@ call deoplete#custom#option({
             \ })
 call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
 " autocmd FileType python
-            " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+" \ call deoplete#custom#buffer_option('auto_complete', v:false)
 " autocmd FileType c
-            " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+" \ call deoplete#custom#buffer_option('auto_complete', v:false)
 " autocmd FileType cpp
-            " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+" \ call deoplete#custom#buffer_option('auto_complete', v:false)
 " -----------------------*-----------------------------"
 "  deoplete-tern
 " Set bin if you have many instalations
@@ -225,8 +253,8 @@ call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
 " Default: 0
 " let g:deoplete#sources#ternjs#types = 1
 "
-"" Whether to include the distance (in scopes for variables, in prototypes for 
-" properties) between the completions and the origin position in the result 
+"" Whether to include the distance (in scopes for variables, in prototypes for
+" properties) between the completions and the origin position in the result
 " " data. Default: 0
 " let g:deoplete#sources#ternjs#depths = 1
 "
@@ -237,35 +265,35 @@ call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
 " " When on, only completions that match the current word at the given point
 " will
 " " be returned. Turn this off to get all results, so that you can filter on
-" the 
+" the
 " " client side. Default: 1
 " let g:deoplete#sources#ternjs#filter = 0
 "
-"" Whether to use a case-insensitive compare between the current word and 
+"" Whether to use a case-insensitive compare between the current word and
 " potential completions. Default 0
 " let g:deoplete#sources#ternjs#case_insensitive = 1
 "
 " " When completing a property and no completions are found, Tern will use
-" some 
-" " heuristics to try and return some properties anyway. Set this to 0 to 
+" some
+" " heuristics to try and return some properties anyway. Set this to 0 to
 " " turn that off. Default: 1
 " let g:deoplete#sources#ternjs#guess = 0
 "
 "" Determines whether the result set will be sorted. Default: 1
 let g:deoplete#sources#ternjs#sort = 0
 
-" When disabled, only the text before the given position is considered part of 
+" When disabled, only the text before the given position is considered part of
 " " the word. When enabled (the default), the whole variable name that the
 " cursor
 " " is on will be included. Default: 1
 " let g:deoplete#sources#ternjs#expand_word_forward = 0
 "
-" " Whether to ignore the properties of Object.prototype unless they have been 
+" " Whether to ignore the properties of Object.prototype unless they have been
 " " spelled out by at least two characters. Default: 1
 " let g:deoplete#sources#ternjs#omit_object_prototype = 0
 "
 " " Whether to include JavaScript keywords when completing something that is
-" not 
+" not
 " " a property. Default: 0
 " let g:deoplete#sources#ternjs#include_keywords = 1
 "
@@ -275,10 +303,10 @@ let g:deoplete#sources#ternjs#sort = 0
 "
 ""Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
+            \ 'jsx',
+            \ 'javascript.jsx',
+            \ 'vue',
+            \ ]
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
@@ -289,17 +317,17 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 "-----------------------*-----------------------------"
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : '☒',
+            \ "Unknown"   : "?"
+            \ }
 "-----------------------*-----------------------------"
 " easymotion
 let g:EasyMotion_do_mappings = 0
