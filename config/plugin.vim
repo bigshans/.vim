@@ -55,6 +55,8 @@ Plug 'othree/html5.vim', {'for': ['html', 'vue']}
 Plug 'hail2u/vim-css3-syntax'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+    Plug 'roxma/nvim-yarp', {'on' : []}
+    Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'

@@ -55,6 +55,7 @@ set listchars=eol:↩︎
 set laststatus=2
 set writebackup
 set nobackup
+let g:netrw_altv = 1
 "-----------------------*-----------------------------"
 "my personal script for my keybind
 let g:screen_center_toggle_flag = 1
