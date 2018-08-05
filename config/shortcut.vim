@@ -36,10 +36,8 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 "-----------------------*-----------------------------"
-map <F5> :call CompileCode()<CR>
-imap <F5> <ESC>:call CompileCode()<CR>
-vmap <F5> <ESC>:call CompileCode()<CR>
-map <F6> :call RunResult()<CR>
+" autoformat
+noremap <silent><leader>fm :Autoformat<CR>
 "-----------------------*-----------------------------"
 "auto-pair
 let g:AutoPairsMapCh = "<C-g>"

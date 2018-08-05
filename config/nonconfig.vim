@@ -33,7 +33,6 @@ noremap <leader>a ggVG
 "edit config
 noremap <leader>x "+x
 " noremap <leader>fm gg=G``
-noremap <silent><leader>fm :Autoformat<CR>
 noremap <leader>bx :tabc<CR>
 noremap <leader>bd :bdelete!<CR>
 " nnoremap <leader>s :shell<CR>
