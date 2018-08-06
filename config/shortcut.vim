@@ -130,3 +130,7 @@ let g:UltiSnipsListSnippets="<C-\>"
 "-----------------------*-----------------------------"
 " easymotion
 map <leader>e <Plug>(easymotion-prefix)
+
+"-----------------------*-----------------------------"
+" choosewin
+let g:choosewin_overlay_enable = 1

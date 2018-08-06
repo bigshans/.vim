@@ -1,4 +1,4 @@
-" -----------------------*-----------------------------"
+"-----------------------*-----------------------------"
 "NerdTree config
 let g:NERDTreeWinSize=30
 let g:NERDTreeDirArrows=1
@@ -331,3 +331,7 @@ let g:NERDTreeIndicatorMapCustom = {
 "-----------------------*-----------------------------"
 " easymotion
 let g:EasyMotion_do_mappings = 0
+" -----------------------*-----------------------------"
+" vim-choosewin
+nmap - <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1

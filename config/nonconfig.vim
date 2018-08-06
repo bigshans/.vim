@@ -33,16 +33,19 @@ noremap <leader>a ggVG
 "edit config
 noremap <leader>x "+x
 " noremap <leader>fm gg=G``
-noremap <leader>bx :tabc<CR>
-noremap <leader>bd :bdelete!<CR>
 " nnoremap <leader>s :shell<CR>
 inoremap <C-v>     <C-o>p
 nnoremap p         p=`]<C-o>
 inoremap <C-d>    <ESC>
 inoremap <C-f>    <ESC>:
 inoremap <C-a>    <Home>
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bp :bp<CR> "
+noremap <leader>bx :tabclose<CR>
+noremap <leader>bd :bdelete!<CR>
+nnoremap <leader>bn :tabNext<CR>
+nnoremap <leader>bp :tabprevious<CR> "
+nnoremap <leader>bf :tabfirst<CR> "
+nnoremap <leader>be :tablast<CR> "
+nnoremap <leader>bo :tabonly<CR>
 inoremap <C-e>    <End>
 inoremap <C-Right> <ESC>><right>i
 inoremap <C-Left> <ESC><<left>i

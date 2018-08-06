@@ -38,13 +38,13 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'thinca/vim-quickrun', {'on':'Quickrun'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
 Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular' "必须在markdown插件之前
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown' "实时预览markdown插件
 Plug 'https://github.com/mbbill/undotree.git'
-Plug 'biskark/vim-ultimate-colorscheme-utility'
+" Plug 'biskark/vim-ultimate-colorscheme-utility'
 " Plug 'mikelue/vim-maven-plugin'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-smooth-scroll'
@@ -70,10 +70,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 " Plug 'zchee/deoplete-zsh'
-" Plug 'pocke/vueim'
 " Plug 'Shougo/denite.nvim'
-" Plug 'scrooloose/nerdtree-project-plugin'
-" Plug 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin'
 " Plug 'tenfyzhong/CompleteParameter.vim'
 " Plug 'vimwiki/vimwiki' 
 
