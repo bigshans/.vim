@@ -62,7 +62,10 @@ set writebackup
 set nobackup
 let g:netrw_altv = 1
 "-----------------------*-----------------------------"
-"my personal script for my keybind
+
+command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
+command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+" my personal script for my keybind
 let g:screen_center_toggle_flag = 1
 function! ScreenCenterToggle()
     if g:screen_center_toggle_flag == 0
