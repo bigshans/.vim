@@ -358,12 +358,15 @@ let g:choosewin_overlay_enable = 1
 
  "-----------------------*-----------------------------"
  " vim-leader-guide
- let g:lmap = {}
+ let g:lmap = {
+             \ }
  let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
  let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
  let g:lmap.b = {'name' : 'about buffer and tab'}
 let g:lmap.t = {'name' : 'about nerdtree and term'}
 let g:lmap.c = {'name' : 'about comment'}
+let g:lmap.o = {'name' : 'new blank line up'}
+let g:lmap.O = {'name' : 'new blank line down'}
 let g:topdict = {}
 let g:topdict[' '] = g:lmap
 let g:topdict[' ']['name'] = '<leader>'

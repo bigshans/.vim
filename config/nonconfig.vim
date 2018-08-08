@@ -14,7 +14,6 @@ nnoremap <leader>j <C-w><C-j>
 nnoremap <leader>k <C-w><C-k>
 nnoremap <leader>l <C-w><C-l>
 " noremap <leader>x :tabc<CR>
-noremap <leader>o :tabo<CR>
 noremap <leader>fh :tabnew ~/.vim/config<CR>
 noremap <leader>fv :tabnew ~/.vimrc<CR>
 noremap <leader>fk :tabnew ~/.vim/config/shortcut.vim<CR>
@@ -79,8 +78,8 @@ nnoremap <silent><leader>tr :belowright term<CR>
 nnoremap <silent><leader>tp :belowright term python<CR>
 nnoremap <silent><leader>ts :belowright term ipython<CR>
 nnoremap <C-m>  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-nnoremap <leader>[  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap <leader>]  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap <leader>o  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap <leader>O  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 xnoremap <  <gv
 xnoremap >  >gv
 tnoremap <ESC> <C-\><C-n>
