@@ -75,7 +75,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 nmap <silent><leader>ss :BLines<CR>
 nmap <silent><leader>bb :Buffers<CR>
-nmap <silent><leader>c :Colors<CR>
+nmap <silent><leader>C :Colors<CR>
 nmap <silent><leader>ff :FZF<CR>
 
 augroup Myfzf

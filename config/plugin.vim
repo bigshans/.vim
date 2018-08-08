@@ -1,11 +1,13 @@
 filetype plugin indent on 
 " -----------------------*-----------------------------" 
+let g:plug_threads = 25
+let g:plug_timeout = 55
 call plug#begin('~/.vim/bundle')
 
 Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-Plug 'artur-shaik/vim-javacomplete2'
+Plug 'artur-shaik/vim-javacomplete2' , {'for' : ['java', 'jsp']}
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
@@ -14,7 +16,6 @@ Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'lilydjwg/fcitx.vim'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
-" Plug 'Yggdroot/LeaderF'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'terryma/vim-multiple-cursors'
@@ -22,7 +23,6 @@ Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mattn/emmet-vim'
 Plug 'sillybun/vim-repl'
-Plug 'git://github.com/tpope/vim-ragtag.git'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/rking/ag.vim.git'
 Plug 'https://github.com/w0rp/ale.git'
@@ -44,8 +44,6 @@ Plug 'godlygeek/tabular' "必须在markdown插件之前
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown' "实时预览markdown插件
 Plug 'https://github.com/mbbill/undotree.git'
-" Plug 'biskark/vim-ultimate-colorscheme-utility'
-" Plug 'mikelue/vim-maven-plugin'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'terryma/vim-expand-region'
@@ -69,10 +67,11 @@ Plug 'zchee/deoplete-jedi'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
-" Plug 'zchee/deoplete-zsh'
-" Plug 'Shougo/denite.nvim'
 Plug 't9md/vim-choosewin'
-" Plug 'tenfyzhong/CompleteParameter.vim'
-" Plug 'vimwiki/vimwiki' 
+Plug 'vimwiki/vimwiki' 
+Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'ktonga/vim-follow-my-lead'
+Plug 'hecal3/vim-leader-guide'
+" Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()

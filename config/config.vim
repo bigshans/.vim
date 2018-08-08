@@ -148,6 +148,10 @@ let g:repl_exit_commands = {
 "-----------------------*-----------------------------"
 "ale
 " let g:ale_javascript_eslint_ecutable = 'special-eslint'
+let g:ale_python_pylint_executable = 'python3'   " or 'python' for Python 2
+let g:ale_python_pylint_options = '--rcfile /path/to/pylint.rc'
+" The virtualenv detection needs to be disabled.
+let g:ale_python_pylint_use_global = 0
 let g:ale_vue_vls_executable = 'vls'
 let g:ale_javascript_eslint_use_global=1
 let g:ale_use_global_executables = 1
@@ -169,6 +173,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
             \ 'javascript':['eslint'],
             \ 'vue':['prettier'],
+            \ 'python3':['yapf']
             \}
 " let g:ale_completion_enabled=1
 let g:LanguageClient_serverCommands = {
@@ -232,6 +237,7 @@ imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 let g:vue_disable_pre_processors=1
 " -----------------------*-----------------------------"
 "  deoplete
+let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
             \ 'auto_complete_delay' : 100,
             \ 'min_pattern_length' : 1,
@@ -253,8 +259,7 @@ call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
 " Default: 0
 " let g:deoplete#sources#ternjs#types = 1
 "
-"" Whether to include the distance (in scopes for variables, in prototypes for
-" properties) between the completions and the origin position in the result
+"" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
 " " data. Default: 0
 " let g:deoplete#sources#ternjs#depths = 1
 "
@@ -311,6 +316,12 @@ let g:deoplete#sources#ternjs#filetypes = [
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 " -----------------------*-----------------------------"
+"  deoplete-jedi
+let g:deoplete#sources#jedi#server_timeout = 10
+let g:deoplete#sources#jedi#statement_lenght = 120
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
+" -----------------------*-----------------------------"
 "  deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
@@ -335,3 +346,28 @@ let g:EasyMotion_do_mappings = 0
 " vim-choosewin
 nmap - <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
+"-----------------------*-----------------------------"
+" vim-devicons
+ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+ " let g:webdevicons_conceal_nerdtree_brackets = 0
+ " let g:DevIconsEnableFoldersOpenClose = 1
+ " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+ "-----------------------*-----------------------------"
+ " vim-follow-my-lead
+ let g:fml_all_sources = 1 
+
+ "-----------------------*-----------------------------"
+ " vim-leader-guide
+ let g:lmap = {}
+ let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
+ let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
+ let g:lmap.b = {'name' : 'about buffer and tab'}
+let g:lmap.t = {'name' : 'about nerdtree and term'}
+let g:lmap.c = {'name' : 'about comment'}
+let g:topdict = {}
+let g:topdict[' '] = g:lmap
+let g:topdict[' ']['name'] = '<leader>'
+call leaderGuide#register_prefix_descriptions("", "g:topdict")
+ nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
+ vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+let g:leaderGuide_hspace = 5

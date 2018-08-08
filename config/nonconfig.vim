@@ -15,8 +15,6 @@ nnoremap <leader>k <C-w><C-k>
 nnoremap <leader>l <C-w><C-l>
 " noremap <leader>x :tabc<CR>
 noremap <leader>o :tabo<CR>
-noremap <leader>ws :split<CR>
-noremap <leader>wv :vsplit<CR>
 noremap <leader>fh :tabnew ~/.vim/config<CR>
 noremap <leader>fv :tabnew ~/.vimrc<CR>
 noremap <leader>fk :tabnew ~/.vim/config/shortcut.vim<CR>
@@ -47,6 +45,8 @@ nnoremap <leader>bp :tabprevious<CR> "
 nnoremap <leader>bf :tabfirst<CR> "
 nnoremap <leader>be :tablast<CR> "
 nnoremap <leader>bo :tabonly<CR>
+noremap <leader>bs :split<CR>
+noremap <leader>bv :vsplit<CR>
 inoremap <C-e>    <End>
 inoremap <C-Right> <ESC>><right>i
 inoremap <C-Left> <ESC><<left>i
