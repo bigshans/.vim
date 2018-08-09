@@ -9,6 +9,8 @@ nnoremap <C-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 " nnoremap <C-h> ^
 " nnoremap <C-l> $
 nnoremap <silent><leader>st :call ScreenCenterToggle()<CR>
+nnoremap <leader>sn :set relativenumber!<CR>
+xnoremap <leader>sn :set relativenumber!<CR>
 nnoremap <leader>h <C-w><C-h>
 nnoremap <leader>j <C-w><C-j>
 nnoremap <leader>k <C-w><C-k>

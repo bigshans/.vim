@@ -33,7 +33,7 @@ set background=dark
 "colorscheme Tomorrow-Night
 " colorscheme solarized
 " colorscheme gruvbox
-set nu
+set number relativenumber
 set hlsearch
 set title
 syntax enable
