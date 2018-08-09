@@ -93,11 +93,11 @@ function! s:filter_header(lines) abort
 endfunction
 " start with NERDTree
 " autocmd VimEnter *
-            " \   if !argc()
-            " \ |   Startify
-            " \ |   NERDTree
-            " \ |   wincmd w
-            " \ | endif
+" \   if !argc()
+" \ |   Startify
+" \ |   NERDTree
+" \ |   wincmd w
+" \ | endif
 let g:startify_custom_header = s:filter_header(g:startify_custom_header)
 let g:startify_session_autoload = 1
 let  g:startify_files_number = 20
@@ -118,13 +118,13 @@ let g:startify_skiplist = [
 " let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
 
 " let g:Lf_NormalMap = {
-            " \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-            " \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-            " \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-            " \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-            " \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-            " \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-            " \ }
+" \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+" \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+" \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+" \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+" \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+" \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+" \ }
 "-----------------------*-----------------------------"
 "vim-mutliple-cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
@@ -252,31 +252,31 @@ call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
 " -----------------------*-----------------------------"
 "  deoplete-tern
 " Set bin if you have many instalations
-" let g:deoplete#sources#ternjs#tern_bin = '/path/to/tern_bin'
+let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 " let g:deoplete#sources#ternjs#timeout = 1
 "
 " " Whether to include the types of the completions in the result data.
 " Default: 0
-" let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#types = 1
 "
 "" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
 " " data. Default: 0
-" let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#depths = 1
 "
 " " Whether to include documentation strings (if found) in the result data.
 " " Default: 0
-" let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#docs = 1
 "
 " " When on, only completions that match the current word at the given point
 " will
 " " be returned. Turn this off to get all results, so that you can filter on
 " the
 " " client side. Default: 1
-" let g:deoplete#sources#ternjs#filter = 0
+let g:deoplete#sources#ternjs#filter = 0
 "
 "" Whether to use a case-insensitive compare between the current word and
 " potential completions. Default 0
-" let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
 "
 " " When completing a property and no completions are found, Tern will use
 " some
@@ -300,7 +300,7 @@ let g:deoplete#sources#ternjs#sort = 0
 " " Whether to include JavaScript keywords when completing something that is
 " not
 " " a property. Default: 0
-" let g:deoplete#sources#ternjs#include_keywords = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
 "
 " " If completions should be returned when inside a literal. Default: 1
 " let g:deoplete#sources#ternjs#in_literal = 0
@@ -348,21 +348,21 @@ nmap - <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 "-----------------------*-----------------------------"
 " vim-devicons
- let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
- " let g:webdevicons_conceal_nerdtree_brackets = 0
- " let g:DevIconsEnableFoldersOpenClose = 1
- " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
- "-----------------------*-----------------------------"
- " vim-follow-my-lead
- let g:fml_all_sources = 1 
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" let g:webdevicons_conceal_nerdtree_brackets = 0
+" let g:DevIconsEnableFoldersOpenClose = 1
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"-----------------------*-----------------------------"
+" vim-follow-my-lead
+let g:fml_all_sources = 1
 
- "-----------------------*-----------------------------"
- " vim-leader-guide
- let g:lmap = {
-             \ }
- let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
- let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
- let g:lmap.b = {'name' : 'about buffer and tab'}
+"-----------------------*-----------------------------"
+" vim-leader-guide
+let g:lmap = {
+            \ }
+let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
+let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
+let g:lmap.b = {'name' : 'about buffer and tab'}
 let g:lmap.t = {'name' : 'about nerdtree and term'}
 let g:lmap.c = {'name' : 'about comment'}
 let g:lmap.o = {'name' : 'new blank line up'}
@@ -371,6 +371,53 @@ let g:topdict = {}
 let g:topdict[' '] = g:lmap
 let g:topdict[' ']['name'] = '<leader>'
 call leaderGuide#register_prefix_descriptions("", "g:topdict")
- nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
- vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 let g:leaderGuide_hspace = 5
+"-----------------------*-----------------------------"
+" csscomplete.vim
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS nonci
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+"-----------------------*-----------------------------"
+" context_filetype.vim
+if !exists('g:context_filetype#same_filetypes')
+    let g:context_filetype#same_filetypes = {}
+endif
+let g:context_filetype#same_filetypes.html = 'css'
+"-----------------------*-----------------------------"
+"vim-closetag
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml,vue'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,vue'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'

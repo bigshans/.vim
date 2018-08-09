@@ -72,6 +72,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'ktonga/vim-follow-my-lead'
 Plug 'hecal3/vim-leader-guide'
+Plug 'Shougo/context_filetype.vim'
+Plug 'othree/csscomplete.vim'
+Plug 'alvan/vim-closetag'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()
