@@ -134,3 +134,8 @@ map <leader>e <Plug>(easymotion-prefix)
 "-----------------------*-----------------------------"
 " choosewin
 let g:choosewin_overlay_enable = 1
+"-----------------------*-----------------------------"
+" vim-easy-align
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)

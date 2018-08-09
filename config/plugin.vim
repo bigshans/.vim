@@ -75,6 +75,7 @@ Plug 'hecal3/vim-leader-guide'
 Plug 'Shougo/context_filetype.vim'
 Plug 'othree/csscomplete.vim'
 Plug 'alvan/vim-closetag'
+Plug 'junegunn/vim-easy-align'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()
