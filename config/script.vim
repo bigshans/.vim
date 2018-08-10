@@ -16,7 +16,7 @@ set t_Co=256
 " let g:nord_italic_comments=1
 " let g:nord_comment_brightness=12
 " let g:nord_uniform_status_lines=1
-if has('gui_running')
+if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=T
     " set guioptions-=m
     set guioptions-=l
