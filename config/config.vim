@@ -254,7 +254,7 @@ let g:deoplete#sources#ternjs#types = 1
 "
 "" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
 " " data. Default: 0
-let g:deoplete#sources#ternjs#depths = 1
+" let g:deoplete#sources#ternjs#depths = 1
 "
 " " Whether to include documentation strings (if found) in the result data.
 " " Default: 0
@@ -265,11 +265,11 @@ let g:deoplete#sources#ternjs#docs = 1
 " " be returned. Turn this off to get all results, so that you can filter on
 " the
 " " client side. Default: 1
-let g:deoplete#sources#ternjs#filter = 0
+" let g:deoplete#sources#ternjs#filter = 0
 "
 "" Whether to use a case-insensitive compare between the current word and
 " potential completions. Default 0
-let g:deoplete#sources#ternjs#case_insensitive = 1
+" let g:deoplete#sources#ternjs#case_insensitive = 1
 "
 " " When completing a property and no completions are found, Tern will use
 " some
@@ -378,6 +378,11 @@ if !exists('g:context_filetype#same_filetypes')
     let g:context_filetype#same_filetypes = {}
 endif
 let g:context_filetype#same_filetypes.html = 'css'
+"-----------------------*-----------------------------"
+"echodoc
+
+let g:echodoc#enable_at_startup = 1
+
 "-----------------------*-----------------------------"
 "vim-closetag
 

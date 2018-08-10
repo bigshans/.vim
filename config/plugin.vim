@@ -64,6 +64,7 @@ let g:deoplete#enable_at_startup = 1
 Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
