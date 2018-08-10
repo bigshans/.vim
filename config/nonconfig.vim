@@ -1,5 +1,5 @@
-noremap <Up> gk
 noremap <Down> gj
+noremap <Up> gk
 vnoremap <Up> gk
 vnoremap <Down> gj
 nnoremap <leader>; :
@@ -55,16 +55,12 @@ inoremap <C-x>  <C-o>d$
 " nnoremap <silent><C-Down> :m .+1<CR>==
 " nnoremap <silent><C-Up> :m .-2<CR>==
 " There much useful than before. You use it with number
-nnoremap <silent><C-up>  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap <silent><C-down>  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
 inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
 inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
 vnoremap <silent><C-Down> :m '>+1<CR>gv=gv
 vnoremap <silent><C-Up> :m '<-2<CR>gv=gv
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
 " noremap <C-x>b :reg<CR>
 " inoremap <C-x>b <ESC>:reg<CR>
 " noremap  zz ZZ
@@ -79,10 +75,15 @@ nnoremap <silent><leader><Right> :vertical res -1<CR>
 nnoremap <silent><leader>tr :belowright term<CR>
 nnoremap <silent><leader>tp :belowright term python<CR>
 nnoremap <silent><leader>ts :belowright term ipython<CR>
-nnoremap <C-m>  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-nnoremap <leader>o  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap <leader>O  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+" nnoremap <C-m>  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+nnoremap <leader>O  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap <leader>o  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 xnoremap <  <gv
 xnoremap >  >gv
 tnoremap <ESC> <C-\><C-n>
 " tnoremap <M-q> exit<CR>
+inoremap <C-k> <NOP>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-l> <Right>
+inoremap <C-k> <Up>

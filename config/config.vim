@@ -226,13 +226,6 @@ au Syntax * RainbowParenthesesLoadBraces
 let g:expand_region_usr_select_mode = 1
 
 " -----------------------*-----------------------------"
-"  CompleteParameter.vim
-inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-" -----------------------*-----------------------------"
 "  vim-vue
 let g:vue_disable_pre_processors=1
 " -----------------------*-----------------------------"
@@ -344,8 +337,7 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:EasyMotion_do_mappings = 0
 " -----------------------*-----------------------------"
 " vim-choosewin
-nmap - <Plug>(choosewin)
-let g:choosewin_overlay_enable = 1
+
 "-----------------------*-----------------------------"
 " vim-devicons
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
