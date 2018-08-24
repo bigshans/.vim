@@ -78,6 +78,7 @@ nnoremap <silent><leader>ts :belowright term ipython<CR>
 " nnoremap <C-m>  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 nnoremap <leader>O  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap <leader>o  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap <leader>w :w !sudo tee %<CR>
 xnoremap <  <gv
 xnoremap >  >gv
 tnoremap <ESC> <C-\><C-n>

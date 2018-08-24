@@ -63,7 +63,6 @@ set writebackup
 set nobackup
 let g:netrw_altv = 1
 "-----------------------*-----------------------------"
-
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
 " my personal script for my keybind
@@ -83,3 +82,7 @@ function! ScreenCenterToggle()
     endif
 endfunction
 
+augroup Web
+    autocmd!
+    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js set tabstop=2 shiftwidth=2 shiftwidth=2
+augroup END

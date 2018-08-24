@@ -175,7 +175,9 @@ let g:ale_fixers = {
             \ 'vue':['prettier'],
             \ 'python3':['yapf']
             \}
-" let g:ale_completion_enabled=1
+let g:ale_completion_enabled=1
+let g:ale_completion_delay = 100
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:LanguageClient_serverCommands = {
             \ 'vue' : ['vue']
             \ }

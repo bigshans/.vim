@@ -43,7 +43,7 @@ noremap <silent><leader>fm :Autoformat<CR>
 let g:AutoPairsMapCh = "<C-g>"
 "-----------------------*-----------------------------"
 "vim-repl
-" nnoremap <leader>r :REPLToggle<CR>
+nnoremap <leader>r :REPLToggle<CR>
 "-----------------------*-----------------------------"
 "ale
 nmap sp <Plug>(ale_previous_wrap)
