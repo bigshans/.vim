@@ -22,7 +22,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mattn/emmet-vim'
-Plug 'sillybun/vim-repl'
+" Plug 'sillybun/vim-repl'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/rking/ag.vim.git'
 Plug 'https://github.com/w0rp/ale.git'
@@ -64,14 +64,18 @@ let g:deoplete#enable_at_startup = 1
 Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
-Plug 'vimwiki/vimwiki' 
-Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 Plug 'ktonga/vim-follow-my-lead'
 Plug 'hecal3/vim-leader-guide'
+Plug 'Shougo/context_filetype.vim'
+Plug 'othree/csscomplete.vim'
+Plug 'alvan/vim-closetag'
+Plug 'junegunn/vim-easy-align'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()

@@ -43,7 +43,7 @@ noremap <silent><leader>fm :Autoformat<CR>
 let g:AutoPairsMapCh = "<C-g>"
 "-----------------------*-----------------------------"
 "vim-repl
-" nnoremap <leader>r :REPLToggle<CR>
+nnoremap <leader>r :REPLToggle<CR>
 "-----------------------*-----------------------------"
 "ale
 nmap sp <Plug>(ale_previous_wrap)
@@ -133,4 +133,10 @@ map <leader>e <Plug>(easymotion-prefix)
 
 "-----------------------*-----------------------------"
 " choosewin
+nmap <leader>- <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
+"-----------------------*-----------------------------"
+" vim-easy-align
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)

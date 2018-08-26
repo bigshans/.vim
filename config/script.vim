@@ -4,6 +4,7 @@ set mouse=a
 set lazyredraw
 set synmaxcol=200
 set timeout
+set cmdheight=2
 " set so=999
 filetype off
 "-----------------------*-----------------------------"
@@ -15,7 +16,7 @@ set t_Co=256
 " let g:nord_italic_comments=1
 " let g:nord_comment_brightness=12
 " let g:nord_uniform_status_lines=1
-if has('gui_running')
+if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=T
     " set guioptions-=m
     set guioptions-=l
@@ -33,7 +34,7 @@ set background=dark
 "colorscheme Tomorrow-Night
 " colorscheme solarized
 " colorscheme gruvbox
-set nu
+set number relativenumber
 set hlsearch
 set title
 syntax enable
@@ -62,7 +63,6 @@ set writebackup
 set nobackup
 let g:netrw_altv = 1
 "-----------------------*-----------------------------"
-
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
 " my personal script for my keybind
@@ -82,3 +82,7 @@ function! ScreenCenterToggle()
     endif
 endfunction
 
+augroup Web
+    autocmd!
+    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js set tabstop=2 shiftwidth=2 shiftwidth=2
+augroup END
