@@ -184,6 +184,7 @@ let g:LanguageClient_serverCommands = {
 "-----------------------*-----------------------------"
 "vim-autoformat
 let g:formatdef_my_custom_c="astyle --style=1tbs"
+let g:formatdef_yapf_style= 'pep8'
 "-----------------------*-----------------------------"
 "vim-quickrun
 let g:quickrun_config = {

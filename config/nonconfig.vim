@@ -41,10 +41,14 @@ inoremap <C-f>    <ESC>:
 inoremap <C-a>    <Home>
 noremap <leader>bx :tabclose<CR>
 noremap <leader>bd :bdelete!<CR>
-nnoremap <leader>bn :tabNext<CR>
-nnoremap <leader>bp :tabprevious<CR> "
-nnoremap <leader>bf :tabfirst<CR> "
+nnoremap <leader>bn :bNext<CR>
+nnoremap <leader>bp :bprevious<CR> "
+nnoremap <leader>bf :bfirst<CR> "
 nnoremap <leader>be :tablast<CR> "
+nnoremap <leader>bN :tabNext<CR>
+nnoremap <leader>bP :tabprevious<CR> "
+nnoremap <leader>bF :tabfirst<CR> "
+nnoremap <leader>bE :tablast<CR> "
 nnoremap <leader>bo :tabonly<CR>
 noremap <leader>bs :split<CR>
 noremap <leader>bv :vsplit<CR>
