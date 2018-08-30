@@ -65,6 +65,8 @@ let g:netrw_altv = 1
 "-----------------------*-----------------------------"
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+command! Hex :%!xxd
+command! HexExit :%!xxd -r
 " my personal script for my keybind
 let g:screen_center_toggle_flag = 1
 function! ScreenCenterToggle()
