@@ -140,3 +140,8 @@ let g:choosewin_overlay_enable = 1
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+
+"-----------------------*-----------------------------"
+" vim-zenroom2
+ nnoremap <silent> <leader>z :Goyo<CR>

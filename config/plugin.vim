@@ -42,7 +42,6 @@ Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
 Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular' "必须在markdown插件之前
 Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown' "实时预览markdown插件
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-smooth-scroll'
@@ -76,6 +75,8 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'othree/csscomplete.vim'
 Plug 'alvan/vim-closetag'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()

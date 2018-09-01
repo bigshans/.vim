@@ -421,3 +421,7 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 "
 let g:closetag_close_shortcut = '<leader>>'
+"-----------------------*-----------------------------"
+" vim-markdown
+
+let g:vim_markdown_cinceal = 0
