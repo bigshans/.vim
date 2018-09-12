@@ -4,7 +4,9 @@ set mouse=a
 set lazyredraw
 set synmaxcol=200
 set timeout
-set cmdheight=2
+" set cmdheight=2
+
+set noshowmode
 " set so=999
 filetype off
 "-----------------------*-----------------------------"

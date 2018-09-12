@@ -68,6 +68,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
+Plug 'weilbith/nerdtree_choosewin-plugin'
 Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 Plug 'ktonga/vim-follow-my-lead'
 Plug 'hecal3/vim-leader-guide'
