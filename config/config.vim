@@ -56,7 +56,7 @@ let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚡'
 "-----------------------*-----------------------------"
 "javacomplete2 config
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
 "-----------------------*-----------------------------"
 "UltiSnips config
 
@@ -235,10 +235,32 @@ let g:vue_disable_pre_processors=1
 "  deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-            \ 'auto_complete_delay' : 100,
+            \ 'auto_complete_delay' : 0,
             \ 'min_pattern_length' : 1,
             \ })
 call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
+        " Eclim support
+        " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
+        "
+        call deoplete#custom#option('omni_patterns', {
+                    \ 'java': '[^. *\t]\.\w*',
+                    \})
+
+        " Autoclose preview windows
+        " https://github.com/Shougo/deoplete.nvim/issues/115
+        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+        " https://github.com/Shougo/deoplete.nvim/issues/100
+        " use tab to forward cycle
+        inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+        " use tab to backward cycle
+        inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+        " Lazy load Deoplete to reduce statuptime
+        " See manpage
+        " Enable deoplete when InsertEnter.
+        let g:deoplete#enable_at_startup = 0
+        autocmd InsertEnter * call deoplete#enable() 
 " autocmd FileType python
 " \ call deoplete#custom#buffer_option('auto_complete', v:false)
 " autocmd FileType c
@@ -319,8 +341,19 @@ let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 " -----------------------*-----------------------------"
 "  deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
+" -----------------------*-----------------------------"
+"  deoplete-clangx
+
+" Change clang binary path
+" call deoplete#custom#var('clangx', 'clang_binary', '/usr/local/bin/clang')
+
+" Change clang options
+" call deoplete#custom#var('clangx', 'default_c_options', '-')
+" call deoplete#custom#var('clangx', 'default_cpp_options', '')
+" let g:clang_library_path='/usr/lib/llvm-6.0/lib'
 "-----------------------*-----------------------------"
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
@@ -425,3 +458,7 @@ let g:closetag_close_shortcut = '<leader>>'
 " vim-markdown
 
 let g:vim_markdown_cinceal = 0
+
+"-----------------------*-----------------------------"
+" eclim
+let g:EclimCompletionMethod='omnifunc'

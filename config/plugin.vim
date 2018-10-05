@@ -7,7 +7,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-Plug 'artur-shaik/vim-javacomplete2' , {'for' : ['java', 'jsp']}
+" Plug 'artur-shaik/vim-javacomplete2' , {'for' : ['java', 'jsp']}
+Plug '~/.vim/bundle/eclim'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
@@ -62,6 +63,8 @@ endif
 let g:deoplete#enable_at_startup = 1
 Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
 Plug 'zchee/deoplete-clang'
+" Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/deoplete-clangx'
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -78,6 +81,7 @@ Plug 'alvan/vim-closetag'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
+" Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
 call plug#end()
