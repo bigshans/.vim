@@ -25,7 +25,7 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=L
     set guioptions-=r
     set guioptions-=R
-    set guifont=NotoMonoforPowerline\ 11
+    set guifont=NotoMonoforPowerline\ 09
     colorscheme one
 else
     colorscheme gruvbox
@@ -36,7 +36,7 @@ set background=dark
 "colorscheme Tomorrow-Night
 " colorscheme solarized
 " colorscheme gruvbox
-set number relativenumber
+set number " relativenumber
 set hlsearch
 set title
 syntax enable

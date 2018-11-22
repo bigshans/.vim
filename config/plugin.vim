@@ -83,6 +83,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'Flowerowl/ici.vim'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 

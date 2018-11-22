@@ -53,7 +53,7 @@ nmap <Leader>wa :ALEToggle<CR>
 "<Leader>wd查看错误或警告的详细信息
 nmap <Leader>wd :ALEDetail<CR>
 let g:ale_python_flake8_executable = 'python3'   " or 'python' for Python 2
-let g:ale_python_flake8_options = '-m flake8'
+" let g:ale_python_flake8_options = '-m flake8'
 "-----------------------*-----------------------------"
 "vim-interestingword
 nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
@@ -147,3 +147,7 @@ nmap ga <Plug>(EasyAlign)
 "-----------------------*-----------------------------"
 " vim-zenroom2
  nnoremap <silent> <leader>z :Goyo<CR>
+ "-----------------------*-----------------------------"
+ " Ici.vim
+
+nnoremap <leader>ch :IciFrom<CR>
