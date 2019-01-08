@@ -2,13 +2,17 @@ filetype plugin indent on
 " -----------------------*-----------------------------" 
 let g:plug_threads = 25
 let g:plug_timeout = 55
+let g:deoplete = 0
 call plug#begin('~/.vim/bundle')
 
 Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-" Plug 'artur-shaik/vim-javacomplete2' , {'for' : ['java', 'jsp']}
-Plug '~/.vim/bundle/eclim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+" Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
+Plug 'artur-shaik/vim-javacomplete2', {'on':[], 'for': ['java', 'jsp']}
+" Plug '~/.vim/bundle/eclim'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
@@ -23,6 +27,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mattn/emmet-vim'
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
 " Plug 'sillybun/vim-repl'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/rking/ag.vim.git'
@@ -51,21 +59,23 @@ Plug 'danro/rename.vim'
 Plug 'posva/vim-vue'
 Plug 'othree/html5.vim', {'for': ['html', 'vue']}
 Plug 'hail2u/vim-css3-syntax'
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-    Plug 'roxma/nvim-yarp', {'on' : []}
-    Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+if g:deoplete == 1
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+        Plug 'roxma/nvim-yarp', {'on' : []}
+        Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+    let g:deoplete#enable_at_startup = 1
+    Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
+    Plug 'zchee/deoplete-clang'
+    " Plug 'Shougo/neoinclude.vim'
+    " Plug 'Shougo/deoplete-clangx'
+    Plug 'zchee/deoplete-jedi'
 endif
-let g:deoplete#enable_at_startup = 1
-Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
-Plug 'zchee/deoplete-clang'
-" Plug 'Shougo/neoinclude.vim'
-" Plug 'Shougo/deoplete-clangx'
-Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
@@ -84,6 +94,8 @@ Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'Flowerowl/ici.vim'
+" Plug 'Shougo/deoplete-lsp'
+Plug 'neomake/neomake'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 

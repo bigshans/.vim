@@ -43,7 +43,7 @@ noremap <silent><leader>fm :Autoformat<CR>
 let g:AutoPairsMapCh = "<C-g>"
 "-----------------------*-----------------------------"
 "vim-repl
-nnoremap <leader>r :REPLToggle<CR>
+" nnoremap <leader>r :REPLToggle<CR>
 "-----------------------*-----------------------------"
 "ale
 nmap sp <Plug>(ale_previous_wrap)
@@ -88,6 +88,8 @@ augroup END
 "ultimate-colorsheme
 "-----------------------*-----------------------------"
 "javacomplete2
+nmap <F4> :JCimportAddSmart<CR>
+nmap <F5> :JCimportsRemovedUnused<CR>
 "-----------------------*-----------------------------"
 "vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -115,14 +117,16 @@ if exists("*expand_region#custom_text_objects")
 " smap <m-u> <Plug>(complete_parameter#goto_previous_parameter)
 "-----------------------*-----------------------------"
 " deoplete
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+if g:deoplete == 1
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ deoplete#mappings#manual_complete()
+    function! s:check_back_space() abort "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction"}}}
+endif
 "-----------------------*-----------------------------"
 "UltiSnips config
 let g:UltiSnipsExpandTrigger="<C-z>"
@@ -132,6 +136,9 @@ let g:UltiSnipsListSnippets="<C-\>"
 "-----------------------*-----------------------------"
 " easymotion
 map <leader>e <Plug>(easymotion-prefix)
+map <Leader>eh <Plug>(easymotion-linebackward)
+map <Leader>el <Plug>(easymotion-lineforward)
+map <Leader>e. <Plug>(easymotion-repeat)
 
 "-----------------------*-----------------------------"
 " choosewin
@@ -151,3 +158,7 @@ nmap ga <Plug>(EasyAlign)
  " Ici.vim
 
 nnoremap <leader>ch :IciFrom<CR>
+
+"-----------------------*-----------------------------"
+" Tagbar
+nnoremap <leader>tb :Tagbar<CR>

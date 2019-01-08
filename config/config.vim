@@ -37,6 +37,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_server_log_level='info'
 let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers = {
             \     'c' : ['->', '  ', '.', ' ', '(', '[', '&'],
@@ -47,6 +48,21 @@ let g:ycm_semantic_triggers = {
             \     'ruby' : ['.', '::'],
             \     'lua' : ['.', ':']
             \ }
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+let g:ycm_filetype_whitelist = { 
+            \ "c":1,
+            \ "cpp":1, 
+            \ "objc":1,
+            \ "sh":1,
+            \ "zsh":1,
+            \ "zimbu":1,
+            \ "vim": 1,
+            \ "python":1,
+            \ "java":1
+            \ }
 let g:ycm_collect_identifiers_from_tag_files = 1
 set completeopt=longest,menu
 let g:ycm_cache_omnifunc=0
@@ -54,9 +70,11 @@ let g:ycm_complete_in_comments=1
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚡'
+let g:ycm_key_invoke_completion='<M-/>'
 "-----------------------*-----------------------------"
 "javacomplete2 config
 " autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" let g:JavaComplete_UsePython3 = 1
 "-----------------------*-----------------------------"
 "UltiSnips config
 
@@ -176,10 +194,18 @@ let g:ale_fixers = {
             \ 'python3':['yapf']
             \}
 let g:ale_completion_enabled=1
-let g:ale_completion_delay = 100
-set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_completion_delay = 1
+let g:ale_java_javalsp_jar='/home/aerian/.aerian.vim/java-language-server/out/fat-jar.jar'
+let g:ale_completion_max_suggestions=1
+"-----------------------*-----------------------------"
+" LanguageClient
+let g:LanguageClient_autoStart=1
+" call deoplete#custom#source('LanguageClient',
+            " \ 'min_pattern_length',
+            " \ 2)
 let g:LanguageClient_serverCommands = {
-            \ 'vue' : ['vue']
+            \ 'cpp' : ['clangd'],
+            \ 'java': ['/mnt/D/src/java/jdtls'],
             \ }
 "-----------------------*-----------------------------"
 "vim-autoformat
@@ -233,127 +259,145 @@ let g:expand_region_usr_select_mode = 1
 let g:vue_disable_pre_processors=1
 " -----------------------*-----------------------------"
 "  deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-            \ 'auto_complete_delay' : 0,
-            \ 'min_pattern_length' : 1,
-            \ })
-call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
-        " Eclim support
-        " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
-        "
-        call deoplete#custom#option('omni_patterns', {
-                    \ 'java': '[^. *\t]\.\w*',
-                    \})
+if g:deoplete == 1
+    call deoplete#custom#option({
+                \ 'auto_complete_delay' : 0,
+                \ 'min_pattern_length' : 1,
+                \ })
+    call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
+    call deoplete#custom#option('omni_patterns', {
+                \ 'java': '[^. *\t]\.\w*',
+                \})
+    " Eclim support
+    " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
+    "
+    " Autoclose preview windows
+    " https://github.com/Shougo/deoplete.nvim/issues/115
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-        " Autoclose preview windows
-        " https://github.com/Shougo/deoplete.nvim/issues/115
-        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    " https://github.com/Shougo/deoplete.nvim/issues/100
+    " use tab to forward cycle
+    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " use tab to backward cycle
+    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-        " https://github.com/Shougo/deoplete.nvim/issues/100
-        " use tab to forward cycle
-        inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-        " use tab to backward cycle
-        inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    " Lazy load Deoplete to reduce statuptime
+    " See manpage
+    " Enable deoplete when InsertEnter.
+    autocmd InsertEnter * call deoplete#enable()
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_ignore_case = 1
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+    let g:deoplete#omni#input_patterns.java = [
+                \'[^. \t0-9]\.\w*',
+                \'[^. \t0-9]\->\w*',
+                \'[^. \t0-9]\::\w*',
+                \]
+    let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
+    " let g:deoplete#ignore_sources = {}
+    " let g:deoplete#ignore_sources._ = ['javacomplete2']
+    " inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    " autocmd FileType python
+    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+    " autocmd FileType c
+    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+    " autocmd FileType cpp
+    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
+    " -----------------------*-----------------------------"
+    "  deoplete-tern
+    " Set bin if you have many instalations
+    let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
+    " let g:deoplete#sources#ternjs#timeout = 1
+    "
+    " " Whether to include the types of the completions in the result data.
+    " Default: 0
+    let g:deoplete#sources#ternjs#types = 1
+    "
+    "" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
+    " " data. Default: 0
+    " let g:deoplete#sources#ternjs#depths = 1
+    "
+    " " Whether to include documentation strings (if found) in the result data.
+    " " Default: 0
+    let g:deoplete#sources#ternjs#docs = 1
+    "
+    " " When on, only completions that match the current word at the given point
+    " will
+    " " be returned. Turn this off to get all results, so that you can filter on
+    " the
+    " " client side. Default: 1
+    " let g:deoplete#sources#ternjs#filter = 0
+    "
+    "" Whether to use a case-insensitive compare between the current word and
+    " potential completions. Default 0
+    " let g:deoplete#sources#ternjs#case_insensitive = 1
+    "
+    " " When completing a property and no completions are found, Tern will use
+    " some
+    " " heuristics to try and return some properties anyway. Set this to 0 to
+    " " turn that off. Default: 1
+    " let g:deoplete#sources#ternjs#guess = 0
+    "
+    "" Determines whether the result set will be sorted. Default: 1
+    let g:deoplete#sources#ternjs#sort = 0
 
-        " Lazy load Deoplete to reduce statuptime
-        " See manpage
-        " Enable deoplete when InsertEnter.
-        let g:deoplete#enable_at_startup = 0
-        autocmd InsertEnter * call deoplete#enable() 
-" autocmd FileType python
-" \ call deoplete#custom#buffer_option('auto_complete', v:false)
-" autocmd FileType c
-" \ call deoplete#custom#buffer_option('auto_complete', v:false)
-" autocmd FileType cpp
-" \ call deoplete#custom#buffer_option('auto_complete', v:false)
-" -----------------------*-----------------------------"
-"  deoplete-tern
-" Set bin if you have many instalations
-let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-" let g:deoplete#sources#ternjs#timeout = 1
-"
-" " Whether to include the types of the completions in the result data.
-" Default: 0
-let g:deoplete#sources#ternjs#types = 1
-"
-"" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
-" " data. Default: 0
-" let g:deoplete#sources#ternjs#depths = 1
-"
-" " Whether to include documentation strings (if found) in the result data.
-" " Default: 0
-let g:deoplete#sources#ternjs#docs = 1
-"
-" " When on, only completions that match the current word at the given point
-" will
-" " be returned. Turn this off to get all results, so that you can filter on
-" the
-" " client side. Default: 1
-" let g:deoplete#sources#ternjs#filter = 0
-"
-"" Whether to use a case-insensitive compare between the current word and
-" potential completions. Default 0
-" let g:deoplete#sources#ternjs#case_insensitive = 1
-"
-" " When completing a property and no completions are found, Tern will use
-" some
-" " heuristics to try and return some properties anyway. Set this to 0 to
-" " turn that off. Default: 1
-" let g:deoplete#sources#ternjs#guess = 0
-"
-"" Determines whether the result set will be sorted. Default: 1
-let g:deoplete#sources#ternjs#sort = 0
+    " When disabled, only the text before the given position is considered part of
+    " " the word. When enabled (the default), the whole variable name that the
+    " cursor
+    " " is on will be included. Default: 1
+    " let g:deoplete#sources#ternjs#expand_word_forward = 0
+    "
+    " " Whether to ignore the properties of Object.prototype unless they have been
+    " " spelled out by at least two characters. Default: 1
+    " let g:deoplete#sources#ternjs#omit_object_prototype = 0
+    "
+    " " Whether to include JavaScript keywords when completing something that is
+    " not
+    " " a property. Default: 0
+    let g:deoplete#sources#ternjs#include_keywords = 1
+    "
+    " " If completions should be returned when inside a literal. Default: 1
+    " let g:deoplete#sources#ternjs#in_literal = 0
+    "
+    "
+    ""Add extra filetypes
+    let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ ]
+    " Use tern_for_vim.
+    let g:tern#command = ["tern"]
+    let g:tern#arguments = ["--persistent"]
+    " -----------------------*-----------------------------"
+    "  deoplete-jedi
+    let g:deoplete#sources#jedi#server_timeout = 10
+    let g:deoplete#sources#jedi#statement_lenght = 120
+    let g:deoplete#sources#jedi#show_docstring = 1
+    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
+    " -----------------------*-----------------------------"
+    "  deoplete-clang
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
-" When disabled, only the text before the given position is considered part of
-" " the word. When enabled (the default), the whole variable name that the
-" cursor
-" " is on will be included. Default: 1
-" let g:deoplete#sources#ternjs#expand_word_forward = 0
-"
-" " Whether to ignore the properties of Object.prototype unless they have been
-" " spelled out by at least two characters. Default: 1
-" let g:deoplete#sources#ternjs#omit_object_prototype = 0
-"
-" " Whether to include JavaScript keywords when completing something that is
-" not
-" " a property. Default: 0
-let g:deoplete#sources#ternjs#include_keywords = 1
-"
-" " If completions should be returned when inside a literal. Default: 1
-" let g:deoplete#sources#ternjs#in_literal = 0
-"
-"
-""Add extra filetypes
-let g:deoplete#sources#ternjs#filetypes = [
-            \ 'jsx',
-            \ 'javascript.jsx',
-            \ 'vue',
-            \ ]
-" Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-" -----------------------*-----------------------------"
-"  deoplete-jedi
-let g:deoplete#sources#jedi#server_timeout = 10
-let g:deoplete#sources#jedi#statement_lenght = 120
-let g:deoplete#sources#jedi#show_docstring = 1
-let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-" -----------------------*-----------------------------"
-"  deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+    " -----------------------*-----------------------------"
+    "  deoplete-clangx
 
-" -----------------------*-----------------------------"
-"  deoplete-clangx
+    " Change clang binary path
+    " call deoplete#custom#var('clangx', 'clang_binary', '/usr/local/bin/clang')
 
-" Change clang binary path
-" call deoplete#custom#var('clangx', 'clang_binary', '/usr/local/bin/clang')
+    " Change clang options
+    " call deoplete#custom#var('clangx', 'default_c_options', '-')
+    " call deoplete#custom#var('clangx', 'default_cpp_options', '')
+    " let g:clang_library_path='/usr/lib/llvm-6.0/lib'
+    "-----------------------*-----------------------------"
+    "deoplete-lsp
 
-" Change clang options
-" call deoplete#custom#var('clangx', 'default_c_options', '-')
-" call deoplete#custom#var('clangx', 'default_cpp_options', '')
-" let g:clang_library_path='/usr/lib/llvm-6.0/lib'
+endif
+
 "-----------------------*-----------------------------"
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
@@ -461,4 +505,14 @@ let g:vim_markdown_cinceal = 0
 
 "-----------------------*-----------------------------"
 " eclim
-let g:EclimCompletionMethod='omnifunc'
+" let g:EclimCompletionMethod='omnifunc'
+"-----------------------*-----------------------------"
+" python-mode
+let g:pymode_python = 'python3'
+let g:pymode_rope = 1
+let g:pymode_rope_completion=1
+" let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport = 1
+let g:pymode_rope_completion_bind = '<M-/>'
+let g:pymode_run_bind = '<leader>r'
+let g:pymode_rope_complete_on_dot=1
