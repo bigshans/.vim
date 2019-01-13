@@ -26,11 +26,13 @@ let g:airline#extensions#whitespace#symbol = '!'
 "let g:airline_theme='bubblegum'
 " let g:airline_theme='powerlineish'
 " let g:airline_theme='tomorrow'
-let g:airline_theme='one'
+let g:airline_theme='atomic'
 "let g:airline_theme='molokai'
 " let g:airline_theme='monochrome'
 " let g:airline_theme='solarized'
 let Powerline_symbols='fancy'
+" let airline#extensions#syntastic#error_symbol = '✗'
+" let airline#extensions#syntastic#warning_symbol = '⚠'
 "-----------------------*-----------------------------"
 "Ycm config
 let g:ycm_show_diagnostics_ui = 0
@@ -60,8 +62,10 @@ let g:ycm_filetype_whitelist = {
             \ "zsh":1,
             \ "zimbu":1,
             \ "vim": 1,
-            \ "python":1,
-            \ "java":1
+            \ "python": 1,
+            \ "java":1,
+            \ "ruby": 1,
+            \ "rust": 1
             \ }
 let g:ycm_collect_identifiers_from_tag_files = 1
 set completeopt=longest,menu
@@ -89,6 +93,7 @@ let g:NERDSpaceDelims=1
 "-----------------------*-----------------------------"
 "indentLine  config
 let g:indentLine_char = '┊'
+let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#A4E57E'
 let g:indentLine_color_tty_light = 7
@@ -445,7 +450,7 @@ let g:topdict[' ']['name'] = '<leader>'
 call leaderGuide#register_prefix_descriptions("", "g:topdict")
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
-let g:leaderGuide_hspace = 5
+" let g:leaderGuide_hspace = 5
 "-----------------------*-----------------------------"
 " csscomplete.vim
 
@@ -509,10 +514,35 @@ let g:vim_markdown_cinceal = 0
 "-----------------------*-----------------------------"
 " python-mode
 let g:pymode_python = 'python3'
-let g:pymode_rope = 1
-let g:pymode_rope_completion=1
+" let g:pymode_rope = 1
+" let g:pymode_rope_completion=1
 " let g:pymode_rope_autoimport = 1
-let g:pymode_rope_autoimport = 1
-let g:pymode_rope_completion_bind = '<M-/>'
+" let g:pymode_rope_autoimport = 1
+" let g:pymode_rope_completion_bind = '<Tab>'
 let g:pymode_run_bind = '<leader>r'
-let g:pymode_rope_complete_on_dot=1
+" let g:pymode_rope_complete_on_dot=1
+"-----------------------*-----------------------------"
+" vim-ruby
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+"-----------------------*-----------------------------"
+" space-vim-dark
+colorscheme space-vim-dark
+set termguicolors
+hi LineNr ctermbg=NONE guibg=NONE
+"-----------------------*-----------------------------"
+" fzf
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler

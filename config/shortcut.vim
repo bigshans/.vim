@@ -76,6 +76,8 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 nmap <silent><leader>ss :BLines<CR>
+" if g:ctrlspace == 0
+" endif
 nmap <silent><leader>bb :Buffers<CR>
 nmap <silent><leader>C :Colors<CR>
 nmap <silent><leader>ff :FZF<CR>
@@ -162,3 +164,6 @@ nnoremap <leader>ch :IciFrom<CR>
 "-----------------------*-----------------------------"
 " Tagbar
 nnoremap <leader>tb :Tagbar<CR>
+"-----------------------*-----------------------------"
+" ctrlspace
+nnoremap <leader>bcs :CtrlSpace<CR>

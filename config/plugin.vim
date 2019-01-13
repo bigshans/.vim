@@ -9,6 +9,8 @@ Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
 Plug 'Valloric/YouCompleteMe'
+Plug 'vim-ruby/vim-ruby'
+" Plug 'python-rope/ropevim'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
 Plug 'artur-shaik/vim-javacomplete2', {'on':[], 'for': ['java', 'jsp']}
@@ -96,6 +98,11 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'Flowerowl/ici.vim'
 " Plug 'Shougo/deoplete-lsp'
 Plug 'neomake/neomake'
+let g:ctrlspace = 1
+if g:ctrlspace == 1
+    Plug 'vim-ctrlspace/vim-ctrlspace'
+endif
+Plug 'liuchengxu/space-vim-dark'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
