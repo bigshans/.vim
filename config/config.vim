@@ -435,21 +435,21 @@ let g:fml_all_sources = 1
 
 "-----------------------*-----------------------------"
 " vim-leader-guide
-let g:lmap = {
-            \ }
-let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
-let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
-let g:lmap.b = {'name' : 'about buffer and tab'}
-let g:lmap.t = {'name' : 'about nerdtree and term'}
-let g:lmap.c = {'name' : 'about comment'}
-let g:lmap.o = {'name' : 'new blank line up'}
-let g:lmap.O = {'name' : 'new blank line down'}
-let g:topdict = {}
-let g:topdict[' '] = g:lmap
-let g:topdict[' ']['name'] = '<leader>'
-call leaderGuide#register_prefix_descriptions("", "g:topdict")
-nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+" let g:lmap = {
+            " \ }
+" let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
+" let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
+" let g:lmap.b = {'name' : 'about buffer and tab'}
+" let g:lmap.t = {'name' : 'about nerdtree and term'}
+" let g:lmap.c = {'name' : 'about comment'}
+" let g:lmap.o = {'name' : 'new blank line up'}
+" let g:lmap.O = {'name' : 'new blank line down'}
+" let g:topdict = {}
+" let g:topdict[' '] = g:lmap
+" let g:topdict[' ']['name'] = '<leader>'
+" call leaderGuide#register_prefix_descriptions("", "g:topdict")
+" nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
+" vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 " let g:leaderGuide_hspace = 5
 "-----------------------*-----------------------------"
 " csscomplete.vim
@@ -530,8 +530,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 "-----------------------*-----------------------------"
 " space-vim-dark
 colorscheme space-vim-dark
-set termguicolors
-hi LineNr ctermbg=NONE guibg=NONE
+" set termguicolors
+" hi LineNr ctermbg=NONE guibg=NONE
 "-----------------------*-----------------------------"
 " fzf
 function! s:fzf_statusline()
@@ -545,4 +545,16 @@ endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+"-----------------------*-----------------------------"
+" whcih key
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+nnoremap <leader>1 :1wincmd w<CR>
+let g:which_key_map = {}
+let g:which_key_map.1 = 'which_key_ignore'
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler

@@ -1,5 +1,6 @@
 filetype plugin indent on 
 " -----------------------*-----------------------------" 
+let g:ctrlspace = 1
 let g:plug_threads = 25
 let g:plug_timeout = 55
 let g:deoplete = 0
@@ -10,8 +11,7 @@ Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
 Plug 'Valloric/YouCompleteMe'
 Plug 'vim-ruby/vim-ruby'
-" Plug 'python-rope/ropevim'
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+" Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
 Plug 'artur-shaik/vim-javacomplete2', {'on':[], 'for': ['java', 'jsp']}
 " Plug '~/.vim/bundle/eclim'
@@ -86,7 +86,7 @@ Plug 't9md/vim-choosewin'
 Plug 'weilbith/nerdtree_choosewin-plugin'
 Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 Plug 'ktonga/vim-follow-my-lead'
-Plug 'hecal3/vim-leader-guide'
+" Plug 'hecal3/vim-leader-guide'
 Plug 'Shougo/context_filetype.vim'
 Plug 'othree/csscomplete.vim'
 Plug 'alvan/vim-closetag'
@@ -98,11 +98,11 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'Flowerowl/ici.vim'
 " Plug 'Shougo/deoplete-lsp'
 Plug 'neomake/neomake'
-let g:ctrlspace = 1
 if g:ctrlspace == 1
     Plug 'vim-ctrlspace/vim-ctrlspace'
 endif
 Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/vim-which-key'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 
