@@ -1,1 +1,1 @@
-/home/aerian/.vimrc
+/home/aerian/.vim/vimrc

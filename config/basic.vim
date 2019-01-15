@@ -5,48 +5,18 @@ set mouse=a
 set lazyredraw
 set synmaxcol=200
 set timeout
-" set cmdheight=2
-
 set noshowmode
-" set so=999
-filetype off
-"-----------------------*-----------------------------"
-"colorscheme ui config
 set cursorline "当前行高亮
 set t_Co=256
-" colorscheme nord
-" let g:nord_italic=1
-" let g:nord_italic_comments=1
-" let g:nord_comment_brightness=12
-" let g:nord_uniform_status_lines=1
-if has('gui_running') || exists('g:nyaovim_version')
-    set guioptions-=T
-    " set guioptions-=m
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-    set guifont=NotoMonoforPowerline\ 09
-    colorscheme one
-else
-    " colorscheme gruvbox
-endif
 set background=dark
-" set background=light
-" colorscheme monokai-chris
-"colorscheme Tomorrow-Night
-" colorscheme solarized
-" colorscheme gruvbox
 set number " relativenumber
 set hlsearch
 set title
+set backspace=indent,eol,start
 syntax enable
 syntax on
-"允许换行
 set whichwrap+=<,>,h,l
 set magic
-"-----------------------*-----------------------------"
-"edit config
 set encoding=utf-8
 set laststatus=2
 set complete-=k complete+=k
@@ -60,12 +30,22 @@ set smartindent
 set autoindent
 set list
 set listchars=eol:↩︎
-"status config
 set laststatus=2
 set writebackup
 set nobackup
-let g:netrw_altv = 1
-"-----------------------*-----------------------------"
+if has('gui_running') || exists('g:nyaovim_version')
+    set guioptions-=T
+    " set guioptions-=m
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    set guifont=NotoMonoforPowerline\ 09
+endif
+augroup Web
+    autocmd!
+    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js set tabstop=2 shiftwidth=2 shiftwidth=2
+augroup END
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
 command! Hex :%!xxd
@@ -87,7 +67,3 @@ function! ScreenCenterToggle()
     endif
 endfunction
 
-augroup Web
-    autocmd!
-    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js set tabstop=2 shiftwidth=2 shiftwidth=2
-augroup END
