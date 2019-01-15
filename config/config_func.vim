@@ -6,9 +6,9 @@ function! g:NERDTreeConfig()
     let g:NERDTreeDirArrowExpandable = '‣'
     let g:NERDTreeDirArrowCollapsible = '▾'
     "show line num
-    let NERDTreeShowLineNumbers=0
-    let NERDTreeAutoCenter=1
-    let NERDTreeWinPos=1
+    let g:NERDTreeShowLineNumbers=0
+    let g:NERDTreeAutoCenter=1
+    let g:NERDTreeWinPos=1
     " autocmd vimenter * NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " autocmd StdinReadPre * let s:std_in=1
@@ -118,6 +118,8 @@ function! g:IndentLineConfig()
     " let g:indentLine_bgcolor_gui = '#FF5F00'
     let g:indentLine_concealcursor = 'inc'
     let g:indentLine_conceallevel = 2
+    let g:vim_json_syntax_conceal=0
+    let g:indentLine_enabled=0
 endfunction
 
 function! g:StartifyConfig()

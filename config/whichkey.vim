@@ -18,9 +18,22 @@ function! g:WhichKeyMap()
     let g:which_key_map.l=AleKey()
     let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
+    let g:which_key_map.g=GitKey()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! GitKey()
+    nnoremap <leader>ga :Gwrite<CR>
+    nnoremap <leader>gr :Gread<CR>
+    nnoremap <leader>gc :Gcommit<CR>
+    return {
+                \ 'name':'+git',
+                \ 'a': 'add current file',
+                \ 'r': 'recover current file',
+                \ 'c': 'commit'
+                \ }
 endfunction
 
 function! OpenKey()
@@ -40,7 +53,7 @@ endfunction
 function! BetterKey()
     nnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hm :message<CR>
-    nnoremap <silent><leader>hh :help
+    nnoremap <leader>hh :help 
     xnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hn :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
     return {
@@ -53,7 +66,8 @@ function! BetterKey()
 endfunction
 
 function! WindowsKey()
-    nnoremap <leader>wc <Plug>(choosewin)
+    nnoremap <leader>wc :ChooseWin<CR>
+    nnoremap <leader>wa :ChooseWinSwap<CR>
     nnoremap <leader>wd :only<CR>
     nnoremap <leader>wh <C-w><C-h>
     nnoremap <leader>wj <C-w><C-j>
@@ -70,7 +84,8 @@ function! WindowsKey()
                 \ 'k': 'move up',
                 \ 'l': 'move right',
                 \ 's': 'split window',
-                \ 'v': 'vertical split'
+                \ 'v': 'vertical split',
+                \ 'a': 'choosewin swap'
                 \ }
 endfunction
 
@@ -182,6 +197,9 @@ function! ApplicationKey()
     nnoremap <leader>atb :Tagbar<CR>
     nnoremap <leader>az :Goyo<CR>
     nnoremap <leader>ad :IciFrom<CR>
+    nnoremap <leader>ale :IndentLinesEnable<CR>
+    nnoremap <leader>ald :IndentLinesDisable<CR>
+    nnoremap <leader>all :IndentLinesToggle<CR>
     return {
                 \ 'name': '+applications',
                 \ 'i': {
@@ -201,6 +219,12 @@ function! ApplicationKey()
                 \ },
                 \ 'z': 'vim zenroom2',
                 \ 'd': 'word means',
+                \ 'l': {
+                \ 'name': '+indentLine',
+                \ 'e': 'enable indentLine',
+                \ 'd': 'disable indentLine',
+                \ 'l': 'toggle indentline',
+                \ },
                 \ }
 endfunction
 
@@ -214,7 +238,7 @@ endfunction
 
 function! SearchKey()
     nnoremap <leader>sf :FZF<CR>
-    nnoremap <leader>ss :Blines<CR>
+    nnoremap <leader>ss :BLines<CR>
     nnoremap <leader>sb :Buffers<CR>
     nnoremap <leader>sc :Colors<CR>
     return {
@@ -319,6 +343,10 @@ function! OtherKey()
     nnoremap <silent><leader><Down> :res +1<CR>
     nnoremap <silent><leader><Left> :vertical res -1<CR>
     nnoremap <silent><leader><Right> :vertical res +1<CR>
+    nnoremap wh <C-w><C-h>
+    nnoremap wj <C-w><C-j>
+    nnoremap wk <C-w><C-k>
+    nnoremap wl <C-w><C-l>
     nnoremap <leader>; :
     nmap <leader>? <plug>(fzf-maps-n)
     xmap <leader>? <plug>(fzf-maps-x)
