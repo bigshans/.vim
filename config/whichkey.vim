@@ -11,16 +11,17 @@ function! g:WhichKeyMap()
     let g:which_key_map.u=UndoKey()
     let g:which_key_map.o=OpenKey()
     let g:which_key_map.h=BetterKey()
-    let g:which_key_map.p={'name':'system paste'}
-    let g:which_key_map.y={'name':'system copy'}
-    let g:which_key_map.q={'name':'quit without save'}
-    let g:which_key_map.Q={'name':'quit all'}
+    let g:which_key_map.p='system paste'
+    let g:which_key_map.y='system copy'
+    let g:which_key_map.q='quit without save'
+    let g:which_key_map.Q='quit all'
     let g:which_key_map.l=AleKey()
     let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
     let g:which_key_map.g=GitKey()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
+    let g:which_key_map['<CR>']='blank line to up'
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
@@ -55,7 +56,8 @@ function! BetterKey()
     nnoremap <silent><leader>hm :message<CR>
     nnoremap <leader>hfb :Bigger<CR>
     nnoremap <leader>hfm :Smaller<CR>
-    nnoremap <leader>hh :help 
+    nnoremap <leader>hh :Helptags<CR>
+    nnoremap <leader>ht :help<Space>
     xnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hn :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
     return {
@@ -63,7 +65,8 @@ function! BetterKey()
                 \ 'r': 'relative line number',
                 \ 'n': 'no hightlight',
                 \ 'm': 'show messages',
-                \ 'h': 'help',
+                \ 'h': 'helptags',
+                \ 't': 'help command',
                 \ 'f': {
                 \ 'name': '+fonts',
                 \ 'b': 'bigger fonts',
@@ -73,6 +76,15 @@ function! BetterKey()
 endfunction
 
 function! WindowsKey()
+    for s:i in range(1, 9)
+      " <Leader>[1-9] move to window [1-9]
+        execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
+        let g:which_key_map[s:i]='to windows '.s:i
+    endfor
+    let g:which_key_map['<Up>']='win expand up'
+    let g:which_key_map['<Down>']='win expand down'
+    let g:which_key_map['<Left>']='win expand left'
+    let g:which_key_map['<Right>']='win expand right'
     nnoremap <leader>wc :ChooseWin<CR>
     nnoremap <leader>wa :ChooseWinSwap<CR>
     nnoremap <leader>wd :only<CR>
@@ -101,12 +113,14 @@ function! FileKey()
     nnoremap <leader>fr  :source %<CR>
     nnoremap <leader>fS  :w! sudo tee %<CR>
     nnoremap <leader>ft :NERDTreeToggle<CR>
+    nnoremap <leader>ff :History<CR>
     return {
                 \ 'name': '+files',
                 \ 's': 'save file',
                 \ 'r': 'reload vim file',
                 \ 'S': 'sudo save',
-                \ 't': 'NERDTree Toggle'
+                \ 't': 'NERDTree Toggle',
+                \ 'f': 'recent files',
                 \ }
 endfunction
 
@@ -162,6 +176,7 @@ function! EditKey()
     nnoremap <leader>ea  ggVG
     nnoremap <leader>eja  :JCimportAddSmart<CR>
     nnoremap <leader>ejr  :JCimportsRemovedUnused<CR>
+    nnoremap <leader>eus  :Snippets<CR>
     return {
                 \ 'name': '+edit',
                 \ 'f': 'format code',
@@ -177,6 +192,7 @@ function! EditKey()
                 \ 'f': 'jump forward',
                 \ 'b': 'jump backward',
                 \ 'l': 'list snippets',
+                \ 's': 'search avaliable snippets'
                 \ }
                 \ }
 endfunction
@@ -247,13 +263,22 @@ function! SearchKey()
     nnoremap <leader>sf :FZF<CR>
     nnoremap <leader>ss :BLines<CR>
     nnoremap <leader>sb :Buffers<CR>
-    nnoremap <leader>sc :Colors<CR>
+    nnoremap <leader>sC :Colors<CR>
+    nnoremap <leader>sc :Commands<CR>
+    nnoremap <leader>sw :Windows<CR>
     return {
                 \ 'name': '+search',
                 \ 'f': 'find files',
                 \ 's': 'search lines',
                 \ 'b': 'search buffers',
-                \ 'c': 'search color theme'
+                \ 'C': 'search color theme',
+                \ 'c': 'search commands',
+                \ 'w': 'search windows',
+                \ 'h' : {
+                \ 'name': '+history',
+                \ 'h': 'recent files',
+                \ 'c': 'command history'
+                \ },
                 \ }
 endfunction
 
@@ -325,10 +350,7 @@ function! MuiltipleKey()
 endfunction
 
 function! OtherKey()
-    for s:i in range(1, 9)
-      " <Leader>[1-9] move to window [1-9]
-        execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
-    endfor
+    nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
     inoremap <C-e> <End>

@@ -31,8 +31,8 @@ function! g:AirlineConfig()
     "let g:airline_theme='bubblegum'
     " let g:airline_theme='powerlineish'
     " let g:airline_theme='tomorrow'
-    " let g:airline_theme='atomic'
-    let g:airline_theme='violet'
+    let g:airline_theme='atomic'
+    " let g:airline_theme='violet'
     "let g:airline_theme='molokai'
     " let g:airline_theme='monochrome'
     " let g:airline_theme='solarized'
@@ -45,7 +45,7 @@ function! g:AirlineConfig()
     function! g:AirlineInactive(...)
         let builder = a:1
         let context = a:2
-        call builder.add_section('winnr', context['winnr'])
+        call builder.add_section('winnr', "❖  ".context['winnr'])
         call builder.split()
         call builder.add_section('file', '%F')
         call builder.split()
@@ -588,7 +588,57 @@ function! g:FZFConfig()
         highlight fzf3 ctermfg=237 ctermbg=251
         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
     endfunction
+    " let g:fzf_layout = { 'down': '~40%' }
 
+    " In Neovim, you can set up fzf window using a Vim command
+    " let g:fzf_layout = { 'window': 'enew' }
+    " let g:fzf_layout = { 'window': '-tabnew' }
+    " let g:fzf_layout = { 'window': '10split enew' }
+
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+                \ { 'fg':      ['fg', 'Normal'],
+                \ 'bg':      ['bg', 'Normal'],
+                \ 'hl':      ['fg', 'Comment'],
+                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \ 'hl+':     ['fg', 'Statement'],
+                \ 'info':    ['fg', 'PreProc'],
+                \ 'border':  ['fg', 'Ignore'],
+                \ 'prompt':  ['fg', 'Conditional'],
+                \ 'pointer': ['fg', 'Exception'],
+                \ 'marker':  ['fg', 'Keyword'],
+                \ 'spinner': ['fg', 'Label'],
+                \ 'header':  ['fg', 'Comment'] }
+
+    " Enable per-command history.
+    " CTRL-N and CTRL-P will be automatically bound to next-history and
+    " previous-history instead of down and up. If you don't like the change,
+    " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+    let g:fzf_history_dir = '~/.local/share/fzf-history'
+    command! -bang -nargs=* GGrep
+                \ call fzf#vim#grep(
+                \   'git grep --line-number '.shellescape(<q-args>), 0,
+                \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)   
+ 
+    command! -bang Colors
+                \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+    command! -bang -nargs=* Ag
+                \ call fzf#vim#ag(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+                \                 <bang>0)
+    command! -bang -nargs=* Rg
+                \ call fzf#vim#grep(
+                \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+                \   <bang>0 ? fzf#vim#with_preview('up:60%')
+                \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+                \   <bang>0)
+    command! -bang -nargs=? -complete=dir Files
+                \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+    command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
+    let g:fzf_commands_expect = 'tab'
     autocmd! User FzfStatusLine call <SID>fzf_statusline()
     autocmd! FileType fzf
     autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -597,13 +647,16 @@ endfunction
 
 function! g:WhichKeyConfig()
     " whcih key
+    let g:which_key_sep = '➧ '
     let g:which_key_timeout=300
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+    " vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
     nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-    nnoremap <leader>1 :1wincmd w<CR>
+    " vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
     let g:which_key_map = {}
+    let g:which_key_hspace=4
     autocmd! FileType which_key
     autocmd  FileType which_key set laststatus=0 noshowmode noruler
                 \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
