@@ -37,8 +37,23 @@ function! g:AirlineConfig()
     " let g:airline_theme='monochrome'
     " let g:airline_theme='solarized'
     let Powerline_symbols='fancy'
-    " let airline#extensions#syntastic#error_symbol = '✗'
-    " let airline#extensions#syntastic#warning_symbol = '⚠'
+    let airline#extensions#ale#error_symbol = '✗'
+    let airline#extensions#ale#warning_symbol = '⚠'
+    function! AirlineInit()
+        let g:airline_section_a=airline#section#create_left(['mode','❖ %{winnr()} %'])
+    endfunction
+    function! g:AirlineInactive(...)
+        let builder = a:1
+        let context = a:2
+        call builder.add_section('winnr', context['winnr'])
+        call builder.split()
+        call builder.add_section('file', '%F')
+        call builder.split()
+        call builder.add_section('airline_z', '%p%%')
+        return 1
+    endfunction
+    autocmd User AirlineAfterInit call AirlineInit()
+    autocmd User AirlineAfterInit call airline#add_inactive_statusline_func('AirlineInactive')
 endfunction
 
 function! g:YcmConfig()     
