@@ -582,6 +582,7 @@ endfunction
 
 function! g:WhichKeyConfig()
     " whcih key
+    let g:which_key_timeout=300
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>

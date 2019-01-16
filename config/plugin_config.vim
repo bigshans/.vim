@@ -141,6 +141,7 @@ endif
 Plug 'liuchengxu/space-vim-dark'
 Plug 'liuchengxu/vim-which-key'
 call g:WhichKeyConfig()
+" Plug 'liuchengxu/eleline.vim'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
 " call g:VimDeviconsConfig()

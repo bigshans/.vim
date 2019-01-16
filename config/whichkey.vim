@@ -53,6 +53,8 @@ endfunction
 function! BetterKey()
     nnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hm :message<CR>
+    nnoremap <leader>hfb :Bigger<CR>
+    nnoremap <leader>hfm :Smaller<CR>
     nnoremap <leader>hh :help 
     xnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hn :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -61,7 +63,12 @@ function! BetterKey()
                 \ 'r': 'relative line number',
                 \ 'n': 'no hightlight',
                 \ 'm': 'show messages',
-                \ 'h': 'help'
+                \ 'h': 'help',
+                \ 'f': {
+                \ 'name': '+fonts',
+                \ 'b': 'bigger fonts',
+                \ 'm': 'smaller fonts',
+                \ }
                 \ }
 endfunction
 
@@ -104,9 +111,9 @@ function! FileKey()
 endfunction
 
 function! PluginKey()
-    nnoremap <leader>Pi  :PluginInstall<CR>
-    nnoremap <leader>Pc  :PluginClean<CR>
-    nnoremap <leader>Pp  :PluginUpdate<CR>
+    nnoremap <leader>Pi  :PlugInstall<CR>
+    nnoremap <leader>Pc  :PlugClean<CR>
+    nnoremap <leader>Pp  :PlugUpdate<CR>
     return {
                 \ 'name':'+Plugins',
                 \ 'i':'plugin install',
