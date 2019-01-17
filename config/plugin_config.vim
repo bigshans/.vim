@@ -20,7 +20,7 @@ call g:VimRubyConfig()
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " call g:PymodeConfig()
 " Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp']}
-Plug 'artur-shaik/vim-javacomplete2', {'on':[], 'for': ['java', 'jsp']}
+" Plug 'artur-shaik/vim-javacomplete2', {'on':[], 'for': ['java', 'jsp']}
 " call g:Javacomplete2Config()
 " Plug '~/.vim/bundle/eclim'
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -66,7 +66,7 @@ Plug 'majutsushi/tagbar'
 Plug 'brooth/far.vim'
 Plug 'Chiel92/vim-autoformat'
 call g:VimAutoformatConfig()
-Plug 'thinca/vim-quickrun', {'on':'Quickrun'}
+Plug 'thinca/vim-quickrun'
 call g:VimQuickrunConfig()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -142,6 +142,7 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'liuchengxu/vim-which-key'
 call g:WhichKeyConfig()
 Plug 'asins/vimcdoc'
+Plug 'mikelue/vim-maven-plugin'
 " Plug 'liuchengxu/eleline.vim'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了

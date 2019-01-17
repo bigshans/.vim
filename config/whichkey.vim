@@ -19,10 +19,45 @@ function! g:WhichKeyMap()
     let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
     let g:which_key_map.g=GitKey()
+    let g:which_key_map.j=YCMKey()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
     let g:which_key_map['<CR>']='blank line to up'
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! YCMKey()
+    nnoremap <leader>jR :YcmRestartServer<CR>
+    nnoremap <leader>jf :YcmCompleter FixIt<CR>
+    nnoremap <leader>jjg :YcmCompleter Goto<CR>
+    nnoremap <leader>jjd :YcmCompleter GotoDefinition<CR>
+    nnoremap <leader>jjf :YcmCompleter GotoDeclaration<CR>
+    nnoremap <leader>jjr :YcmCompleter GotoReferences<CR>
+    nnoremap <leader>jgt :YcmCompleter GetType<CR>
+    nnoremap <leader>jgd :YcmCompleter GetDoc<CR>
+    nnoremap <leader>jo :YcmCompleter OrgnaizeImports<CR>
+    nnoremap <leader>jc :YcmForceCompileAndDiagnostics<CR>
+    nnoremap <leader>jr :RefactorRename<Space>
+    return {
+                \ 'name': '+YCM',
+                \ 'R': 'YCM server restart',
+                \ 'f': 'YCM fix it',
+                \ 'j': {
+                \ 'name': '+Goto',
+                \ 'g': 'YCM Goto',
+                \ 'd': 'YCM GotoDefinition',
+                \ 'f': 'YCM GotoDeclaration',
+                \ 'r': 'YCM GotoReferences'
+                \ },
+                \ 'g': {
+                \ 'name': '+gets',
+                \ 't': 'YCM GetType',
+                \ 'd': 'YCM GetDoc'
+                \ },
+                \ 'o': 'YCM OrganizeImports',
+                \ 'c': 'YCM Force Compile And Diagnostics',
+                \ 'r': 'Refactor Rename'
+                \ }
 endfunction
 
 function! GitKey()
@@ -178,18 +213,11 @@ function! EditKey()
     let g:UltiSnipsListSnippets="<Space>eul"
     nnoremap <leader>ef  :Autoformat<CR>
     nnoremap <leader>ea  ggVG
-    nnoremap <leader>eja  :JCimportAddSmart<CR>
-    nnoremap <leader>ejr  :JCimportsRemovedUnused<CR>
     nnoremap <leader>eus  :Snippets<CR>
     return {
                 \ 'name': '+edit',
                 \ 'f': 'format code',
                 \ 'a': 'select all',
-                \ 'j': {
-                \ 'name': '+javacomplete2',
-                \ 'a': 'add import',
-                \ 'r': 'remove unused import'
-                \ },
                 \ 'u': {
                 \ 'name': '+ultisnips',
                 \ 'e': 'expend snips',
@@ -220,7 +248,10 @@ function! ApplicationKey()
     nnoremap <leader>aiu :UncolorAllWords()<CR>
     nnoremap <leader>aip :WordNavigation('forward')<CR>
     nnoremap <leader>ain :WordNavigation('backword')<CR>
-    nnoremap <leader>aqr :QuickRun<CR>
+    nnoremap <silent><leader>aqr :QuickRun -mode n<CR>
+    nnoremap <silent><F5> :QuickRun -mode n<CR>
+    vnoremap <silent><F5> :QuickRun -mode v<CR>
+    vnoremap <silent><leader>aqr :QuickRun -mode v<CR>
     nnoremap <leader>atb :Tagbar<CR>
     nnoremap <leader>az :Goyo<CR>
     nnoremap <leader>ad :IciFrom<CR>
