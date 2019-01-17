@@ -152,11 +152,15 @@ function! BuffersKey()
     nnoremap <leader>bs  :Startify<CR>
     nnoremap <leader>bn  :bn<CR>
     nnoremap <leader>bp  :bp<CR>
+    nnoremap <leader>bd  :bd<CR>
+    nnoremap <leader>bb  :Buffers<CR>
     return {
                 \ 'name': '+Buffers',
                 \ 's': 'start buffer',
                 \ 'n': 'next buffer',
-                \ 'p': 'pervious buffer'
+                \ 'p': 'pervious buffer',
+                \ 'b': 'buffer search',
+                \ 'd': 'buffer kill',
                 \ }
 endfunction
 

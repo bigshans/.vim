@@ -29,7 +29,9 @@ set formatoptions+=mM
 set smartindent
 set autoindent
 set list
-set listchars=eol:↩︎
+if !has('nvim')
+    set listchars=eol:↩︎
+endif
 set laststatus=2
 set writebackup
 set nobackup
