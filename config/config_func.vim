@@ -164,7 +164,7 @@ function! g:StartifyConfig()
     " \ | endif
     let g:startify_custom_header = s:filter_header(g:startify_custom_header)
     let g:startify_session_autoload = 1
-    let  g:startify_files_number = 20
+    let  g:startify_files_number = 15
 
     let g:startify_skiplist = [
                 \ 'COMMIT_EDITMSG',

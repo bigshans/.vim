@@ -415,6 +415,8 @@ function! OtherKey()
     nnoremap <leader>q :q!<CR>
     nnoremap <leader>Q :qa!<CR>
     nnoremap <leader>y "+y
+    vnoremap <leader>y "+y
+    vnoremap <leader>p "+p
     nnoremap <leader>p "+p
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
