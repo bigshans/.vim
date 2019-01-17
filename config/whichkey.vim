@@ -244,10 +244,10 @@ function! AleKey()
 endfunction
 
 function! ApplicationKey()
-    nnoremap <leader>aii  :InterestingWords('n')"<CR>
-    nnoremap <leader>aiu :UncolorAllWords()<CR>
-    nnoremap <leader>aip :WordNavigation('forward')<CR>
-    nnoremap <leader>ain :WordNavigation('backword')<CR>
+    nnoremap <leader>aii  :call InterestingWords('n')"<CR>
+    nnoremap <leader>aiu :call UncolorAllWords()<CR>
+    nnoremap <leader>aip :call WordNavigation('forward')<CR>
+    nnoremap <leader>ain :call WordNavigation('backword')<CR>
     nnoremap <silent><leader>aqr :QuickRun -mode n<CR>
     nnoremap <silent><F5> :QuickRun -mode n<CR>
     vnoremap <silent><F5> :QuickRun -mode v<CR>
@@ -364,13 +364,13 @@ function! MuiltipleKey()
     let g:multi_cursor_use_default_mapping=0
 
     " Default mapping
-    let g:multi_cursor_start_word_key      = '<leader>is'
-    let g:multi_cursor_select_all_word_key = '<leader>ia'
-    let g:multi_cursor_start_key           = '<leader>ie'
-    let g:multi_cursor_select_all_key      = '<leader>iA'
-    let g:multi_cursor_next_key            = '<leader>in'
-    let g:multi_cursor_prev_key            = '<leader>ip'
-    let g:multi_cursor_skip_key            = '<leader>ic'
+    let g:multi_cursor_start_word_key      = '<Space>is'
+    let g:multi_cursor_select_all_word_key = '<Space>ia'
+    let g:multi_cursor_start_key           = '<Space>ie'
+    let g:multi_cursor_select_all_key      = '<Space>iA'
+    let g:multi_cursor_next_key            = '<C-n>'
+    let g:multi_cursor_prev_key            = '<C-p>'
+    let g:multi_cursor_skip_key            = '<C-s>'
     let g:multi_cursor_quit_key            = '<Esc>'
     return {
                 \ 'name': '+multiple cursors',
@@ -378,9 +378,6 @@ function! MuiltipleKey()
                 \ 'e': 'start multiple',
                 \ 'a': 'select all word',
                 \ 'A': 'select all key',
-                \ 'n': 'next word',
-                \ 'p': 'prev word',
-                \ 'c': 'skip word',
                 \ }
 endfunction
 

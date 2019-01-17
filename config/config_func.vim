@@ -92,7 +92,8 @@ function! g:YcmConfig()
                 \ "python": 1,
                 \ "java":1,
                 \ "ruby": 1,
-                \ "rust": 1
+                \ "rust": 1,
+                \ "vue": 1
                 \ }
     let g:ycm_collect_identifiers_from_tag_files = 1
     let g:ycm_enable_diagnostic_signs=0
@@ -102,7 +103,7 @@ function! g:YcmConfig()
     let g:ycm_min_num_of_chars_for_completion=1
     let g:ycm_error_symbol = '✗'
     let g:ycm_warning_symbol = '⚡'
-    let g:ycm_key_invoke_completion='<tab>'
+    let g:ycm_key_invoke_completion='<c-z>'
 endfunction
 
 function! g:Javacomplete2Config()
