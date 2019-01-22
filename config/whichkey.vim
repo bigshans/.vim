@@ -207,9 +207,9 @@ endfunction
 
 function! EditKey()
     "UltiSnips config
-    let g:UltiSnipsExpandTrigger="<Space>eue"
-    let g:UltiSnipsJumpForwardTrigger="<Space>euf"
-    let g:UltiSnipsJumpBackwardTrgger="<Space>eub"
+    let g:UltiSnipsExpandTrigger="<C-z>"
+    let g:UltiSnipsJumpForwardTrigger="<C-f>"
+    let g:UltiSnipsJumpBackwardTrgger="<C-b>"
     let g:UltiSnipsListSnippets="<Space>eul"
     nnoremap <leader>ef  :Autoformat<CR>
     nnoremap <leader>ea  ggVG
@@ -220,9 +220,6 @@ function! EditKey()
                 \ 'a': 'select all',
                 \ 'u': {
                 \ 'name': '+ultisnips',
-                \ 'e': 'expend snips',
-                \ 'f': 'jump forward',
-                \ 'b': 'jump backward',
                 \ 'l': 'list snippets',
                 \ 's': 'search avaliable snippets'
                 \ }

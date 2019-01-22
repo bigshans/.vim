@@ -13,8 +13,9 @@ Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 call g:NERDTreeConfig()
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'for': ['java', 'c', 'cpp', 'ruby', 'rust', 'python', 'javascript', 'vim', 'sh', 'typescript']}
 call g:YcmConfig()
+Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
 Plug 'vim-ruby/vim-ruby'
 call g:VimRubyConfig()
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -44,11 +45,6 @@ Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 call g:NordVimConfig()
 Plug 'mattn/emmet-vim'
-" Plug 'autozimu/LanguageClient-neovim', {
-" \ 'branch': 'next',
-" \ 'do': 'bash install.sh',
-" \ }
-" call g:LanguageClientConfig()
 " Plug 'sillybun/vim-repl'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 call g:AutoPairConfig()
@@ -89,7 +85,6 @@ Plug 'hail2u/vim-css3-syntax'
 if g:deoplete == 1
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-        call g:DeopleteConfig()
         Plug 'roxma/nvim-yarp', {'on' : []}
         Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
     else
@@ -108,6 +103,21 @@ if g:deoplete == 1
     Plug 'zchee/deoplete-jedi'
     call g:DeopleteJediConfig()
 endif
+" if has('nvim')
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for':['vue',]}
+    " call g:DeopleteConfig()
+    " Plug 'roxma/nvim-yarp', {'on' : []}
+    " Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
+" else
+    " Plug 'Shougo/deoplete.nvim', {'for':['vue',]}
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+let g:deoplete#enable_at_startup = 1
+" Plug 'autozimu/LanguageClient-neovim', {
+" \ 'branch': 'next',
+" \ 'do': 'bash install.sh',
+" \ 'for': ['vue', ]}
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 call g:NERDTreeGitPluginConfig()
@@ -143,6 +153,17 @@ Plug 'liuchengxu/vim-which-key'
 call g:WhichKeyConfig()
 Plug 'asins/vimcdoc'
 Plug 'mikelue/vim-maven-plugin'
+Plug 'leafgarland/typescript-vim'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
+            \ }
+" Plug 'osyo-manga/vim-precious'
+" Plug 'ervandew/supertab',{'for': 'vue'}
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" call VimLspConfig()
+" Plug 'Quramy/tsuquyomi'
 " Plug 'liuchengxu/eleline.vim'
 " Plug 'icymind/NeoSolarized'
 " Plug 'ryanoasis/vim-devicons' " 太卡了
@@ -150,3 +171,10 @@ Plug 'mikelue/vim-maven-plugin'
 
 call plug#end()
 call g:SpaceVimDarkConfig()
+
+augroup coc
+    au!
+    au FileType vue,html,css,json call CocConfig()
+    autocmd BufNew,BufEnter *.json,*.css,*.html,*.vue execute "silent! CocEnable"
+    autocmd BufLeave *.json,*.vue,*.html execute "silent! CocDisable"
+augroup END

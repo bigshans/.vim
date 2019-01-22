@@ -19,7 +19,7 @@ set whichwrap+=<,>,h,l
 set magic
 set encoding=utf-8
 set laststatus=2
-set complete-=k complete+=k
+set complete-=k "complete+=k
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -68,4 +68,4 @@ function! ScreenCenterToggle()
         let g:screen_center_toggle_flag = 0
     endif
 endfunction
-
+set completeopt=longest,menuone

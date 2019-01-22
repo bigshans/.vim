@@ -69,16 +69,16 @@ function! g:YcmConfig()
                 \     'cpp,objcpp' : ['->', '.', ' ', '(', '[', '&', '::'],
                 \     'perl' : ['->', '::', ' '],
                 \     'php' : ['->', '::', '.'],
+                \   'javascript': ['re!\w{2}'],
+                \   'typescript': ['re!\w{2}', '.'],
                 \     'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
                 \     'ruby' : ['.', '::'],
                 \     'lua' : ['.', ':'],
                 \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-                \ 'cs,lua,javascript': ['re!\w{2}'],
                 \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
                 \            're!\[.*\]\s'],
                 \   'ocaml': ['.', '#'],
                 \   'cpp,cuda,objcpp': ['->', '.', '::'],
-                \   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,python,scala,typescript,vb': ['.'],
                 \   'erlang': [':'],
                 \ }
     let g:ycm_filetype_whitelist = { 
@@ -93,17 +93,21 @@ function! g:YcmConfig()
                 \ "java":1,
                 \ "ruby": 1,
                 \ "rust": 1,
+                \ "javascript": 1,
+                \ "typescript": 1,
                 \ "vue": 1
                 \ }
     let g:ycm_collect_identifiers_from_tag_files = 1
     let g:ycm_enable_diagnostic_signs=0
     set completeopt=longest,menu
+    set completeopt-=preview
     let g:ycm_cache_omnifunc=0
     let g:ycm_complete_in_comments=1
     let g:ycm_min_num_of_chars_for_completion=1
     let g:ycm_error_symbol = '✗'
     let g:ycm_warning_symbol = '⚡'
     let g:ycm_key_invoke_completion='<c-z>'
+    let g:ycm_max_num_candidates = 5
 endfunction
 
 function! g:Javacomplete2Config()
@@ -247,8 +251,8 @@ function! g:AleConfig()
                 \ 'vue':['prettier'],
                 \ 'python3':['yapf']
                 \}
-    let g:ale_completion_enabled=1
-    let g:ale_completion_delay = 1
+    let g:ale_completion_enabled=0
+    let g:ale_completion_delay = 0
     let g:ale_java_javalsp_jar='/home/aerian/.aerian.vim/java-language-server/out/fat-jar.jar'
     let g:ale_completion_max_suggestions=1
 endfunction
@@ -256,12 +260,9 @@ endfunction
 function! g:LanguageClientConfig()
     " LanguageClient
     let g:LanguageClient_autoStart=1
-    " call deoplete#custom#source('LanguageClient',
-    " \ 'min_pattern_length',
-    " \ 2)
     let g:LanguageClient_serverCommands = {
-                \ 'cpp' : ['clangd'],
-                \ 'java': ['/mnt/D/src/java/jdtls'],
+                \ 'vue': ['vls',],
+                \ 'typescript': ['tsserver'],
                 \ }
 endfunction
 
@@ -330,37 +331,40 @@ function! g:DeopleteConfig()
                 \ 'min_pattern_length' : 1,
                 \ })
     call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
-    call deoplete#custom#option('omni_patterns', {
-                \ 'java': '[^. *\t]\.\w*',
-                \})
+    call deoplete#custom#source('LanguageClient',
+    \ 'min_pattern_length',
+    \ 1)
+    " call deoplete#custom#option('omni_patterns', {
+                " \ 'java': '[^. *\t]\.\w*',
+                " \})
     " Eclim support
     " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
     "
     " Autoclose preview windows
     " https://github.com/Shougo/deoplete.nvim/issues/115
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
     " https://github.com/Shougo/deoplete.nvim/issues/100
     " use tab to forward cycle
-    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
     " use tab to backward cycle
-    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+    " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
     " Lazy load Deoplete to reduce statuptime
     " See manpage
     " Enable deoplete when InsertEnter.
-    autocmd InsertEnter * call deoplete#enable()
-    let g:deoplete#enable_at_startup = 1
+    " autocmd InsertEnter * call deoplete#enable()
+    " let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_ignore_case = 1
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#enable_refresh_always = 1
     let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-    let g:deoplete#omni#input_patterns.java = [
-                \'[^. \t0-9]\.\w*',
-                \'[^. \t0-9]\->\w*',
-                \'[^. \t0-9]\::\w*',
-                \]
-    let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
+    " let g:deoplete#omni#input_patterns.java = [
+                " \'[^. \t0-9]\.\w*',
+                " \'[^. \t0-9]\->\w*',
+                " \'[^. \t0-9]\::\w*',
+                " \]
+    " let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
     " let g:deoplete#ignore_sources = {}
     " let g:deoplete#ignore_sources._ = ['javacomplete2']
     " inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
@@ -512,14 +516,6 @@ function! g:CssCompleteConfig()
     " csscomplete
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS nonci
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-endfunction
-
-function! g:ContextFiletypeConfig()
-    " context_filetype.vim
-    if !exists('g:context_filetype#same_filetypes')
-        let g:context_filetype#same_filetypes = {}
-    endif
-    let g:context_filetype#same_filetypes.html = 'css'
 endfunction
 
 function! g:VimClosetagConfig()
@@ -674,4 +670,25 @@ function! g:NordVimConfig()
     " let g:nord_italic_comments=1
     " let g:nord_comment_brightness=12
     " let g:nord_uniform_status_lines=1
+endfunction
+
+function! g:VimLspConfig()
+    if executable('vls')
+        au User lsp_setup call lsp#register_server({
+                    \ 'name':'vls',
+                    \ 'cmd':{server_info->['vls']},
+                    \ 'whitelist':['vue']
+                    \        })
+    endif
+endfunction
+
+function! g:ContextFiletypeConfig()
+endfunction
+
+function! g:CocConfig()
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 endfunction
