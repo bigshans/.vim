@@ -95,7 +95,6 @@ function! g:YcmConfig()
                 \ "rust": 1,
                 \ "javascript": 1,
                 \ "typescript": 1,
-                \ "vue": 1
                 \ }
     let g:ycm_collect_identifiers_from_tag_files = 1
     let g:ycm_enable_diagnostic_signs=0
