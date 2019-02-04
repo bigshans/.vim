@@ -19,11 +19,39 @@ function! g:WhichKeyMap()
     let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
     let g:which_key_map.g=GitKey()
-    let g:which_key_map.j=YCMKey()
+    " let g:which_key_map.j=YCMKey()
+    let g:which_key_map.j=CoCKey()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
     let g:which_key_map['<CR>']='blank line to up'
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! CoCKey()
+    nnoremap <leader>jR :CocRestart<CR>
+    nnoremap <silent><leader>jf <Plug>(coc-fix-current)
+    nmap <silent><leader>jjd <Plug>(coc-definition)
+    nmap <silent><leader>jjt <Plug>(coc-type-definition)
+    nmap <silent><leader>jjf <Plug>(coc-implementation)
+    nmap <silent><leader>jjr <Plug>(coc-references)
+    nnoremap <silent><leader>jk :call <SID>show_documentation()<CR>
+    nmap <leader>jr <Plug>(coc-rename)
+    nmap <leader>ja <Plug>(coc-codeaction)
+    return {
+                \ 'name': '+Coc',
+                \ 'R': 'Coc server  restart',
+                \ 'f': 'Coc Fix it',
+                \ 'j': {
+                \ 'name': '+Goto',
+                \ 'd': 'Coc GotoDefinition',
+                \ 't': 'Coc GottoTypeDefinition',
+                \ 'f': 'Coc implementtation',
+                \ 'r': 'Coc references',
+                \ },
+                \ 'k': 'Coc show_documentation',
+                \ 'r': 'Coc Rename',
+                \ 'a': 'Coc code Action'
+                \    }
 endfunction
 
 function! YCMKey()
@@ -212,6 +240,7 @@ function! EditKey()
     let g:UltiSnipsJumpBackwardTrgger="<C-b>"
     let g:UltiSnipsListSnippets="<Space>eul"
     nnoremap <leader>ef  :Autoformat<CR>
+    vnoremap <leader>ef  :Autoformat<CR>
     nnoremap <leader>ea  ggVG
     nnoremap <leader>eus  :Snippets<CR>
     return {
@@ -379,6 +408,9 @@ function! MuiltipleKey()
 endfunction
 
 function! OtherKey()
+    " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
+    onoremap <silent>ag :<C-u>normal! ggVG<CR>
+    xnoremap <silent>ag :normal! ggVG<CR>
     nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
@@ -405,6 +437,8 @@ function! OtherKey()
     nnoremap wj <C-w><C-j>
     nnoremap wk <C-w><C-k>
     nnoremap wl <C-w><C-l>
+    nnoremap <Up> gk
+    nnoremap <Down> gj
     nnoremap <leader>; :
     nmap <leader>? <plug>(fzf-maps-n)
     xmap <leader>? <plug>(fzf-maps-x)
@@ -412,8 +446,8 @@ function! OtherKey()
     nnoremap <leader>q :q!<CR>
     nnoremap <leader>Q :qa!<CR>
     nnoremap <leader>y "+y
-    vnoremap <leader>y "+y
-    vnoremap <leader>p "+p
+    xnoremap <leader>y "+y
+    xnoremap <leader>p "+p
     nnoremap <leader>p "+p
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)

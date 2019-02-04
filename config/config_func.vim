@@ -40,12 +40,12 @@ function! g:AirlineConfig()
     let airline#extensions#ale#error_symbol = '✗'
     let airline#extensions#ale#warning_symbol = '⚠'
     function! AirlineInit()
-        let g:airline_section_a=airline#section#create_left(['mode','❖ %{winnr()} %'])
+        let g:airline_section_a=airline#section#create_left(['mode','⌥ %{winnr()} %'])
     endfunction
     function! g:AirlineInactive(...)
         let builder = a:1
         let context = a:2
-        call builder.add_section('winnr', "❖  ".context['winnr'])
+        call builder.add_section('winnr', "⎇  ".context['winnr'])
         call builder.split()
         call builder.add_section('file', '%F')
         call builder.split()
@@ -58,15 +58,16 @@ endfunction
 
 function! g:YcmConfig()     
     "Ycm config
-    let g:ycm_show_diagnostics_ui = 0
+    let g:ycm_allow_changing_updatetime = 0
+    let g:ycm_show_diagnostics_ui = 1
+    let g:ycm_enable_diagnostic_signs = 0 
+    let g:ycm_enable_diagnostic_highlighting = 0
     let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
     let g:ycm_collect_identifiers_from_tag_files = 1
     let g:ycm_seed_identifiers_with_syntax = 1
     let g:ycm_server_log_level='info'
     let g:ycm_confirm_extra_conf=0
     let g:ycm_semantic_triggers = {
-                \     'c' : ['->', '  ', '.', ' ', '(', '[', '&'],
-                \     'cpp,objcpp' : ['->', '.', ' ', '(', '[', '&', '::'],
                 \     'perl' : ['->', '::', ' '],
                 \     'php' : ['->', '::', '.'],
                 \   'javascript': ['re!\w{2}'],
@@ -74,45 +75,33 @@ function! g:YcmConfig()
                 \     'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
                 \     'ruby' : ['.', '::'],
                 \     'lua' : ['.', ':'],
-                \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+                \ 'python,java,go,erlang,perl': ['re!\w{1}'],
                 \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
                 \            're!\[.*\]\s'],
                 \   'ocaml': ['.', '#'],
-                \   'cpp,cuda,objcpp': ['->', '.', '::'],
+                \   'cuda': ['->', '.', '::'],
                 \   'erlang': [':'],
                 \ }
     let g:ycm_filetype_whitelist = { 
-                \ "c":1,
-                \ "cpp":1, 
-                \ "objc":1,
-                \ "sh":1,
-                \ "zsh":1,
-                \ "zimbu":1,
-                \ "vim": 1,
-                \ "python": 1,
                 \ "java":1,
-                \ "ruby": 1,
-                \ "rust": 1,
-                \ "javascript": 1,
-                \ "typescript": 1,
                 \ }
     let g:ycm_collect_identifiers_from_tag_files = 1
     let g:ycm_enable_diagnostic_signs=0
     set completeopt=longest,menu
-    set completeopt-=preview
+    " set completeopt-=preview
     let g:ycm_cache_omnifunc=0
     let g:ycm_complete_in_comments=1
     let g:ycm_min_num_of_chars_for_completion=1
     let g:ycm_error_symbol = '✗'
     let g:ycm_warning_symbol = '⚡'
     let g:ycm_key_invoke_completion='<c-z>'
-    let g:ycm_max_num_candidates = 5
+    let g:ycm_max_num_candidates = 10
 endfunction
 
 function! g:Javacomplete2Config()
     "javacomplete2 config
-    " autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    " let g:JavaComplete_UsePython3 = 1
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    let g:JavaComplete_UsePython3 = 1
 endfunction
 
 function! g:UltiSnipsConfig()
@@ -260,8 +249,7 @@ function! g:LanguageClientConfig()
     " LanguageClient
     let g:LanguageClient_autoStart=1
     let g:LanguageClient_serverCommands = {
-                \ 'vue': ['vls',],
-                \ 'typescript': ['tsserver'],
+                \ 'java':['/mnt/D/jdtl/jdtls'],
                 \ }
 endfunction
 
@@ -622,8 +610,8 @@ function! g:FZFConfig()
                 \   'git grep --line-number '.shellescape(<q-args>), 0,
                 \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)   
  
-    command! -bang Colors
-                \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+    " command! -bang Colors
+                " \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
     command! -bang -nargs=* Ag
                 \ call fzf#vim#ag(<q-args>,
@@ -672,12 +660,21 @@ function! g:NordVimConfig()
 endfunction
 
 function! g:VimLspConfig()
-    if executable('vls')
+    " if executable('clangd')
+        " au User lsp_setup call lsp#register_server({
+                    " \ 'name': 'clangd',
+                    " \ 'cmd': {server_info->['clangd']},
+                    " \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    " \ })
+    " endif
+    if executable('/mnt/D/github/cquery/build/cquery')
         au User lsp_setup call lsp#register_server({
-                    \ 'name':'vls',
-                    \ 'cmd':{server_info->['vls']},
-                    \ 'whitelist':['vue']
-                    \        })
+                    \ 'name': 'cquery',
+                    \ 'cmd': {server_info->['/mnt/D/github/cquery/build/cquery']},
+                    \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+                    \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                    \ })
     endif
 endfunction
 
@@ -685,9 +682,56 @@ function! g:ContextFiletypeConfig()
 endfunction
 
 function! g:CocConfig()
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    set updatetime=300
+    set shortmess+=c
+    set signcolumn=yes
+endfunction
+
+function! g:JavaImpConfig()
+    let g:JavaImpTopImports = [
+                \ 'java\..*',
+                \ 'javax\..*',
+                \ 'org\..*',
+                \ 'com\..*'
+                \ ]
+endfunction
+
+function! g:VimOrganizerConfig()
+     let g:org_command_for_emacsclient = "emacsclient"
+    au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
+    au BufEnter *.org            call org#SetOrgFileType()
+endfunction
+
+function! g:NrrwRgnConfig()
+  command! -nargs=* -bang -range -complete=filetype NN
+              \ :<line1>,<line2> call nrrwrgn#NrrwRgn('',<q-bang>)
+              \ | set filetype=<args>
+endfunction
+
+function! g:VimNotesConfig()
+    let g:notes_directories=['/mnt/D/note/vim-note',]
+    let g:notes_suffix='.txt'
+    let g:notes_unicode_enabled=0
+    let g:notes_smart_quotes=0
+endfunction
+
+function! g:VimOrgConfig()
+    let g:org_agenda_files = ['/mnt/D/agenda/*.org']
+endfunction
+
+function! g:VimSyntaxRangeConfig()
+    function! g:OrgSyntax()
+        call SyntaxRange#Include('#+BEGIN_SRC java\n', '#END_SRC\n', 'java', 'NonText')
+        call SyntaxRange#Include('#+BEGIN_SRC xml\n', '#END_SRC\n', 'xml', 'NonText')
+    endfunction
+    au BufNew,BufEnter *.org call g:OrgSyntax()
 endfunction

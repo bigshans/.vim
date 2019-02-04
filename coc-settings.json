@@ -1,0 +1,21 @@
+{
+    "coc.preferences.diagnostic.enable": false,
+    "java.import.maven.enabled": true,
+    "java.import.gradle.enabled": true,
+    "languageserver": {
+        "cquery": {
+            "command": "/mnt/D/github/cquery/build/cquery",
+            "args": ["--log-file=/tmp/cq.log"],
+            "filetypes": ["c", "cpp"],
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cacheDirectory": "/tmp/cquery"
+            }
+        },
+        "bash":{
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"]
+        }
+    }
+}

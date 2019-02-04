@@ -13,7 +13,7 @@ Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 call g:NERDTreeConfig()
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-Plug 'Valloric/YouCompleteMe', {'for': ['java', 'c', 'cpp', 'ruby', 'rust', 'python', 'javascript', 'vim', 'sh', 'typescript']}
+Plug 'Valloric/YouCompleteMe', {'for': ['java']}
 call g:YcmConfig()
 Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
 Plug 'vim-ruby/vim-ruby'
@@ -29,8 +29,8 @@ Plug 'SirVer/ultisnips'
 call g:UltiSnipsConfig()
 Plug 'scrooloose/nerdcommenter'
 call g:NERDCommenterConfig()
-Plug 'Yggdroot/indentLine'
-call g:IndentLineConfig()
+" Plug 'Yggdroot/indentLine'
+" call g:IndentLineConfig()
 Plug 'https://github.com/mhinz/vim-startify.git'
 call g:StartifyConfig()
 Plug 'lilydjwg/fcitx.vim'
@@ -58,6 +58,7 @@ call g:VimInterestingwordConfig()
 Plug '~/.vim/bundle/project'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'othree/javascript-libraries-syntax.vim'
+call g:VimOrgConfig()
 Plug 'majutsushi/tagbar'
 Plug 'brooth/far.vim'
 Plug 'Chiel92/vim-autoformat'
@@ -67,8 +68,20 @@ call g:VimQuickrunConfig()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call g:FZFConfig()
+Plug 'mattn/calendar-vim'
+" Plug 'vim-scripts/SyntaxRange'
+Plug 'inkarkat/vim-SyntaxRange'
+call g:VimSyntaxRangeConfig()
+Plug 'tpope/vim-repeat'
+Plug 'chrisbra/NrrwRgn'
+call g:NrrwRgnConfig()
+Plug 'vim-scripts/utl.vim'
 Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
 Plug 'jceb/vim-orgmode'
+call g:VimOrgConfig()
+" Plug 'SpaceVim/org-mode'
+" Plug 'bigshans/VimOrganizer'
+" call g:VimOrganizerConfig()
 Plug 'godlygeek/tabular' "必须在markdown插件之前
 " Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/mbbill/undotree.git'
@@ -114,10 +127,10 @@ endif
     " Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 let g:deoplete#enable_at_startup = 1
-" Plug 'autozimu/LanguageClient-neovim', {
-" \ 'branch': 'next',
-" \ 'do': 'bash install.sh',
-" \ 'for': ['vue', ]}
+Plug 'autozimu/LanguageClient-neovim', {
+\ 'branch': 'next',
+\ 'do': 'bash install.sh'}
+" call g:LanguageClientConfig()
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 call g:NERDTreeGitPluginConfig()
@@ -156,11 +169,18 @@ Plug 'mikelue/vim-maven-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
             \ }
+call g:CocConfig()
+" Plug 'sheerun/vim-polyglot'
+Plug 'rustushki/JavaImp.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+call g:VimNotesConfig()
 " Plug 'osyo-manga/vim-precious'
 " Plug 'ervandew/supertab',{'for': 'vue'}
 " Plug 'prabirshrestha/asyncomplete.vim'
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
+" Plug 'pdavydov108/vim-lsp-cquery'
 " Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " call VimLspConfig()
 " Plug 'Quramy/tsuquyomi'
@@ -172,9 +192,12 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
 call plug#end()
 call g:SpaceVimDarkConfig()
 
-augroup coc
-    au!
-    au FileType vue,html,css,json call CocConfig()
-    autocmd BufNew,BufEnter *.json,*.css,*.html,*.vue execute "silent! CocEnable"
-    autocmd BufLeave *.json,*.vue,*.html execute "silent! CocDisable"
-augroup END
+" augroup coc
+    " au!
+    " au FileType vue,html,css,json,c,cpp,sh,zsh call CocConfig()
+    " autocmd BufNew,BufEnter *.json,*.css,*.html,*.vue,*.c,*.cpp,*.h,*.cxx,*.sh,*.zsh,.zshrc execute "silent! CocEnable"
+    " autocmd BufLeave *.json,*.vue,*.html,*.c,*.cpp,*.h,*.cxx,*.sh,*.zsh,.zshrc execute "silent! CocDisable"
+" augroup END
+autocmd BufNew,BufEnter *.java execute "silent! CocDisable"
+autocmd BufLeave *.java execute "silent! CocEnable"
+au BufRead,BufNew,BufEnter,BufLeave *.js setfiletype javascript
