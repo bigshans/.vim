@@ -127,9 +127,9 @@ endif
     " Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 let g:deoplete#enable_at_startup = 1
-Plug 'autozimu/LanguageClient-neovim', {
-\ 'branch': 'next',
-\ 'do': 'bash install.sh'}
+" Plug 'autozimu/LanguageClient-neovim', {
+" \ 'branch': 'next',
+" \ 'do': 'bash install.sh'}
 " call g:LanguageClientConfig()
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'

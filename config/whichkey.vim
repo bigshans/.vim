@@ -174,7 +174,7 @@ endfunction
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
     nnoremap <leader>fr  :source $MYVIMRC<CR>
-    nnoremap <leader>fS  :w! sudo tee %<CR>
+    nnoremap <leader>fS  :w !sudo tee %<CR>
     nnoremap <leader>ft :NERDTreeToggle<CR>
     nnoremap <leader>ff :History<CR>
     return {
