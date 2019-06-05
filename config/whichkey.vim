@@ -278,7 +278,7 @@ function! ApplicationKey()
     nnoremap <silent><F5> :QuickRun -mode n<CR>
     vnoremap <silent><F5> :QuickRun -mode v<CR>
     vnoremap <silent><leader>aqr :QuickRun -mode v<CR>
-    nnoremap <leader>atb :Tagbar<CR>
+    nnoremap <leader>at :Tagbar<CR>
     nnoremap <leader>az :Goyo<CR>
     nnoremap <leader>ad :IciFrom<CR>
     nnoremap <leader>ale :IndentLinesEnable<CR>
@@ -298,8 +298,7 @@ function! ApplicationKey()
                 \ 'r':'run code',
                 \ },
                 \ 't': {
-                \ 'name': '+tagbar',
-                \ 'b': 'tagbar',
+                \ 'name': 'tagbar',
                 \ },
                 \ 'z': 'vim zenroom2',
                 \ 'd': 'word means',
@@ -409,6 +408,7 @@ endfunction
 
 function! OtherKey()
     " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
+    nnoremap J gJ
     onoremap <silent>ag :<C-u>normal! ggVG<CR>
     xnoremap <silent>ag :normal! ggVG<CR>
     nnoremap <M-x> :Commands<CR>

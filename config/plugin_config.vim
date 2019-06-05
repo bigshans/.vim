@@ -13,8 +13,8 @@ Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
 call g:NERDTreeConfig()
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
-Plug 'Valloric/YouCompleteMe', {'for': ['java']}
-call g:YcmConfig()
+" Plug 'Valloric/YouCompleteMe', {'for': ['java']}
+" call g:YcmConfig()
 Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
 Plug 'vim-ruby/vim-ruby'
 call g:VimRubyConfig()
@@ -39,8 +39,8 @@ Plug 'tpope/vim-surround'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call g:AirlineConfig()
-Plug 'terryma/vim-multiple-cursors'
-call g:VimMulipleCursorsConfig()
+" Plug 'terryma/vim-multiple-cursors'
+" call g:VimMulipleCursorsConfig()
 Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 call g:NordVimConfig()
@@ -60,6 +60,7 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'othree/javascript-libraries-syntax.vim'
 call g:VimOrgConfig()
 Plug 'majutsushi/tagbar'
+call g:TagbarConfig()
 Plug 'brooth/far.vim'
 Plug 'Chiel92/vim-autoformat'
 call g:VimAutoformatConfig()
@@ -167,14 +168,21 @@ call g:WhichKeyConfig()
 Plug 'asins/vimcdoc'
 Plug 'mikelue/vim-maven-plugin'
 Plug 'leafgarland/typescript-vim'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
-            \ }
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
+            " \ }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 call g:CocConfig()
 " Plug 'sheerun/vim-polyglot'
 Plug 'rustushki/JavaImp.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 call g:VimNotesConfig()
+Plug 'ntpeters/vim-better-whitespace'
+call g:BetterWhiteSpace()
+Plug 'tpope/vim-abolish'
+Plug 'liuchengxu/vista.vim'
+Plug 'mg979/vim-visual-multi',{'branch':'test'}
+call g:VisualMuliti()
 " Plug 'osyo-manga/vim-precious'
 " Plug 'ervandew/supertab',{'for': 'vue'}
 " Plug 'prabirshrestha/asyncomplete.vim'

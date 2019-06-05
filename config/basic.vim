@@ -70,4 +70,5 @@ function! ScreenCenterToggle()
 endfunction
 au! BufNew,BufEnter *.vim set foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
+packadd termdebug
 " set completeopt=longest,menuone

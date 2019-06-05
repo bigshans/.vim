@@ -642,7 +642,7 @@ function! g:WhichKeyConfig()
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
     " vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-    nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+    " nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
     " vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
     let g:which_key_map = {}
     let g:which_key_hspace=4
@@ -734,4 +734,20 @@ function! g:VimSyntaxRangeConfig()
         call SyntaxRange#Include('#+BEGIN_SRC xml\n', '#END_SRC\n', 'xml', 'NonText')
     endfunction
     au BufNew,BufEnter *.org call g:OrgSyntax()
+endfunction
+
+function! g:BetterWhiteSpace()
+    let g:better_whitespace_enabled = 0
+endfunction
+
+function! g:TagbarConfig()
+    let g:tagbar_autofocus = 1
+    let g:tagbar_show_linenumbers = 1
+    let g:tagbar_singleclick = 1
+    let g:tagbar_iconchars = ['▸', '▾']
+endfunction
+
+function! g:VisualMuliti()
+    let g:VM_check_mappings = 0
+    let g:VM_clear_buffer_hl = 0
 endfunction

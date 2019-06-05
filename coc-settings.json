@@ -1,15 +1,18 @@
 {
-    "coc.preferences.diagnostic.enable": false,
+    "diagnostic.enable": false,
     "java.import.maven.enabled": true,
     "java.import.gradle.enabled": true,
+    "coc.preferences.diagnostic.displayByAle": true,
+    "python.setInterpreter": "python3",
     "languageserver": {
-        "cquery": {
-            "command": "/mnt/D/github/cquery/build/cquery",
-            "args": ["--log-file=/tmp/cq.log"],
-            "filetypes": ["c", "cpp"],
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "initializationOptions": {
-                "cacheDirectory": "/tmp/cquery"
+                "cache": {
+                    "directory": "/tmp/ccls-cache"
+                }
             }
         },
         "bash":{
@@ -17,5 +20,6 @@
             "args": ["start"],
             "filetypes": ["sh"]
         }
-    }
+    },
+    "python.jediEnabled": false
 }
