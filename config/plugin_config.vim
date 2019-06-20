@@ -183,6 +183,7 @@ Plug 'tpope/vim-abolish'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
 call g:VisualMuliti()
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'osyo-manga/vim-precious'
 " Plug 'ervandew/supertab',{'for': 'vue'}
 " Plug 'prabirshrestha/asyncomplete.vim'

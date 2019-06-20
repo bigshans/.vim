@@ -19,6 +19,15 @@
             "command": "bash-language-server",
             "args": ["start"],
             "filetypes": ["sh"]
+        },
+        "golang": {
+            "command": "/home/aerian/go/bin/go-langserver",
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "gocodeCompletionEnabled": true,
+                "diagnosticsEnabled": true,
+                "lintTool": "golint"
+            }
         }
     },
     "python.jediEnabled": false
