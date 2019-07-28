@@ -235,10 +235,15 @@ endfunction
 
 function! EditKey()
     "UltiSnips config
-    let g:UltiSnipsExpandTrigger="<C-z>"
-    let g:UltiSnipsJumpForwardTrigger="<C-f>"
-    let g:UltiSnipsJumpBackwardTrgger="<C-b>"
-    let g:UltiSnipsListSnippets="<Space>eul"
+    " let g:UltiSnipsExpandTrigger="<C-z>"
+    " let g:UltiSnipsJumpForwardTrigger="<C-f>"
+    " let g:UltiSnipsJumpBackwardTrgger="<C-b>"
+    " let g:UltiSnipsListSnippets="<Space>eul"
+    imap <C-z> <Plug>(coc-snippets-expand)
+    let g:coc_snippet_next = '<C-f>'
+    let g:coc_snippet_prev = '<C-b>'
+    imap <C-z> <Plug>(coc-snippets-expand-jump)
+    " let g:coc_snippet_next = '<TAB>'
     nnoremap <leader>ef  :Autoformat<CR>
     vnoremap <leader>ef  :Autoformat<CR>
     nnoremap <leader>ea  ggVG
@@ -451,6 +456,7 @@ function! OtherKey()
     nnoremap <leader>p "+p
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
+    vmap g: :EasyAlign:>l1<CR>
     noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
     noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
     noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
