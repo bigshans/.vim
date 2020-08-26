@@ -42,7 +42,7 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=L
     set guioptions-=r
     set guioptions-=R
-    set guifont=NotoMonoforPowerline\ 09
+    set guifont=NotoMonoforPowerline\ 11
 endif
 augroup Web
     autocmd!

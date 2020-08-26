@@ -96,42 +96,6 @@ Plug 'danro/rename.vim'
 Plug 'posva/vim-vue'
 Plug 'othree/html5.vim', {'for': ['html', 'vue']}
 Plug 'hail2u/vim-css3-syntax'
-if g:deoplete == 1
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-        Plug 'roxma/nvim-yarp', {'on' : []}
-        Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
-    else
-        Plug 'Shougo/deoplete.nvim'
-        call g:DeopleteConfig()
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    let g:deoplete#enable_at_startup = 1
-    Plug 'carlitux/deoplete-ternjs', {'do':'npm install -g tern'}
-    call g:DeopleteTernConfig()
-    Plug 'zchee/deoplete-clang'
-    call g:DeopleteClangConfig()
-    " Plug 'Shougo/neoinclude.vim'
-    " Plug 'Shougo/deoplete-clangx'
-    Plug 'zchee/deoplete-jedi'
-    call g:DeopleteJediConfig()
-endif
-" if has('nvim')
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for':['vue',]}
-    " call g:DeopleteConfig()
-    " Plug 'roxma/nvim-yarp', {'on' : []}
-    " Plug 'roxma/vim-hug-neovim-rpc' , {'on' : []}
-" else
-    " Plug 'Shougo/deoplete.nvim', {'for':['vue',]}
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-let g:deoplete#enable_at_startup = 1
-" Plug 'autozimu/LanguageClient-neovim', {
-" \ 'branch': 'next',
-" \ 'do': 'bash install.sh'}
-" call g:LanguageClientConfig()
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 call g:NERDTreeGitPluginConfig()
@@ -157,7 +121,6 @@ Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'Flowerowl/ici.vim'
-" Plug 'Shougo/deoplete-lsp'
 Plug 'neomake/neomake'
 if g:ctrlspace == 1
     Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -168,8 +131,6 @@ call g:WhichKeyConfig()
 Plug 'asins/vimcdoc'
 Plug 'mikelue/vim-maven-plugin'
 Plug 'leafgarland/typescript-vim'
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()},
-            " \ }
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 call g:CocConfig()
 " Plug 'sheerun/vim-polyglot'
@@ -185,6 +146,7 @@ Plug 'mg979/vim-visual-multi',{'branch':'test'}
 call g:VisualMuliti()
 Plug 'tracyone/fzf-funky',{'on': 'CtrlPFunky'}
 Plug 'itchyny/vim-cursorword'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 " Plug 'zxqfl/tabnine-vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'osyo-manga/vim-precious'

@@ -718,7 +718,7 @@ function! g:NrrwRgnConfig()
 endfunction
 
 function! g:VimNotesConfig()
-    let g:notes_directories=['/mnt/D/note/vim-note',]
+    " let g:notes_directories=['/mnt/D/note/vim-note',]
     let g:notes_suffix='.txt'
     let g:notes_unicode_enabled=0
     let g:notes_smart_quotes=0
