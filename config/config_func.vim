@@ -682,18 +682,42 @@ function! g:ContextFiletypeConfig()
 endfunction
 
 function! g:CocConfig()
+    let g:coc_global_extensions = [
+                \ 'coc-tsserver',
+                \ 'coc-explorer',
+                \ 'coc-python',
+                \ 'coc-vetur',
+                \ 'coc-html',
+                \ 'coc-css',
+                \ 'coc-solargraph',
+                \ 'coc-json',
+                \]
     function! s:check_back_space() abort
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~ '\s'
     endfunction
+    set hidden
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-    set updatetime=300
+    set updatetime=200
     set shortmess+=c
-    set signcolumn=yes
+    if has("patch-8.1.1564")
+        " Recently vim can merge signcolumn and number column into one
+        set signcolumn=number
+    else
+        set signcolumn=yes
+    endif
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    augroup mygroup
+        autocmd!
+        " Setup formatexpr specified filetype(s).
+        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+        " Update signature help on jump placeholder.
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    augroup end
 endfunction
 
 function! g:JavaImpConfig()
@@ -748,6 +772,25 @@ function! g:TagbarConfig()
 endfunction
 
 function! g:VisualMuliti()
-    let g:VM_check_mappings = 0
-    let g:VM_clear_buffer_hl = 0
+    " let g:VM_check_mappings = 0
+    " let g:VM_clear_buffer_hl = 0
+    let g:VM_mouse_mappings = 1
+    let g:VM_maps = {}
+    let g:VM_maps['Find Under']         = '<C-n>'           " replace C-n
+    let g:VM_maps['Find Subword Under'] = '<C-n>'           " replace visual C-n
+endfunction
+
+function! g:VistaConfig()
+    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+    function! NearestMethodOrFunction() abort
+        return get(b:, 'vista_nearest_method_or_function', '')
+    endfunction
+
+    set statusline+=%{NearestMethodOrFunction()}
+    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    let g:vista#renderer#enable_icon = 1
+    let g:vista#renderer#icons = {
+                \   "function": "\uf794",
+                \   "variable": "\uf71b",
+                \  }
 endfunction

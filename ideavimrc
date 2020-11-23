@@ -1,11 +1,12 @@
-nnoremap <Space>fs :w<CR>
-nnoremap <Space>q  :q!<CR>
+let mapleader = " "
+nnoremap <leader>fs :w<CR>
+nnoremap <leader>q  :q!<CR>
 " nnoremap p p=`]<C-o>
-nnoremap <Space>fm :action ReformatCode<CR>
-nnoremap <Space>oi :action OptimizeImports<CR>
+nnoremap <leader>fm :action ReformatCode<CR>
+nnoremap <leader>oi :action OptimizeImports<CR>
 nnoremap <space>oi :action OptimizeImports<CR>
-nnoremap <Space>y "+y
-nnoremap <Space>p "+p
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
 inoremap <C-d>     <ESC>
 inoremap <C-j>     <Down>
 inoremap <C-k>     <Up>
@@ -14,12 +15,12 @@ inoremap <C-l>     <Right>
 inoremap <C-m>     <CR>
 inoremap <C-a>     <home>
 inoremap <C-e>     <end>
-noremap  <Space>h  <C-w><C-h>
-noremap  <Space>j  <C-w><C-j>
-noremap  <Space>k  <C-w><C-k>
-noremap  <Space>l  <C-w><C-l>
-noremap  <Space>a ggVG
-noremap  <Space>ci :action CommentByLineComment<CR>
+noremap  <leader>h  <C-w><C-h>
+noremap  <leader>j  <C-w><C-j>
+noremap  <leader>k  <C-w><C-k>
+noremap  <leader>l  <C-w><C-l>
+noremap  <leader>a ggVG
+noremap  <leader>ci :action CommentByLineComment<CR>
 map      <A-/>     :action CodeCompletion<CR>
 set so=5
 set showmode
@@ -30,9 +31,16 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
+set surround
+set multiple-cursors
+set commentary
+set easymotion
 syntax on
 set hidden
-nnoremap <Space>sm :action ShowPopupMenu<CR>
-nnoremap <Space>fp :action ShowFilePath<CR>
-nnoremap <Space>su :action ShowUsages<CR>
-nnoremap <Space>fu :action FindUsages<CR>
+nnoremap <leader>sm :action ShowPopupMenu<CR>
+nnoremap <leader>fp :action ShowFilePath<CR>
+nnoremap <leader>su :action ShowUsages<CR>
+nnoremap <leader>fu :action FindUsages<CR>
+nnoremap <leader>bn :tabn<CR>
+nnoremap <leader>bp :tabp<CR>
+nnoremap gr :action RenameElement<CR>

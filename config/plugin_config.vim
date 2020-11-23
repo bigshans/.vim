@@ -9,8 +9,8 @@ let g:deoplete = 0
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
-call g:NERDTreeConfig()
+" Plug 'git://github.com/scrooloose/nerdtree.git', {'on': 'NERDTreeToggle'}
+" call g:NERDTreeConfig()
 Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
 " Plug 'Valloric/YouCompleteMe', {'for': ['java']}
@@ -39,8 +39,8 @@ Plug 'tpope/vim-surround'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call g:AirlineConfig()
-" Plug 'terryma/vim-multiple-cursors'
-" call g:VimMulipleCursorsConfig()
+Plug 'terryma/vim-multiple-cursors'
+call g:VimMulipleCursorsConfig()
 Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 call g:NordVimConfig()
@@ -57,7 +57,7 @@ Plug 'lfv89/vim-interestingwords'
 call g:VimInterestingwordConfig()
 Plug '~/.vim/bundle/project'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
 call g:VimOrgConfig()
 Plug 'majutsushi/tagbar'
 call g:TagbarConfig()
@@ -111,8 +111,8 @@ call g:VimFollowMyLeadConfig()
 " call g:VimLeaderGuideConfig()
 Plug 'Shougo/context_filetype.vim'
 call g:ContextFiletypeConfig()
-Plug 'othree/csscomplete.vim'
-call g:CssCompleteConfig()
+" Plug 'othree/csscomplete.vim'
+" call g:CssCompleteConfig()
 Plug 'alvan/vim-closetag'
 call g:VimClosetagConfig()
 Plug 'junegunn/vim-easy-align'
@@ -142,6 +142,7 @@ Plug 'ntpeters/vim-better-whitespace'
 call g:BetterWhiteSpace()
 Plug 'tpope/vim-abolish'
 Plug 'liuchengxu/vista.vim'
+call g:VistaConfig()
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
 call g:VisualMuliti()
 Plug 'tracyone/fzf-funky',{'on': 'CtrlPFunky'}
@@ -160,8 +161,15 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 " Plug 'Quramy/tsuquyomi'
 " Plug 'liuchengxu/eleline.vim'
 " Plug 'icymind/NeoSolarized'
-" Plug 'ryanoasis/vim-devicons' " 太卡了
-" call g:VimDeviconsConfig()
+Plug 'ryanoasis/vim-devicons' " 太卡了
+call g:VimDeviconsConfig()
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+Plug 'mileszs/ack.vim'
+Plug 'arrufat/vala.vim'
 
 call plug#end()
 call g:SpaceVimDarkConfig()
@@ -175,3 +183,5 @@ call g:SpaceVimDarkConfig()
 autocmd BufNew,BufEnter *.java execute "silent! CocDisable"
 autocmd BufLeave *.java execute "silent! CocEnable"
 au BufRead,BufNew,BufEnter,BufLeave *.js setfiletype javascript
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear

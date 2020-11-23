@@ -17,7 +17,7 @@ syntax enable
 syntax on
 set whichwrap+=<,>,h,l
 set magic
-set encoding=utf-8
+set encoding=UTF-8
 set laststatus=2
 set complete-=k "complete+=k
 set tabstop=4
@@ -71,4 +71,27 @@ endfunction
 au! BufNew,BufEnter *.vim set foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
 packadd termdebug
+com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod
+set splitbelow
 " set completeopt=longest,menuone
+augroup html
+    au!
+    autocmd BufEnter,BufNew,BufNewFile *.{js,jsx,ts,tsx,vue,css} set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+    autocmd BufLeave *.{js,jsx,ts,tsx,vue,css} set tabstop=4 | set softtabstop=4 | set shiftwidth=4
+augroup END
+
+function! g:Tab2()
+    set tabstop=2
+    set softtabstop=2
+    set shiftwidth=2
+endfunction
+
+
+function! g:Tab4()
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+endfunction
+
+command Tab2 :call g:Tab2()
+command Tab4 :call g:Tab4()

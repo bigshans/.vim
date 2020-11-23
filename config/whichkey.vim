@@ -4,7 +4,8 @@ function! g:WhichKeyMap()
     let g:which_key_map.w=WindowsKey()
     let g:which_key_map.c=CommentKey()
     let g:which_key_map.b=BuffersKey()
-    let g:which_key_map.t=NERDTreeKey()
+    " let g:which_key_map.t=NERDTreeKey()
+    let g:which_key_map.t=TagKeyMap()
     let g:which_key_map.P=PluginKey()
     let g:which_key_map.e=EditKey()
     let g:which_key_map.a=ApplicationKey()
@@ -27,9 +28,19 @@ function! g:WhichKeyMap()
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
+function! g:TagKeyMap()
+    nmap <leader>tt :Vista!!<CR>
+    nmap <leader>tc :Vista coc<CR>
+    return {
+                \ 'name': '+Tag',
+                \ 't': 'show tag',
+                \ 'c' : 'lsp tag',
+                \}
+endfunction
+
 function! CoCKey()
     nnoremap <leader>jR :CocRestart<CR>
-    nnoremap <silent><leader>jf <Plug>(coc-fix-current)
+    nnoremap <silent><leader>jf :ALEFix<CR>
     nmap <silent><leader>jjd <Plug>(coc-definition)
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
     nmap <silent><leader>jjf <Plug>(coc-implementation)
@@ -140,7 +151,7 @@ endfunction
 
 function! WindowsKey()
     for s:i in range(1, 9)
-      " <Leader>[1-9] move to window [1-9]
+        " <Leader>[1-9] move to window [1-9]
         execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
         let g:which_key_map[s:i]='to windows '.s:i
     endfor
@@ -174,15 +185,15 @@ endfunction
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
     nnoremap <leader>fr  :source $MYVIMRC<CR>
-    nnoremap <leader>fS  :w !sudo tee %<CR>
-    nnoremap <leader>ft :NERDTreeToggle<CR>
+    nnoremap <leader>fS  :W<CR>
+    nnoremap <leader>ft :CocCommand explorer<CR>
     nnoremap <leader>ff :History<CR>
     return {
                 \ 'name': '+files',
                 \ 's': 'save file',
                 \ 'r': 'reload vim file',
                 \ 'S': 'sudo save',
-                \ 't': 'NERDTree Toggle',
+                \ 't': 'explorer toggle',
                 \ 'f': 'recent files',
                 \ }
 endfunction
@@ -278,7 +289,7 @@ function! ApplicationKey()
     nnoremap <silent><F5> :QuickRun -mode n<CR>
     vnoremap <silent><F5> :QuickRun -mode v<CR>
     vnoremap <silent><leader>aqr :QuickRun -mode v<CR>
-    nnoremap <leader>at :Tagbar<CR>
+    nnoremap <leader>at :Vista!!<CR>
     nnoremap <leader>az :Goyo<CR>
     nnoremap <leader>ad :IciFrom<CR>
     nnoremap <leader>ale :IndentLinesEnable<CR>
@@ -298,7 +309,7 @@ function! ApplicationKey()
                 \ 'r':'run code',
                 \ },
                 \ 't': {
-                \ 'name': 'tagbar',
+                \ 'name': 'vista',
                 \ },
                 \ 'z': 'vim zenroom2',
                 \ 'd': 'word means',
@@ -326,8 +337,10 @@ function! SearchKey()
     nnoremap <leader>sC :Colors<CR>
     nnoremap <leader>sc :Commands<CR>
     nnoremap <leader>sw :Windows<CR>
+    nnoremap <leader>sa :Ack!<CR>
     return {
                 \ 'name': '+search',
+                \ 'a': 'ack search',
                 \ 'f': 'find files',
                 \ 's': 'search lines',
                 \ 'b': 'search buffers',
@@ -392,7 +405,7 @@ function! MuiltipleKey()
     let g:multi_cursor_start_word_key      = '<Space>is'
     let g:multi_cursor_select_all_word_key = '<Space>ia'
     let g:multi_cursor_start_key           = '<Space>ie'
-    let g:multi_cursor_select_all_key      = '<Space>iA'
+    let g:multi_cursor_select_all_key      = '<A-n>'
     let g:multi_cursor_next_key            = '<C-n>'
     let g:multi_cursor_prev_key            = '<C-p>'
     let g:multi_cursor_skip_key            = '<C-s>'
@@ -402,7 +415,6 @@ function! MuiltipleKey()
                 \ 's': 'start word',
                 \ 'e': 'start multiple',
                 \ 'a': 'select all word',
-                \ 'A': 'select all key',
                 \ }
 endfunction
 
@@ -468,6 +480,44 @@ function! OtherKey()
     endif
     vmap K <Plug>(expand_region_expand)
     vmap J <Plug>(expand_region_shrink)
+    imap   <C-y>   <plug>(emmet-expand-abbr)
+    imap   <C-y>;   <plug>(emmet-expand-word)
+    imap   <C-y>u   <plug>(emmet-update-tag)
+    imap   <C-y>d   <plug>(emmet-balance-tag-inward)
+    imap   <C-y>D   <plug>(emmet-balance-tag-outward)
+    imap   <C-y>n   <plug>(emmet-move-next)
+    imap   <C-y>N   <plug>(emmet-move-prev)
+    imap   <C-y>i   <plug>(emmet-image-size)
+    imap   <C-y>/   <plug>(emmet-toggle-comment)
+    imap   <C-y>j   <plug>(emmet-split-join-tag)
+    imap   <C-y>k   <plug>(emmet-remove-tag)
+    imap   <C-y>a   <plug>(emmet-anchorize-url)
+    imap   <C-y>A   <plug>(emmet-anchorize-summary)
+    imap   <C-y>m   <plug>(emmet-merge-lines)
+    imap   <C-y>c   <plug>(emmet-code-pretty)
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocActionAsync('doHover')
+        endif
+    endfunction
+    xmap if <Plug>(coc-funcobj-i)
+    omap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap af <Plug>(coc-funcobj-a)
+    xmap ic <Plug>(coc-classobj-i)
+    omap ic <Plug>(coc-classobj-i)
+    xmap ac <Plug>(coc-classobj-a)
+    omap ac <Plug>(coc-classobj-a)
+    nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
+    nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)
+    nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 endfunction
 
 call g:WhichKeyMap()
