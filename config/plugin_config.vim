@@ -147,7 +147,7 @@ Plug 'mg979/vim-visual-multi',{'branch':'test'}
 call g:VisualMuliti()
 Plug 'tracyone/fzf-funky',{'on': 'CtrlPFunky'}
 Plug 'itchyny/vim-cursorword'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 " Plug 'zxqfl/tabnine-vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'osyo-manga/vim-precious'

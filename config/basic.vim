@@ -71,7 +71,11 @@ endfunction
 au! BufNew,BufEnter *.vim set foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
 packadd termdebug
-com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod
+if has('nvim')
+    com -bar W exe 'w !pkexec tee > /dev/null %' | setl nomod
+else
+    com -bar W exe 'w !sudo tee > /dev/null %' | setl nomod
+endif
 set splitbelow
 " set completeopt=longest,menuone
 augroup html
