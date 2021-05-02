@@ -35,6 +35,8 @@ endif
 set laststatus=2
 set writebackup
 set nobackup
+" session
+set sessionoptions-=help
 if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=T
     " set guioptions-=m

@@ -25,6 +25,7 @@ function! g:WhichKeyMap()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
     let g:which_key_map['<CR>']='blank line to up'
+    let g:which_key_map.S=WorkSpaceKey()
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
@@ -418,6 +419,18 @@ function! MuiltipleKey()
                 \ }
 endfunction
 
+function! WorkSpaceKey()
+    nnoremap <leader>Ss :SessionSave<CR>
+    nnoremap <leader>So :SessionOpenLast<CR>
+    nnoremap <leader>Sl :SessionList<CR>
+    return {
+                \ 'name' : 'session',
+                \ 's' : 'save session',
+                \ 'o' : 'open last session',
+                \ 'l' : 'open session list',
+                \ }
+endfunction
+
 function! OtherKey()
     " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
     nnoremap J gJ
@@ -496,6 +509,7 @@ function! OtherKey()
     imap   <C-y>m   <plug>(emmet-merge-lines)
     imap   <C-y>c   <plug>(emmet-code-pretty)
     nmap <silent> gd <Plug>(coc-definition)
+    " nmap <silent> <C-]> <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)

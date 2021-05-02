@@ -103,5 +103,6 @@
         ">>": "gitUnstage"
     },
     "explorer.icon.enableVimDevicons": true,
-    "html.autoClosingTags": true
+    "html.autoClosingTags": true,
+    "tsserver.disableAutomaticTypeAcquisition": false
 }

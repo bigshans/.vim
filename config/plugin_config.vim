@@ -35,7 +35,8 @@ Plug 'https://github.com/mhinz/vim-startify.git'
 call g:StartifyConfig()
 Plug 'lilydjwg/fcitx.vim'
 Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call g:AirlineConfig()
@@ -120,7 +121,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
-Plug 'Flowerowl/ici.vim'
+" Plug 'Flowerowl/ici.vim'
 Plug 'neomake/neomake'
 if g:ctrlspace == 1
     Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -170,6 +171,12 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
 Plug 'arrufat/vala.vim'
+" Plug 'thaerkh/vim-workspace'
+" call g:WorkSpace()
+" Plug 'xolox/vim-session'
+Plug 'vim-scripts/sessionman.vim'
+Plug 'voldikss/vim-floaterm'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
 call g:SpaceVimDarkConfig()

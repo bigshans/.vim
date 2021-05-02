@@ -685,12 +685,13 @@ function! g:CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
                 \ 'coc-explorer',
-                \ 'coc-python',
                 \ 'coc-vetur',
+                \ 'coc-pyright',
                 \ 'coc-html',
                 \ 'coc-css',
                 \ 'coc-solargraph',
                 \ 'coc-json',
+                \ 'coc-snippets',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -701,7 +702,9 @@ function! g:CocConfig()
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
+    imap <C-n> <Plug>(coc-snippets-expand)
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    let g:coc_snippet_next = '<CR>'
     set updatetime=200
     set shortmess+=c
     if has("patch-8.1.1564")
@@ -718,6 +721,7 @@ function! g:CocConfig()
         " Update signature help on jump placeholder.
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
+    autocmd FileType typescript :let b:coc_enabled = 0
 endfunction
 
 function! g:JavaImpConfig()
@@ -793,4 +797,8 @@ function! g:VistaConfig()
                 \   "function": "\uf794",
                 \   "variable": "\uf71b",
                 \  }
+endfunction
+
+function! g:WorkSpace()
+    let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 endfunction
