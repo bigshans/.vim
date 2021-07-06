@@ -35,6 +35,8 @@ endif
 set laststatus=2
 set writebackup
 set nobackup
+set spelllang=en,cjk
+set nospell
 " session
 set sessionoptions-=help
 if has('gui_running') || exists('g:nyaovim_version')

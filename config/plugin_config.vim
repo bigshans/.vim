@@ -25,8 +25,8 @@ call g:VimRubyConfig()
 " call g:Javacomplete2Config()
 " Plug '~/.vim/bundle/eclim'
 Plug 'https://github.com/honza/vim-snippets.git'
-Plug 'SirVer/ultisnips'
-call g:UltiSnipsConfig()
+" Plug 'SirVer/ultisnips'
+" call g:UltiSnipsConfig()
 Plug 'scrooloose/nerdcommenter'
 call g:NERDCommenterConfig()
 " Plug 'Yggdroot/indentLine'
@@ -90,7 +90,7 @@ Plug 'https://github.com/mbbill/undotree.git'
 call g:UndotreeConfig()
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 call RainbowParenthessConfig()
-Plug 'terryma/vim-smooth-scroll'
+" Plug 'terryma/vim-smooth-scroll'
 Plug 'terryma/vim-expand-region'
 call g:VimExpandRegionConfig()
 Plug 'danro/rename.vim'
@@ -146,9 +146,10 @@ Plug 'liuchengxu/vista.vim'
 call g:VistaConfig()
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
 call g:VisualMuliti()
-Plug 'tracyone/fzf-funky',{'on': 'CtrlPFunky'}
+" Plug 'tracyone/fzf-funky',{'on': 'CtrlPFunky'}
 Plug 'itchyny/vim-cursorword'
-" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+call g:ClapConfig()
 " Plug 'zxqfl/tabnine-vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'osyo-manga/vim-precious'
@@ -177,9 +178,18 @@ Plug 'arrufat/vala.vim'
 Plug 'vim-scripts/sessionman.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'voldikss/vim-translator'
+" Plug 'severin-lemaignan/vim-minimap'
+Plug 'wfxr/minimap.vim'
+call g:MiniMapConfig()
+Plug 'joshdick/onedark.vim'
+Plug 'kamykn/popup-menu.nvim'
+Plug 'kamykn/spelunker.vim'
+call g:SpelunkerConfig()
 
 call plug#end()
 call g:SpaceVimDarkConfig()
+call g:OnedarkConfig()
 
 " augroup coc
     " au!

@@ -22,10 +22,12 @@ function! g:WhichKeyMap()
     let g:which_key_map.g=GitKey()
     " let g:which_key_map.j=YCMKey()
     let g:which_key_map.j=CoCKey()
+    let g:which_key_map.t=TabKey()
     let g:which_key_map['?']='search key'
     let g:which_key_map[';']='bottom command'
     let g:which_key_map['<CR>']='blank line to up'
     let g:which_key_map.S=WorkSpaceKey()
+    let g:which_key_map.z=SpellCheck()
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
@@ -131,7 +133,7 @@ function! BetterKey()
     nnoremap <silent><leader>hm :message<CR>
     nnoremap <leader>hfb :Bigger<CR>
     nnoremap <leader>hfm :Smaller<CR>
-    nnoremap <leader>hh :Helptags<CR>
+    nnoremap <leader>hh :Clap help_tags<CR>
     nnoremap <leader>ht :help<Space>
     xnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hn :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -228,7 +230,7 @@ function! BuffersKey()
     nnoremap <leader>bn  :bn<CR>
     nnoremap <leader>bp  :bp<CR>
     nnoremap <leader>bd  :bd<CR>
-    nnoremap <leader>bb  :Buffers<CR>
+    nnoremap <leader>bb  :Clap buffers<CR>
     return {
                 \ 'name': '+Buffers',
                 \ 's': 'start buffer',
@@ -247,10 +249,10 @@ endfunction
 
 function! EditKey()
     "UltiSnips config
-    let g:UltiSnipsExpandTrigger="<C-z>"
-    let g:UltiSnipsJumpForwardTrigger="<C-f>"
-    let g:UltiSnipsJumpBackwardTrgger="<C-b>"
-    let g:UltiSnipsListSnippets="<Space>eul"
+    " let g:UltiSnipsExpandTrigger="<C-z>"
+    " let g:UltiSnipsJumpForwardTrigger="<C-f>"
+    " let g:UltiSnipsJumpBackwardTrgger="<C-b>"
+    " let g:UltiSnipsListSnippets="<Space>eul"
     nnoremap <leader>ef  :Autoformat<CR>
     vnoremap <leader>ef  :Autoformat<CR>
     nnoremap <leader>ea  ggVG
@@ -332,13 +334,14 @@ function! UndoKey()
 endfunction
 
 function! SearchKey()
-    nnoremap <leader>sf :FZF<CR>
-    nnoremap <leader>ss :BLines<CR>
-    nnoremap <leader>sb :Buffers<CR>
-    nnoremap <leader>sC :Colors<CR>
-    nnoremap <leader>sc :Commands<CR>
-    nnoremap <leader>sw :Windows<CR>
-    nnoremap <leader>sa :Ack!<CR>
+    nnoremap <leader>sf :Clap files<CR>
+    nnoremap <leader>ss :Clap blines<CR>
+    nnoremap <leader>sb :Clap buffers<CR>
+    nnoremap <leader>sC :Clap command<CR>
+    nnoremap <leader>sc :Clap command<CR>
+    nnoremap <leader>sw :Clap windows<CR>
+    nnoremap <leader>sa :Clap grep<CR>
+    nnoremap <leader>st :Clap tags<CR>
     return {
                 \ 'name': '+search',
                 \ 'a': 'ack search',
@@ -348,6 +351,7 @@ function! SearchKey()
                 \ 'C': 'search color theme',
                 \ 'c': 'search commands',
                 \ 'w': 'search windows',
+                \ 't': 'search tags',
                 \ 'h' : {
                 \ 'name': '+history',
                 \ 'h': 'recent files',
@@ -431,6 +435,36 @@ function! WorkSpaceKey()
                 \ }
 endfunction
 
+function! TabKey()
+  noremap <leader>tn :tabn<CR>
+  noremap <leader>tp :tabp<CR>
+  noremap <leader>tc :tabclose<CR>
+  noremap <leader>tw :tabnew<CR>
+  return {
+        \ 'name': 'tab',
+        \ 'n' : 'next tab',
+        \ 'p' : 'prev tab',
+        \ 'c' : 'close tab',
+        \ 'w' : 'new tab',
+        \ }
+endfunction
+
+function! SpellCheck()
+    nmap <leader>zl Zl
+    nmap <leader>zc Zc
+    nmap <leader>zf Zf
+    nmap <leader>zg Zg
+    nmap <leader>zG ZG
+    return {
+            \ 'name': 'spell check',
+            \ 'l': 'Correct misspelled words with a list of suggestions.',
+            \ 'c': 'Correct misspelled words by inserting a correction.',
+            \ 'f': 'Correct misspelled words by picking first item on suggestion list. ',
+            \ 'g': 'Add Select word to spellfile',
+            \ 'G': 'Add Select word to the internal word list',
+            \ }
+endfunction
+
 function! OtherKey()
     " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
     nnoremap J gJ
@@ -476,10 +510,14 @@ function! OtherKey()
     nnoremap <leader>p "+p
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
-    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+    inoremap <C-n> <Down>
+    inoremap <C-p> <Up>
+    inoremap <C-b> <Left>
+    inoremap <C-f> <Right>
+    " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+    " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+    " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+    " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
     augroup Myfzf
         autocmd! FileType fzf tnoremap <buffer> <Esc> <C-g>
     augroup END
@@ -532,6 +570,13 @@ function! OtherKey()
     nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
     nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)
     nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
+    nmap <silent> <C-w> <Plug>TranslateW
+    vmap <silent> <C-w> <Plug>TranslateWV
+    imap <C-z> <Plug>(coc-snippets-expand)
+    let g:coc_snippet_next = '<C-j>'
+    let g:coc_snippet_prev = '<C-k>'
+    imap <C-j> <Plug>(coc-snippets-expand-jump)
+    xmap <leader>x  <Plug>(coc-convert-snippet)
 endfunction
 
 call g:WhichKeyMap()
