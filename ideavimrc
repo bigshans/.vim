@@ -45,3 +45,7 @@ nnoremap <leader>fu :action FindUsages<CR>
 nnoremap <leader>bn :tabn<CR>
 nnoremap <leader>bp :tabp<CR>
 nnoremap gr :action RenameElement<CR>
+nmap sw [w
+nmap se ]w
+nmap sb [b
+nmap sB ]b

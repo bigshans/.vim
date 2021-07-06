@@ -183,13 +183,15 @@ Plug 'voldikss/vim-translator'
 Plug 'wfxr/minimap.vim'
 call g:MiniMapConfig()
 Plug 'joshdick/onedark.vim'
-Plug 'kamykn/popup-menu.nvim'
-Plug 'kamykn/spelunker.vim'
-call g:SpelunkerConfig()
+" Plug 'kamykn/popup-menu.nvim'
+Plug 'kamykn/spelunker.vim', { 'for': '*' }
+Plug 'bkad/CamelCaseMotion'
+let g:camelcasemotion_key = 's'
 
 call plug#end()
 call g:SpaceVimDarkConfig()
 call g:OnedarkConfig()
+call g:SpelunkerConfig()
 
 " augroup coc
     " au!

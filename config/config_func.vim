@@ -846,6 +846,10 @@ function! g:SpelunkerConfig()
     " let g:spelunker_complex_or_compound_word_group = 'SpelunkerComplexOrCompoundWord'
     " highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
     " highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+    "
+    let g:spelunker_check_type = 2
+
+    let g:enable_spelunker_vim_on_readonly = 1
     autocmd ColorScheme *
                 \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e |
                 \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
