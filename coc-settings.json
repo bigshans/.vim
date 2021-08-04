@@ -102,7 +102,10 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
-    "explorer.icon.enableVimDevicons": true,
-    "html.autoClosingTags": true,
-    "tsserver.disableAutomaticTypeAcquisition": false
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.source": "vim-devicons",
+    "explorer.git.enable": true,
+    "tsserver.npm": "/home/aerian/.npm-global/",
+    "tsserver.disableAutomaticTypeAcquisition": false,
+    "html.autoClosingTags": true
 }

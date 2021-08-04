@@ -15,7 +15,7 @@ Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'git://github.com/Valloric/YouCompleteMe.git'
 " Plug 'Valloric/YouCompleteMe', {'for': ['java']}
 " call g:YcmConfig()
-Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
+" Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
 Plug 'vim-ruby/vim-ruby'
 call g:VimRubyConfig()
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -49,19 +49,19 @@ Plug 'mattn/emmet-vim'
 " Plug 'sillybun/vim-repl'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 call g:AutoPairConfig()
-Plug 'https://github.com/rking/ag.vim.git'
+" Plug 'https://github.com/rking/ag.vim.git'
 Plug 'https://github.com/w0rp/ale.git'
 call g:AleConfig()
 Plug 'https://github.com/gko/vim-coloresque.git'
 Plug 'marijnh/tern_for_vim'
 Plug 'lfv89/vim-interestingwords'
 call g:VimInterestingwordConfig()
-Plug '~/.vim/bundle/project'
+" Plug '~/.vim/bundle/project'
 Plug 'maksimr/vim-jsbeautify'
 " Plug 'othree/javascript-libraries-syntax.vim'
 call g:VimOrgConfig()
-Plug 'majutsushi/tagbar'
-call g:TagbarConfig()
+" Plug 'majutsushi/tagbar'
+" call g:TagbarConfig()
 Plug 'brooth/far.vim'
 Plug 'Chiel92/vim-autoformat'
 call g:VimAutoformatConfig()

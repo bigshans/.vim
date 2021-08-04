@@ -725,7 +725,6 @@ function! g:CocConfig()
         " Update signature help on jump placeholder.
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
-    autocmd FileType typescript :let b:coc_enabled = 0
 endfunction
 
 function! g:JavaImpConfig()
@@ -851,6 +850,6 @@ function! g:SpelunkerConfig()
 
     let g:enable_spelunker_vim_on_readonly = 1
     autocmd ColorScheme *
-                \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e |
+                \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#e06c75 |
                 \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 endfunction
