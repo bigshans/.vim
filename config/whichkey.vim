@@ -4,6 +4,7 @@ function! g:WhichKeyMap()
     let g:which_key_map.w=WindowsKey()
     let g:which_key_map.c=CommentKey()
     let g:which_key_map.b=BuffersKey()
+    let g:which_key_map.d=DebugMap()
     " let g:which_key_map.t=NERDTreeKey()
     let g:which_key_map.t=TagKeyMap()
     let g:which_key_map.P=PluginKey()
@@ -27,8 +28,29 @@ function! g:WhichKeyMap()
     let g:which_key_map[';']='bottom command'
     let g:which_key_map['<CR>']='blank line to up'
     let g:which_key_map.S=WorkSpaceKey()
-    let g:which_key_map.z=SpellCheck()
+    let g:which_key_map.C=SpellCheck()
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! DebugMap()
+    " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+    " for normal mode - the word under the cursor
+    nmap <Leader>di <Plug>VimspectorBalloonEval
+    " for visual mode, the visually selected text
+    xmap <Leader>di <Plug>VimspectorBalloonEval
+    nmap <leader>dd :call vimspector#Launch()<CR>
+    nmap <leader>do :VimspectorShowOutput<CR>
+    nmap <leader>dw :VimspectorWatch<CR>
+    nmap <leader>de :VimspectorEval<CR>
+    return {
+                \ 'name': '+DebugMap',
+                \ 'i': 'VimspectorBalloonEval',
+                \ 'o': 'VimspectorShowOutput',
+                \ 'd': 'launch',
+                \ 'w': 'watch',
+                \ 'e': 'eval',
+                \}
 endfunction
 
 function! g:TagKeyMap()
@@ -43,8 +65,8 @@ endfunction
 
 function! CoCKey()
     nnoremap <leader>jR :CocRestart<CR>
-    nnoremap <silent><leader>jf :ALEFix<CR>
-    nmap <silent><leader>jjd <Plug>(coc-definition)
+    " nnoremap <silent><leader>jf :ALE<CR>
+    nmap <leader>jf  <Plug>(coc-fix-current)
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
     nmap <silent><leader>jjf <Plug>(coc-implementation)
     nmap <silent><leader>jjr <Plug>(coc-references)
@@ -57,14 +79,13 @@ function! CoCKey()
                 \ 'f': 'Coc Fix it',
                 \ 'j': {
                 \ 'name': '+Goto',
-                \ 'd': 'Coc GotoDefinition',
                 \ 't': 'Coc GottoTypeDefinition',
                 \ 'f': 'Coc implementtation',
                 \ 'r': 'Coc references',
                 \ },
                 \ 'k': 'Coc show_documentation',
                 \ 'r': 'Coc Rename',
-                \ 'a': 'Coc code Action'
+                \ 'a': 'Coc GotoDefinition',
                 \    }
 endfunction
 
@@ -450,11 +471,11 @@ function! TabKey()
 endfunction
 
 function! SpellCheck()
-    nmap <leader>zl Zl
-    nmap <leader>zc Zc
-    nmap <leader>zf Zf
-    nmap <leader>zg Zg
-    nmap <leader>zG ZG
+    nmap <leader>Cl Zl
+    nmap <leader>Cc Zc
+    nmap <leader>Cf Zf
+    nmap <leader>Cg Zg
+    nmap <leader>CG ZG
     return {
             \ 'name': 'spell check',
             \ 'l': 'Correct misspelled words with a list of suggestions.',
@@ -474,7 +495,7 @@ function! OtherKey()
     nnoremap < <<
     nnoremap > >>
     inoremap <C-e> <End>
-    inoremap <C-a> <Home>
+    inoremap <C-a> <Esc>I
     nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
     nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
     inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi

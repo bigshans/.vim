@@ -50,8 +50,8 @@ Plug 'mattn/emmet-vim'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 call g:AutoPairConfig()
 " Plug 'https://github.com/rking/ag.vim.git'
-Plug 'https://github.com/w0rp/ale.git'
-call g:AleConfig()
+" Plug 'https://github.com/w0rp/ale.git'
+" call g:AleConfig()
 Plug 'https://github.com/gko/vim-coloresque.git'
 Plug 'marijnh/tern_for_vim'
 Plug 'lfv89/vim-interestingwords'
@@ -187,6 +187,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'kamykn/spelunker.vim', { 'for': '*' }
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = 's'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 call g:SpaceVimDarkConfig()
@@ -204,3 +205,5 @@ autocmd BufLeave *.java execute "silent! CocEnable"
 au BufRead,BufNew,BufEnter,BufLeave *.js setfiletype javascript
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+let g:vimspector_enable_mappings = 'HUMAN'
