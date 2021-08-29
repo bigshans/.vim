@@ -1,9 +1,9 @@
 {
-    "diagnostic.enable": false,
-    "java.import.maven.enabled": true,
-    "java.import.gradle.enabled": true,
-    "coc.preferences.diagnostic.displayByAle": true,
-    "python.setInterpreter": "python3",
+    "diagnostic.enable": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "",
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -34,8 +34,35 @@
             "filetypes": ["vala", "genie"]
         }
     },
-    "python.jediEnabled": false,
-    "explorer.keyMappings": {
+    "suggest.completionItemKindLabels": {
+        "keyword":  "\uf1de", //  sliders
+        "variable": "\ue79b", //  isometric box
+        "value": "\uf89f", //  digits 123
+        "operator": "\u03a8", // Ψ greek letter psi
+        "constructor": "\uf0ad", //  wrench
+        "function": "\u0192", // ƒ latin small letter F
+        "reference": "\ufa46", // 渚 retweet symbol
+        "constant": "\uf8fe", //  greek letter pi
+        "method": "\uf09a", //  facebook "f"
+        "struct": "\ufb44", // פּ file tree
+        "class": "\uf0e8", //  hierarchy / site map
+        "interface": "\uf417", //  git commit / line interrupted by circle
+        "text": "\ue612", //  left-justified lines
+        "enum": "\uf02c", //  pair of tags
+        "enumMember": "\uf02b", //  tag
+        "module": "\uf40d", //  code file / page showing angle brackets
+        "color": "\ue22b", //  palette
+        "property": "\ue624", //  predator dots
+        "field": "\uf9be", // 料left-justified sorted lines
+        "unit": "\uf475", //  negative-space ellipsis
+        "event": "\ufacd", // 鬒clock alert / clock with exclamation mark
+        "file": "\uf15b", //  file / blank page
+        "folder": "\uf07b", //  folder
+        "snippet": "\ue60b", //  pair of curly braces
+        "typeParameter": "\uf728", //  file presentation box
+        "default": "\uf29c" //  question mark in circle
+    },
+    "explorer.keyMappings.global": {
 
         "gk": "expandablePrev",
         "gj": "expandableNext",
@@ -102,10 +129,13 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
+    "go.goplsOptions": {
+        "completeUnimported": true
+    },
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
-    "tsserver.npm": "/home/aerian/.npm-global/",
+    "tsserver.npm": "/usr/bin/tsserver",
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true
 }
