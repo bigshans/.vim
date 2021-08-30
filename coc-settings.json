@@ -2,8 +2,8 @@
     "diagnostic.enable": true,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "✘",
-    "diagnostic.warningSign": "⚠",
-    "diagnostic.infoSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "⚡",
     "languageserver": {
         "ccls": {
             "command": "ccls",
