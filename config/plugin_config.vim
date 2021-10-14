@@ -46,6 +46,7 @@ Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
 call g:NordVimConfig()
 Plug 'mattn/emmet-vim'
+call g:EmmetConfig()
 " Plug 'sillybun/vim-repl'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
 call g:AutoPairConfig()
@@ -84,8 +85,6 @@ call g:VimOrgConfig()
 " Plug 'SpaceVim/org-mode'
 " Plug 'bigshans/VimOrganizer'
 " call g:VimOrganizerConfig()
-Plug 'godlygeek/tabular' "必须在markdown插件之前
-" Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/mbbill/undotree.git'
 call g:UndotreeConfig()
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
@@ -186,8 +185,15 @@ Plug 'joshdick/onedark.vim'
 " Plug 'kamykn/popup-menu.nvim'
 Plug 'kamykn/spelunker.vim', { 'for': '*' }
 Plug 'bkad/CamelCaseMotion'
-let g:camelcasemotion_key = 's'
+call g:CamelCaseMotion()
 Plug 'puremourning/vimspector'
+Plug 'honza/vim-snippets'
+Plug 'godlygeek/tabular'
+" Plug 'nikvdp/ejs-syntax'
+" Plug 'plasticboy/vim-markdown'
+" call g:VimMarkdownConfig()
+Plug 'othree/xml.vim'
+Plug 'chemzqm/wxapp.vim'
 
 call plug#end()
 call g:SpaceVimDarkConfig()
@@ -207,3 +213,5 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 let g:vimspector_enable_mappings = 'HUMAN'
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.art set filetype=html

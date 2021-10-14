@@ -105,6 +105,10 @@ function! g:Javacomplete2Config()
 endfunction
 
 function! g:UltiSnipsConfig()
+    let g:UltiSnipsExpandTrigger="<C-z>"
+    let g:UltiSnipsJumpForwardTrigger="<C-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+    let g:UltiSnipsEditSplit="vertical"
 endfunction
 
 function! g:NERDCommenterConfig()
@@ -257,6 +261,7 @@ function! g:VimAutoformatConfig()
     "vim-autoformat
     let g:formatdef_my_custom_c="astyle --style=1tbs"
     let g:formatdef_yapf_style= 'pep8'
+    let g:formatdef_nginx_style="nginxfmt -i 4"
 endfunction
 
 function! g:VimQuickrunConfig()
@@ -685,7 +690,6 @@ function! g:CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
                 \ 'coc-explorer',
-                \ 'coc-vetur',
                 \ 'coc-pyright',
                 \ 'coc-html',
                 \ 'coc-css',
@@ -694,8 +698,18 @@ function! g:CocConfig()
                 \ 'coc-snippets',
                 \ 'coc-metals',
                 \ 'coc-rls',
-                \ 'coc-vetur',
                 \ 'coc-style-helper',
+                \ 'coc-deno',
+                \ 'coc-svelte',
+                \ 'coc-go',
+                \ 'coc-calc',
+                \ 'coc-vimlsp',
+                \ 'coc-toml',
+                \ 'coc-xml',
+                \ 'coc-yaml',
+                \ 'coc-htmlhint',
+                \ 'coc-html-css-support',
+                \ '@yaegassy/coc-volar',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -733,6 +747,11 @@ function! g:CocConfig()
         autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
         " Update signature help on jump placeholder.
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    augroup end
+    augroup custom_nginx
+        autocmd!
+        autocmd FileType nginx setlocal iskeyword+=$
+        autocmd FileType nginx let b:coc_additional_keywords = ['$']
     augroup end
 endfunction
 
@@ -861,4 +880,59 @@ function! g:SpelunkerConfig()
     autocmd ColorScheme *
                 \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#e06c75 |
                 \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+endfunction
+
+function! g:CamelCaseMotion()
+    let g:camelcasemotion_key = 's'
+    omap <silent> sie <Plug>CamelCaseMotion_iw
+    xmap <silent> sie <Plug>CamelCaseMotion_iw
+    omap <silent> sib <Plug>CamelCaseMotion_ib
+    xmap <silent> sib <Plug>CamelCaseMotion_ib
+    omap <silent> siw <Plug>CamelCaseMotion_ie
+    xmap <silent> siw <Plug>CamelCaseMotion_ie
+endfunction
+
+function! g:VimMarkdownConfig()
+    let g:vim_markdown_folding_disabled = 1
+endfunction
+
+function! g:EmmetConfig()
+    let g:user_emmet_settings = {
+                \ 'wxss': {
+                    \   'extends': 'css',
+                    \ },
+                    \ 'wxml': {
+                        \   'extends': 'html',
+                        \   'aliases': {
+                            \     'div': 'view',
+                            \     'span': 'text',
+                            \   },
+                            \  'default_attributes': {
+                                \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+                                \     'navigator': [{'url': '', 'redirect': 'false'}],
+                                \     'scroll-view': [{'bindscroll': ''}],
+                                \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+                                \     'icon': [{'type': 'success', 'size': '23'}],
+                                \     'progress': [{'precent': '0'}],
+                                \     'button': [{'size': 'default'}],
+                                \     'checkbox-group': [{'bindchange': ''}],
+                                \     'checkbox': [{'value': '', 'checked': ''}],
+                                \     'form': [{'bindsubmit': ''}],
+                                \     'input': [{'type': 'text'}],
+                                \     'label': [{'for': ''}],
+                                \     'picker': [{'bindchange': ''}],
+                                \     'radio-group': [{'bindchange': ''}],
+                                \     'radio': [{'checked': ''}],
+                                \     'switch': [{'checked': ''}],
+                                \     'slider': [{'value': ''}],
+                                \     'action-sheet': [{'bindchange': ''}],
+                                \     'modal': [{'title': ''}],
+                                \     'loading': [{'bindchange': ''}],
+                                \     'toast': [{'duration': '1500'}],
+                                \     'audio': [{'src': ''}],
+                                \     'video': [{'src': ''}],
+                                \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+                                \   }
+                                \ },
+                                \}
 endfunction

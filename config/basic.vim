@@ -1,5 +1,6 @@
 let mapleader="\<Space>"
 set nocompatible
+set nofoldenable
 set hidden
 set mouse=a
 set lazyredraw

@@ -124,14 +124,16 @@ function! YCMKey()
 endfunction
 
 function! GitKey()
-    nnoremap <leader>ga :Gwrite<CR>
-    nnoremap <leader>gr :Gread<CR>
-    nnoremap <leader>gc :Gcommit<CR>
+    nnoremap <leader>ga :Git add %<CR>
+    nnoremap <leader>gr :Git restore %<CR>
+    nnoremap <leader>gc :Git commit<CR>
+    nnoremap <leader>gs :Git<CR>
     return {
                 \ 'name':'+git',
                 \ 'a': 'add current file',
                 \ 'r': 'recover current file',
-                \ 'c': 'commit'
+                \ 'c': 'commit',
+                \ 's': 'status'
                 \ }
 endfunction
 

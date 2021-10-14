@@ -32,6 +32,11 @@
         "vala": {
             "command": "vala-language-server",
             "filetypes": ["vala", "genie"]
+        },
+        "nginx-language-server": {
+            "command": "nginx-language-server",
+            "filetypes": ["nginx"],
+            "rootPatterns": ["nginx.conf", ".git"]
         }
     },
     "suggest.completionItemKindLabels": {
@@ -132,10 +137,16 @@
     "go.goplsOptions": {
         "completeUnimported": true
     },
+    "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
+    "volar.checkVueTscVersion": true,
+    "volar.autoClosingTags": true,
+    "volar.autoCompleteRefs": true,
+    "volar.diagnostics.tsLocale": "zh-cn",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
     "tsserver.npm": "/usr/bin/tsserver",
     "tsserver.disableAutomaticTypeAcquisition": false,
-    "html.autoClosingTags": true
+    "html.autoClosingTags": true,
+    "svelte.enable-ts-plugin": true
 }
