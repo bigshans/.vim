@@ -66,7 +66,8 @@ endfunction
 function! CoCKey()
     nnoremap <leader>jR :CocRestart<CR>
     " nnoremap <silent><leader>jf :ALE<CR>
-    nmap <leader>jf  <Plug>(coc-fix-current)
+    nmap <leader>jq  <Plug>(coc-fix-current)
+    nmap <leader>jf :CocFix<CR>
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
     nmap <silent><leader>jjf <Plug>(coc-implementation)
     nmap <silent><leader>jjr <Plug>(coc-references)
@@ -77,6 +78,7 @@ function! CoCKey()
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
                 \ 'f': 'Coc Fix it',
+                \ 'q': 'Coc Quickly Fix it',
                 \ 'j': {
                 \ 'name': '+Goto',
                 \ 't': 'Coc GottoTypeDefinition',
@@ -365,6 +367,7 @@ function! SearchKey()
     nnoremap <leader>sw :Clap windows<CR>
     nnoremap <leader>sa :Clap grep<CR>
     nnoremap <leader>st :Clap tags<CR>
+    nnoremap <leader>sq :wq<CR>
     return {
                 \ 'name': '+search',
                 \ 'a': 'ack search',
@@ -380,6 +383,7 @@ function! SearchKey()
                 \ 'h': 'recent files',
                 \ 'c': 'command history'
                 \ },
+                \ 'q' : 'save and quit',
                 \ }
 endfunction
 
@@ -433,7 +437,7 @@ function! MuiltipleKey()
     let g:multi_cursor_start_word_key      = '<Space>is'
     let g:multi_cursor_select_all_word_key = '<Space>ia'
     let g:multi_cursor_start_key           = '<Space>ie'
-    let g:multi_cursor_select_all_key      = '<A-n>'
+    let g:multi_cursor_select_all_key      = '<C-S-n>'
     let g:multi_cursor_next_key            = '<C-n>'
     let g:multi_cursor_prev_key            = '<C-p>'
     let g:multi_cursor_skip_key            = '<C-s>'
@@ -600,6 +604,15 @@ function! OtherKey()
     let g:coc_snippet_prev = '<C-k>'
     imap <C-j> <Plug>(coc-snippets-expand-jump)
     xmap <leader>x  <Plug>(coc-convert-snippet)
+	nmap s <Nop>
+	xmap s <Nop>
+    nmap ys sa
+    nmap ds sd
+    " For wildfire
+    " This selects the next closest text object.
+    map <Space> <Plug>(wildfire-fuel)
+    " This selects the previous closest text object.
+    vmap <C-Space> <Plug>(wildfire-water)
 endfunction
 
 call g:WhichKeyMap()

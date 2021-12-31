@@ -690,7 +690,6 @@ function! g:CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
                 \ 'coc-explorer',
-                \ 'coc-pyright',
                 \ 'coc-html',
                 \ 'coc-css',
                 \ 'coc-solargraph',
@@ -777,10 +776,10 @@ function! g:NrrwRgnConfig()
 endfunction
 
 function! g:VimNotesConfig()
-    " let g:notes_directories=['/mnt/D/note/vim-note',]
+    let g:notes_directories=['/projects/aerian/resource/nextcloud-back/vnote',]
     let g:notes_suffix='.txt'
-    let g:notes_unicode_enabled=0
-    let g:notes_smart_quotes=0
+    let g:notes_unicode_enabled=1
+    let g:notes_smart_quotes=1
 endfunction
 
 function! g:VimOrgConfig()
@@ -935,4 +934,119 @@ function! g:EmmetConfig()
                                 \   }
                                 \ },
                                 \}
+endfunction
+
+function! g:Wildfire()
+    let g:wildfire_objects = {
+                \ "*" : ["i'", 'i"', "i)", "i]", "i}", "i>", "ip", "it"]
+                \ }
+
+    call wildfire#triggers#Add("<ENTER>", {
+                \ "html,xml" : ["it", "at"],
+                \ })
+endfunction
+
+function! g:Lightline()
+    let g:lightline = {}
+    let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
+    let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
+    let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
+    let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
+    let g:lightline#asyncrun#indicator_none = ''
+    let g:lightline#asyncrun#indicator_run = 'Running...'
+    if g:vim_lightline_artify == 0
+        let g:lightline.active = {
+                    \ 'left': [ [ 'mode', 'paste', 'readonly' ],
+                    \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+                    \ 'right': [
+                        \ [ 'lineinfo' ],
+                    \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
+                    \           [ 'asyncrun_status', 'coc_status' ],
+                    \ ]
+                    \ }
+        let g:lightline.inactive = {
+                    \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                    \ 'right': [ ['lineinfo',  'git_global' ] ]
+                    \ }
+        let g:lightline.tabline = {
+                    \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
+                    \ 'right': [ [ 'git_global' ], ['git_buffer'],
+                    \  ]
+                    \ }
+        let g:lightline.tab = {
+                    \ 'active': [ 'tabnum', 'filename', 'modified' ],
+                    \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+    else
+        let g:lightline.active = {
+                    \ 'left': [ [ 'artify_mode', 'paste', 'readonly' ],
+                    \           ['filename', 'modified', 'fileformat', 'devicons_filetype' ]],
+                    \ 'right': [
+                        \ [ 'artify_lineinfo' ],
+                    \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
+                    \           [ 'asyncrun_status', 'coc_status' ],
+                        \ [ 'git_global' ],
+                    \ ]
+                    \ }
+        let g:lightline.inactive = {
+                    \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                    \ 'right': [ ['artify_lineinfo',   'git_global' ] ]
+                    \ }
+        let g:lightline.tabline = {
+                    \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
+                    \ 'right': [ [ 'git_global' ], ['git_buffer'],
+                    \ ]
+                    \ }
+        let g:lightline.tab = {
+                    \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+                    \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
+    endif
+    let g:lightline.tab_component_function = {
+                \ 'artify_activetabnum': 'custom#lightline#artify_active_tabnum',
+                \ 'artify_inactivetabnum': 'custom#lightline#artify_inactive_tabnum',
+                \ 'artify_filename': 'custom#lightline#artify_tabname',
+                \ 'tabnum': 'custom#lightline#tabnum',
+                \ 'filename': 'lightline#tab#filename',
+                \ 'modified': 'lightline#tab#modified',
+                \ 'readonly': 'lightline#tab#readonly'
+                \ }
+    let g:lightline.component = {
+                \ 'git_buffer' : '%{get(b:, "coc_git_status", "")}',
+                \ 'git_global' : '%{custom#lightline#git_global()}',
+                \ 'artify_mode': '%{custom#lightline#artify_mode()}',
+                \ 'artify_lineinfo': "%2{custom#lightline#artify_line_percent()}\uf295 %3{custom#lightline#artify_line_num()}:%-2{custom#lightline#artify_column_num()}",
+                \ 'vim_logo': "\ue7c5",
+                \ 'mode': '%{lightline#mode()}',
+                \ 'filename': '%t',
+                \ 'fileformat': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]',
+                \ 'modified': '%M',
+                \ 'paste': '%{&paste?"PASTE":""}',
+                \ 'readonly': "%{ &readonly ? '' : '' }",
+                \ 'lineinfo': '%2p%% %3l:%-2v'
+                \ }
+    let g:lightline.component_function = {
+                \ 'devicons_filetype': 'custom#lightline#devicons',
+                \ 'coc_status': 'custom#lightline#coc_status'
+                \ }
+    let g:lightline.component_expand = {
+                \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
+                \ 'linter_errors': 'custom#lightline#coc_diagnostic_error',
+                \ 'linter_ok': 'custom#lightline#coc_diagnostic_ok',
+                \ 'asyncrun_status': 'lightline#asyncrun#status',
+                \ }
+    let g:lightline.component_type = {
+                \ 'linter_warnings': 'warning',
+                \ 'linter_errors': 'error',
+                \ }
+    call custom#colorscheme#sonokai_atlantis()
+endfunction
+
+function! g:Sonokai()
+    " Important!!
+    if has('termguicolors')
+        set termguicolors
+    endif
+    " The configuration options should be placed before `colorscheme sonokai`.
+    let g:sonokai_style = 'atlantis'
+    let g:sonokai_enable_italic = 1
+    let g:sonokai_disable_italic_comment = 1
 endfunction

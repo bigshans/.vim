@@ -6,6 +6,8 @@ let g:ctrlspace = 1
 let g:plug_threads = 25
 let g:plug_timeout = 55
 let g:deoplete = 0
+let g:vim_lightline_artify = 1
+let g:vim_mode = 'full'
 
 call plug#begin('~/.vim/bundle')
 
@@ -16,6 +18,7 @@ Plug 'git://github.com/flazz/vim-colorschemes.git'
 " Plug 'Valloric/YouCompleteMe', {'for': ['java']}
 " call g:YcmConfig()
 " Plug 'rdnetto/YCM-Generator',{'branch':'stable'}
+Plug 'sainnhe/artify.vim'
 Plug 'vim-ruby/vim-ruby'
 call g:VimRubyConfig()
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -37,14 +40,14 @@ Plug 'lilydjwg/fcitx.vim'
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-call g:AirlineConfig()
+" Plug 'https://github.com/vim-airline/vim-airline.git'
+" Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+" call g:AirlineConfig()
 Plug 'terryma/vim-multiple-cursors'
 call g:VimMulipleCursorsConfig()
 Plug 'rakr/vim-one'
-Plug 'arcticicestudio/nord-vim'
-call g:NordVimConfig()
+" Plug 'arcticicestudio/nord-vim'
+" call g:NordVimConfig()
 Plug 'mattn/emmet-vim'
 call g:EmmetConfig()
 " Plug 'sillybun/vim-repl'
@@ -109,8 +112,8 @@ Plug 'ktonga/vim-follow-my-lead'
 call g:VimFollowMyLeadConfig()
 " Plug 'hecal3/vim-leader-guide'
 " call g:VimLeaderGuideConfig()
-Plug 'Shougo/context_filetype.vim'
-call g:ContextFiletypeConfig()
+" Plug 'Shougo/context_filetype.vim'
+" call g:ContextFiletypeConfig()
 " Plug 'othree/csscomplete.vim'
 " call g:CssCompleteConfig()
 Plug 'alvan/vim-closetag'
@@ -121,20 +124,20 @@ Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 " Plug 'Flowerowl/ici.vim'
-Plug 'neomake/neomake'
-if g:ctrlspace == 1
-    Plug 'vim-ctrlspace/vim-ctrlspace'
-endif
-Plug 'liuchengxu/space-vim-dark'
+" Plug 'neomake/neomake'
+" if g:ctrlspace == 1
+    " Plug 'vim-ctrlspace/vim-ctrlspace'
+" endif
+" Plug 'liuchengxu/space-vim-dark'
 Plug 'liuchengxu/vim-which-key'
 call g:WhichKeyConfig()
 Plug 'asins/vimcdoc'
-Plug 'mikelue/vim-maven-plugin'
+" Plug 'mikelue/vim-maven-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 call g:CocConfig()
 " Plug 'sheerun/vim-polyglot'
-Plug 'rustushki/JavaImp.vim'
+" Plug 'rustushki/JavaImp.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 call g:VimNotesConfig()
@@ -179,26 +182,38 @@ Plug 'voldikss/vim-floaterm'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'voldikss/vim-translator'
 " Plug 'severin-lemaignan/vim-minimap'
-Plug 'wfxr/minimap.vim'
-call g:MiniMapConfig()
+" Plug 'wfxr/minimap.vim'
+" call g:MiniMapConfig()
 Plug 'joshdick/onedark.vim'
 " Plug 'kamykn/popup-menu.nvim'
 Plug 'kamykn/spelunker.vim', { 'for': '*' }
 Plug 'bkad/CamelCaseMotion'
 call g:CamelCaseMotion()
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 " Plug 'nikvdp/ejs-syntax'
 " Plug 'plasticboy/vim-markdown'
 " call g:VimMarkdownConfig()
 Plug 'othree/xml.vim'
-Plug 'chemzqm/wxapp.vim'
+" Plug 'chemzqm/wxapp.vim'
+Plug 'antoinemadec/coc-fzf'
+Plug 'ollykel/v-vim'
+Plug 'gcmt/wildfire.vim'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'josa42/vim-lightline-coc'
+Plug 'albertomontesg/lightline-asyncrun'
+Plug 'sainnhe/sonokai'
+Plug 'itchyny/lightline.vim'
+
 
 call plug#end()
 call g:SpaceVimDarkConfig()
-call g:OnedarkConfig()
+" call g:OnedarkConfig()
+call g:Sonokai()
+" colorscheme sonokai
 call g:SpelunkerConfig()
+call g:Lightline()
 
 " augroup coc
     " au!
@@ -215,3 +230,4 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 let g:vimspector_enable_mappings = 'HUMAN'
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.art set filetype=html
+call g:Wildfire()
