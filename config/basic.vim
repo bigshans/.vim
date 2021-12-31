@@ -1,5 +1,6 @@
 let mapleader="\<Space>"
 set nocompatible
+set showtabline=2
 set nofoldenable
 set hidden
 set mouse=a
