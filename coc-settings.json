@@ -37,57 +37,6 @@
             "command": "nginx-language-server",
             "filetypes": ["nginx"],
             "rootPatterns": ["nginx.conf", ".git"]
-        },
-        "python": {
-            "command": "python",
-            "args": [
-                "-mpyls",
-                "-vv",
-                "--log-file",
-                "/tmp/lsp_python.log"
-            ],
-            "trace.server": "verbose",
-            "filetypes": [
-                "python"
-            ],
-            "settings": {
-                "pyls": {
-                    "enable": true,
-                    "trace": {
-                        "server": "verbose"
-                    },
-                    "commandPath": "",
-                    "configurationSources": [
-                        "pycodestyle"
-                    ],
-                    "plugins": {
-                        "mccabe": {
-                            "enabled": true,
-                            "threshold": 15
-                        },
-                        "preload": {
-                            "enabled": true
-                        },
-                        "pycodestyle": {
-                            "enabled": true
-                        },
-                        "pydocstyle": {
-                            "enabled": false,
-                            "match": "(?!test_).*\\.py",
-                            "matchDir": "[^\\.].*"
-                        },
-                        "pyflakes": {
-                            "enabled": true
-                        },
-                        "rope_completion": {
-                            "enabled": true
-                        },
-                        "yapf": {
-                            "enabled": true
-                        }
-                    }
-                }
-            }
         }
     },
     "suggest.completionItemKindLabels": {
@@ -109,7 +58,7 @@
         "module": "\uf40d", //  code file / page showing angle brackets
         "color": "\ue22b", //  palette
         "property": "\ue624", //  predator dots
-        "field": "\uf9be", // 料left-justified sorted lines
+        "field": "", // left-justified sorted lines
         "unit": "\uf475", //  negative-space ellipsis
         "event": "\ufacd", // 鬒clock alert / clock with exclamation mark
         "file": "\uf15b", //  file / blank page
@@ -200,6 +149,27 @@
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
-    "python.linting.enabled": false,
-    "angular.experimental-ivy": false
+    "python.linting.enabled": true,
+    "angular.experimental-ivy": false,
+    "git.changedSign.text": "▌",
+    "git.addedSign.text": "▌",
+    "git.removedSign.text": "▁",
+    "git.changeRemovedSign.text": "▁",
+    "git.topRemovedSign.text": "▔",
+    "git.changedDecorator": " ",
+    "git.stagedDecorator": " ",
+    "git.untrackedDecorator": " ✩",
+    "git.conflictedDecorator": "⇡⇣",
+    "git.addGBlameToVirtualText": true,
+    "git.virtualTextPrefix": " \ue729 ",
+    "coc.source.file.shortcut": "F",
+    "coc.source.file.priority": 89,
+    "coc.source.file.ignoreHidden": false,
+    "coc.source.around.shortcut": "A",
+    "coc.source.around.priority": 88,
+    "coc.source.buffer.shortcut": "B",
+    "coc.source.buffer.priority": 87,
+    "coc.source.buffer.ignoreGitignore": false,
+    "codeLens.enable": true,
+    "codeLens.separator": "▸"
 }

@@ -193,8 +193,9 @@ call g:CamelCaseMotion()
 Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 " Plug 'nikvdp/ejs-syntax'
-" Plug 'plasticboy/vim-markdown'
-" call g:VimMarkdownConfig()
+Plug 'cespare/vim-toml', { 'branch': 'main' }
+Plug 'plasticboy/vim-markdown'
+call g:VimMarkdownConfig()
 Plug 'othree/xml.vim'
 " Plug 'chemzqm/wxapp.vim'
 Plug 'antoinemadec/coc-fzf'
