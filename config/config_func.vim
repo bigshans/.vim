@@ -28,14 +28,7 @@ function! g:AirlineConfig()
     let g:airline#extensions#tabline#fnamecollapse = 2
     let g:airline#extensions#tabline#buffer_idx_mode = 1
     let g:airline#extensions#whitespace#symbol = '!'
-    "let g:airline_theme='bubblegum'
-    " let g:airline_theme='powerlineish'
-    " let g:airline_theme='tomorrow'
     let g:airline_theme='atomic'
-    " let g:airline_theme='violet'
-    "let g:airline_theme='molokai'
-    " let g:airline_theme='monochrome'
-    " let g:airline_theme='solarized'
     let Powerline_symbols='fancy'
     let airline#extensions#ale#error_symbol = '✗'
     let airline#extensions#ale#warning_symbol = '⚠'
@@ -173,29 +166,10 @@ function! g:StartifyConfig()
                 \ ]
 endfunction
 
-function! g:LeaderfConfig()
-    "leaderf
-    " let g:Lf_ShowRelativePath = 0
-    " let g:Lf_HideHelp = 1
-    " let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
-
-    " let g:Lf_NormalMap = {
-    " \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-    " \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-    " \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-    " \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-    " \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-    " \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-    " \ }
-endfunction
-
 function! g:VimMulipleCursorsConfig()    
     "vim-mutliple-cursors
     highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
     highlight link multiple_cursors_visual Visual
-endfunction
-
-function! g:AutoPairConfig()
 endfunction
 
 function! g:VimRepl()    
@@ -316,141 +290,6 @@ function! g:VimVueConfig()
     let g:vue_disable_pre_processors=1
 endfunction
 
-function! g:DeopleteConfig()
-    "  deoplete
-    call deoplete#custom#option({
-                \ 'auto_complete_delay' : 0,
-                \ 'min_pattern_length' : 1,
-                \ })
-    call deoplete#custom#source('_', 'mathers', ['matcher_full_fuzzy'])
-    call deoplete#custom#source('LanguageClient',
-    \ 'min_pattern_length',
-    \ 1)
-    " call deoplete#custom#option('omni_patterns', {
-                " \ 'java': '[^. *\t]\.\w*',
-                " \})
-    " Eclim support
-    " See https://www.reddit.com/r/vim/comments/5xspok/trouble_with_eclim_and_deoplete/
-    "
-    " Autoclose preview windows
-    " https://github.com/Shougo/deoplete.nvim/issues/115
-    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    " https://github.com/Shougo/deoplete.nvim/issues/100
-    " use tab to forward cycle
-    " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-    " use tab to backward cycle
-    " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-    " Lazy load Deoplete to reduce statuptime
-    " See manpage
-    " Enable deoplete when InsertEnter.
-    " autocmd InsertEnter * call deoplete#enable()
-    " let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_ignore_case = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-    " let g:deoplete#omni#input_patterns.java = [
-                " \'[^. \t0-9]\.\w*',
-                " \'[^. \t0-9]\->\w*',
-                " \'[^. \t0-9]\::\w*',
-                " \]
-    " let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
-    " let g:deoplete#ignore_sources = {}
-    " let g:deoplete#ignore_sources._ = ['javacomplete2']
-    " inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-    " autocmd FileType python
-    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
-    " autocmd FileType c
-    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
-    " autocmd FileType cpp
-    " \ call deoplete#custom#buffer_option('auto_complete', v:false)
-endfunction
-
-function! g:DeopleteTernConfig()
-    "  deoplete-tern
-    " Set bin if you have many instalations
-    let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-    " let g:deoplete#sources#ternjs#timeout = 1
-    "
-    " " Whether to include the types of the completions in the result data.
-    " Default: 0
-    let g:deoplete#sources#ternjs#types = 1
-    "
-    "" Whether to include the distance (in scopes for variables, in prototypes for properties) between the completions and the origin position in the result
-    " " data. Default: 0
-    " let g:deoplete#sources#ternjs#depths = 1
-    "
-    " " Whether to include documentation strings (if found) in the result data.
-    " " Default: 0
-    let g:deoplete#sources#ternjs#docs = 1
-    "
-    " " When on, only completions that match the current word at the given point
-    " will
-    " " be returned. Turn this off to get all results, so that you can filter on
-    " the
-    " " client side. Default: 1
-    " let g:deoplete#sources#ternjs#filter = 0
-    "
-    "" Whether to use a case-insensitive compare between the current word and
-    " potential completions. Default 0
-    " let g:deoplete#sources#ternjs#case_insensitive = 1
-    "
-    " " When completing a property and no completions are found, Tern will use
-    " some
-    " " heuristics to try and return some properties anyway. Set this to 0 to
-    " " turn that off. Default: 1
-    " let g:deoplete#sources#ternjs#guess = 0
-    "
-    "" Determines whether the result set will be sorted. Default: 1
-    let g:deoplete#sources#ternjs#sort = 0
-
-    " When disabled, only the text before the given position is considered part of
-    " " the word. When enabled (the default), the whole variable name that the
-    " cursor
-    " " is on will be included. Default: 1
-    " let g:deoplete#sources#ternjs#expand_word_forward = 0
-    "
-    " " Whether to ignore the properties of Object.prototype unless they have been
-    " " spelled out by at least two characters. Default: 1
-    " let g:deoplete#sources#ternjs#omit_object_prototype = 0
-    "
-    " " Whether to include JavaScript keywords when completing something that is
-    " not
-    " " a property. Default: 0
-    let g:deoplete#sources#ternjs#include_keywords = 1
-    "
-    " " If completions should be returned when inside a literal. Default: 1
-    " let g:deoplete#sources#ternjs#in_literal = 0
-    "
-    "
-    ""Add extra filetypes
-    let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
-    " Use tern_for_vim.
-    let g:tern#command = ["tern"]
-    let g:tern#arguments = ["--persistent"]
-endfunction
-
-function! g:DeopleteJediConfig()
-    "  deoplete-jedi
-    let g:deoplete#sources#jedi#server_timeout = 10
-    let g:deoplete#sources#jedi#statement_lenght = 120
-    let g:deoplete#sources#jedi#show_docstring = 1
-    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-endfunction
-
-function! g:DeopleteClangConfig()
-    "  deoplete-clang
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-endfunction
-
 function! g:NERDTreeGitPluginConfig()
     " nerdtree-git-plugin
     let g:NERDTreeIndicatorMapCustom = {
@@ -474,34 +313,11 @@ endfunction
 function! g:VimDeviconsConfig()
     " vim-devicons
     let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-    " let g:webdevicons_conceal_nerdtree_brackets = 0
-    " let g:DevIconsEnableFoldersOpenClose = 1
-    " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 endfunction
 
 function! g:VimFollowMyLeadConfig()
     " vim-follow-my-lead
     let g:fml_all_sources = 1
-endfunction
-
-function! g:VimLeaderGuideConfig()
-    " vim-leader-guide
-    " let g:lmap = {
-    " \ }
-    " let g:lmap.s = {'name' : 'source/search/screencenter prefix'}
-    " let g:lmap.f = {'name' : 'about file options and nerdtree, fzf'}
-    " let g:lmap.b = {'name' : 'about buffer and tab'}
-    " let g:lmap.t = {'name' : 'about nerdtree and term'}
-    " let g:lmap.c = {'name' : 'about comment'}
-    " let g:lmap.o = {'name' : 'new blank line up'}
-    " let g:lmap.O = {'name' : 'new blank line down'}
-    " let g:topdict = {}
-    " let g:topdict[' '] = g:lmap
-    " let g:topdict[' ']['name'] = '<leader>'
-    " call leaderGuide#register_prefix_descriptions("", "g:topdict")
-    " nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
-    " vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
-    " let g:leaderGuide_hspace = 5
 endfunction
 
 function! g:CssCompleteConfig()
@@ -646,9 +462,6 @@ function! g:WhichKeyConfig()
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-    " vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-    " nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-    " vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
     let g:which_key_map = {}
     let g:which_key_hspace=4
     autocmd! FileType which_key
@@ -662,25 +475,6 @@ function! g:NordVimConfig()
     " let g:nord_italic_comments=1
     " let g:nord_comment_brightness=12
     " let g:nord_uniform_status_lines=1
-endfunction
-
-function! g:VimLspConfig()
-    " if executable('clangd')
-        " au User lsp_setup call lsp#register_server({
-                    " \ 'name': 'clangd',
-                    " \ 'cmd': {server_info->['clangd']},
-                    " \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-                    " \ })
-    " endif
-    if executable('/mnt/D/github/cquery/build/cquery')
-        au User lsp_setup call lsp#register_server({
-                    \ 'name': 'cquery',
-                    \ 'cmd': {server_info->['/mnt/D/github/cquery/build/cquery']},
-                    \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-                    \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                    \ })
-    endif
 endfunction
 
 function! g:ContextFiletypeConfig()
@@ -752,15 +546,6 @@ function! g:CocConfig()
         autocmd FileType nginx setlocal iskeyword+=$
         autocmd FileType nginx let b:coc_additional_keywords = ['$']
     augroup end
-endfunction
-
-function! g:JavaImpConfig()
-    let g:JavaImpTopImports = [
-                \ 'java\..*',
-                \ 'javax\..*',
-                \ 'org\..*',
-                \ 'com\..*'
-                \ ]
 endfunction
 
 function! g:VimOrganizerConfig()
