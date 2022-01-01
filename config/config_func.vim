@@ -893,6 +893,7 @@ endfunction
 
 function! g:VimMarkdownConfig()
     let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_toml_frontmatter = 1
 endfunction
 
 function! g:EmmetConfig()
