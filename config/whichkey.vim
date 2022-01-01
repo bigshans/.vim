@@ -144,12 +144,14 @@ function! OpenKey()
     nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
     nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
     nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
+    nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     return {
                 \ 'name': '+open files',
                 \ 'p': 'open plugin file',
                 \ 'k': 'open key config file',
                 \ 'c': 'open config plugin file',
-                \ 'b': 'open basic config file'
+                \ 'b': 'open basic config file',
+                \ 'v': 'open vim init file',
                 \ }
 endfunction
 
@@ -495,8 +497,6 @@ endfunction
 function! OtherKey()
     " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
     nnoremap J gJ
-    onoremap <silent>ag :<C-u>normal! ggVG<CR>
-    xnoremap <silent>ag :normal! ggVG<CR>
     nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
@@ -615,5 +615,67 @@ function! OtherKey()
     vmap <C-Space> <Plug>(wildfire-water)
 endfunction
 
-call g:WhichKeyMap()
-call OtherKey()
+function BasicVimKeybinding()
+    map <leader>ft :Explore<CR>
+    map <leader>fs :w!<CR>
+    nnoremap J gJ
+    nnoremap <M-x> :Commands<CR>
+    nnoremap < <<
+    nnoremap > >>
+    inoremap <C-e> <End>
+    inoremap <C-a> <Esc>I
+    nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
+    nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
+    inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
+    inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
+    vnoremap <silent><C-Down> :m '>+1<CR>gv=gv
+    vnoremap <silent><C-Up> :m '<-2<CR>gv=gv
+    inoremap <C-h> <Left>
+    inoremap <C-j> <Down>
+    inoremap <C-l> <Right>
+    inoremap <C-k> <Up>
+    tnoremap <ESC> <C-\><C-n>
+    nnoremap <leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+    nnoremap <CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+    nnoremap <silent><leader><Up> :res -1<CR>
+    nnoremap <silent><leader><Down> :res +1<CR>
+    nnoremap <silent><leader><Left> :vertical res -1<CR>
+    nnoremap <silent><leader><Right> :vertical res +1<CR>
+    nnoremap wh <C-w><C-h>
+    nnoremap wj <C-w><C-j>
+    nnoremap wk <C-w><C-k>
+    nnoremap wl <C-w><C-l>
+    nnoremap <Up> gk
+    nnoremap <Down> gj
+    nnoremap <leader>; :
+    nnoremap <leader>q :q!<CR>
+    nnoremap <leader>Q :qa!<CR>
+    nnoremap <leader>y "+y
+    xnoremap <leader>y "+y
+    xnoremap <leader>p "+p
+    nnoremap <leader>p "+p
+    inoremap <C-n> <Down>
+    inoremap <C-p> <Up>
+    inoremap <C-b> <Left>
+    inoremap <C-f> <Right>
+    nnoremap <leader>ea  ggVG
+    nnoremap <leader>op :tabnew $HOME/.vim/config/plugin_config.vim<CR>
+    nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
+    nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
+    nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
+    nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
+    noremap <leader>tn :tabn<CR>
+    noremap <leader>tp :tabp<CR>
+    noremap <leader>tc :tabclose<CR>
+    noremap <leader>tw :tabnew<CR>
+    nnoremap <leader>bn  :bn<CR>
+    nnoremap <leader>bp  :bp<CR>
+    nnoremap <leader>bd  :bd<CR>
+endfunction
+
+if g:vim_basic == 1
+    call g:WhichKeyMap()
+    call OtherKey()
+else
+    call BasicVimKeybinding()
+endif

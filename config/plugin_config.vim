@@ -1,7 +1,5 @@
 filetype plugin indent on 
 " -----------------------*-----------------------------" 
-source $HOME/.vim/config/basic.vim
-source $HOME/.vim/config/config_func.vim
 
 " {{ value define
 
