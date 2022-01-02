@@ -610,13 +610,13 @@ function! OtherKey()
     nmap ds sd
     " For wildfire
     " This selects the next closest text object.
-    map <Space> <Plug>(wildfire-fuel)
+    map , <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
-    vmap <C-Space> <Plug>(wildfire-water)
+    vmap , <Plug>(wildfire-water)
 endfunction
 
 function BasicVimKeybinding()
-    map <leader>ft :Explore<CR>
+    map <leader>ft :Vexplore<CR>
     map <leader>fs :w!<CR>
     nnoremap J gJ
     nnoremap <M-x> :Commands<CR>
