@@ -525,6 +525,8 @@ function! OtherKey()
     nnoremap wl <C-w><C-l>
     nnoremap <Up> gk
     nnoremap <Down> gj
+    inoremap <Up> <C-o>gk
+    inoremap <Down> <C-o>gj
     nnoremap <leader>; :
     nmap <leader>? <plug>(fzf-maps-n)
     xmap <leader>? <plug>(fzf-maps-x)
@@ -613,6 +615,7 @@ function! OtherKey()
     map , <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
     vmap , <Plug>(wildfire-water)
+    imap jj <Esc>
 endfunction
 
 function BasicVimKeybinding()
@@ -647,6 +650,8 @@ function BasicVimKeybinding()
     nnoremap wl <C-w><C-l>
     nnoremap <Up> gk
     nnoremap <Down> gj
+    inoremap <Up> <C-o>gk
+    inoremap <Down> <C-o>gj
     nnoremap <leader>; :
     nnoremap <leader>q :q!<CR>
     nnoremap <leader>Q :qa!<CR>

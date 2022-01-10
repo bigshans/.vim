@@ -43,7 +43,8 @@ Plug 'tpope/vim-repeat'
 Plug 'chrisbra/NrrwRgn'
 Plug 'vim-scripts/utl.vim'
 Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
-Plug 'jceb/vim-orgmode'
+" Plug 'axvr/org.vim'
+Plug 'git@github.com:bigshans/vim-orgmode.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-expand-region'
@@ -54,6 +55,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'Shougo/echodoc.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
 Plug 'weilbith/nerdtree_choosewin-plugin'
@@ -105,6 +107,7 @@ Plug 'josa42/vim-lightline-coc'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
+Plug 'jdhao/better-escape.vim'
 
 
 call plug#end()
@@ -146,6 +149,7 @@ call g:Sonokai()
 call g:SpelunkerConfig()
 call g:Lightline()
 call g:Wildfire()
+call g:BetterEscape()
 
 " }}
 
