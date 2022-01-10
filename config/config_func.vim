@@ -458,7 +458,7 @@ endfunction
 function! g:WhichKeyConfig()
     " whcih key
     let g:which_key_sep = '➧ '
-    let g:which_key_timeout=300
+    let g:which_key_timeout=200
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
@@ -835,4 +835,9 @@ function! g:Sonokai()
     let g:sonokai_style = 'atlantis'
     let g:sonokai_enable_italic = 1
     let g:sonokai_disable_italic_comment = 1
+endfunction
+
+function! g:BetterEscape()
+    " use jj to escape insert mode.
+    let g:better_escape_shortcut = 'jj'
 endfunction
