@@ -503,6 +503,8 @@ function! g:CocConfig()
                 \ 'coc-htmlhint',
                 \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
+                \ '@yaegassy/coc-intelephense',
+                \ 'coc-lua',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1

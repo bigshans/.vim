@@ -172,5 +172,6 @@
     "coc.source.buffer.priority": 87,
     "coc.source.buffer.ignoreGitignore": false,
     "codeLens.enable": true,
-    "codeLens.separator": "▸"
+    "codeLens.separator": "▸",
+    "intelephense.progress.enable": false
 }
