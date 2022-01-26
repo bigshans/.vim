@@ -44,7 +44,8 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'vim-scripts/utl.vim'
 Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
 " Plug 'axvr/org.vim'
-Plug 'git@github.com:bigshans/vim-orgmode.git'
+" Plug 'git@github.com:bigshans/vim-orgmode.git'
+Plug 'bigshans/VimOrganizer'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-expand-region'
@@ -150,8 +151,12 @@ call g:SpelunkerConfig()
 call g:Lightline()
 call g:Wildfire()
 call g:BetterEscape()
+call g:VimOrganizerConfig()
 
 " }}
+
+" 用于测试插件
+" set runtimepath^=/projects/aerian/wp/coc-kite-cmp
 
 " {{ autocmd
 

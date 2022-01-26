@@ -80,15 +80,15 @@ function! CoCKey()
                 \ 'f': 'Coc Fix it',
                 \ 'q': 'Coc Quickly Fix it',
                 \ 'j': {
-                \ 'name': '+Goto',
-                \ 't': 'Coc GottoTypeDefinition',
-                \ 'f': 'Coc implementtation',
-                \ 'r': 'Coc references',
-                \ },
-                \ 'k': 'Coc show_documentation',
-                \ 'r': 'Coc Rename',
-                \ 'a': 'Coc GotoDefinition',
-                \    }
+                    \ 'name': '+Goto',
+                    \ 't': 'Coc GottoTypeDefinition',
+                    \ 'f': 'Coc implementtation',
+                    \ 'r': 'Coc references',
+                    \ },
+                    \ 'k': 'Coc show_documentation',
+                    \ 'r': 'Coc Rename',
+                    \ 'a': 'Coc GotoDefinition',
+                    \}
 endfunction
 
 function! YCMKey()
@@ -218,6 +218,9 @@ function! FileKey()
     nnoremap <leader>fS  :W<CR>
     nnoremap <leader>ft :CocCommand explorer<CR>
     nnoremap <leader>ff :History<CR>
+    " Formatting selected code.
+    xmap <leader>fm  <Plug>(coc-format-selected)
+    nmap <silent><leader>fm  :call CocActionAsync('format')<CR>
     return {
                 \ 'name': '+files',
                 \ 's': 'save file',
@@ -225,6 +228,7 @@ function! FileKey()
                 \ 'S': 'sudo save',
                 \ 't': 'explorer toggle',
                 \ 'f': 'recent files',
+                \ 'm': 'format code',
                 \ }
 endfunction
 
@@ -442,7 +446,7 @@ function! MuiltipleKey()
     let g:multi_cursor_select_all_key      = '<C-S-n>'
     let g:multi_cursor_next_key            = '<C-n>'
     let g:multi_cursor_prev_key            = '<C-p>'
-    let g:multi_cursor_skip_key            = '<C-s>'
+    let g:multi_cursor_skip_key            = '<C-x>'
     let g:multi_cursor_quit_key            = '<Esc>'
     return {
                 \ 'name': '+multiple cursors',
@@ -612,10 +616,10 @@ function! OtherKey()
     nmap ds sd
     " For wildfire
     " This selects the next closest text object.
-    map , <Plug>(wildfire-fuel)
+    map ; <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
-    vmap , <Plug>(wildfire-water)
-    imap jj <Esc>
+    vmap ; <Plug>(wildfire-water)
+    imap jk <Esc>
 endfunction
 
 function BasicVimKeybinding()

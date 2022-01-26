@@ -458,7 +458,7 @@ endfunction
 function! g:WhichKeyConfig()
     " whcih key
     let g:which_key_sep = '➧ '
-    let g:which_key_timeout=200
+    let g:which_key_timeout=75
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
@@ -483,6 +483,8 @@ endfunction
 function! g:CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
+                \ 'coc-eslint',
+                \ 'coc-prettier',
                 \ 'coc-explorer',
                 \ 'coc-html',
                 \ 'coc-css',
@@ -504,7 +506,9 @@ function! g:CocConfig()
                 \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
                 \ '@yaegassy/coc-intelephense',
+                \ 'coc-tabnine',
                 \ 'coc-lua',
+                \ 'coc-kite-cmp',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -841,5 +845,5 @@ endfunction
 
 function! g:BetterEscape()
     " use jj to escape insert mode.
-    let g:better_escape_shortcut = 'jj'
+    let g:better_escape_shortcut = 'jk'
 endfunction

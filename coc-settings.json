@@ -138,6 +138,7 @@
     "go.goplsOptions": {
         "completeUnimported": true
     },
+    "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
     "volar.checkVueTscVersion": true,
     "volar.autoClosingTags": true,
@@ -173,5 +174,17 @@
     "coc.source.buffer.ignoreGitignore": false,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
-    "intelephense.progress.enable": false
+    "intelephense.progress.enable": false,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 2,
+    "prettier.useTabs": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.trailingComma": "es5",
+    "prettier.bracketSpacing": true,
+    "prettier.arrowParens": "always",
+    "prettier.proseWrap": "preserve",
+    "prettier.htmlWhitespaceSensitivity": "css"
 }
