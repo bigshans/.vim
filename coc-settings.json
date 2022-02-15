@@ -12,6 +12,9 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls-cache"
+                },
+                "client": {
+                    "snippetSupport": true
                 }
             }
         },
@@ -140,19 +143,19 @@
     },
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
-    "volar.checkVueTscVersion": true,
     "volar.autoClosingTags": true,
     "volar.autoCompleteRefs": true,
     "volar.diagnostics.tsLocale": "zh-cn",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.previewAction.onHover": false,
     "tsserver.npm": "/usr/bin/tsserver",
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
     "python.linting.enabled": true,
-    "angular.experimental-ivy": false,
     "git.changedSign.text": "▌",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",
@@ -172,7 +175,7 @@
     "coc.source.buffer.shortcut": "B",
     "coc.source.buffer.priority": 87,
     "coc.source.buffer.ignoreGitignore": false,
-    "codeLens.enable": true,
+    "codeLens.enable": false,
     "codeLens.separator": "▸",
     "intelephense.progress.enable": false,
     "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
@@ -186,5 +189,6 @@
     "prettier.bracketSpacing": true,
     "prettier.arrowParens": "always",
     "prettier.proseWrap": "preserve",
-    "prettier.htmlWhitespaceSensitivity": "css"
+    "prettier.htmlWhitespaceSensitivity": "css",
+    "omnisharp.path": "/usr/bin/omnisharp"
 }

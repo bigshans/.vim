@@ -145,13 +145,17 @@ function! OpenKey()
     nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
     nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
+    nnoremap <leader>ot :call TermToggle(12)<CR>
+    nnoremap <leader>of :<C-u>Findr<CR>
     return {
-                \ 'name': '+open files',
+                \ 'name': '+open...',
                 \ 'p': 'open plugin file',
                 \ 'k': 'open key config file',
                 \ 'c': 'open config plugin file',
                 \ 'b': 'open basic config file',
                 \ 'v': 'open vim init file',
+                \ 'f': 'open files',
+                \ 't': 'open terminal',
                 \ }
 endfunction
 
@@ -198,6 +202,7 @@ function! WindowsKey()
     nnoremap <leader>wl <C-w><C-l>
     nnoremap <leader>ws :split<CR>
     nnoremap <leader>wv :vsplit<CR>
+    nnoremap <leader>wo :only<CR>
     return {
                 \ 'name':'+windows',
                 \ 'c': 'choose win',
@@ -208,7 +213,8 @@ function! WindowsKey()
                 \ 'l': 'move right',
                 \ 's': 'split window',
                 \ 'v': 'vertical split',
-                \ 'a': 'choosewin swap'
+                \ 'a': 'choosewin swap',
+                \ 'o': 'only current windows'
                 \ }
 endfunction
 
@@ -501,6 +507,7 @@ endfunction
 function! OtherKey()
     " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
     nnoremap J gJ
+    nnoremap gp `[v`]
     nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
@@ -516,7 +523,37 @@ function! OtherKey()
     inoremap <C-j> <Down>
     inoremap <C-l> <Right>
     inoremap <C-k> <Up>
+
+    " Terminal Function
+    let g:term_buf = 0
+    let g:term_win = 0
+    function! TermToggle(height)
+        if win_gotoid(g:term_win)
+            hide
+        else
+            botright new
+            exec "resize " . a:height
+            try
+                exec "buffer " . g:term_buf
+            catch
+                call termopen($SHELL, {"detach": 0})
+                let g:term_buf = bufnr("")
+                set nonumber
+                set norelativenumber
+                set signcolumn=no
+            endtry
+            startinsert!
+            let g:term_win = win_getid()
+        endif
+    endfunction
+    " For Terminal For Basic {{
+    nnoremap <A-t> :call TermToggle(12)<CR>
+    inoremap <A-t> <Esc>:call TermToggle(12)<CR>
+    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
     tnoremap <ESC> <C-\><C-n>
+    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+    tnoremap :q! <C-\><C-n>:q!<CR>
+    " }}
     nnoremap <leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
     nnoremap <CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
     nnoremap <silent><leader><Up> :res -1<CR>
@@ -535,8 +572,8 @@ function! OtherKey()
     nmap <leader>? <plug>(fzf-maps-n)
     xmap <leader>? <plug>(fzf-maps-x)
     omap <leader>? <plug>(fzf-maps-o)
-    nnoremap <leader>q :q!<CR>
-    nnoremap <leader>Q :qa!<CR>
+    nmap <leader>q :q!<CR>
+    nmap <leader>Q :qa!<CR>
     nnoremap <leader>y "+y
     xnoremap <leader>y "+y
     xnoremap <leader>p "+p
@@ -612,8 +649,9 @@ function! OtherKey()
     xmap <leader>x  <Plug>(coc-convert-snippet)
 	nmap s <Nop>
 	xmap s <Nop>
-    nmap ys sa
+    nmap as sa
     nmap ds sd
+    nmap cs rs
     " For wildfire
     " This selects the next closest text object.
     map ; <Plug>(wildfire-fuel)
@@ -640,8 +678,16 @@ function BasicVimKeybinding()
     inoremap <C-h> <Left>
     inoremap <C-j> <Down>
     inoremap <C-l> <Right>
+    inoremap <C-s> <C-o>:wq!<CR>
     inoremap <C-k> <Up>
+    " For Terminal For Basic {{
+    nnoremap <A-t> :call TermToggle(12)<CR>
+    inoremap <A-t> <Esc>:call TermToggle(12)<CR>
+    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
     tnoremap <ESC> <C-\><C-n>
+    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+    tnoremap :q! <C-\><C-n>:q!<CR>
+    " }}
     nnoremap <leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
     nnoremap <CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
     nnoremap <silent><leader><Up> :res -1<CR>

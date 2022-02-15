@@ -509,6 +509,7 @@ function! g:CocConfig()
                 \ 'coc-tabnine',
                 \ 'coc-lua',
                 \ 'coc-kite-cmp',
+                \ 'coc-marketplace',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -846,4 +847,14 @@ endfunction
 function! g:BetterEscape()
     " use jj to escape insert mode.
     let g:better_escape_shortcut = 'jk'
+endfunction
+
+function! g:Sandwich()
+    let g:sandwich#recipes = [
+	  \   {'buns': ['“', '”'],  'nesting': 1, 'input': ['c"']},
+      \   {'buns': ['‘', '’'],  'nesting': 1, 'input': ["c'"]},
+      \   {'buns': ['${', '}'], 'nesting': 1, 'input': ['bs']},
+      \   {'buns': ['{', '}'], 'nesting': 1, 'input': ['{']},
+      \ ]
+    call extend(g:sandwich#recipes, g:sandwich#default_recipes)
 endfunction

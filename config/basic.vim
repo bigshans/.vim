@@ -17,7 +17,7 @@ set title
 set backspace=indent,eol,start
 syntax enable
 syntax on
-set whichwrap+=<,>,h,l
+set whichwrap+=<,>,h,l,[,]
 set magic
 set encoding=UTF-8
 set laststatus=2
@@ -48,7 +48,7 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=L
     set guioptions-=r
     set guioptions-=R
-    set guifont=NotoMonoforPowerline\ 11
+    set guifont=NotoMonoforPowerline\ 14
 endif
 augroup Web
     autocmd!

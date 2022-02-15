@@ -43,8 +43,6 @@ Plug 'tpope/vim-repeat'
 Plug 'chrisbra/NrrwRgn'
 Plug 'vim-scripts/utl.vim'
 Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
-" Plug 'axvr/org.vim'
-" Plug 'git@github.com:bigshans/vim-orgmode.git'
 Plug 'bigshans/VimOrganizer'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
@@ -109,7 +107,7 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'jdhao/better-escape.vim'
-
+Plug 'bigshans/findr.vim'
 
 call plug#end()
 
@@ -152,6 +150,7 @@ call g:Lightline()
 call g:Wildfire()
 call g:BetterEscape()
 call g:VimOrganizerConfig()
+call g:Sandwich()
 
 " }}
 
