@@ -90,13 +90,13 @@
             "open"
         ],
         "o": ["expanded?", "collapse", "expand"],
-        "<cr>": ["expandable?", "cd", "open"],
+        "<cr>": ["expandable?", "cd", "open:tab"],
         "<tab>": ["expanded?", "collapse", "expand"],
         "e": "open",
         "s": "open:split",
         "S": "open:split:plain",
         "E": "open:vsplit",
-        "t": "open:tab",
+        "b": "open:tab",
         "<bs>": "gotoParent",
         "gp": "preview:labeling",
 
@@ -190,5 +190,6 @@
     "prettier.arrowParens": "always",
     "prettier.proseWrap": "preserve",
     "prettier.htmlWhitespaceSensitivity": "css",
-    "omnisharp.path": "/usr/bin/omnisharp"
+    "omnisharp.path": "/usr/bin/omnisharp",
+    "translator.proxy": "socks://127.0.0.1:1080"
 }

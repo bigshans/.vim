@@ -15,6 +15,7 @@ inoremap <C-l>     <Right>
 inoremap <C-m>     <CR>
 inoremap <C-a>     <home>
 inoremap <C-e>     <end>
+inoremap <M-i><M-j> <Esc>
 noremap  <leader>h  <C-w><C-h>
 noremap  <leader>j  <C-w><C-j>
 noremap  <leader>k  <C-w><C-k>

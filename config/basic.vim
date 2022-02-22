@@ -9,6 +9,7 @@ set synmaxcol=200
 set timeout
 set noshowmode
 set cursorline "当前行高亮
+set cursorcolumn
 set t_Co=256
 set background=dark
 set number " relativenumber

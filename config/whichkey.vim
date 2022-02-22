@@ -4,8 +4,6 @@ function! g:WhichKeyMap()
     let g:which_key_map.w=WindowsKey()
     let g:which_key_map.c=CommentKey()
     let g:which_key_map.b=BuffersKey()
-    let g:which_key_map.d=DebugMap()
-    " let g:which_key_map.t=NERDTreeKey()
     let g:which_key_map.t=TagKeyMap()
     let g:which_key_map.P=PluginKey()
     let g:which_key_map.e=EditKey()
@@ -17,11 +15,9 @@ function! g:WhichKeyMap()
     let g:which_key_map.y='system copy'
     let g:which_key_map.q='quit without save'
     let g:which_key_map.Q='quit all'
-    let g:which_key_map.l=AleKey()
     let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
     let g:which_key_map.g=GitKey()
-    " let g:which_key_map.j=YCMKey()
     let g:which_key_map.j=CoCKey()
     let g:which_key_map.t=TabKey()
     let g:which_key_map['?']='search key'
@@ -32,32 +28,11 @@ function! g:WhichKeyMap()
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
-function! DebugMap()
-    " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-
-    " for normal mode - the word under the cursor
-    nmap <Leader>di <Plug>VimspectorBalloonEval
-    " for visual mode, the visually selected text
-    xmap <Leader>di <Plug>VimspectorBalloonEval
-    nmap <leader>dd :call vimspector#Launch()<CR>
-    nmap <leader>do :VimspectorShowOutput<CR>
-    nmap <leader>dw :VimspectorWatch<CR>
-    nmap <leader>de :VimspectorEval<CR>
-    return {
-                \ 'name': '+DebugMap',
-                \ 'i': 'VimspectorBalloonEval',
-                \ 'o': 'VimspectorShowOutput',
-                \ 'd': 'launch',
-                \ 'w': 'watch',
-                \ 'e': 'eval',
-                \}
-endfunction
-
 function! g:TagKeyMap()
-    nmap <leader>tt :Vista!!<CR>
-    nmap <leader>tc :Vista coc<CR>
+    nmap <leader>vt :Vista!!<CR>
+    nmap <leader>vc :Vista coc<CR>
     return {
-                \ 'name': '+Tag',
+                \ 'name': '+Vista',
                 \ 't': 'show tag',
                 \ 'c' : 'lsp tag',
                 \}
@@ -65,7 +40,6 @@ endfunction
 
 function! CoCKey()
     nnoremap <leader>jR :CocRestart<CR>
-    " nnoremap <silent><leader>jf :ALE<CR>
     nmap <leader>jq  <Plug>(coc-fix-current)
     nmap <leader>jf :CocFix<CR>
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
@@ -144,6 +118,7 @@ function! OpenKey()
     nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
     nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
     nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
+    nnoremap <leader>oC :tabnew $HOME/.vim/coc-settings.json<CR>
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
     nnoremap <leader>of :<C-u>Findr<CR>
@@ -222,7 +197,7 @@ function! FileKey()
     nnoremap <leader>fs  :w!<CR>
     nnoremap <leader>fr  :source $MYVIMRC<CR>
     nnoremap <leader>fS  :W<CR>
-    nnoremap <leader>ft :CocCommand explorer<CR>
+    nnoremap <leader>ft :CocCommand explorer --preset<CR>
     nnoremap <leader>ff :History<CR>
     " Formatting selected code.
     xmap <leader>fm  <Plug>(coc-format-selected)
@@ -247,18 +222,6 @@ function! PluginKey()
                 \ 'i':'plugin install',
                 \ 'c':'plugin clean',
                 \ 'p':'plugin update'
-                \ }
-endfunction
-
-function! NERDTreeKey()
-    nnoremap <leader>tt  :NERDTreeToggle<CR>
-    nnoremap <leader>tf  :NERDTreeFind<CR>
-    nnoremap <leader>ts  :NERDTree<CR>
-    return {
-                \ 'name': '+NERDTree',
-                \ 't': 'NERDTree toggle',
-                \ 'f': 'NERDTree find',
-                \ 's': 'NERDTree'
                 \ }
 endfunction
 
@@ -306,20 +269,6 @@ function! EditKey()
                 \ }
 endfunction
 
-function! AleKey()
-    nnoremap <leader>la  :ALEToggle<CR>
-    nnoremap <leader>ld  :ALEDetail<CR>
-    nnoremap <leader>lp  :ALEPrevious<CR>
-    nnoremap <leader>ln  :ALENext<CR>
-    return {
-                \ 'name': '+ale',
-                \ 'a': 'ale off/on',
-                \ 'd': 'ale warning/worried',
-                \ 'p': 'ale previous',
-                \ 'n': 'ale next'
-                \ }
-endfunction
-
 function! ApplicationKey()
     nnoremap <leader>aii  :call InterestingWords('n')"<CR>
     nnoremap <leader>aiu :call UncolorAllWords()<CR>
@@ -335,8 +284,13 @@ function! ApplicationKey()
     nnoremap <leader>ale :IndentLinesEnable<CR>
     nnoremap <leader>ald :IndentLinesDisable<CR>
     nnoremap <leader>all :IndentLinesToggle<CR>
+    nnoremap <leader>apa :CocCommand addProject<CR>
+    nnoremap <leader>apr :CocCommand removeProject<CR>
+    nnoremap <leader>apl :CocList projectors<CR>
+    nmap <leader>af :CocFix<CR>
     return {
                 \ 'name': '+applications',
+                \ 'f': 'Fixed Code',
                 \ 'i': {
                 \ 'name':'+intertingword',
                 \ 'i': 'colored the word',
@@ -359,6 +313,12 @@ function! ApplicationKey()
                 \ 'd': 'disable indentLine',
                 \ 'l': 'toggle indentline',
                 \ },
+                \ 'p': {
+                    \ 'name': '+project',
+                    \ 'a': 'add project',
+                    \ 'r': 'remove project',
+                    \ 'l': 'list project',
+                    \ },
                 \ }
 endfunction
 
@@ -505,89 +465,13 @@ function! SpellCheck()
 endfunction
 
 function! OtherKey()
-    " au! BufNew,BufEnter *.org nnoremap <silent><buffer><localleader>m, /#+BEGIN_SRC .*\n\(.*\n\)*#+END_SRC\n<CR>gv:NN<CR>:nohlsearch<CR>
-    nnoremap J gJ
-    nnoremap gp `[v`]
-    nnoremap <M-x> :Commands<CR>
-    nnoremap < <<
-    nnoremap > >>
-    inoremap <C-e> <End>
-    inoremap <C-a> <Esc>I
-    nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
-    nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
-    inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
-    inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
-    vnoremap <silent><C-Down> :m '>+1<CR>gv=gv
-    vnoremap <silent><C-Up> :m '<-2<CR>gv=gv
-    inoremap <C-h> <Left>
-    inoremap <C-j> <Down>
-    inoremap <C-l> <Right>
-    inoremap <C-k> <Up>
-
-    " Terminal Function
-    let g:term_buf = 0
-    let g:term_win = 0
-    function! TermToggle(height)
-        if win_gotoid(g:term_win)
-            hide
-        else
-            botright new
-            exec "resize " . a:height
-            try
-                exec "buffer " . g:term_buf
-            catch
-                call termopen($SHELL, {"detach": 0})
-                let g:term_buf = bufnr("")
-                set nonumber
-                set norelativenumber
-                set signcolumn=no
-            endtry
-            startinsert!
-            let g:term_win = win_getid()
-        endif
-    endfunction
-    " For Terminal For Basic {{
-    nnoremap <A-t> :call TermToggle(12)<CR>
-    inoremap <A-t> <Esc>:call TermToggle(12)<CR>
-    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
-    tnoremap <ESC> <C-\><C-n>
-    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
-    tnoremap :q! <C-\><C-n>:q!<CR>
-    " }}
-    nnoremap <leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-    nnoremap <CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
-    nnoremap <silent><leader><Up> :res -1<CR>
-    nnoremap <silent><leader><Down> :res +1<CR>
-    nnoremap <silent><leader><Left> :vertical res -1<CR>
-    nnoremap <silent><leader><Right> :vertical res +1<CR>
-    nnoremap wh <C-w><C-h>
-    nnoremap wj <C-w><C-j>
-    nnoremap wk <C-w><C-k>
-    nnoremap wl <C-w><C-l>
-    nnoremap <Up> gk
-    nnoremap <Down> gj
-    inoremap <Up> <C-o>gk
-    inoremap <Down> <C-o>gj
-    nnoremap <leader>; :
-    nmap <leader>? <plug>(fzf-maps-n)
-    xmap <leader>? <plug>(fzf-maps-x)
-    omap <leader>? <plug>(fzf-maps-o)
-    nmap <leader>q :q!<CR>
-    nmap <leader>Q :qa!<CR>
-    nnoremap <leader>y "+y
-    xnoremap <leader>y "+y
-    xnoremap <leader>p "+p
-    nnoremap <leader>p "+p
+    nmap <leader>/ <plug>(fzf-maps-n)
+    xmap <leader>/ <plug>(fzf-maps-x)
+    omap <leader>/ <plug>(fzf-maps-o)
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
-    inoremap <C-n> <Down>
-    inoremap <C-p> <Up>
-    inoremap <C-b> <Left>
-    inoremap <C-f> <Right>
-    " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-    " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-    " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-    " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+    nmap T <Plug>(coc-translator-p)
+    vmap T <Plug>(coc-translator-pv)
     augroup Myfzf
         autocmd! FileType fzf tnoremap <buffer> <Esc> <C-g>
     augroup END
@@ -657,13 +541,12 @@ function! OtherKey()
     map ; <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
     vmap ; <Plug>(wildfire-water)
-    imap jk <Esc>
+    call BasicVimKeybinding()
 endfunction
 
 function BasicVimKeybinding()
-    map <leader>ft :Vexplore<CR>
-    map <leader>fs :w!<CR>
     nnoremap J gJ
+    nnoremap gp `[v`]
     nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
@@ -678,8 +561,30 @@ function BasicVimKeybinding()
     inoremap <C-h> <Left>
     inoremap <C-j> <Down>
     inoremap <C-l> <Right>
-    inoremap <C-s> <C-o>:wq!<CR>
     inoremap <C-k> <Up>
+
+    " Terminal Function
+    let g:term_buf = 0
+    let g:term_win = 0
+    function! TermToggle(height)
+        if win_gotoid(g:term_win)
+            hide
+        else
+            botright new
+            exec "resize " . a:height
+            try
+                exec "buffer " . g:term_buf
+            catch
+                call termopen($SHELL, {"detach": 0})
+                let g:term_buf = bufnr("")
+                set nonumber
+                set norelativenumber
+                set signcolumn=no
+            endtry
+            startinsert!
+            let g:term_win = win_getid()
+        endif
+    endfunction
     " For Terminal For Basic {{
     nnoremap <A-t> :call TermToggle(12)<CR>
     inoremap <A-t> <Esc>:call TermToggle(12)<CR>
@@ -703,8 +608,8 @@ function BasicVimKeybinding()
     inoremap <Up> <C-o>gk
     inoremap <Down> <C-o>gj
     nnoremap <leader>; :
-    nnoremap <leader>q :q!<CR>
-    nnoremap <leader>Q :qa!<CR>
+    nmap <leader>q :q!<CR>
+    nmap <leader>Q :qa!<CR>
     nnoremap <leader>y "+y
     xnoremap <leader>y "+y
     xnoremap <leader>p "+p
@@ -713,19 +618,8 @@ function BasicVimKeybinding()
     inoremap <C-p> <Up>
     inoremap <C-b> <Left>
     inoremap <C-f> <Right>
-    nnoremap <leader>ea  ggVG
-    nnoremap <leader>op :tabnew $HOME/.vim/config/plugin_config.vim<CR>
-    nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
-    nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
-    nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
-    nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
-    noremap <leader>tn :tabn<CR>
-    noremap <leader>tp :tabp<CR>
-    noremap <leader>tc :tabclose<CR>
-    noremap <leader>tw :tabnew<CR>
-    nnoremap <leader>bn  :bn<CR>
-    nnoremap <leader>bp  :bp<CR>
-    nnoremap <leader>bd  :bd<CR>
+    imap <M-j><M-k> <Esc>
+    imap <C-j><C-k> <Esc>
 endfunction
 
 if g:vim_basic == 1

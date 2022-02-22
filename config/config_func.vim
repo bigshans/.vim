@@ -510,6 +510,7 @@ function! g:CocConfig()
                 \ 'coc-lua',
                 \ 'coc-kite-cmp',
                 \ 'coc-marketplace',
+                \ 'coc-translator',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -847,6 +848,7 @@ endfunction
 function! g:BetterEscape()
     " use jj to escape insert mode.
     let g:better_escape_shortcut = 'jk'
+    let g:better_escape_interval = 10
 endfunction
 
 function! g:Sandwich()

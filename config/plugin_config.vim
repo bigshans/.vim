@@ -108,6 +108,8 @@ Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'jdhao/better-escape.vim'
 Plug 'bigshans/findr.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 
 call plug#end()
 
@@ -151,6 +153,7 @@ call g:Wildfire()
 call g:BetterEscape()
 call g:VimOrganizerConfig()
 call g:Sandwich()
+call g:IndentLineConfig()
 
 " }}
 
