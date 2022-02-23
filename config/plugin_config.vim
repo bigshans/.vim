@@ -77,7 +77,7 @@ Plug 'tpope/vim-abolish'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
 Plug 'itchyny/vim-cursorword'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ryanoasis/vim-devicons' " 太卡了
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -96,7 +96,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
-Plug 'plasticboy/vim-markdown'
+Plug 'preservim/vim-markdown'
 Plug 'othree/xml.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'ollykel/v-vim'
@@ -107,9 +107,10 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'jdhao/better-escape.vim'
-Plug 'bigshans/findr.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'bigshans/vim-code-runner'
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -154,6 +155,7 @@ call g:BetterEscape()
 call g:VimOrganizerConfig()
 call g:Sandwich()
 call g:IndentLineConfig()
+call g:CodeRunnerConfig()
 
 " }}
 

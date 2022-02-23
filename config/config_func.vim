@@ -123,13 +123,20 @@ function! g:IndentLineConfig()
     let g:indentLine_color_term = 239
     let g:indentLine_color_gui = '#A4E57E'
     let g:indentLine_color_tty_light = 7
-    let g:indentLine_color_dark = 1
-    " let g:indentLine_bgcolor_term = 202
-    " let g:indentLine_bgcolor_gui = '#FF5F00'
     let g:indentLine_concealcursor = 'inc'
     let g:indentLine_conceallevel = 2
-    let g:vim_json_syntax_conceal=0
-    let g:indentLine_enabled=0
+    let g:vim_json_syntax_conceal = 1
+    let g:indentLine_enabled = 1
+    let g:indentLine_leadingSpaceEnable = 1
+    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown' ]
+    fun! IndentLineStart()
+        if &ft =~ 'startify\|coc-explorer\|which_key\|markdown'
+            execute('IndentLinesDisable')
+            return
+        endif
+        execute('IndentLinesEnable')
+    endfun
+    autocmd BufEnter * call timer_start(200, { tid -> IndentLineStart()})
 endfunction
 
 function! g:StartifyConfig()
@@ -859,4 +866,11 @@ function! g:Sandwich()
       \   {'buns': ['{', '}'], 'nesting': 1, 'input': ['{']},
       \ ]
     call extend(g:sandwich#recipes, g:sandwich#default_recipes)
+endfunction
+
+function! g:CodeRunnerConfig()
+    let g:CodeRunnerCommandMap = {
+                \ 'typescript': 'ts-node $fileName'
+                \ }
+    let g:code_runner_save_before_execute = 1
 endfunction

@@ -9,7 +9,7 @@ set synmaxcol=200
 set timeout
 set noshowmode
 set cursorline "当前行高亮
-set cursorcolumn
+" set cursorcolumn
 set t_Co=256
 set background=dark
 set number " relativenumber
@@ -53,7 +53,7 @@ if has('gui_running') || exists('g:nyaovim_version')
 endif
 augroup Web
     autocmd!
-    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js set tabstop=2 shiftwidth=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js setlocal tabstop=2 shiftwidth=2 shiftwidth=2
 augroup END
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
@@ -75,7 +75,7 @@ function! ScreenCenterToggle()
         let g:screen_center_toggle_flag = 0
     endif
 endfunction
-au! BufNew,BufEnter *.vim set foldmethod=indent
+au! BufNew,BufEnter *.vim setlocal foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
 packadd termdebug
 if has('nvim')
@@ -87,8 +87,7 @@ set splitbelow
 " set completeopt=longest,menuone
 augroup html
     au!
-    autocmd BufEnter,BufNew,BufNewFile *.{js,jsx,ts,tsx,vue,css} set tabstop=2 | set softtabstop=2 | set shiftwidth=2
-    autocmd BufLeave *.{js,jsx,ts,tsx,vue,css} set tabstop=4 | set softtabstop=4 | set shiftwidth=4
+    autocmd FileType javascript,typescript,vue,html,css,jsx setlocal tabstop=2 | setlocal softtabstop=2 | setlocal shiftwidth=2
 augroup END
 
 function! g:Tab2()

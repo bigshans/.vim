@@ -15,7 +15,6 @@ function! g:WhichKeyMap()
     let g:which_key_map.y='system copy'
     let g:which_key_map.q='quit without save'
     let g:which_key_map.Q='quit all'
-    let g:which_key_map.m=MovtionKey()
     let g:which_key_map.i=MuiltipleKey()
     let g:which_key_map.g=GitKey()
     let g:which_key_map.j=CoCKey()
@@ -64,41 +63,6 @@ function! CoCKey()
                     \ 'a': 'Coc GotoDefinition',
                     \}
 endfunction
-
-function! YCMKey()
-    nnoremap <leader>jR :YcmRestartServer<CR>
-    nnoremap <leader>jf :YcmCompleter FixIt<CR>
-    nnoremap <leader>jjg :YcmCompleter Goto<CR>
-    nnoremap <leader>jjd :YcmCompleter GotoDefinition<CR>
-    nnoremap <leader>jjf :YcmCompleter GotoDeclaration<CR>
-    nnoremap <leader>jjr :YcmCompleter GotoReferences<CR>
-    nnoremap <leader>jgt :YcmCompleter GetType<CR>
-    nnoremap <leader>jgd :YcmCompleter GetDoc<CR>
-    nnoremap <leader>jo :YcmCompleter OrgnaizeImports<CR>
-    nnoremap <leader>jc :YcmForceCompileAndDiagnostics<CR>
-    nnoremap <leader>jr :RefactorRename<Space>
-    return {
-                \ 'name': '+YCM',
-                \ 'R': 'YCM server restart',
-                \ 'f': 'YCM fix it',
-                \ 'j': {
-                \ 'name': '+Goto',
-                \ 'g': 'YCM Goto',
-                \ 'd': 'YCM GotoDefinition',
-                \ 'f': 'YCM GotoDeclaration',
-                \ 'r': 'YCM GotoReferences'
-                \ },
-                \ 'g': {
-                \ 'name': '+gets',
-                \ 't': 'YCM GetType',
-                \ 'd': 'YCM GetDoc'
-                \ },
-                \ 'o': 'YCM OrganizeImports',
-                \ 'c': 'YCM Force Compile And Diagnostics',
-                \ 'r': 'Refactor Rename'
-                \ }
-endfunction
-
 function! GitKey()
     nnoremap <leader>ga :Git add %<CR>
     nnoremap <leader>gr :Git restore %<CR>
@@ -121,7 +85,7 @@ function! OpenKey()
     nnoremap <leader>oC :tabnew $HOME/.vim/coc-settings.json<CR>
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
-    nnoremap <leader>of :<C-u>Findr<CR>
+    nnoremap <silent><leader>of :<C-u>Clap filer<CR>
     return {
                 \ 'name': '+open...',
                 \ 'p': 'open plugin file',
@@ -135,7 +99,6 @@ function! OpenKey()
 endfunction
 
 function! BetterKey()
-    nnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hm :message<CR>
     nnoremap <leader>hfb :Bigger<CR>
     nnoremap <leader>hfm :Smaller<CR>
@@ -195,9 +158,9 @@ endfunction
 
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
-    nnoremap <leader>fr  :source $MYVIMRC<CR>
+    nnoremap <silent><leader>fr  :source $MYVIMRC<CR>
     nnoremap <leader>fS  :W<CR>
-    nnoremap <leader>ft :CocCommand explorer --preset<CR>
+    nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
     nnoremap <leader>ff :History<CR>
     " Formatting selected code.
     xmap <leader>fm  <Plug>(coc-format-selected)
@@ -227,10 +190,10 @@ endfunction
 
 function! BuffersKey()
     nnoremap <leader>bs  :Startify<CR>
-    nnoremap <leader>bn  :bn<CR>
-    nnoremap <leader>bp  :bp<CR>
-    nnoremap <leader>bd  :bd<CR>
-    nnoremap <leader>bb  :Clap buffers<CR>
+    nnoremap <silent><leader>bn  :bn<CR>
+    nnoremap <silent><leader>bp  :bp<CR>
+    nnoremap <silent><leader>bd  :bd<CR>
+    nnoremap <silent><leader>bb  :Clap buffers<CR>
     return {
                 \ 'name': '+Buffers',
                 \ 's': 'start buffer',
@@ -360,46 +323,24 @@ function! SearchKey()
 endfunction
 
 function! MovtionKey()
-    nnoremap <leader>mf :<Plug>(easymotion-f)<CR>
-    nnoremap <leader>mF :<Plug>(easymotion-F)<CR>
-    nnoremap <leader>mt :<Plug>(easymotion-t)<CR>
-    nnoremap <leader>mT :<Plug>(easymotion-T)<CR>
-    nnoremap <leader>mw :<Plug>(easymotion-w)<CR>
-    nnoremap <leader>mW :<Plug>(easymotion-W)<CR>
-    nnoremap <leader>mb :<Plug>(easymotion-b)<CR>
-    nnoremap <leader>mB :<Plug>(easymotion-B)<CR>
-    nnoremap <leader>me :<Plug>(easymotion-e)<CR>
-    nnoremap <leader>mE :<Plug>(easymotion-E)<CR>
-    nnoremap <leader>mg :<Plug>(easymotion-ge)<CR>
-    nnoremap <leader>mG :<Plug>(easymotion-gE)<CR>
-    nnoremap <leader>mj :<Plug>(easymotion-j)<CR>
-    nnoremap <leader>mJ :<Plug>(easymotion-J)<CR>
-    nnoremap <leader>mk :<Plug>(easymotion-k)<CR>
-    nnoremap <leader>mn :<Plug>(easymotion-n)<CR>
-    nnoremap <leader>mN :<Plug>(easymotion-N)<CR>
-    nnoremap <leader>ms :<Plug>(easymotion-s)<CR>
-    nnoremap <leader>m. :<Plug>(easymotion-repeat)<CR>
-    return {
-                \ 'name':'+easymotion',
-                \ "f":  [ "<Plug>(easymotion-f)", "easymotion-f"],
-                \ "F":  [ "<Plug>(easymotion-F)", "easymotion-F"],
-                \ "t":  [ "<Plug>(easymotion-t)", "easymotion-t"],
-                \ "T":  [ "<Plug>(easymotion-T)", "easymotion-T"],
-                \ "w":  [ "<Plug>(easymotion-w)","easymotion-w"],
-                \ "W":  [ "<Plug>(easymotion-W)", "easymotion-W"],
-                \ "b":  [ "<Plug>(easymotion-b)", "easymotion-b"],
-                \ "B":  [ "<Plug>(easymotion-B)", "easymotion-B"],
-                \ "e":  [ "<Plug>(easymotion-e)", "easymotion-e"],
-                \ "E":  [ "<Plug>(easymotion-E)", "easymotion-E"],
-                \ "g": ["<Plug>(easymotion-ge)" ,"easymotion-ge"],
-                \ "G": ["<Plug>(easymotion-gE)" ,"easymotion-gE"],
-                \ "j":  [ "<Plug>(easymotion-j)", "easymotion-j"],
-                \ "k":  [ "<Plug>(easymotion-k)", "easymotion-k"],
-                \ "n":  [ "<Plug>(easymotion-n)", "easymotion-n"],
-                \ "N":  [ "<Plug>(easymotion-N)", "easymotion-N"],
-                \ "s":  [ "<Plug>(easymotion-s)", "easymotion-s"],
-                \ ".": ["<Plug>(easymotion-repeat)", "repeat motion"]
-                \ }
+    " Move to one char
+    nmap f <Plug>(easymotion-f)
+    nmap F <Plug>(easymotion-F)
+    " Move to {char}{char}
+    nmap mf <Plug>(easymotion-overwin-f2)
+
+    " Move to line
+    nmap ml <Plug>(easymotion-bd-jk)
+
+    " Move to word
+    nmap mw <Plug>(easymotion-bd-w)
+
+    " Repeat
+    nmap m. <Plug>(easymotion-repeat)
+
+    " Gif config
+    map  <M-/> <Plug>(easymotion-sn)
+    omap <M-/> <Plug>(easymotion-tn)
 endfunction
 
 function! MuiltipleKey()
@@ -465,6 +406,11 @@ function! SpellCheck()
 endfunction
 
 function! OtherKey()
+    if has('nvim')
+        nmap <silent><C-M-n> <plug>CodeRunner
+    else
+        nmap <silent><leader>R <plug>CodeRunner
+    endif
     nmap <leader>/ <plug>(fzf-maps-n)
     xmap <leader>/ <plug>(fzf-maps-x)
     omap <leader>/ <plug>(fzf-maps-o)
@@ -533,21 +479,19 @@ function! OtherKey()
     xmap <leader>x  <Plug>(coc-convert-snippet)
 	nmap s <Nop>
 	xmap s <Nop>
-    nmap as sa
-    nmap ds sd
-    nmap cs rs
     " For wildfire
     " This selects the next closest text object.
     map ; <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
     vmap ; <Plug>(wildfire-water)
+    nnoremap <M-x> :Commands<CR>
+    call MovtionKey()
     call BasicVimKeybinding()
 endfunction
 
 function BasicVimKeybinding()
     nnoremap J gJ
     nnoremap gp `[v`]
-    nnoremap <M-x> :Commands<CR>
     nnoremap < <<
     nnoremap > >>
     inoremap <C-e> <End>
@@ -563,7 +507,7 @@ function BasicVimKeybinding()
     inoremap <C-l> <Right>
     inoremap <C-k> <Up>
 
-    " Terminal Function
+    " Terminal Function {{
     let g:term_buf = 0
     let g:term_win = 0
     function! TermToggle(height)
@@ -585,16 +529,17 @@ function BasicVimKeybinding()
             let g:term_win = win_getid()
         endif
     endfunction
+    " }}
     " For Terminal For Basic {{
-    nnoremap <A-t> :call TermToggle(12)<CR>
-    inoremap <A-t> <Esc>:call TermToggle(12)<CR>
-    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+    nnoremap <silent><A-t> :call TermToggle(12)<CR>
+    inoremap <silent><A-t> <Esc>:call TermToggle(12)<CR>
+    tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(12)<CR>
     tnoremap <ESC> <C-\><C-n>
-    tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+    tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(12)<CR>
     tnoremap :q! <C-\><C-n>:q!<CR>
     " }}
-    nnoremap <leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-    nnoremap <CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+    nnoremap <silent><leader><CR>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+    nnoremap <silent><CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
     nnoremap <silent><leader><Up> :res -1<CR>
     nnoremap <silent><leader><Down> :res +1<CR>
     nnoremap <silent><leader><Left> :vertical res -1<CR>
