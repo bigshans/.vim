@@ -1,4 +1,5 @@
 let mapleader="\<Space>"
+set ttimeoutlen=150
 set nocompatible
 set showtabline=2
 set nofoldenable

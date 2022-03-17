@@ -1,4 +1,4 @@
-function! g:WhichKeyMap()
+function! g:WhichLeaderKeyMap()
     let g:which_key_map.f=FileKey()
     let g:which_key_map.s=SearchKey()
     let g:which_key_map.w=WindowsKey()
@@ -25,6 +25,77 @@ function! g:WhichKeyMap()
     let g:which_key_map.S=WorkSpaceKey()
     let g:which_key_map.C=SpellCheck()
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! g:UnimpairedMapping()
+    if g:vim_basic != 1
+        nmap [a     :previous<CR>
+        nmap ]a     :next<CR>
+        nmap [A     :first<CR>
+        nmap ]A     :last<CR>
+        nmap [b     :bprevious<CR>
+        nmap ]b     :bnext<CR>
+        nmap [B     :bfirst<CR>
+        nmap ]B     :blast<CR>
+        nmap [l     :lprevious<CR>
+        nmap ]l     :lnext<CR>
+        nmap [L     :lfirst<CR>
+        nmap ]L     :llast<CR>
+        nmap [<C-L> :lpfile<CR>
+        nmap ]<C-L> :lnfile<CR>
+        nmap [q     :cprevious<CR>
+        nmap ]q     :cnext<CR>
+        nmap [Q     :cfirst<CR>
+        nmap ]Q     :clast<CR>
+        nmap [<C-Q> :cpfile<CR>
+        nmap ]<C-Q> :cnfile
+        nmap [t     :tprevious<CR>
+        nmap ]t     :tnext<CR>
+        nmap [T     :tfirst<CR>
+        nmap ]T     :tlast<CR>
+        nmap [<C-T> :ptprevious<CR>
+        nmap ]<C-T> :ptnext<CR>
+    endif
+    nmap [n :tabprevious<CR>
+    nmap ]n :tabnext<CR>
+    let g:unimpaired_key_map={
+                \ 'a': 'previous',
+                \ 'A': 'first',
+                \ 'b': 'bprevious',
+                \ 'B': 'bfirst',
+                \ 'l': 'lprevious',
+                \ 'L': 'lfirst',
+                \ '<C-L': 'lpfile',
+                \ 'q': 'cprevious',
+                \ 'Q': 'cfirst',
+                \ '<C-Q>': 'cpfile',
+                \ 't': 'tprevious',
+                \ 'T': 'tfirst',
+                \ '<C-T>': 'ptprevious',
+                \ '<Space>': 'add blank above the cursour',
+                \ 'e': 'Exchange the current line with n lines above it.',
+                \ 'n': 'tab previous',
+                \ }
+    call which_key#register('[', 'g:unimpaired_key_map')
+    let g:unimpaired_key_map_convert={
+                \ 'a': 'next',
+                \ 'A': 'last',
+                \ 'b': 'bnext',
+                \ 'B': 'blast',
+                \ 'l': 'lnext',
+                \ 'L': 'llast',
+                \ '<C-L': 'lnfile',
+                \ 'q': 'cnext',
+                \ 'Q': 'clast',
+                \ '<C-Q>': 'cnfile',
+                \ 't': 'tnext',
+                \ 'T': 'tlast',
+                \ '<C-T>': 'ptnext',
+                \ '<Space>': 'add blank below the cursour',
+                \ 'e': 'Exchange the current line with n lines below it.',
+                \ 'n': 'tab next',
+                \ }
+    call which_key#register(']', 'g:unimpaired_key_map_convert')
 endfunction
 
 function! g:TagKeyMap()
@@ -380,12 +451,14 @@ function! TabKey()
   noremap <leader>tp :tabp<CR>
   noremap <leader>tc :tabclose<CR>
   noremap <leader>tw :tabnew<CR>
+  noremap <leader>ta :tab ball<CR>
   return {
         \ 'name': 'tab',
         \ 'n' : 'next tab',
         \ 'p' : 'prev tab',
         \ 'c' : 'close tab',
         \ 'w' : 'new tab',
+        \ 'a' : 'buffers to tab',
         \ }
 endfunction
 
@@ -490,22 +563,43 @@ function! OtherKey()
 endfunction
 
 function BasicVimKeybinding()
+    call g:UnimpairedMapping()
     nnoremap J gJ
     nnoremap gp `[v`]
     nnoremap < <<
     nnoremap > >>
     inoremap <C-e> <End>
     inoremap <C-a> <Esc>I
+    " Tab Key {{
+    call TabKey()
+    nn <M-1> 1gt
+    nn <M-2> 2gt
+    nn <M-3> 3gt
+    nn <M-4> 4gt
+    nn <M-5> 5gt
+    nn <M-6> 6gt
+    nn <M-7> 7gt
+    nn <M-8> 8gt
+    nn <M-9> 9gt
+    nn <M-0> :tablast<CR>
+    nn <leader>t1 1gt
+    nn <leader>t2 2gt
+    nn <leader>t3 3gt
+    nn <leader>t4 4gt
+    nn <leader>t5 5gt
+    nn <leader>t6 6gt
+    nn <leader>t7 7gt
+    nn <leader>t8 8gt
+    nn <leader>t9 9gt
+    nn <leader>t0 :tablast<CR>
+    " }}
     nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
     nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
     inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
     inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
     vnoremap <silent><C-Down> :m '>+1<CR>gv=gv
     vnoremap <silent><C-Up> :m '<-2<CR>gv=gv
-    inoremap <C-h> <Left>
-    inoremap <C-j> <Down>
-    inoremap <C-l> <Right>
-    inoremap <C-k> <Up>
+    vnoremap <silent>gy :call functions#CompleteYank()<CR>
 
     " Terminal Function {{
     let g:term_buf = 0
@@ -555,20 +649,29 @@ function BasicVimKeybinding()
     nnoremap <leader>; :
     nmap <leader>q :q!<CR>
     nmap <leader>Q :qa!<CR>
+    nnoremap sy "+y
+    xnoremap sy "+y
+    xnoremap sp "+p
+    nnoremap sp "+p
     nnoremap <leader>y "+y
     xnoremap <leader>y "+y
     xnoremap <leader>p "+p
     nnoremap <leader>p "+p
+    " Emacs like keybindings {{
     inoremap <C-n> <Down>
     inoremap <C-p> <Up>
     inoremap <C-b> <Left>
     inoremap <C-f> <Right>
+    inoremap <A-f> <C-Right>
+    " Alt+b not work
+    inoremap <C-A-f> <C-Left>
+    " }}
     imap <M-j><M-k> <Esc>
     imap <C-j><C-k> <Esc>
 endfunction
 
 if g:vim_basic == 1
-    call g:WhichKeyMap()
+    call g:WhichLeaderKeyMap()
     call OtherKey()
 else
     call BasicVimKeybinding()

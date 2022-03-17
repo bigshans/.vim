@@ -15,7 +15,7 @@ function! g:NERDTreeConfig()
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 endfunction
 
-function! g:AirlineConfig()     
+function! g:AirlineConfig()
     "aireline config
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#whitespace#enabled = 0
@@ -114,6 +114,8 @@ endfunction
 function! g:DelimitMateConfig()
     "delimitMate config
     " let g:delimitMate_expand_cr = 1
+    let g:delimitMate_autoclose = 1
+    let g:delimitMate_expand_space = 1
 endfunction
 
 function! g:IndentLineConfig()
@@ -128,9 +130,9 @@ function! g:IndentLineConfig()
     let g:vim_json_syntax_conceal = 1
     let g:indentLine_enabled = 1
     let g:indentLine_leadingSpaceEnable = 1
-    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown' ]
+    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown', 'help' ]
     fun! IndentLineStart()
-        if &ft =~ 'startify\|coc-explorer\|which_key\|markdown'
+        if &ft =~ join(g:indentLine_fileTypeExclude, '\|')
             execute('IndentLinesDisable')
             return
         endif
@@ -469,6 +471,8 @@ function! g:WhichKeyConfig()
     let g:mapleader = "\<Space>"
     let g:maplocalleader = ','
     nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+    nnoremap <silent> [      :<c-u>WhichKey '['<CR>
+    nnoremap <silent> ]      :<c-u>WhichKey ']'<CR>
     let g:which_key_map = {}
     let g:which_key_hspace=4
     autocmd! FileType which_key
@@ -508,7 +512,6 @@ function! g:CocConfig()
                 \ 'coc-vimlsp',
                 \ 'coc-toml',
                 \ 'coc-xml',
-                \ 'coc-yaml',
                 \ 'coc-htmlhint',
                 \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
@@ -537,7 +540,6 @@ function! g:CocConfig()
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
     imap <C-n> <Plug>(coc-snippets-expand)
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
     let g:coc_snippet_next = '<CR>'
     set updatetime=200
@@ -870,7 +872,10 @@ endfunction
 
 function! g:CodeRunnerConfig()
     let g:CodeRunnerCommandMap = {
-                \ 'typescript': 'ts-node $fileName'
+                \ 'typescript': 'ts-node $filePath'
                 \ }
     let g:code_runner_save_before_execute = 1
+endfunction
+
+function! g:AutoPairsConfig()
 endfunction

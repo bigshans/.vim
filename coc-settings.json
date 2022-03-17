@@ -90,7 +90,7 @@
             "open"
         ],
         "o": ["expanded?", "collapse", "expand"],
-        "<cr>": ["expandable?", "cd", "open:tab"],
+        "<cr>": ["expandable?", "cd", "open"],
         "<tab>": ["expanded?", "collapse", "expand"],
         "e": "open",
         "s": "open:split",
@@ -142,6 +142,7 @@
         "completeUnimported": true
     },
     "eslint.packageManager": "yarn",
+    "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
     "volar.autoClosingTags": true,
     "volar.autoCompleteRefs": true,

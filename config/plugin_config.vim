@@ -60,7 +60,6 @@ Plug 't9md/vim-choosewin'
 Plug 'weilbith/nerdtree_choosewin-plugin'
 Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 Plug 'ktonga/vim-follow-my-lead'
-Plug 'alvan/vim-closetag'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
@@ -110,7 +109,8 @@ Plug 'jdhao/better-escape.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'bigshans/vim-code-runner'
-Plug 'skywind3000/asyncrun.vim'
+Plug 'tpope/vim-unimpaired'
+" Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -156,6 +156,8 @@ call g:VimOrganizerConfig()
 call g:Sandwich()
 call g:IndentLineConfig()
 call g:CodeRunnerConfig()
+call g:AutoPairsConfig()
+call g:VimClosetagConfig()
 
 " }}
 

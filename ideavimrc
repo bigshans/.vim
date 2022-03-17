@@ -36,7 +36,9 @@ set surround
 set multiple-cursors
 set commentary
 set easymotion
-" set keep-english-in-normal-and-restore-in-insert
+
+nmap f <leader><leader>f
+
 syntax on
 set hidden
 nnoremap <leader>sm :action ShowPopupMenu<CR>
@@ -50,3 +52,17 @@ nmap sw [w
 nmap se ]w
 nmap sb [b
 nmap sB ]b
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+set keep-english-in-normal-and-restore-in-insert
+
+set NERDTree
+nmap <leader>ft :NERDTreeToggle<CR>
+
