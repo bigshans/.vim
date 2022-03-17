@@ -126,11 +126,11 @@ function! g:IndentLineConfig()
     let g:indentLine_color_gui = '#A4E57E'
     let g:indentLine_color_tty_light = 7
     let g:indentLine_concealcursor = 'inc'
-    let g:indentLine_conceallevel = 2
+    let g:indentLine_conceallevel = 1
     let g:vim_json_syntax_conceal = 1
     let g:indentLine_enabled = 1
     let g:indentLine_leadingSpaceEnable = 1
-    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown', 'help' ]
+    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json']
     fun! IndentLineStart()
         if &ft =~ join(g:indentLine_fileTypeExclude, '\|')
             execute('IndentLinesDisable')
