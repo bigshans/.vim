@@ -192,5 +192,6 @@
     "prettier.proseWrap": "preserve",
     "prettier.htmlWhitespaceSensitivity": "css",
     "omnisharp.path": "/usr/bin/omnisharp",
-    "translator.proxy": "socks://127.0.0.1:1080"
+    "translator.proxy": "socks://127.0.0.1:1080",
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
 }
