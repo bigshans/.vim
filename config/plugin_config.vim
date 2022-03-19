@@ -110,7 +110,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
-" Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
