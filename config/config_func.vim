@@ -563,6 +563,19 @@ function! g:CocConfig()
         autocmd FileType nginx setlocal iskeyword+=$
         autocmd FileType nginx let b:coc_additional_keywords = ['$']
     augroup end
+    let g:trigger_size = 0.5 * 1048576
+    augroup hugefile
+        autocmd!
+        autocmd BufReadPre *
+                    \ let size = getfsize(expand('<afile>')) |
+                    \ if (size > g:trigger_size) || (size == -2) |
+                    \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+                    \   exec 'CocDisable' |
+                    \ else |
+                    \   exec 'CocEnable' |
+                    \ endif |
+                    \ unlet size
+    augroup END
 endfunction
 
 function! g:VimOrganizerConfig()

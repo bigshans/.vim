@@ -426,11 +426,13 @@ function! MuiltipleKey()
     let g:multi_cursor_prev_key            = '<C-p>'
     let g:multi_cursor_skip_key            = '<C-x>'
     let g:multi_cursor_quit_key            = '<Esc>'
+    nnoremap <leader>in :IndentLinesToggle<CR>
     return {
                 \ 'name': '+multiple cursors',
                 \ 's': 'start word',
                 \ 'e': 'start multiple',
                 \ 'a': 'select all word',
+                \ 'n': 'toggle indentLine'
                 \ }
 endfunction
 
