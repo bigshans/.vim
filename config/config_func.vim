@@ -507,7 +507,6 @@ function! g:CocConfig()
                 \ 'coc-style-helper',
                 \ 'coc-deno',
                 \ 'coc-svelte',
-                \ 'coc-go',
                 \ 'coc-calc',
                 \ 'coc-vimlsp',
                 \ 'coc-toml',

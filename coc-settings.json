@@ -8,7 +8,13 @@
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls-cache"
@@ -18,19 +24,15 @@
                 }
             }
         },
-        "bash":{
+        "bash": {
             "command": "bash-language-server",
             "args": ["start"],
             "filetypes": ["sh"]
         },
         "golang": {
-            "command": "/home/aerian/go/bin/go-langserver",
-            "filetypes": ["go"],
-            "initializationOptions": {
-                "gocodeCompletionEnabled": true,
-                "diagnosticsEnabled": true,
-                "lintTool": "golint"
-            }
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
         },
         "vala": {
             "command": "vala-language-server",
@@ -43,7 +45,7 @@
         }
     },
     "suggest.completionItemKindLabels": {
-        "keyword":  "\uf1de", //  sliders
+        "keyword": "\uf1de", //  sliders
         "variable": "\ue79b", //  isometric box
         "value": "\uf89f", //  digits 123
         "operator": "\u03a8", // Ψ greek letter psi
@@ -71,7 +73,6 @@
         "default": "\uf29c" //  question mark in circle
     },
     "explorer.keyMappings.global": {
-
         "gk": "expandablePrev",
         "gj": "expandableNext",
 
@@ -193,5 +194,6 @@
     "prettier.htmlWhitespaceSensitivity": "css",
     "omnisharp.path": "/usr/bin/omnisharp",
     "translator.proxy": "socks://127.0.0.1:1080",
-    "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "volar.takeOverMode.enabled": true
 }
