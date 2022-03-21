@@ -195,5 +195,6 @@
     "omnisharp.path": "/usr/bin/omnisharp",
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-    "volar.takeOverMode.enabled": true
+    "volar.takeOverMode.enabled": true,
+    "pairs.dontMoveOutSide": true
 }

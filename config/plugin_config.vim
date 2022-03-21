@@ -27,7 +27,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'rakr/vim-one'
 Plug 'mattn/emmet-vim'
-Plug 'git://github.com/jiangmiao/auto-pairs.git'
+" Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/gko/vim-coloresque.git'
 Plug 'marijnh/tern_for_vim'
 Plug 'lfv89/vim-interestingwords'
@@ -110,53 +110,58 @@ Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
+Plug 'bigshans/coc-pairs'
+" Plug 'inkarkat/vim-ingo-library'
+" Plug 'bigshans/vim-mark'
 
 call plug#end()
 
 " {{ call config function
 
-call g:NERDCommenterConfig()
-call g:StartifyConfig()
-call g:VimMulipleCursorsConfig()
-call g:EmmetConfig()
-call g:VimInterestingwordConfig()
-call g:VimOrgConfig()
-call g:VimAutoformatConfig()
-call g:VimQuickrunConfig()
-call g:FZFConfig()
-call g:VimSyntaxRangeConfig()
-call g:NrrwRgnConfig()
-call g:VimOrgConfig()
-call g:UndotreeConfig()
-call RainbowParenthessConfig()
-call g:VimExpandRegionConfig()
-call g:NERDTreeGitPluginConfig()
-call g:EasymotionConfig()
-call g:VimFollowMyLeadConfig()
-call g:VimClosetagConfig()
-call g:WhichKeyConfig()
-call g:CocConfig()
-call g:VimNotesConfig()
-call g:VimRubyConfig()
-call g:BetterWhiteSpace()
-call g:VistaConfig()
-call g:VisualMuliti()
-call g:ClapConfig()
-call g:VimDeviconsConfig()
-call g:CamelCaseMotion()
-call g:VimMarkdownConfig()
-call g:SpaceVimDarkConfig()
-call g:Sonokai()
-call g:SpelunkerConfig()
-call g:Lightline()
-call g:Wildfire()
-call g:BetterEscape()
-call g:VimOrganizerConfig()
-call g:Sandwich()
-call g:IndentLineConfig()
-call g:CodeRunnerConfig()
-call g:AutoPairsConfig()
-call g:VimClosetagConfig()
+call config#NERDCommenterConfig()
+call config#StartifyConfig()
+call config#VimMulipleCursorsConfig()
+call config#EmmetConfig()
+call config#VimInterestingwordConfig()
+call config#VimOrgConfig()
+call config#VimAutoformatConfig()
+call config#VimQuickrunConfig()
+call config#FZFConfig()
+call config#VimSyntaxRangeConfig()
+call config#NrrwRgnConfig()
+call config#VimOrgConfig()
+call config#UndotreeConfig()
+call config#RainbowParenthessConfig()
+call config#VimExpandRegionConfig()
+call config#NERDTreeGitPluginConfig()
+call config#EasymotionConfig()
+call config#VimFollowMyLeadConfig()
+call config#VimClosetagConfig()
+call config#WhichKeyConfig()
+call config#CocConfig()
+call config#VimNotesConfig()
+call config#VimRubyConfig()
+call config#BetterWhiteSpace()
+call config#VistaConfig()
+call config#VisualMuliti()
+call config#ClapConfig()
+call config#VimDeviconsConfig()
+call config#CamelCaseMotion()
+call config#VimMarkdownConfig()
+call config#SpaceVimDarkConfig()
+call config#Sonokai()
+call config#SpelunkerConfig()
+call config#Lightline()
+call config#Wildfire()
+call config#BetterEscape()
+call config#VimOrganizerConfig()
+call config#Sandwich()
+call config#IndentLineConfig()
+call config#CodeRunnerConfig()
+call config#AutoPairsConfig()
+call config#VimClosetagConfig()
+
+let g:mw_no_mappings = 1
 
 " }}
 

@@ -1,4 +1,4 @@
-function! g:NERDTreeConfig()
+function! config#NERDTreeConfig()
     "NerdTree config
     let g:NERDTreeWinSize=30
     let g:NERDTreeDirArrows=1
@@ -15,7 +15,7 @@ function! g:NERDTreeConfig()
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 endfunction
 
-function! g:AirlineConfig()
+function! config#AirlineConfig()
     "aireline config
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#whitespace#enabled = 0
@@ -49,7 +49,7 @@ function! g:AirlineConfig()
     autocmd User AirlineAfterInit call airline#add_inactive_statusline_func('AirlineInactive')
 endfunction
 
-function! g:YcmConfig()     
+function! config#YcmConfig()     
     "Ycm config
     let g:ycm_allow_changing_updatetime = 0
     let g:ycm_show_diagnostics_ui = 1
@@ -91,34 +91,34 @@ function! g:YcmConfig()
     let g:ycm_max_num_candidates = 10
 endfunction
 
-function! g:Javacomplete2Config()
+function! config#Javacomplete2Config()
     "javacomplete2 config
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
     let g:JavaComplete_UsePython3 = 1
 endfunction
 
-function! g:UltiSnipsConfig()
+function! config#UltiSnipsConfig()
     let g:UltiSnipsExpandTrigger="<C-z>"
     let g:UltiSnipsJumpForwardTrigger="<C-b>"
     let g:UltiSnipsJumpBackwardTrigger="<C-z>"
     let g:UltiSnipsEditSplit="vertical"
 endfunction
 
-function! g:NERDCommenterConfig()
+function! config#NERDCommenterConfig()
     "nerdcommenter config
     let g:NERDSpaceDelims=1
     " <leader>cc   加注释
     " <leader>cu   解开注释
 endfunction
 
-function! g:DelimitMateConfig()
+function! config#DelimitMateConfig()
     "delimitMate config
     " let g:delimitMate_expand_cr = 1
     let g:delimitMate_autoclose = 1
     let g:delimitMate_expand_space = 1
 endfunction
 
-function! g:IndentLineConfig()
+function! config#IndentLineConfig()
     " indentLine config
     let g:indentLine_char = '┊'
     let g:indentLine_leadingSpaceChar = '·'
@@ -141,7 +141,7 @@ function! g:IndentLineConfig()
     autocmd BufEnter * call timer_start(200, { tid -> IndentLineStart()})
 endfunction
 
-function! g:StartifyConfig()
+function! config#StartifyConfig()
     "startify config
     source $HOME/.vim/config/logo.vim
     if exists('g:aerian_s_vim_logo')
@@ -175,13 +175,13 @@ function! g:StartifyConfig()
                 \ ]
 endfunction
 
-function! g:VimMulipleCursorsConfig()    
+function! config#VimMulipleCursorsConfig()    
     "vim-mutliple-cursors
     highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
     highlight link multiple_cursors_visual Visual
 endfunction
 
-function! g:VimRepl()    
+function! config#VimRepl()    
     "vim-repl
     let g:repl_program = {
                 \ "python": "python3",
@@ -196,7 +196,7 @@ function! g:VimRepl()
                 \}
 endfunction
 
-function! g:AleConfig()
+function! config#AleConfig()
     "ale
     " let g:ale_javascript_eslint_ecutable = 'special-eslint'
     let g:ale_python_pylint_executable = 'python3'   " or 'python' for Python 2
@@ -232,7 +232,7 @@ function! g:AleConfig()
     let g:ale_completion_max_suggestions=1
 endfunction
 
-function! g:LanguageClientConfig()
+function! config#LanguageClientConfig()
     " LanguageClient
     let g:LanguageClient_autoStart=1
     let g:LanguageClient_serverCommands = {
@@ -240,14 +240,14 @@ function! g:LanguageClientConfig()
                 \ }
 endfunction
 
-function! g:VimAutoformatConfig()
+function! config#VimAutoformatConfig()
     "vim-autoformat
     let g:formatdef_my_custom_c="astyle --style=1tbs"
     let g:formatdef_yapf_style= 'pep8'
     let g:formatdef_nginx_style="nginxfmt -i 4"
 endfunction
 
-function! g:VimQuickrunConfig()
+function! config#VimQuickrunConfig()
     "vim-quickrun
     let g:quickrun_config = {
                 \ "_" : {
@@ -257,13 +257,13 @@ function! g:VimQuickrunConfig()
     let g:quickrun_no_default_key_mappings = 1
 endfunction
 
-function! g:VimInterestingwordConfig()
+function! config#VimInterestingwordConfig()
 endfunction
 
-function! g:UndotreeConfig()
+function! config#UndotreeConfig()
 endfunction
 
-function! g:RainbowParenthessConfig()
+function! config#RainbowParenthessConfig()
     "rainbow_parenthess
     let g:rbpt_colorpairs = [
                 \ ['brown',       'RoyalBlue3'],
@@ -290,16 +290,16 @@ function! g:RainbowParenthessConfig()
     au Syntax * RainbowParenthesesLoadBraces
 endfunction
 
-function! g:VimExpandRegionConfig()
+function! config#VimExpandRegionConfig()
     "vim-expand-region
     let g:expand_region_usr_select_mode = 1
 endfunction
 
-function! g:VimVueConfig()
+function! config#VimVueConfig()
     let g:vue_disable_pre_processors=1
 endfunction
 
-function! g:NERDTreeGitPluginConfig()
+function! config#NERDTreeGitPluginConfig()
     " nerdtree-git-plugin
     let g:NERDTreeIndicatorMapCustom = {
                 \ "Modified"  : "✹",
@@ -315,27 +315,27 @@ function! g:NERDTreeGitPluginConfig()
                 \ }
 endfunction
 
-function! g:EasymotionConfig()
+function! config#EasymotionConfig()
     let g:EasyMotion_do_mappings = 0
 endfunction
 
-function! g:VimDeviconsConfig()
+function! config#VimDeviconsConfig()
     " vim-devicons
     let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 endfunction
 
-function! g:VimFollowMyLeadConfig()
+function! config#VimFollowMyLeadConfig()
     " vim-follow-my-lead
     let g:fml_all_sources = 1
 endfunction
 
-function! g:CssCompleteConfig()
+function! config#CssCompleteConfig()
     " csscomplete
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS nonci
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 endfunction
 
-function! g:VimClosetagConfig()
+function! config#VimClosetagConfig()
     "vim-closetag
 
     " filenames like *.xml, *.html, *.xhtml, ...
@@ -372,7 +372,7 @@ function! g:VimClosetagConfig()
     let g:closetag_close_shortcut = '<leader>>'
 endfunction
 
-function! g:PymodeConfig()
+function! config#PymodeConfig()
     " python-mode
     let g:pymode_python = 'python3'
     " let g:pymode_rope = 1
@@ -384,21 +384,21 @@ function! g:PymodeConfig()
     " let g:pymode_rope_complete_on_dot=1
 endfunction
 
-function! g:VimRubyConfig()
+function! config#VimRubyConfig()
     " vim-ruby
     autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
     autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 endfunction
 
-function! g:SpaceVimDarkConfig()
+function! config#SpaceVimDarkConfig()
     " space-vim-dark
     " colorscheme space-vim-dark
     " set termguicolors
     " hi LineNr ctermbg=NONE guibg=NONE
 endfunction
 
-function! g:FZFConfig()
+function! config#FZFConfig()
     " fzf
     function! s:fzf_statusline()
         " Override statusline as you like
@@ -464,7 +464,7 @@ function! g:FZFConfig()
                 \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 endfunction
 
-function! g:WhichKeyConfig()
+function! config#WhichKeyConfig()
     " whcih key
     let g:which_key_sep = '➧ '
     let g:which_key_timeout=75
@@ -480,7 +480,7 @@ function! g:WhichKeyConfig()
                 \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 endfunction
 
-function! g:NordVimConfig()
+function! config#NordVimConfig()
     " colorscheme nord
     " let g:nord_italic=1
     " let g:nord_italic_comments=1
@@ -488,10 +488,10 @@ function! g:NordVimConfig()
     " let g:nord_uniform_status_lines=1
 endfunction
 
-function! g:ContextFiletypeConfig()
+function! config#ContextFiletypeConfig()
 endfunction
 
-function! g:CocConfig()
+function! config#CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
                 \ 'coc-eslint',
@@ -577,30 +577,30 @@ function! g:CocConfig()
     augroup END
 endfunction
 
-function! g:VimOrganizerConfig()
+function! config#VimOrganizerConfig()
      let g:org_command_for_emacsclient = "emacsclient"
     au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
     au BufEnter *.org            call org#SetOrgFileType()
 endfunction
 
-function! g:NrrwRgnConfig()
+function! config#NrrwRgnConfig()
   command! -nargs=* -bang -range -complete=filetype NN
               \ :<line1>,<line2> call nrrwrgn#NrrwRgn('',<q-bang>)
               \ | set filetype=<args>
 endfunction
 
-function! g:VimNotesConfig()
+function! config#VimNotesConfig()
     let g:notes_directories=['/projects/aerian/resource/nextcloud-back/vnote',]
     let g:notes_suffix='.txt'
     let g:notes_unicode_enabled=1
     let g:notes_smart_quotes=1
 endfunction
 
-function! g:VimOrgConfig()
+function! config#VimOrgConfig()
     let g:org_agenda_files = ['/mnt/D/agenda/*.org']
 endfunction
 
-function! g:VimSyntaxRangeConfig()
+function! config#VimSyntaxRangeConfig()
     function! g:OrgSyntax()
         call SyntaxRange#Include('#+BEGIN_SRC java\n', '#END_SRC\n', 'java', 'NonText')
         call SyntaxRange#Include('#+BEGIN_SRC xml\n', '#END_SRC\n', 'xml', 'NonText')
@@ -608,18 +608,18 @@ function! g:VimSyntaxRangeConfig()
     au BufNew,BufEnter *.org call g:OrgSyntax()
 endfunction
 
-function! g:BetterWhiteSpace()
+function! config#BetterWhiteSpace()
     let g:better_whitespace_enabled = 0
 endfunction
 
-function! g:TagbarConfig()
+function! config#TagbarConfig()
     let g:tagbar_autofocus = 1
     let g:tagbar_show_linenumbers = 1
     let g:tagbar_singleclick = 1
     let g:tagbar_iconchars = ['▸', '▾']
 endfunction
 
-function! g:VisualMuliti()
+function! config#VisualMuliti()
     " let g:VM_check_mappings = 0
     " let g:VM_clear_buffer_hl = 0
     let g:VM_mouse_mappings = 1
@@ -628,7 +628,7 @@ function! g:VisualMuliti()
     let g:VM_maps['Find Subword Under'] = '<C-n>'           " replace visual C-n
 endfunction
 
-function! g:VistaConfig()
+function! config#VistaConfig()
     let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
     function! NearestMethodOrFunction() abort
         return get(b:, 'vista_nearest_method_or_function', '')
@@ -643,19 +643,19 @@ function! g:VistaConfig()
                 \  }
 endfunction
 
-function! g:WorkSpace()
+function! config#WorkSpace()
     let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 endfunction
 
-function! g:MiniMapConfig()
+function! config#MiniMapConfig()
     let g:minimap_with = 10
 endfunction
 
-function! g:ClapConfig()
+function! config#ClapConfig()
   let g:clap_theme = 'material_design_dark'
 endfunction
 
-function! g:OnedarkConfig()
+function! config#OnedarkConfig()
     "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
     "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
     "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -676,7 +676,7 @@ function! g:OnedarkConfig()
     let g:airline_theme='onedark'
 endfunction
 
-function! g:SpelunkerConfig()
+function! config#SpelunkerConfig()
     " Override highlight group name of incorrectly spelled words. (default:
     " 'SpelunkerSpellBad')
     " let g:spelunker_spell_bad_group = 'SpelunkerSpellBad'
@@ -695,7 +695,7 @@ function! g:SpelunkerConfig()
                 \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 endfunction
 
-function! g:CamelCaseMotion()
+function! config#CamelCaseMotion()
     let g:camelcasemotion_key = 's'
     omap <silent> sie <Plug>CamelCaseMotion_iw
     xmap <silent> sie <Plug>CamelCaseMotion_iw
@@ -705,12 +705,12 @@ function! g:CamelCaseMotion()
     xmap <silent> siw <Plug>CamelCaseMotion_ie
 endfunction
 
-function! g:VimMarkdownConfig()
+function! config#VimMarkdownConfig()
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_toml_frontmatter = 1
 endfunction
 
-function! g:EmmetConfig()
+function! config#EmmetConfig()
     let g:user_emmet_settings = {
                 \ 'wxss': {
                     \   'extends': 'css',
@@ -751,7 +751,7 @@ function! g:EmmetConfig()
                                 \}
 endfunction
 
-function! g:Wildfire()
+function! config#Wildfire()
     let g:wildfire_objects = {
                 \ "*" : ["i'", 'i"', "i)", "i]", "i}", "i>", "ip", "it"]
                 \ }
@@ -761,7 +761,7 @@ function! g:Wildfire()
                 \ })
 endfunction
 
-function! g:Lightline()
+function! config#Lightline()
     let g:lightline = {}
     let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
     let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
@@ -855,7 +855,7 @@ function! g:Lightline()
     call custom#colorscheme#sonokai_atlantis()
 endfunction
 
-function! g:Sonokai()
+function! config#Sonokai()
     " Important!!
     if has('termguicolors')
         set termguicolors
@@ -866,13 +866,13 @@ function! g:Sonokai()
     let g:sonokai_disable_italic_comment = 1
 endfunction
 
-function! g:BetterEscape()
+function! config#BetterEscape()
     " use jj to escape insert mode.
     let g:better_escape_shortcut = 'jk'
     let g:better_escape_interval = 10
 endfunction
 
-function! g:Sandwich()
+function! config#Sandwich()
     let g:sandwich#recipes = [
 	  \   {'buns': ['“', '”'],  'nesting': 1, 'input': ['c"']},
       \   {'buns': ['‘', '’'],  'nesting': 1, 'input': ["c'"]},
@@ -882,12 +882,12 @@ function! g:Sandwich()
     call extend(g:sandwich#recipes, g:sandwich#default_recipes)
 endfunction
 
-function! g:CodeRunnerConfig()
+function! config#CodeRunnerConfig()
     let g:CodeRunnerCommandMap = {
                 \ 'typescript': 'ts-node $filePath'
                 \ }
     let g:code_runner_save_before_execute = 1
 endfunction
 
-function! g:AutoPairsConfig()
+function! config#AutoPairsConfig()
 endfunction
