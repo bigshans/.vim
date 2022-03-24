@@ -196,5 +196,5 @@
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "volar.takeOverMode.enabled": true,
-    "pairs.dontMoveOutSide": true
+    "pairs.dontMoveOutSide": ["}", "'"]
 }

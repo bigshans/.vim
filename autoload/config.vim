@@ -534,12 +534,22 @@ function! config#CocConfig()
 
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+    function! AutoPairReturn()
+        let pairs = { "{}": "va{", "()": "va(", "``": "va`"  }
+        let cur = getline(".")[col(".")-2:col(".")-1]
+        for [p, k] in items(pairs)
+            if cur == p
+                return "\<cr>\<esc>" . pairs[p] . "=o" 
+            endif
+        endfor
+        return "\<cr>"
+    endfunction
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
     imap <C-n> <Plug>(coc-snippets-expand)
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : AutoPairReturn()
     let g:coc_snippet_next = '<CR>'
     set updatetime=200
     set shortmess+=c

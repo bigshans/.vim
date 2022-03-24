@@ -152,7 +152,7 @@ function! OpenKey()
     nnoremap <leader>op :tabnew $HOME/.vim/config/plugin_config.vim<CR>
     nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
     nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
-    nnoremap <leader>oc :tabnew $HOME/.vim/config/config_func.vim<CR>
+    nnoremap <leader>oc :tabnew $HOME/.vim/autoload/config.vim<CR>
     nnoremap <leader>oC :tabnew $HOME/.vim/coc-settings.json<CR>
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
