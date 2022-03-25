@@ -644,10 +644,12 @@ function BasicVimKeybinding()
     nnoremap wj <C-w><C-j>
     nnoremap wk <C-w><C-k>
     nnoremap wl <C-w><C-l>
-    nnoremap <Up> gk
-    nnoremap <Down> gj
-    inoremap <Up> <C-o>gk
-    inoremap <Down> <C-o>gj
+    noremap j gj
+    noremap k gk
+    noremap <Up> gk
+    noremap <Down> gj
+    inoremap <silent> <expr> <Up> pumvisible() ? '<Up>' : functions#Close_fcitx('<C-o>gk')
+    inoremap <silent> <expr> <Down> pumvisible() ? '<Down>' : functions#Close_fcitx('<C-o>gj')
     nnoremap <leader>; :
     nmap <leader>q :q!<CR>
     nmap <leader>Q :qa!<CR>

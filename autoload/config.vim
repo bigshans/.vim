@@ -49,7 +49,7 @@ function! config#AirlineConfig()
     autocmd User AirlineAfterInit call airline#add_inactive_statusline_func('AirlineInactive')
 endfunction
 
-function! config#YcmConfig()     
+function! config#YcmConfig()
     "Ycm config
     let g:ycm_allow_changing_updatetime = 0
     let g:ycm_show_diagnostics_ui = 1

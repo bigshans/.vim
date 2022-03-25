@@ -1,5 +1,5 @@
-filetype plugin indent on 
-" -----------------------*-----------------------------" 
+filetype plugin indent on
+" -----------------------*-----------------------------"
 
 " {{ value define
 
@@ -21,7 +21,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'scrooloose/nerdcommenter'
 Plug 'https://github.com/mhinz/vim-startify.git'
-Plug 'lilydjwg/fcitx.vim'
+Plug 'bigshans/fcitx.vim'
 Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-sandwich'
 Plug 'terryma/vim-multiple-cursors'

@@ -10,6 +10,22 @@ function! functions#CompleteYank()
 	let @+=decoration . "\n" . filename . ':' . "\n" . decoration . "\n" . @n
 endfunction
 
+" disable fcitx temp
+fun! functions#Close_fcitx(icmd)
+  let g:disable_fcitx_toggle_temp = 1
+  return a:icmd
+endf
+
+" get buffer width
+function! functions#BufferWidth() abort
+  let view = winsaveview()
+  let max_col = 0
+  g/^/let max_col=max([max_col, col('$') - 1])
+  call histdel('search', -1)
+  let @/ = histget('search', -1)
+  call winrestview(view)
+  return max_col
+endfunction
 
 " trim white spaces
 function! functions#TrimWhitespace()

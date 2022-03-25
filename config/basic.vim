@@ -4,6 +4,7 @@ set nocompatible
 set showtabline=2
 set nofoldenable
 set hidden
+set virtualedit=block
 set mouse=a
 set lazyredraw
 set synmaxcol=200
@@ -29,6 +30,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set wrap
+set showbreak=<
 set formatoptions+=mM
 set smartindent
 set autoindent
