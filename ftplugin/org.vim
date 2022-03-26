@@ -15,10 +15,6 @@ setlocal comments=fb:*,fb:-,fb:+,b:#,b:\:
 setlocal formatoptions+=ncqlt
 let &l:formatlistpat = '^\s*\(\d\+[.)]\|[+-]\)\s\+'
 
-setlocal foldexpr=org#fold_expr()
 setlocal foldmethod=expr
-
-if org#option('org_clean_folds', 0)
-    setlocal foldtext=org#fold_text()
-    setlocal fillchars-=fold:-
-endif
+setlocal foldexpr=org#fold_expr(v:lnum)
+setlocal foldtext=org#fold_text()
