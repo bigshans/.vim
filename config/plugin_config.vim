@@ -43,7 +43,7 @@ Plug 'tpope/vim-repeat'
 Plug 'chrisbra/NrrwRgn'
 Plug 'vim-scripts/utl.vim'
 Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
-Plug 'bigshans/VimOrganizer'
+" Plug 'bigshans/VimOrganizer'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-expand-region'
@@ -154,7 +154,7 @@ call config#SpelunkerConfig()
 call config#Lightline()
 call config#Wildfire()
 call config#BetterEscape()
-call config#VimOrganizerConfig()
+" call config#VimOrganizerConfig()
 call config#Sandwich()
 call config#IndentLineConfig()
 call config#CodeRunnerConfig()
@@ -177,5 +177,4 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.art set filetype=html
-
 " }}

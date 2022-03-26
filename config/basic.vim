@@ -1,4 +1,5 @@
 let mapleader="\<Space>"
+filetype plugin indent on
 set ttimeoutlen=150
 set nocompatible
 set showtabline=2
@@ -42,6 +43,7 @@ set laststatus=2
 set writebackup
 set nobackup
 set spelllang=en,cjk
+set directory=.,$TEMP
 set nospell
 " session
 set sessionoptions-=help

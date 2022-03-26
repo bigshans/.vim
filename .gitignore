@@ -1,8 +1,6 @@
 bundle/
 session/
 doc/
-plugin/
-syntax/
 .netrwhist
 .directory
 sessions/
