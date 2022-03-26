@@ -52,14 +52,12 @@ Plug 'posva/vim-vue'
 Plug 'othree/html5.vim', {'for': ['html', 'vue']}
 Plug 'hail2u/vim-css3-syntax'
 Plug 'Shougo/echodoc.vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
 Plug 'weilbith/nerdtree_choosewin-plugin'
 Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
-Plug 'ktonga/vim-follow-my-lead'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
@@ -111,8 +109,7 @@ Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn bu
 Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/coc-pairs'
-" Plug 'inkarkat/vim-ingo-library'
-" Plug 'bigshans/vim-mark'
+Plug 'bigshans/rel.vim'
 
 call plug#end()
 
@@ -160,6 +157,7 @@ call config#IndentLineConfig()
 call config#CodeRunnerConfig()
 call config#AutoPairsConfig()
 call config#VimClosetagConfig()
+call config#RelConfig()
 
 let g:mw_no_mappings = 1
 

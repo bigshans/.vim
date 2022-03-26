@@ -157,6 +157,7 @@ function! OpenKey()
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
     nnoremap <silent><leader>of :<C-u>Clap filer<CR>
+    nmap <silent><leader>oo :call g:XdgOpen('.')<CR>
     return {
                 \ 'name': '+open...',
                 \ 'p': 'open plugin file',
@@ -166,6 +167,7 @@ function! OpenKey()
                 \ 'v': 'open vim init file',
                 \ 'f': 'open files',
                 \ 't': 'open terminal',
+                \ 'o': 'open folder external',
                 \ }
 endfunction
 
@@ -226,6 +228,10 @@ function! WindowsKey()
                 \ 'o': 'only current windows'
                 \ }
 endfunction
+
+fun! g:XdgOpen(path) abort
+    call system(printf('xdg-open %s &', shellescape(a:path)))
+endfun
 
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
@@ -644,12 +650,17 @@ function BasicVimKeybinding()
     nnoremap wj <C-w><C-j>
     nnoremap wk <C-w><C-k>
     nnoremap wl <C-w><C-l>
+    inoremap <S-Up> <Up>
+    inoremap <S-Down> <Down>
+    nnoremap <S-Up> k
+    nnoremap <S-Down> j
     noremap j gj
     noremap k gk
     noremap <Up> gk
     noremap <Down> gj
     inoremap <silent> <expr> <Up> pumvisible() ? '<Up>' : functions#Close_fcitx('<C-o>gk')
     inoremap <silent> <expr> <Down> pumvisible() ? '<Down>' : functions#Close_fcitx('<C-o>gj')
+    inoremap <silent> <expr> <M-Backspace> functions#Close_fcitx('<C-o>diw')
     nnoremap <leader>; :
     nmap <leader>q :q!<CR>
     nmap <leader>Q :qa!<CR>
@@ -662,13 +673,12 @@ function BasicVimKeybinding()
     xnoremap <leader>p "+p
     nnoremap <leader>p "+p
     " Emacs like keybindings {{
-    inoremap <C-n> <Down>
-    inoremap <C-p> <Up>
+    imap <C-n> <Down>
+    imap <C-p> <Up>
     inoremap <C-b> <Left>
     inoremap <C-f> <Right>
     inoremap <A-f> <C-Right>
-    " Alt+b not work
-    inoremap <C-A-f> <C-Left>
+    inoremap <A-b> <C-Left>
     " }}
     imap <M-j><M-k> <Esc>
     imap <C-j><C-k> <Esc>

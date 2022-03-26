@@ -716,8 +716,13 @@ function! config#CamelCaseMotion()
 endfunction
 
 function! config#VimMarkdownConfig()
-    let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_folding_disabled = 0
     let g:vim_markdown_toml_frontmatter = 1
+    let g:vim_markdown_conceal = 0
+    let g:tex_conceal = ""
+    let g:vim_markdown_math = 1
+    let g:vim_markdown_fenced_languaghes = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'zsh=sh', 'shell=sh']
+    let g:vim_markdown_strikthrough = 1
 endfunction
 
 function! config#EmmetConfig()
@@ -900,4 +905,11 @@ function! config#CodeRunnerConfig()
 endfunction
 
 function! config#AutoPairsConfig()
+endfunction
+
+function! config#RelConfig()
+    let g:rel_extmap = {
+                \ 'html': '$BROWSER %s'
+                \ }
+    let g:rel_http = '$BROWSER %s'
 endfunction
