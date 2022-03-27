@@ -56,7 +56,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
-Plug 'weilbith/nerdtree_choosewin-plugin'
 Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'

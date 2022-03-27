@@ -532,7 +532,10 @@ function! OtherKey()
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+    inoremap <silent><C-k> <C-o>:call <SID>show_documentation()<CR>
+    nnoremap <silent><C-k> :call <SID>show_documentation()<CR>
     nnoremap <silent> K :call <SID>show_documentation()<CR>
+    nnoremap <silent> gx :call rel#Rel()<CR>
     function! s:show_documentation()
         if (index(['vim','help'], &filetype) >= 0)
             execute 'h '.expand('<cword>')
@@ -672,6 +675,8 @@ function BasicVimKeybinding()
     xnoremap <leader>y "+y
     xnoremap <leader>p "+p
     nnoremap <leader>p "+p
+    nnoremap <silent> <C-x><C-c> :source %<CR>
+    vnoremap <silent> <C-x><C-c> :<C-u>for line in getline("'<", "'>") \| execute line \| endfor<CR>
     " Emacs like keybindings {{
     imap <C-n> <Down>
     imap <C-p> <Up>
