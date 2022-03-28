@@ -576,7 +576,7 @@ function! config#CocConfig()
     augroup hugefile
         autocmd!
         autocmd BufReadPre *
-                    \ let size = getfsize(expand('<afile>')) |
+                    \ let size = getfsize(expand(@%)) |
                     \ if (size > g:trigger_size) || (size == -2) |
                     \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
                     \   exec 'CocDisable' |

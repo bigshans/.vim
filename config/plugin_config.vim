@@ -72,7 +72,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-abolish'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
-Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ryanoasis/vim-devicons' " 太卡了
 Plug 'pangloss/vim-javascript'

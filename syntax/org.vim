@@ -155,17 +155,15 @@ highlight def link orgHyperRight Comment
 
 " BEGIN_SRC
 if exists('g:loaded_SyntaxRange')
-  call SyntaxRange#Include('#+BEGIN_SRC vim', '#+END_SRC', 'vim', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC python', '#+END_SRC', 'python', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC c', '#+END_SRC', 'c', 'comment')
   " cpp must be below c, otherwise you get c syntax hl for cpp files
-  call SyntaxRange#Include('#+BEGIN_SRC cpp', '#+END_SRC', 'cpp', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC haskell', '#+END_SRC', 'haskell', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC ocaml', '#+END_SRC', 'ocaml', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC ruby', '#+END_SRC', 'ruby', 'comment')
-  call SyntaxRange#Include('#+BEGIN_SRC rust', '#+END_SRC', 'rust', 'comment')
-  " call SyntaxRange#Include('#+BEGIN_SRC lua', '#+END_SRC', 'lua', 'comment')
-  " call SyntaxRange#Include('#+BEGIN_SRC lisp', '#+END_SRC', 'lisp', 'comment')
+  let lang_list = ['vim', 'python', 'c', 'cpp', 'haskell', 'ocaml', 'ruby', 'rust', 'html', 'sh', 'lua', 'lisp', 'go']
+  for lang in lang_list
+    call SyntaxRange#Include('#+BEGIN_SRC ' . lang, '#+END_SRC', lang, 'comment')
+  endfor
+  let lang_map = { 'emacs-lisp': 'lisp' }
+  for [lang, mapLang] in items(lang_map)
+    call SyntaxRange#Include('#+BEGIN_SRC ' . lang, '#+END_SRC', mapLang, 'comment')
+  endfor
 
   " LaTeX
   call SyntaxRange#Include('\\begin[.*]{.*}', '\\end{.*}', 'tex')

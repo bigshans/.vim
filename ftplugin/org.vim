@@ -18,3 +18,4 @@ let &l:formatlistpat = '^\s*\(\d\+[.)]\|[+-]\)\s\+'
 setlocal foldmethod=expr
 setlocal foldexpr=org#fold_expr(v:lnum)
 setlocal foldtext=org#fold_text()
+setlocal indentexpr=org#indent_expr(v:lnum)

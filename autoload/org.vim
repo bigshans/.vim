@@ -16,82 +16,71 @@ function org#fold_text() abort
     return getline(v:foldstart) . '...'
 endfunction
 
-function org#fold_block(num)
-    let l:regex = '^\(\s*\)#+BEGIN_\(\w*\)\s\w*\n\_.\{-}\1#+END_\2\n$\{-}'
-    let l:pos = getpos('.')
-    let l:movePos = l:pos
-    let l:movePos[1] = a:num
-    call setpos('.', l:movePos)
-    let l:beginLine = search(l:regex, 'bcW')
-    let l:endLine = search(l:regex, 'cWe', l:beginLine)
-    call setpos('.', l:pos)
-    if !l:beginLine || !l:endLine
-        return 0
-    endif
-    if l:beginLine < a:num && l:endLine > a:num
-        return 1
-    endif
-    if l:beginLine == a:num
-        return 2
-    endif
-    if l:endLine == a:num
-        return 3
-    endif
-    return 0
-endfunction
-
 " Check fold depth of a line.
-function org#fold_expr(num)
-    let l:pos = getpos('.')
-    let l:block = org#fold_block(a:num)
-    if l:block == 1
-        call setpos('.', l:pos)
-        return '='
+function! org#fold_expr(num) abort
+    if !exists('b:org_total_line') || b:org_total_line == -1
+        let b:org_total_line = len(getline(1, '$'))
+    endif
+    let l:line = getline(a:num)
+    if !exists('b:org_outline')
+        let b:org_outline = 0
+    endif
+    let l:begin_block = '^\s*#+BEGIN_\w*\s*\w*'
+    let l:end_block = '^\s*#+END_\w*'
+    if l:line =~ l:begin_block
+        let b:block_type = split(split(l:line, ' ')[0], '_')[1]
+        return '>' . (b:org_outline + 1)
+    endif
+    if l:line =~ l:end_block
+        let l:block_type = split(split(l:line, ' ')[0], '_')[1]
+        if exists('b:block_type') && l:block_type == b:block_type
+            return '<' . (b:org_outline + 1)
+        endif
     endif
     let l:titleRegex = '^\s*\*\+\s*.*$'
-    let l:currentLine = getline(a:num)
-    call setpos('.', l:pos)
-    if l:currentLine =~ l:titleRegex
-        let l:foldDepth = len(split(l:currentLine, ' ')[0])
+    if l:line =~ l:titleRegex
+        let l:foldDepth = len(split(l:line, ' ')[0])
+        let b:org_outline = l:foldDepth
         return '>' . l:foldDepth
     endif
-    let l:movePos = l:pos
-    let l:ori = l:pos[1]
-    let l:movePos[1] = a:num
-    call setpos('.', l:movePos)
-    let l:pos[1] = l:ori
-    let l:beginLine = search(l:titleRegex, 'bcW')
-    let l:endLine = search(l:titleRegex, 'ceW', a:num)
-    call setpos('.', l:pos)
-    if !l:beginLine
-        return l:block == 2 ? '>1' : 0
-    endif
-    let l:foldDepth = len(split(getline(l:beginLine), ' ')[0])
-    call setpos('.', l:pos)
-    if l:block == 2
-        return '>' . (l:foldDepth + 1)
-    endif
-    if l:block == 3
-        return '<' . (l:foldDepth + 1)
-    endif
-    python import vim
-    let numlines=pyeval('len(vim.buffers['.({expr}-1).'])')
-    if numlines == a:num
-        return '<' . l:foldDepth
+    if b:org_total_line == a:num
+        let b:org_total_line = -1
+        return '<' . b:org_outline
     endif
     return '='
 endfunction
 
-function! PrevNonBlank(line) 
-	let line = prevnonblank(a:line)
-	 
-	if (len(synstack(line,1))>0) && (synIDattr(synstack(line,1)[0],'name') == 'orgLisp')
-		execute line + 1
-		let line = search('^#+begin_src','nb')-1
-	elseif (len(synstack(line-1,1))>0) && (synIDattr(synstack(line-1,1)[0],'name') == 'orgList')
-		execute line - 1
-		let line = search('^\s*$','nb')-1
-
-	endif
-	return prevnonblank(line)
+function! org#indent_expr(num)
+    if a:num == 1
+        return 0
+    endif
+    let l:titleRegex = '^\s*\*\+\s*.*$'
+    let l:current_line = getline(a:num)
+    if l:current_line =~ l:titleRegex
+        return 0
+    endif
+    let l:prev_line = getline(a:num - 1)
+    let l:prev_indent = indent(a:num - 1)
+    let l:cur_indent = indent(a:num)
+    if l:cur_line =~ '^\s*$'
+        return 0
+    endif
+    if l:prev_line =~ l:titleRegex
+        let l:indent = len(split(l:prev_line, ' ')[0])
+        return l:indent
+    endif
+    if l:current_line =~ '^\s*-\s' || l:current_line =~ '^\s*\*\s'
+        return l:cur_indent
+    endif
+    let l:ln = a:num
+    while l:ln != 0
+        let l:ln = l:ln - 1
+        if getline(l:ln) =~ '^\s*$'
+            continue
+        endif
+        let l:prev_indent = indent(l:ln)
+        return l:cur_indent > l:prev_indent ? l:cur_indent : l:prev_indent
+    endwhile
+    return l:prev_indent
 endfunction
+

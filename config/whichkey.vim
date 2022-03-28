@@ -476,6 +476,7 @@ function! SpellCheck()
     nmap <leader>Cf Zf
     nmap <leader>Cg Zg
     nmap <leader>CG ZG
+    nmap <leader>Ct ZT
     return {
             \ 'name': 'spell check',
             \ 'l': 'Correct misspelled words with a list of suggestions.',
@@ -483,6 +484,7 @@ function! SpellCheck()
             \ 'f': 'Correct misspelled words by picking first item on suggestion list. ',
             \ 'g': 'Add Select word to spellfile',
             \ 'G': 'Add Select word to the internal word list',
+            \ 't': 'toggle Spell Check'
             \ }
 endfunction
 
