@@ -1,8 +1,8 @@
-# Aerian's Vim for Linux
+# Aerian's neoVim for Linux
 
 ## Introduction
 
-这是我个人的 Vim 配置
+放弃 vim 了，彻底转到 neovim 上。另外，我并不觉得使用 lua 是个好主意。
 
 ## Config
 
