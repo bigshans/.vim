@@ -1,1 +1,1 @@
-/home/aerian/.vim/vimrc
+source $HOME/.vim/vimrc

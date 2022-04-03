@@ -152,7 +152,7 @@
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
     "explorer.file.showHiddenFiles": true,
-    "explorer.previewAction.onHover": true,
+    "explorer.previewAction.onHover": false,
     "explorer.git.icon.status.modified": "✹",
     "explorer.git.icon.status.added": "✚",
     "explorer.git.icon.status.untracked": "✭",
@@ -173,7 +173,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToVirtualText": false,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
@@ -202,5 +202,5 @@
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "volar.takeOverMode.enabled": true,
-    "pairs.dontMoveOutSide": ["}", "'"]
+    "pairs.dontMoveOutSide": ["'"]
 }

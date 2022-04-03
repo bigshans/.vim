@@ -40,6 +40,7 @@ if !has('nvim')
     set listchars=eol:↩︎
 endif
 set laststatus=2
+set noswapfile
 set writebackup
 set nobackup
 set spelllang=en,cjk
@@ -107,6 +108,11 @@ function! g:Tab4()
     set softtabstop=4
     set shiftwidth=4
 endfunction
+
+" General colors
+if !has('gui_running') && !has('nvim') 
+    let &t_ut=''
+endif
 
 command Tab2 :call g:Tab2()
 command Tab4 :call g:Tab4()

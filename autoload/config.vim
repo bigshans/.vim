@@ -495,7 +495,6 @@ function! config#CocConfig()
     let g:coc_global_extensions = [
                 \ 'coc-tsserver',
                 \ 'coc-eslint',
-                \ 'coc-prettier',
                 \ 'coc-explorer',
                 \ 'coc-html',
                 \ 'coc-css',

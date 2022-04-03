@@ -207,23 +207,15 @@ function! WindowsKey()
     nnoremap <leader>wc :ChooseWin<CR>
     nnoremap <leader>wa :ChooseWinSwap<CR>
     nnoremap <leader>wd :only<CR>
-    nnoremap <leader>wh <C-w><C-h>
-    nnoremap <leader>wj <C-w><C-j>
-    nnoremap <leader>wk <C-w><C-k>
-    nnoremap <leader>wl <C-w><C-l>
-    nnoremap <leader>ws :split<CR>
-    nnoremap <leader>wv :vsplit<CR>
+    nnoremap <leader>wh :split<CR>
+    nnoremap <leader>ws :vsplit<CR>
     nnoremap <leader>wo :only<CR>
     return {
                 \ 'name':'+windows',
                 \ 'c': 'choose win',
                 \ 'd': 'only win',
-                \ 'h': 'move left',
-                \ 'j': 'move down',
-                \ 'k': 'move up',
-                \ 'l': 'move right',
                 \ 's': 'split window',
-                \ 'v': 'vertical split',
+                \ 'h': 'vertical split',
                 \ 'a': 'choosewin swap',
                 \ 'o': 'only current windows'
                 \ }
@@ -684,8 +676,8 @@ function BasicVimKeybinding()
     imap <C-p> <Up>
     inoremap <C-b> <Left>
     inoremap <C-f> <Right>
-    inoremap <A-f> <C-Right>
-    inoremap <A-b> <C-Left>
+    inoremap <M-f> <C-Right>
+    inoremap <M-b> <C-Left>
     " }}
     imap <M-j><M-k> <Esc>
     imap <C-j><C-k> <Esc>
