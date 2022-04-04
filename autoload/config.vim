@@ -372,18 +372,6 @@ function! config#VimClosetagConfig()
     let g:closetag_close_shortcut = '<leader>>'
 endfunction
 
-function! config#PymodeConfig()
-    " python-mode
-    let g:pymode_python = 'python3'
-    " let g:pymode_rope = 1
-    " let g:pymode_rope_completion=1
-    " let g:pymode_rope_autoimport = 1
-    " let g:pymode_rope_autoimport = 1
-    " let g:pymode_rope_completion_bind = '<Tab>'
-    let g:pymode_run_bind = '<leader>r'
-    " let g:pymode_rope_complete_on_dot=1
-endfunction
-
 function! config#VimRubyConfig()
     " vim-ruby
     autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
@@ -514,7 +502,6 @@ function! config#CocConfig()
                 \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
                 \ '@yaegassy/coc-intelephense',
-                \ 'coc-tabnine',
                 \ 'coc-lua',
                 \ 'coc-kite-cmp',
                 \ 'coc-marketplace',
@@ -543,13 +530,14 @@ function! config#CocConfig()
         endfor
         return "\<cr>"
     endfunction
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<cr>"
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
-    imap <C-n> <Plug>(coc-snippets-expand)
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : AutoPairReturn()
-    let g:coc_snippet_next = '<CR>'
+    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     set updatetime=200
     set shortmess+=c
     if has("patch-8.1.1564")
@@ -558,7 +546,6 @@ function! config#CocConfig()
     else
         set signcolumn=yes
     endif
-    autocmd CursorHold * silent call CocActionAsync('highlight')
     augroup mygroup
         autocmd!
         " Setup formatexpr specified filetype(s).

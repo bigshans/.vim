@@ -107,8 +107,15 @@ Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
-Plug 'bigshans/coc-pairs'
 Plug 'bigshans/rel.vim'
+Plug 'bigshans/findr.vim'
+
+" pure lua plugin for nvim
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-orgmode/orgmode'
+Plug 'windwp/nvim-autopairs'
+Plug 'akinsho/org-bullets.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -160,11 +167,15 @@ call config#RelConfig()
 
 let g:mw_no_mappings = 1
 
+if has('nvim')
+    lua require 'config'
+endif
+
 " }}
 
 " 用于测试插件
 " set runtimepath^=/projects/aerian/wp/coc-kite-cmp
-
+" set runtimepath^=/projects/aerian/wp/org-mode
 " {{ autocmd
 
 autocmd BufNew,BufEnter *.java execute "silent! CocDisable"

@@ -46,6 +46,7 @@ set nobackup
 set spelllang=en,cjk
 set directory=.,$TEMP
 set nospell
+set pumheight=20
 " session
 set sessionoptions-=help
 if has('gui_running') || exists('g:nyaovim_version')

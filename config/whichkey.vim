@@ -156,7 +156,11 @@ function! OpenKey()
     nnoremap <leader>oC :tabnew $HOME/.vim/coc-settings.json<CR>
     nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
-    nnoremap <silent><leader>of :<C-u>Clap filer<CR>
+    if has('nvim')
+        nnoremap <silent><leader>of :<C-u>Findr<CR>
+    else
+        nnoremap <silent><leader>of :<C-u>Clap filer<CR>
+    endif
     nmap <silent><leader>oo :call g:XdgOpen('.')<CR>
     return {
                 \ 'name': '+open...',
@@ -230,6 +234,7 @@ function! FileKey()
     nnoremap <silent><leader>fr  :source $MYVIMRC<CR>
     nnoremap <leader>fS  :W<CR>
     nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
+    " nnoremap <silent><leader>ft :NvimTreeToggle<CR>
     nnoremap <leader>ff :History<CR>
     " Formatting selected code.
     xmap <leader>fm  <Plug>(coc-format-selected)
