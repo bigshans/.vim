@@ -118,6 +118,7 @@ function! CoCKey()
     nnoremap <silent><leader>jk :call <SID>show_documentation()<CR>
     nmap <leader>jr <Plug>(coc-rename)
     nmap <leader>ja <Plug>(coc-codeaction)
+    nmap <leader>jd :Clap coc_diagnostics<CR>
     return {
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
@@ -132,6 +133,7 @@ function! CoCKey()
                     \ 'k': 'Coc show_documentation',
                     \ 'r': 'Coc Rename',
                     \ 'a': 'Coc GotoDefinition',
+                    \ 'd': 'Show Coc Diagnostics',
                     \}
 endfunction
 function! GitKey()
@@ -164,6 +166,7 @@ function! OpenKey()
     nmap <silent><leader>oo :call g:XdgOpen('.')<CR>
     return {
                 \ 'name': '+open...',
+                \ 'a': 'open org agenda',
                 \ 'p': 'open plugin file',
                 \ 'k': 'open key config file',
                 \ 'c': 'open config plugin file',
@@ -179,7 +182,7 @@ function! BetterKey()
     nnoremap <silent><leader>hm :message<CR>
     nnoremap <leader>hfb :Bigger<CR>
     nnoremap <leader>hfm :Smaller<CR>
-    nnoremap <leader>hh :Clap help_tags<CR>
+    nnoremap <leader>hh :Telescope help_tags<CR>
     nnoremap <leader>ht :help<Space>
     xnoremap <silent><leader>hr :set relativenumber!<CR>
     nnoremap <silent><leader>hn :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -235,7 +238,7 @@ function! FileKey()
     nnoremap <leader>fS  :W<CR>
     nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
     " nnoremap <silent><leader>ft :NvimTreeToggle<CR>
-    nnoremap <leader>ff :History<CR>
+    nnoremap <leader>ff :Telescope oldfiles<CR>
     " Formatting selected code.
     xmap <leader>fm  <Plug>(coc-format-selected)
     nmap <silent><leader>fm  :call CocActionAsync('format')<CR>
@@ -267,7 +270,7 @@ function! BuffersKey()
     nnoremap <silent><leader>bn  :bn<CR>
     nnoremap <silent><leader>bp  :bp<CR>
     nnoremap <silent><leader>bd  :bd<CR>
-    nnoremap <silent><leader>bb  :Clap buffers<CR>
+    nnoremap <silent><leader>bb  :Telescope current_buffer_fuzzy_find<CR>
     return {
                 \ 'name': '+Buffers',
                 \ 's': 'start buffer',
@@ -368,14 +371,15 @@ function! UndoKey()
 endfunction
 
 function! SearchKey()
-    nnoremap <leader>sf :Clap files<CR>
-    nnoremap <leader>ss :Clap blines<CR>
-    nnoremap <leader>sb :Clap buffers<CR>
-    nnoremap <leader>sC :Clap command<CR>
-    nnoremap <leader>sc :Clap command<CR>
+    nnoremap <leader>sf :Telescope find_files<CR>
+    nnoremap <leader>ss :Telescope current_buffer_fuzzy_find<CR>
+    nnoremap <leader>sb :Telescope buffers<CR>
+    nnoremap <leader>sC :Telescope colorscheme<CR>
+    nnoremap <leader>sc :Telescope commands<CR>
     nnoremap <leader>sw :Clap windows<CR>
-    nnoremap <leader>sa :Clap grep<CR>
+    nnoremap <leader>sa :Telescope live_grep<CR>
     nnoremap <leader>st :Clap tags<CR>
+    nnoremap <leader>si :Telescope builtin<CR>
     nnoremap <leader>sq :wq<CR>
     return {
                 \ 'name': '+search',
@@ -393,6 +397,7 @@ function! SearchKey()
                 \ 'c': 'command history'
                 \ },
                 \ 'q' : 'save and quit',
+                \ 'i' : 'telescope builtin'
                 \ }
 endfunction
 
@@ -412,6 +417,22 @@ function! MovtionKey()
     " Repeat
     nmap m. <Plug>(easymotion-repeat)
 
+    " Gif config
+    map  <M-/> <Plug>(easymotion-sn)
+    omap <M-/> <Plug>(easymotion-tn)
+endfunction
+
+function! HopMovtionKey()
+    nmap <silent> f :HopChar1CurrentLineAC<CR>
+    nmap <silent> F :HopChar1CurrentLineBC<CR>
+
+    nmap <silent> <leader><leader>f :HopChar1MW<CR>
+    nmap <silent> <leader><leader>F :HopChar2MW<CR>
+
+    nmap <silent> <leader><leader>l :HopLineMW<CR>
+    nmap <silent> <leader><leader>w :HopWordMW<CR>
+
+    " stil use easy motion
     " Gif config
     map  <M-/> <Plug>(easymotion-sn)
     omap <M-/> <Plug>(easymotion-tn)
@@ -568,12 +589,13 @@ function! OtherKey()
     " This selects the previous closest text object.
     vmap ; <Plug>(wildfire-water)
     nnoremap <M-x> :Commands<CR>
-    call MovtionKey()
+    call HopMovtionKey()
     call BasicVimKeybinding()
 endfunction
 
 function BasicVimKeybinding()
     call g:UnimpairedMapping()
+    nmap <leader><leader><leader> <ESC>
     nnoremap J gJ
     nnoremap gp `[v`]
     nnoremap < <<

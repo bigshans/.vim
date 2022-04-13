@@ -109,12 +109,20 @@ Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
+Plug 'vn-ki/coc-clap'
+" Plug 'Konfekt/FastFold'
 
 " pure lua plugin for nvim
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-orgmode/orgmode'
-Plug 'windwp/nvim-autopairs'
-Plug 'akinsho/org-bullets.nvim'
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-orgmode/orgmode'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'akinsho/org-bullets.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'phaazon/hop.nvim'
+endif
 " Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
@@ -164,6 +172,7 @@ call config#CodeRunnerConfig()
 call config#AutoPairsConfig()
 call config#VimClosetagConfig()
 call config#RelConfig()
+call config#FastFoldConfig()
 
 let g:mw_no_mappings = 1
 

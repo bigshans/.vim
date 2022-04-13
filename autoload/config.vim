@@ -503,9 +503,10 @@ function! config#CocConfig()
                 \ '@yaegassy/coc-volar',
                 \ '@yaegassy/coc-intelephense',
                 \ 'coc-lua',
-                \ 'coc-kite-cmp',
                 \ 'coc-marketplace',
                 \ 'coc-translator',
+                \ 'coc-kite-cmp',
+                \ 'coc-tabnine',
                 \]
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -532,7 +533,7 @@ function! config#CocConfig()
     endfunction
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<cr>"
+    " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<cr>"
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
                 \ <SID>check_back_space() ? "\<TAB>" :
@@ -899,4 +900,8 @@ function! config#RelConfig()
                 \ 'html': '$BROWSER %s'
                 \ }
     let g:rel_http = '$BROWSER %s'
+endfunction
+
+function! config#FastFoldConfig()
+    let g:html_folding = 1
 endfunction

@@ -1,7 +1,7 @@
 -- init.lua
 
 local plugin_config = {}
-local enable_plugin = { "treesitter", "orgmode", "npairs" }
+local enable_plugin = { "treesitter", "orgmode", "npairs", "telescope", "hop" }
 
 function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
@@ -10,12 +10,12 @@ function plugin_config:treesitter()
     -- Tree-sitter configuration
     require'nvim-treesitter.configs'.setup {
         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-        ensure_installed = 'maintained',
-        ignore_install = { 'lua', 'hcl', 'vim', 'markdown' },
+        ensure_installed = 'all',
+        ignore_install = { 'lua', 'hcl', 'vim', 'markdown', 'swift' },
         sync_install = false,
         highlight = {
             enable = true,
-            disable = {'org', 'lua', 'vim', 'html', 'markdown'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+            disable = {'org', 'lua', 'vim', 'markdown', 'html'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
             additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
         }
     }
@@ -97,6 +97,43 @@ function plugin_config:indent_blank_line()
             "IndentBlanklineIndent6",
         },
     }
+end
+
+function plugin_config:telescope()
+    require('telescope').setup{
+        defaults = {
+            -- Default configuration for telescope goes here:
+            -- config_key = value,
+            mappings = {
+                i = {
+                    -- map actions.which_key to <C-h> (default: <C-/>)
+                    -- actions.which_key shows the mappings for your picker,
+                    -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+                    ["<C-h>"] = "which_key"
+                }
+            }
+        },
+        pickers = {
+            -- Default configuration for builtin pickers goes here:
+            -- picker_name = {
+            --   picker_config_key = value,
+            --   ...
+            -- }
+            -- Now the picker_config_key will be applied every time you call this
+            -- builtin picker
+        },
+        extensions = {
+            -- Your extension configuration goes here:
+            -- extension_name = {
+            --   extension_config_key = value,
+            -- }
+            -- please take a look at the readme of the extension you want to configure
+        }
+    }
+end
+
+function plugin_config:hop()
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 end
 
 for _,v in ipairs(enable_plugin) do

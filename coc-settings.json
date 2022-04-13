@@ -1,5 +1,4 @@
 {
-    "suggest.timeout": 0,
     "diagnostic.enable": true,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "✘",
@@ -140,9 +139,6 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
-    "go.goplsOptions": {
-        "completeUnimported": true
-    },
     "eslint.packageManager": "yarn",
     "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
@@ -188,20 +184,8 @@
     "codeLens.separator": "▸",
     "intelephense.progress.enable": false,
     "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
-    "prettier.printWidth": 120,
-    "prettier.tabWidth": 2,
-    "prettier.useTabs": false,
-    "prettier.semi": true,
-    "prettier.singleQuote": true,
-    "prettier.jsxSingleQuote": false,
-    "prettier.trailingComma": "es5",
-    "prettier.bracketSpacing": true,
-    "prettier.arrowParens": "always",
-    "prettier.proseWrap": "preserve",
-    "prettier.htmlWhitespaceSensitivity": "css",
     "omnisharp.path": "/usr/bin/omnisharp",
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-    "volar.takeOverMode.enabled": true,
-    "pairs.dontMoveOutSide": ["'"]
+    "volar.takeOverMode.enabled": true
 }
