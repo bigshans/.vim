@@ -595,6 +595,7 @@ endfunction
 
 function BasicVimKeybinding()
     call g:UnimpairedMapping()
+    nmap <Tab> za
     nmap <leader><leader><leader> <ESC>
     nnoremap J gJ
     nnoremap gp `[v`]
