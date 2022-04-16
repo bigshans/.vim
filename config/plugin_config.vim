@@ -15,7 +15,7 @@ let g:vimspector_enable_mappings = 'HUMAN'
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'git://github.com/flazz/vim-colorschemes.git'
+Plug 'flazz/vim-colorschemes'
 Plug 'sainnhe/artify.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'https://github.com/honza/vim-snippets.git'
