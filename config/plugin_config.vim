@@ -72,7 +72,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-abolish'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
-" Plug 'itchyny/vim-cursorword'
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ryanoasis/vim-devicons' " 太卡了
 Plug 'pangloss/vim-javascript'
@@ -110,9 +109,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
-" Plug 'Konfekt/FastFold'
 
-" pure lua plugin for nvim
+" pure nvim plugin for nvim
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-orgmode/orgmode'
