@@ -192,7 +192,7 @@ function plugin_config:bufferline()
                 return " " .. icon .. count
             end,
             numbers = function(opts)
-                return string.format('%s| %s,%s', vim.fn['tabpagenr'](), opts.id, opts.ordinal)
+                return string.format(' %s/%s.%s', vim.fn['tabpagenr'](), opts.id, opts.ordinal)
             end,
             offsets = {
                 {
