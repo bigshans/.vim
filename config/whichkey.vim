@@ -2,6 +2,11 @@ function! g:WhichLeaderKeyMap()
     let g:which_key_map.f=FileKey()
     let g:which_key_map.s=SearchKey()
     let g:which_key_map.w=WindowsKey()
+    " <Leader>[1-9] move to window [1-9]
+    for s:i in range(1, 9)
+        execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<CR>'
+        let g:which_key_map.w[s:i]='to windows '.s:i
+    endfor
     let g:which_key_map.c=CommentKey()
     let g:which_key_map.b=BuffersKey()
     let g:which_key_map.t=TagKeyMap()
@@ -151,12 +156,12 @@ function! GitKey()
 endfunction
 
 function! OpenKey()
-    nnoremap <leader>op :tabnew $HOME/.vim/config/plugin_config.vim<CR>
-    nnoremap <leader>ok :tabnew $HOME/.vim/config/whichkey.vim<CR>
-    nnoremap <leader>ob :tabnew $HOME/.vim/config/basic.vim<CR>
-    nnoremap <leader>oc :tabnew $HOME/.vim/autoload/config.vim<CR>
-    nnoremap <leader>oC :tabnew $HOME/.vim/coc-settings.json<CR>
-    nnoremap <leader>ov :tabnew $HOME/.vim/vimrc<CR>
+    nnoremap <leader>op :e $HOME/.vim/config/plugin_config.vim<CR>
+    nnoremap <leader>ok :e $HOME/.vim/config/whichkey.vim<CR>
+    nnoremap <leader>ob :e $HOME/.vim/config/basic.vim<CR>
+    nnoremap <leader>oc :e $HOME/.vim/autoload/config.vim<CR>
+    nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
+    nnoremap <leader>ov :e $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
     if has('nvim')
         nnoremap <silent><leader>of :<C-u>Findr<CR>
@@ -202,11 +207,6 @@ function! BetterKey()
 endfunction
 
 function! WindowsKey()
-    for s:i in range(1, 9)
-        " <Leader>[1-9] move to window [1-9]
-        execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
-        let g:which_key_map[s:i]='to windows '.s:i
-    endfor
     let g:which_key_map['<Up>']='win expand up'
     let g:which_key_map['<Down>']='win expand down'
     let g:which_key_map['<Left>']='win expand left'
@@ -270,6 +270,7 @@ function! BuffersKey()
     nnoremap <silent><leader>bn  :bn<CR>
     nnoremap <silent><leader>bp  :bp<CR>
     nnoremap <silent><leader>bd  :bd<CR>
+    nnoremap <silent><leader>bq  :bd<CR>
     nnoremap <silent><leader>bb  :Telescope current_buffer_fuzzy_find<CR>
     return {
                 \ 'name': '+Buffers',
@@ -278,6 +279,7 @@ function! BuffersKey()
                 \ 'p': 'pervious buffer',
                 \ 'b': 'buffer search',
                 \ 'd': 'buffer kill',
+                \ 'q': 'buffer quit',
                 \ }
 endfunction
 
@@ -478,6 +480,40 @@ function! TabKey()
   noremap <leader>tc :tabclose<CR>
   noremap <leader>tw :tabnew<CR>
   noremap <leader>ta :tab ball<CR>
+  let bufferlineTab = 0
+  if bufferlineTab
+      nn <M-1> 1gt
+      nn <M-2> 2gt
+      nn <M-3> 3gt
+      nn <M-4> 4gt
+      nn <M-5> 5gt
+      nn <M-6> 6gt
+      nn <M-7> 7gt
+      nn <M-8> 8gt
+      nn <M-9> 9gt
+      nn <M-0> :tablast<CR>
+  else
+      nn <leader>1 1gt
+      nn <leader>2 2gt
+      nn <leader>3 3gt
+      nn <leader>4 4gt
+      nn <leader>5 5gt
+      nn <leader>6 6gt
+      nn <leader>7 7gt
+      nn <leader>8 8gt
+      nn <leader>9 9gt
+      nn <leader>0 :tablast<CR>
+  endif
+  nn <leader>t1 1gt
+  nn <leader>t2 2gt
+  nn <leader>t3 3gt
+  nn <leader>t4 4gt
+  nn <leader>t5 5gt
+  nn <leader>t6 6gt
+  nn <leader>t7 7gt
+  nn <leader>t8 8gt
+  nn <leader>t9 9gt
+  nn <leader>t0 :tablast<CR>
   return {
         \ 'name': 'tab',
         \ 'n' : 'next tab',
@@ -506,12 +542,26 @@ function! SpellCheck()
             \ }
 endfunction
 
+function BufferLineKeys()
+    nnoremap <silent><M-1> <Cmd>BufferLineGoToBuffer 1<CR>
+    nnoremap <silent><M-2> <Cmd>BufferLineGoToBuffer 2<CR>
+    nnoremap <silent><M-3> <Cmd>BufferLineGoToBuffer 3<CR>
+    nnoremap <silent><M-4> <Cmd>BufferLineGoToBuffer 4<CR>
+    nnoremap <silent><M-5> <Cmd>BufferLineGoToBuffer 5<CR>
+    nnoremap <silent><M-6> <Cmd>BufferLineGoToBuffer 6<CR>
+    nnoremap <silent><M-7> <Cmd>BufferLineGoToBuffer 7<CR>
+    nnoremap <silent><M-8> <Cmd>BufferLineGoToBuffer 8<CR>
+    nnoremap <silent><M-9> <Cmd>BufferLineGoToBuffer 9<CR>
+    nn <silent> gb :BufferLinePick<CR>
+endfunction
+
 function! OtherKey()
     if has('nvim')
         nmap <silent><C-M-n> <plug>CodeRunner
     else
         nmap <silent><leader>R <plug>CodeRunner
     endif
+    call BufferLineKeys()
     nmap <leader>/ <plug>(fzf-maps-n)
     xmap <leader>/ <plug>(fzf-maps-x)
     omap <leader>/ <plug>(fzf-maps-o)
@@ -591,6 +641,8 @@ function! OtherKey()
     nnoremap <M-x> :Commands<CR>
     call HopMovtionKey()
     call BasicVimKeybinding()
+    " overwrite leader q
+    nmap <silent><leader>q :call functions#bufQuit()<CR>
 endfunction
 
 function BasicVimKeybinding()
@@ -605,26 +657,6 @@ function BasicVimKeybinding()
     inoremap <C-a> <Esc>I
     " Tab Key {{
     call TabKey()
-    nn <M-1> 1gt
-    nn <M-2> 2gt
-    nn <M-3> 3gt
-    nn <M-4> 4gt
-    nn <M-5> 5gt
-    nn <M-6> 6gt
-    nn <M-7> 7gt
-    nn <M-8> 8gt
-    nn <M-9> 9gt
-    nn <M-0> :tablast<CR>
-    nn <leader>t1 1gt
-    nn <leader>t2 2gt
-    nn <leader>t3 3gt
-    nn <leader>t4 4gt
-    nn <leader>t5 5gt
-    nn <leader>t6 6gt
-    nn <leader>t7 7gt
-    nn <leader>t8 8gt
-    nn <leader>t9 9gt
-    nn <leader>t0 :tablast<CR>
     " }}
     nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
     nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>

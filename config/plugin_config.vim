@@ -81,7 +81,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
 Plug 'arrufat/vala.vim'
-Plug 'vim-scripts/sessionman.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'voldikss/vim-translator'
@@ -89,7 +88,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'kamykn/spelunker.vim', { 'for': '*' }
 Plug 'bkad/CamelCaseMotion'
 Plug 'honza/vim-snippets'
-Plug 'godlygeek/tabular'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
 Plug 'othree/xml.vim'
@@ -120,6 +118,8 @@ if has('nvim')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'phaazon/hop.nvim'
+    Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+    Plug 'dstein64/nvim-scrollview'
 endif
 " Plug 'lukas-reineke/indent-blankline.nvim'
 

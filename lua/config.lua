@@ -1,7 +1,15 @@
 -- init.lua
 
 local plugin_config = {}
-local enable_plugin = { "treesitter", "orgmode", "npairs", "telescope", "hop" }
+local enable_plugin = {
+    "treesitter",
+    "orgmode",
+    "npairs",
+    "telescope",
+    "hop",
+    "bufferline",
+    "scrollview",
+}
 
 function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
@@ -134,6 +142,99 @@ end
 
 function plugin_config:hop()
     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+end
+
+function plugin_config:bufferline()
+    local tab_group = {}
+    local tabpagenr = vim.fn['tabpagenr'];
+    local bufnr = vim.fn['bufnr']
+    vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        pattern = '*',
+        callback = function ()
+            local tabId = tabpagenr()
+            local buf = bufnr()
+            if tab_group[tabId] then
+                for _, v in ipairs(tab_group[tabId]) do
+                    if v == buf then
+                        return
+                    end
+                end
+                table.insert(tab_group[tabId], buf)
+            else
+                tab_group[tabId] = { buf }
+            end
+        end
+    })
+    vim.api.nvim_create_autocmd({ "BufDelete" }, {
+        pattern = '*',
+        callback = function ()
+            local tabId = tabpagenr()
+            local buf = bufnr()
+            if tab_group[tabId] then
+                local list = {}
+                for _, v in ipairs(tab_group[tabId]) do
+                    if v == buf then
+                       goto contine
+                    end
+                    table.insert(list, v)
+                    ::contine::
+                end
+                tab_group[tabId] = list
+            end
+        end
+    })
+    require('bufferline').setup{
+        options = {
+            enforce_regular_tabs = false,
+            diagnostics = "coc",
+            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                local icon = level:match("error") and " " or " "
+                return " " .. icon .. count
+            end,
+            numbers = function(opts)
+                return string.format('%s| %s,%s', vim.fn['tabpagenr'](), opts.id, opts.ordinal)
+            end,
+            offsets = {
+                {
+                    filetype = "coc-explorer",
+                    text = function()
+                        return vim.fn.getcwd()
+                    end,
+                    highlight = "Directory",
+                    text_align = "left"
+                },
+                {
+                    filetype = 'vista',
+                    text = function()
+                        return vim.fn.getcwd()
+                    end,
+                    highlight = "Tags",
+                    text_align = "right"
+                }
+            },
+            separator_style = "slant",
+            custom_filter = function (buf_number, buf_numbers)
+                if string.match(vim.fn['bufname'](buf_number), "term") then
+                    return false
+                end
+                local tabId = tabpagenr()
+                if tab_group[tabId] then
+                    for _, p in ipairs(tab_group[tabId]) do
+                        if p == buf_number then
+                            return true
+                        end
+                    end
+                end
+                return false
+            end
+        }
+    };
+end
+
+function plugin_config:scrollview()
+    require('scrollview').setup({
+        excluded_filetypes = {'nerdtree', 'coc-explorer', 'vista'},
+    })
 end
 
 for _,v in ipairs(enable_plugin) do

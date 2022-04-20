@@ -764,7 +764,7 @@ function! config#Wildfire()
 endfunction
 
 function! config#Lightline()
-    let g:lightline = {}
+    let g:lightline = {'enable': { 'tabline': 0 } }
     let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
     let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
     let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
@@ -773,7 +773,7 @@ function! config#Lightline()
     let g:lightline#asyncrun#indicator_run = 'Running...'
     if g:vim_lightline_artify == 0
         let g:lightline.active = {
-                    \ 'left': [ [ 'mode', 'paste', 'readonly' ],
+                    \ 'left': [ [ 'mode', 'winnr', 'paste', 'readonly' ],
                     \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
                     \ 'right': [
                         \ [ 'lineinfo' ],
@@ -790,12 +790,12 @@ function! config#Lightline()
                     \ 'right': [ [ 'git_global' ], ['git_buffer'],
                     \  ]
                     \ }
-        let g:lightline.tab = {
-                    \ 'active': [ 'tabnum', 'filename', 'modified' ],
-                    \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+        " let g:lightline.tab = {
+                    " \ 'active': [ 'tabnum', 'filename', 'modified' ],
+                    " \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
     else
         let g:lightline.active = {
-                    \ 'left': [ [ 'artify_mode', 'paste', 'readonly' ],
+                    \ 'left': [ [ 'artify_mode', 'winnr', 'paste', 'readonly' ],
                     \           ['filename', 'modified', 'fileformat', 'devicons_filetype' ]],
                     \ 'right': [
                         \ [ 'artify_lineinfo' ],
@@ -813,9 +813,9 @@ function! config#Lightline()
                     \ 'right': [ [ 'git_global' ], ['git_buffer'],
                     \ ]
                     \ }
-        let g:lightline.tab = {
-                    \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
-                    \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
+        " let g:lightline.tab = {
+                    " \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+                    " \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
     endif
     let g:lightline.tab_component_function = {
                 \ 'artify_activetabnum': 'custom#lightline#artify_active_tabnum',
@@ -838,7 +838,8 @@ function! config#Lightline()
                 \ 'modified': '%M',
                 \ 'paste': '%{&paste?"PASTE":""}',
                 \ 'readonly': "%{ &readonly ? '' : '' }",
-                \ 'lineinfo': '%2p%% %3l:%-2v'
+                \ 'lineinfo': '%2p%% %3l:%-2v',
+                \ 'winnr': '%{custom#lightline#winnr()}',
                 \ }
     let g:lightline.component_function = {
                 \ 'devicons_filetype': 'custom#lightline#devicons',
