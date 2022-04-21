@@ -919,16 +919,19 @@ function! config#Dashboard()
     \ 'd'         :{
           \ 'description': [' Recently opened files                 SPC f f'],
           \ 'command':function('dashboard#handler#find_history')},
-    \ 'e'   :{
+    \ 'e'         :{
+          \ 'description': [' Open file                             SPC o f'],
+          \ 'command': 'Findr'},
+    \ 'f'   :{
           \ 'description': [' Open plugin list                      SPC o p'],
           \ 'command': 'edit $HOME/.vim/config/plugin_config.vim'},
-    \ 'f'   :{
+    \ 'g'   :{
           \ 'description': [' Plugin update                         SPC P p'],
           \ 'command': 'PlugUpdate'},
-    \ 'g'   :{
+    \ 'h'   :{
           \ 'description': [' Plugin install                        SPC P i'],
           \ 'command': 'PlugInstall'},
-    \ 'h'   :{
+    \ 'i'   :{
           \ 'description': [' Change colorScheme                    SPC s C'],
           \ 'command':function('dashboard#handler#change_colorscheme')},
     \ }
@@ -947,6 +950,6 @@ function! config#Dashboard()
             endif
         endif
     endfunction
-    autocmd FileType dashboard nmap <buffer>e :enew<CR> | nmap <buffer>q :qa!<CR>
-    autocmd FileType * call SetTabline()
+    autocmd FileType dashboard nnoremap <silent><buffer>e :call dashboard#handler#new_file()<CR> | nmap <buffer>q :qa!<CR>
+    autocmd BufEnter,FileType * call SetTabline()
 endfunction
