@@ -382,6 +382,8 @@ function! SearchKey()
     nnoremap <leader>sa :Telescope live_grep<CR>
     nnoremap <leader>st :Clap tags<CR>
     nnoremap <leader>si :Telescope builtin<CR>
+    nmap <leader>se :SessionSave<CR>
+    nmap <leader>sl :<C-u>SessionLoad<CR>
     nnoremap <leader>sq :wq<CR>
     return {
                 \ 'name': '+search',
@@ -399,7 +401,9 @@ function! SearchKey()
                 \ 'c': 'command history'
                 \ },
                 \ 'q' : 'save and quit',
-                \ 'i' : 'telescope builtin'
+                \ 'i' : 'telescope builtin',
+                \ 'e': 'save session',
+                \ 'l': 'load session',
                 \ }
 endfunction
 

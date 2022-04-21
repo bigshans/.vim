@@ -20,7 +20,8 @@ Plug 'sainnhe/artify.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'scrooloose/nerdcommenter'
-Plug 'https://github.com/mhinz/vim-startify.git'
+" Plug 'https://github.com/mhinz/vim-startify.git'
+Plug 'glepnir/dashboard-nvim'
 Plug 'bigshans/fcitx.vim'
 Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-sandwich'
@@ -127,7 +128,7 @@ call plug#end()
 " {{ call config function
 
 call config#NERDCommenterConfig()
-call config#StartifyConfig()
+" call config#StartifyConfig()
 call config#VimMulipleCursorsConfig()
 call config#EmmetConfig()
 call config#VimInterestingwordConfig()
@@ -170,6 +171,7 @@ call config#AutoPairsConfig()
 call config#VimClosetagConfig()
 call config#RelConfig()
 call config#FastFoldConfig()
+call config#Dashboard()
 
 let g:mw_no_mappings = 1
 

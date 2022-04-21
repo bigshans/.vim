@@ -130,7 +130,7 @@ function! config#IndentLineConfig()
     let g:vim_json_syntax_conceal = 1
     let g:indentLine_enabled = 1
     let g:indentLine_leadingSpaceEnable = 1
-    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json']
+    let g:indentLine_fileTypeExclude = [ 'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json', 'dashboard' ]
     fun! IndentLineStart()
         if &ft =~ join(g:indentLine_fileTypeExclude, '\|')
             execute('IndentLinesDisable')
@@ -905,4 +905,48 @@ endfunction
 
 function! config#FastFoldConfig()
     let g:html_folding = 1
+endfunction
+
+function! config#Dashboard()
+    let g:dashboard_default_executive ='telescope'
+    let g:dashboard_custom_section = {
+    \ 'b'         :{
+          \ 'description': [' Open last session                     SPC s l'],
+          \ 'command':function('dashboard#handler#last_session')},
+    \ 'c'   :{
+          \ 'description': [' Open org-agenda                       SPC o A'],
+          \ 'command': 'lua require("orgmode").action("agenda.prompt")'},
+    \ 'd'         :{
+          \ 'description': [' Recently opened files                 SPC f f'],
+          \ 'command':function('dashboard#handler#find_history')},
+    \ 'e'   :{
+          \ 'description': [' Open plugin list                      SPC o p'],
+          \ 'command': 'edit $HOME/.vim/config/plugin_config.vim'},
+    \ 'f'   :{
+          \ 'description': [' Plugin update                         SPC P p'],
+          \ 'command': 'PlugUpdate'},
+    \ 'g'   :{
+          \ 'description': [' Plugin install                        SPC P i'],
+          \ 'command': 'PlugInstall'},
+    \ 'h'   :{
+          \ 'description': [' Change colorScheme                    SPC s C'],
+          \ 'command':function('dashboard#handler#change_colorscheme')},
+    \ }
+    source $HOME/.vim/config/logo.vim
+    if exists('g:aerian_s_vim_logo')
+        let g:dashboard_custom_header = g:aerian_s_vim_logo[Rand()%len(g:aerian_s_vim_logo)]
+    endif
+    let g:dashboard_custom_footer = ['type e to new a buffer or type q to exit']
+    let g:dashboard_session_directory = $HOME . '/.cache/vim-session'
+    function SetTabline() abort
+        if &ft =~ 'dashboard'
+            set showtabline=0
+        else
+            if &showtabline != 2
+                set showtabline=2
+            endif
+        endif
+    endfunction
+    autocmd FileType dashboard nmap <buffer>e :enew<CR> | nmap <buffer>q :qa!<CR>
+    autocmd FileType * call SetTabline()
 endfunction
