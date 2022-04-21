@@ -4,7 +4,7 @@
 
 " yank text with line numbers and file name on top
 function! functions#CompleteYank()
-	redir @n | silent! :'<,'>number | redir END
+	redir @n | silent! '<,'>number | redir END
 	let filename=expand("%")
 	let decoration=repeat('-', len(filename)+1)
 	let @+=decoration . "\n" . filename . ':' . "\n" . decoration . "\n" . @n
@@ -123,8 +123,8 @@ endfunction
 
 function! functions#bufQuit() abort
     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
-        execute 'bdelete'
+        execute 'bdelete!'
     else
-        execute 'quit'
+        execute 'quit!'
     endif
 endfunction

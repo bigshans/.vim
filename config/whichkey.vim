@@ -553,6 +553,9 @@ function BufferLineKeys()
     nnoremap <silent><M-8> <Cmd>BufferLineGoToBuffer 8<CR>
     nnoremap <silent><M-9> <Cmd>BufferLineGoToBuffer 9<CR>
     nn <silent> gb :BufferLinePick<CR>
+    nnoremap <silent><leader>bn  :BufferLineCycleNext<CR>
+    nnoremap <silent><leader>bp  :BufferLineCyclePrev<CR>
+    nnoremap <silent><leader>bp  :bp<CR>
 endfunction
 
 function! OtherKey()

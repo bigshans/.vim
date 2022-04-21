@@ -8,7 +8,7 @@ local enable_plugin = {
     "telescope",
     "hop",
     "bufferline",
-    "scrollview",
+    -- "scrollview",
 }
 
 function plugin_config:treesitter()

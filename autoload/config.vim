@@ -764,7 +764,7 @@ function! config#Wildfire()
 endfunction
 
 function! config#Lightline()
-    let g:lightline = {'enable': { 'tabline': 0 } }
+    let g:lightline = { 'enable': { 'tabline': 0 } }
     let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
     let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
     let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
@@ -785,11 +785,11 @@ function! config#Lightline()
                     \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
                     \ 'right': [ ['lineinfo',  'git_global' ] ]
                     \ }
-        let g:lightline.tabline = {
-                    \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
-                    \ 'right': [ [ 'git_global' ], ['git_buffer'],
-                    \  ]
-                    \ }
+        " let g:lightline.tabline = {
+                    " \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
+                    " \ 'right': [ [ 'git_global' ], ['git_buffer'],
+                    " \  ]
+                    " \ }
         " let g:lightline.tab = {
                     " \ 'active': [ 'tabnum', 'filename', 'modified' ],
                     " \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
@@ -808,11 +808,11 @@ function! config#Lightline()
                     \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
                     \ 'right': [ ['artify_lineinfo',   'git_global' ] ]
                     \ }
-        let g:lightline.tabline = {
-                    \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
-                    \ 'right': [ [ 'git_global' ], ['git_buffer'],
-                    \ ]
-                    \ }
+        " let g:lightline.tabline = {
+                    " \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
+                    " \ 'right': [ [ 'git_global' ], ['git_buffer'],
+                    " \ ]
+                    " \ }
         " let g:lightline.tab = {
                     " \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
                     " \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }

@@ -63,7 +63,6 @@ Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'liuchengxu/vim-which-key'
-Plug 'asins/vimcdoc'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 Plug 'xolox/vim-misc'
@@ -119,7 +118,7 @@ if has('nvim')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'phaazon/hop.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-    Plug 'dstein64/nvim-scrollview'
+    " Plug 'dstein64/nvim-scrollview'
 endif
 " Plug 'lukas-reineke/indent-blankline.nvim'
 
