@@ -4,6 +4,7 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
+    "diagnostic.refreshOnInsertMode": true,
     "languageserver": {
         "ccls": {
             "command": "ccls",

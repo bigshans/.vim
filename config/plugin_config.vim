@@ -118,7 +118,7 @@ if has('nvim')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'phaazon/hop.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-    Plug 'glepnir/dashboard-nvim'
+    Plug 'bigshans/dashboard-nvim'
     " Plug 'dstein64/nvim-scrollview'
 endif
 " Plug 'lukas-reineke/indent-blankline.nvim'
