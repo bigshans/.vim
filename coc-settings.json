@@ -4,6 +4,10 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
+    "diagnostic.hintSign": "",
+    "diagnostic.enableMessage": "jump",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.refreshOnInsertMode": true,
     "languageserver": {
         "ccls": {
@@ -43,6 +47,26 @@
             "command": "nginx-language-server",
             "filetypes": ["nginx"],
             "rootPatterns": ["nginx.conf", ".git"]
+        },
+        "lua": {
+            "command": "lua-language-server",
+            "args": [
+                "-E",
+                "/usr/lib/lua-language-server/bin/main.lua"
+            ],
+            "filetypes": ["lua"],
+            "settings": {
+                "Lua": {
+                    "workspace.library": {
+                        "/usr/share/nvim/runtime/lua": true,
+                        "/usr/share/nvim/runtime/lua/vim": true,
+                        "/usr/share/nvim/runtime/lua/vim/lsp": true
+                    },
+                    "diagnostics": {
+                        "globals": [ "vim" ]
+                    }
+                }
+            }
         }
     },
     "suggest.completionItemKindLabels": {
@@ -73,6 +97,8 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
+    "suggest.noselect": true,
+    "suggest.enablePreselect": true,
     "explorer.keyMappings.global": {
         "gk": "expandablePrev",
         "gj": "expandableNext",
@@ -171,7 +197,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": false,
+    "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,

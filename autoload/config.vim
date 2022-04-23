@@ -502,7 +502,6 @@ function! config#CocConfig()
                 \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
                 \ '@yaegassy/coc-intelephense',
-                \ 'coc-lua',
                 \ 'coc-marketplace',
                 \ 'coc-translator',
                 \ 'coc-kite-cmp',
