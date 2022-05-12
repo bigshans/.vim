@@ -7,7 +7,7 @@
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
     "diagnostic.virtualText": true,
-    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.refreshOnInsertMode": true,
     "languageserver": {
         "ccls": {
@@ -67,6 +67,16 @@
                     }
                 }
             }
+        },
+        "racket": {
+            "command": "racket",
+            "args": [
+                "--lib",
+                "racket-langserver"
+            ],
+            "filetypes": [
+                "scheme"
+            ]
         }
     },
     "suggest.completionItemKindLabels": {
@@ -197,7 +207,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToVirtualText": false,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
@@ -213,5 +223,7 @@
     "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
     "omnisharp.path": "/usr/bin/omnisharp",
     "translator.proxy": "socks://127.0.0.1:1080",
-    "rust-analyzer.server.path": "/usr/bin/rust-analyzer"
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "vimlsp.indexes.runtimepath": true,
+    "vimlsp.suggest.fromRuntimepath": true
 }

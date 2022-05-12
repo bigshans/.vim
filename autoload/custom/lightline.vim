@@ -87,7 +87,7 @@ function custom#lightline#artify_column_num() abort "{{{
   return artify#convert(string(getcurpos()[2]), 'bold')
 endfunction "}}}
 function custom#lightline#winnr() abort "{{{
-  return artify#convert(winnr(), 'double_struck')
+  return '⌥ ' .. artify#convert(winnr(), 'bold')
 endfunction "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

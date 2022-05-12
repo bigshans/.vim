@@ -64,6 +64,8 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
@@ -99,13 +101,14 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'sainnhe/sonokai'
 Plug 'itchyny/lightline.vim'
 Plug 'jdhao/better-escape.vim'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'bigshans/vim-code-runner'
 Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
+" Plug 'lambdalisue/fern.vim'
 
 " pure nvim plugin for nvim
 if has('nvim')
@@ -119,6 +122,8 @@ if has('nvim')
     Plug 'phaazon/hop.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
     Plug 'bigshans/dashboard-nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
+    " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif
 " Plug 'lukas-reineke/indent-blankline.nvim'
@@ -165,7 +170,7 @@ call config#Wildfire()
 call config#BetterEscape()
 " call config#VimOrganizerConfig()
 call config#Sandwich()
-call config#IndentLineConfig()
+" call config#IndentLineConfig()
 call config#CodeRunnerConfig()
 call config#AutoPairsConfig()
 call config#VimClosetagConfig()

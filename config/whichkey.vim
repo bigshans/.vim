@@ -5,6 +5,7 @@ function! g:WhichLeaderKeyMap()
     " <Leader>[1-9] move to window [1-9]
     for s:i in range(1, 9)
         execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<CR>'
+        execute 'nnoremap w' . s:i . ' :' . s:i . 'wincmd w<CR>'
         let g:which_key_map.w[s:i]='to windows '.s:i
     endfor
     let g:which_key_map.c=CommentKey()
@@ -165,8 +166,10 @@ function! OpenKey()
     nnoremap <leader>ot :call TermToggle(12)<CR>
     if has('nvim')
         nnoremap <silent><leader>of :<C-u>Findr<CR>
+        nnoremap <silent><leader>ff :<C-u>Findr<CR>
     else
         nnoremap <silent><leader>of :<C-u>Clap filer<CR>
+        nnoremap <silent><leader>ff :<C-u>Clap filer<CR>
     endif
     nmap <silent><leader>oo :call g:XdgOpen('.')<CR>
     return {
@@ -180,6 +183,7 @@ function! OpenKey()
                 \ 'f': 'open files',
                 \ 't': 'open terminal',
                 \ 'o': 'open folder external',
+                \ 'h': 'open history files',
                 \ }
 endfunction
 
@@ -234,22 +238,22 @@ endfun
 
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
-    nnoremap <silent><leader>fr  :source $MYVIMRC<CR>
     nnoremap <leader>fS  :W<CR>
     nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
+    " nnoremap <silent><leader>ft :NvimTreeFindFileToggle<CR>
     " nnoremap <silent><leader>ft :NvimTreeToggle<CR>
-    nnoremap <leader>ff :Telescope oldfiles<CR>
+    nnoremap <leader>fr :Telescope oldfiles<CR>
     " Formatting selected code.
     xmap <leader>fm  <Plug>(coc-format-selected)
     nmap <silent><leader>fm  :call CocActionAsync('format')<CR>
     return {
                 \ 'name': '+files',
                 \ 's': 'save file',
-                \ 'r': 'reload vim file',
                 \ 'S': 'sudo save',
                 \ 't': 'explorer toggle',
-                \ 'f': 'recent files',
+                \ 'r': 'recent files',
                 \ 'm': 'format code',
+                \ 'f': 'open files',
                 \ }
 endfunction
 
@@ -385,6 +389,7 @@ function! SearchKey()
     nmap <leader>se :SessionSave<CR>
     nmap <leader>sl :<C-u>SessionLoad<CR>
     nnoremap <leader>sq :wq<CR>
+    autocmd FileType TelescopePrompt imap <silent><buffer><ESC> <ESC>:q!<CR>
     return {
                 \ 'name': '+search',
                 \ 'a': 'ack search',
@@ -714,6 +719,7 @@ function BasicVimKeybinding()
     nnoremap wj <C-w><C-j>
     nnoremap wk <C-w><C-k>
     nnoremap wl <C-w><C-l>
+    nnoremap ww w
     inoremap <S-Up> <Up>
     inoremap <S-Down> <Down>
     nnoremap <S-Up> k

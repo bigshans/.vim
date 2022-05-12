@@ -8,6 +8,8 @@ local enable_plugin = {
     "telescope",
     "hop",
     "bufferline",
+    "indent_blank_line",
+    -- "nvim_tree",
     -- "scrollview",
 }
 
@@ -19,7 +21,7 @@ function plugin_config:treesitter()
     require'nvim-treesitter.configs'.setup {
         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
         ensure_installed = 'all',
-        ignore_install = { 'lua', 'hcl', 'vim', 'markdown', 'swift' },
+        ignore_install = { 'hcl', 'lua', 'vim', 'markdown', 'swift' },
         sync_install = false,
         highlight = {
             enable = true,
@@ -60,8 +62,25 @@ end
 function plugin_config:npairs()
     local remap = vim.api.nvim_set_keymap
     local npairs = require('nvim-autopairs')
+    local Rule = require('nvim-autopairs.rule')
+    local cond = require('nvim-autopairs.conds')
     npairs.setup({map_cr = false})
-
+    npairs.remove_rule("'")
+    npairs.add_rule(
+    Rule("'", "'")
+    :with_pair(cond.not_before_regex_check("%w"))
+    :with_pair(function(_)
+        return vim.bo.filetype ~= "lisp" and vim.bo.filetype ~= "scheme"
+    end)
+    )
+    npairs.add_rule(
+    Rule("${", "}")
+    :with_pair(cond.before_regex("`.*"))
+    :with_pair(function(_)
+        return vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript'
+    end)
+    )
+    npairs.remove_rule(">[%w%s]*$")
     -- skip it, if you use another global object
     _G.MUtils= {}
 
@@ -77,18 +96,6 @@ function plugin_config:npairs()
 end
 
 function plugin_config:indent_blank_line()
-    vim.opt.termguicolors = true
-    vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
-
-    vim.opt.list = true
-    vim.opt.listchars:append("space:⋅")
-    vim.opt.listchars:append("eol:↴")
-
     require("indent_blankline").setup {
         -- for example, context is off by default, use this to turn it on
         show_current_context = true,
@@ -96,14 +103,6 @@ function plugin_config:indent_blank_line()
         buftype_exclude = { "terminal" },
         filetype_exclude = { "dashboard",  'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json' },
         space_char_blankline = " ",
-        char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-            "IndentBlanklineIndent3",
-            "IndentBlanklineIndent4",
-            "IndentBlanklineIndent5",
-            "IndentBlanklineIndent6",
-        },
     }
 end
 
@@ -112,6 +111,10 @@ function plugin_config:telescope()
         defaults = {
             -- Default configuration for telescope goes here:
             -- config_key = value,
+            layout_config = {
+                prompt_position = 'top',
+            },
+            sorting_strategy = "ascending",
             mappings = {
                 i = {
                     -- map actions.which_key to <C-h> (default: <C-/>)
@@ -174,7 +177,7 @@ function plugin_config:bufferline()
                 local list = {}
                 for _, v in ipairs(tab_group[tabId]) do
                     if v == buf then
-                       goto contine
+                        goto contine
                     end
                     table.insert(list, v)
                     ::contine::
@@ -187,14 +190,21 @@ function plugin_config:bufferline()
         options = {
             enforce_regular_tabs = false,
             diagnostics = "coc",
-            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            diagnostics_update_in_insert = true,
+            diagnostics_indicator = function(count, level)
                 local icon = level:match("error") and " " or " "
                 return " " .. icon .. count
             end,
             numbers = function(opts)
-                return string.format(' %s/%s.%s', vim.fn['tabpagenr'](), opts.id, opts.ordinal)
+                return string.format(' %s/%s', vim.fn['tabpagenr'](), opts.ordinal)
             end,
             offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    highlight = "Directory",
+                    text_align = "left"
+                },
                 {
                     filetype = "coc-explorer",
                     text = function()
@@ -213,7 +223,7 @@ function plugin_config:bufferline()
                 }
             },
             separator_style = "slant",
-            custom_filter = function (buf_number, buf_numbers)
+            custom_filter = function (buf_number)
                 if string.match(vim.fn['bufname'](buf_number), "term") then
                     return false
                 end
@@ -229,6 +239,61 @@ function plugin_config:bufferline()
             end
         }
     };
+
+    -- vim.cmd(
+    -- [[
+    -- autocmd WinEnter,BufEnter,SessionLoadPost,FileChangedShellPost * call timer_start(200, { tid -> execute("lua require('bufferline.diagnostics').refresh_coc_diagnostics()")})
+    -- ]]
+    -- )
+end
+
+function plugin_config:nvim_tree()
+    require'nvim-tree'.setup {
+        view = {
+            mappings = {
+                list = {
+                    { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
+                    { key = "<C-e>",                        action = "edit_in_place" },
+                    { key = {"O"},                          action = "edit_no_picker" },
+                    { key = {"<2-RightMouse>", "<C-]>"},    action = "cd" },
+                    { key = "E",                        action = "vsplit" },
+                    { key = "s",                        action = "split" },
+                    { key = "<C-t>",                        action = "tabnew" },
+                    { key = "<",                            action = "prev_sibling" },
+                    { key = ">",                            action = "next_sibling" },
+                    { key = "P",                            action = "parent_node" },
+                    { key = "<BS>",                         action = "close_node" },
+                    { key = "<Tab>",                        action = "preview" },
+                    { key = "K",                            action = "first_sibling" },
+                    { key = "J",                            action = "last_sibling" },
+                    { key = "I",                            action = "toggle_git_ignored" },
+                    { key = "H",                            action = "toggle_dotfiles" },
+                    { key = "R",                            action = "refresh" },
+                    { key = "a",                            action = "create" },
+                    { key = "d",                            action = "remove" },
+                    { key = "D",                            action = "trash" },
+                    { key = "r",                            action = "rename" },
+                    { key = "<C-r>",                        action = "full_rename" },
+                    { key = "x",                            action = "cut" },
+                    { key = "c",                            action = "copy" },
+                    { key = "p",                            action = "paste" },
+                    { key = "y",                            action = "copy_name" },
+                    { key = "Y",                            action = "copy_path" },
+                    { key = "gy",                           action = "copy_absolute_path" },
+                    { key = "[c",                           action = "prev_git_item" },
+                    { key = "]c",                           action = "next_git_item" },
+                    { key = "<BS>",                            action = "dir_up" },
+                    { key = "S",                            action = "system_open" },
+                    { key = "q",                            action = "close" },
+                    { key = "?",                           action = "toggle_help" },
+                    { key = "W",                            action = "collapse_all" },
+                    { key = "f",                            action = "search_node" },
+                    { key = "<C-k>",                        action = "toggle_file_info" },
+                    { key = ".",                            action = "run_file_command" }
+                }
+            }
+        }
+    }
 end
 
 function plugin_config:scrollview()

@@ -491,7 +491,6 @@ function! config#CocConfig()
                 \ 'coc-rust-analyzer',
                 \ 'coc-snippets',
                 \ 'coc-metals',
-                \ 'coc-style-helper',
                 \ 'coc-deno',
                 \ 'coc-svelte',
                 \ 'coc-calc',
@@ -504,7 +503,6 @@ function! config#CocConfig()
                 \ '@yaegassy/coc-intelephense',
                 \ 'coc-marketplace',
                 \ 'coc-translator',
-                \ 'coc-kite-cmp',
                 \ 'coc-tabnine',
                 \]
     function! s:check_back_space() abort
@@ -513,13 +511,13 @@ function! config#CocConfig()
     endfunction
     set hidden
     " Add `:Format` command to format current buffer.
-    command! -nargs=0 Format :call CocAction('format')
+    command! -nargs=0 Format :call CocActionAsync('format')
 
     " Add `:Fold` command to fold current buffer.
-    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+    command! -nargs=? Fold :call     CocActionAsync('fold', <f-args>)
 
     " Add `:OR` command for organize imports of the current buffer.
-    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+    command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
     function! AutoPairReturn()
         let pairs = { "{}": "va{", "()": "va(", "``": "va`"  }
         let cur = getline(".")[col(".")-2:col(".")-1]
@@ -549,7 +547,7 @@ function! config#CocConfig()
     augroup mygroup
         autocmd!
         " Setup formatexpr specified filetype(s).
-        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+        autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
         " Update signature help on jump placeholder.
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
@@ -673,22 +671,80 @@ function! config#OnedarkConfig()
 endfunction
 
 function! config#SpelunkerConfig()
+    " Enable spelunker.vim. (default: 1)
+    " 1: enable
+    " 0: disable
+    let g:enable_spelunker_vim = 1
+
+    " Enable spelunker.vim on readonly files or buffer. (default: 0)
+    " 1: enable
+    " 0: disable
+    let g:enable_spelunker_vim_on_readonly = 0
+
+    " Check spelling for words longer than set characters. (default: 4)
+    let g:spelunker_target_min_char_len = 4
+
+    " Max amount of word suggestions. (default: 15)
+    let g:spelunker_max_suggest_words = 15
+
+    " Max amount of highlighted words in buffer. (default: 100)
+    let g:spelunker_max_hi_words_each_buf = 100
+
+    " Spellcheck type: (default: 1)
+    " 1: File is checked for spelling mistakes when opening and saving. This
+    " may take a bit of time on large files.
+    " 2: Spellcheck displayed words in buffer. Fast and dynamic. The waiting time
+    " depends on the setting of CursorHold `set updatetime=1000`.
+    let g:spelunker_check_type = 1
+
+    " Highlight type: (default: 1)
+    " 1: Highlight all types (SpellBad, SpellCap, SpellRare, SpellLocal).
+    " 2: Highlight only SpellBad.
+    " FYI: https://vim-jp.org/vimdoc-en/spell.html#spell-quickstart
+    let g:spelunker_highlight_type = 1
+
+    " Option to disable word checking.
+    " Disable URI checking. (default: 0)
+    let g:spelunker_disable_uri_checking = 1
+
+    " Disable email-like words checking. (default: 0)
+    let g:spelunker_disable_email_checking = 1
+
+    " Disable account name checking, e.g. @foobar, foobar@. (default: 0)
+    " NOTE: Spell checking is also disabled for JAVA annotations.
+    let g:spelunker_disable_account_name_checking = 1
+
+    " Disable acronym checking. (default: 0)
+    let g:spelunker_disable_acronym_checking = 1
+
+    " Disable checking words in backtick/backquote. (default: 0)
+    let g:spelunker_disable_backquoted_checking = 1
+
+    " Disable default autogroup. (default: 0)
+    let g:spelunker_disable_auto_group = 1
+
+    " Create own custom autogroup to enable spelunker.vim for specific filetypes.
+    augroup spelunker
+        autocmd!
+        " Setting for g:spelunker_check_type = 1:
+        autocmd BufWinEnter,BufWritePost *.vim,*.js,*.jsx,*.json,*.md call spelunker#check()
+
+        " Setting for g:spelunker_check_type = 2:
+        autocmd CursorHold *.vim,*.js,*.jsx,*.json,*.md call spelunker#check_displayed_words()
+    augroup END
+
     " Override highlight group name of incorrectly spelled words. (default:
     " 'SpelunkerSpellBad')
-    " let g:spelunker_spell_bad_group = 'SpelunkerSpellBad'
+    let g:spelunker_spell_bad_group = 'SpelunkerSpellBad'
 
     " Override highlight group name of complex or compound words. (default:
     " 'SpelunkerComplexOrCompoundWord')
-    " let g:spelunker_complex_or_compound_word_group = 'SpelunkerComplexOrCompoundWord'
-    " highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
-    " highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
-    "
-    let g:spelunker_check_type = 2
+    let g:spelunker_complex_or_compound_word_group = 'SpelunkerComplexOrCompoundWord'
 
-    let g:enable_spelunker_vim_on_readonly = 1
+    " Override highlight setting.
     autocmd ColorScheme *
-                \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#e06c75 |
-                \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+                \ highlight SpelunkerSpellBad cterm=undercurl ctermfg=247 gui=undercurl guifg=#9e9e9e |
+                \ highlight SpelunkerComplexOrCompoundWord cterm=undercurl ctermfg=NONE gui=undercurl guifg=NONE
 endfunction
 
 function! config#CamelCaseMotion()
@@ -781,7 +837,7 @@ function! config#Lightline()
                     \ ]
                     \ }
         let g:lightline.inactive = {
-                    \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                    \ 'left': [ [ 'filename', 'winnr' , 'modified', 'fileformat', 'devicons_filetype' ]],
                     \ 'right': [ ['lineinfo',  'git_global' ] ]
                     \ }
         " let g:lightline.tabline = {
@@ -804,7 +860,7 @@ function! config#Lightline()
                     \ ]
                     \ }
         let g:lightline.inactive = {
-                    \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+                    \ 'left': [ [ 'filename', 'winnr' , 'modified', 'fileformat', 'devicons_filetype' ]],
                     \ 'right': [ ['artify_lineinfo',   'git_global' ] ]
                     \ }
         " let g:lightline.tabline = {
@@ -916,10 +972,10 @@ function! config#Dashboard()
           \ 'description': [' Open org-agenda                       SPC o A'],
           \ 'command': 'lua require("orgmode").action("agenda.prompt")'},
     \ 'd'         :{
-          \ 'description': [' Recently opened files                 SPC f f'],
+          \ 'description': [' Recently opened files                 SPC f r'],
           \ 'command':function('dashboard#handler#find_history')},
     \ 'e'         :{
-          \ 'description': [' Open file                             SPC o f'],
+          \ 'description': [' Open file                             SPC f f'],
           \ 'command': 'Findr'},
     \ 'f'   :{
           \ 'description': [' Open plugin list                      SPC o p'],
