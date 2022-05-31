@@ -5,7 +5,7 @@ function! g:WhichLeaderKeyMap()
     " <Leader>[1-9] move to window [1-9]
     for s:i in range(1, 9)
         execute 'nnoremap <Leader>w' . s:i . ' :' . s:i . 'wincmd w<CR>'
-        execute 'nnoremap w' . s:i . ' :' . s:i . 'wincmd w<CR>'
+        execute 'nnoremap z' . s:i . ' :' . s:i . 'wincmd w<CR>'
         let g:which_key_map.w[s:i]='to windows '.s:i
     endfor
     let g:which_key_map.c=CommentKey()
@@ -117,7 +117,7 @@ endfunction
 function! CoCKey()
     nnoremap <leader>jR :CocRestart<CR>
     nmap <leader>jq  <Plug>(coc-fix-current)
-    nmap <leader>jf :CocFix<CR>
+    nmap <leader>jf <Plug>(coc-fix-current)
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
     nmap <silent><leader>jjf <Plug>(coc-implementation)
     nmap <silent><leader>jjr <Plug>(coc-references)
@@ -183,7 +183,6 @@ function! OpenKey()
                 \ 'f': 'open files',
                 \ 't': 'open terminal',
                 \ 'o': 'open folder external',
-                \ 'h': 'open history files',
                 \ }
 endfunction
 
@@ -655,6 +654,8 @@ function! OtherKey()
     call BasicVimKeybinding()
     " overwrite leader q
     nmap <silent><leader>q :call functions#bufQuit()<CR>
+    nmap <silent> w <Plug>(coc-ci-w)
+    nmap <silent> b <Plug>(coc-ci-b)
 endfunction
 
 function BasicVimKeybinding()
@@ -715,11 +716,10 @@ function BasicVimKeybinding()
     nnoremap <silent><leader><Down> :res +1<CR>
     nnoremap <silent><leader><Left> :vertical res -1<CR>
     nnoremap <silent><leader><Right> :vertical res +1<CR>
-    nnoremap wh <C-w><C-h>
-    nnoremap wj <C-w><C-j>
-    nnoremap wk <C-w><C-k>
-    nnoremap wl <C-w><C-l>
-    nnoremap ww w
+    nnoremap zh <C-w><C-h>
+    nnoremap zj <C-w><C-j>
+    nnoremap zk <C-w><C-k>
+    nnoremap zl <C-w><C-l>
     inoremap <S-Up> <Up>
     inoremap <S-Down> <Down>
     nnoremap <S-Up> k

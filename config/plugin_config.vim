@@ -49,7 +49,7 @@ Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-expand-region'
 Plug 'danro/rename.vim'
 Plug 'posva/vim-vue'
-Plug 'othree/html5.vim', {'for': ['html', 'vue']}
+" Plug 'othree/html5.vim', {'for': ['html']}
 Plug 'hail2u/vim-css3-syntax'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-fugitive'
@@ -123,6 +123,9 @@ if has('nvim')
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
     Plug 'bigshans/dashboard-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    Plug 'b0o/incline.nvim'
+    Plug 'windwp/nvim-ts-autotag'
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif

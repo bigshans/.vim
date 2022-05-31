@@ -9,6 +9,8 @@ local enable_plugin = {
     "hop",
     "bufferline",
     "indent_blank_line",
+    "incline",
+    "nvim_ts_autotag",
     -- "nvim_tree",
     -- "scrollview",
 }
@@ -16,16 +18,15 @@ local enable_plugin = {
 function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
     require('orgmode').setup_ts_grammar()
-
     -- Tree-sitter configuration
     require'nvim-treesitter.configs'.setup {
         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
         ensure_installed = 'all',
-        ignore_install = { 'hcl', 'lua', 'vim', 'markdown', 'swift' },
+        ignore_install = { 'hcl', 'lua', 'vim', 'markdown', 'swift', 'typescript', 'javascript', 'rust', 'php', 'vue' },
         sync_install = false,
         highlight = {
             enable = true,
-            disable = {'org', 'lua', 'vim', 'markdown', 'html'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+            disable = {'org', 'lua', 'vim', 'markdown', 'html', 'typescript', 'javascript', 'rust', 'php', 'vue'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
             additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
         }
     }
@@ -80,7 +81,8 @@ function plugin_config:npairs()
         return vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript'
     end)
     )
-    npairs.remove_rule(">[%w%s]*$")
+    Rule(">[%w%s]*$", "^%s*</",
+            { '-html', '-typescript', '-typescriptreact', '-javascript' , '-javascriptreact', '-svelte', '-vue', '-xml', '-rescript'})
     -- skip it, if you use another global object
     _G.MUtils= {}
 
@@ -139,8 +141,16 @@ function plugin_config:telescope()
             --   extension_config_key = value,
             -- }
             -- please take a look at the readme of the extension you want to configure
+            fzf = {
+                fuzzy = true,                    -- false will only do exact matching
+                override_generic_sorter = true,  -- override the generic sorter
+                override_file_sorter = true,     -- override the file sorter
+                case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            }
         }
     }
+    require('telescope').load_extension('fzf')
 end
 
 function plugin_config:hop()
@@ -294,6 +304,14 @@ function plugin_config:nvim_tree()
             }
         }
     }
+end
+
+function plugin_config:incline()
+    require('incline').setup()
+end
+
+function plugin_config:nvim_ts_autotag()
+    require('nvim-ts-autotag').setup()
 end
 
 function plugin_config:scrollview()

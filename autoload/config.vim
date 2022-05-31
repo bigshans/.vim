@@ -481,9 +481,9 @@ endfunction
 
 function! config#CocConfig()
     let g:coc_global_extensions = [
+                \ 'coc-explorer',
                 \ 'coc-tsserver',
                 \ 'coc-eslint',
-                \ 'coc-explorer',
                 \ 'coc-html',
                 \ 'coc-css',
                 \ 'coc-solargraph',
@@ -497,18 +497,14 @@ function! config#CocConfig()
                 \ 'coc-vimlsp',
                 \ 'coc-toml',
                 \ 'coc-xml',
-                \ 'coc-htmlhint',
-                \ 'coc-html-css-support',
                 \ '@yaegassy/coc-volar',
                 \ '@yaegassy/coc-intelephense',
                 \ 'coc-marketplace',
                 \ 'coc-translator',
                 \ 'coc-tabnine',
+                \ 'coc-ci',
+                \ 'coc-highlight',
                 \]
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
     set hidden
     " Add `:Format` command to format current buffer.
     command! -nargs=0 Format :call CocActionAsync('format')
@@ -518,32 +514,24 @@ function! config#CocConfig()
 
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-    function! AutoPairReturn()
-        let pairs = { "{}": "va{", "()": "va(", "``": "va`"  }
-        let cur = getline(".")[col(".")-2:col(".")-1]
-        for [p, k] in items(pairs)
-            if cur == p
-                return "\<cr>\<esc>" . pairs[p] . "=o" 
-            endif
-        endfor
-        return "\<cr>"
-    endfunction
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<cr>"
+    function! CheckBackspace() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
     inoremap <silent><expr> <TAB>
                 \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
+                \ CheckBackspace() ? "\<TAB>" :
                 \ coc#refresh()
     " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-    set updatetime=200
-    set shortmess+=c
     if has("patch-8.1.1564")
         " Recently vim can merge signcolumn and number column into one
         set signcolumn=number
     else
         set signcolumn=yes
     endif
+    autocmd CursorHold * silent call CocActionAsync('highlight')
     augroup mygroup
         autocmd!
         " Setup formatexpr specified filetype(s).

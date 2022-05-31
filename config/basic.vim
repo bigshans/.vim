@@ -24,7 +24,8 @@ syntax on
 set whichwrap+=<,>,h,l,[,]
 set magic
 set encoding=UTF-8
-set laststatus=2
+set laststatus=3
+set updatetime=300
 set complete-=k "complete+=k
 set tabstop=4
 set softtabstop=4
@@ -32,6 +33,7 @@ set shiftwidth=4
 set expandtab
 set wrap
 set showbreak=<
+set shortmess+=c
 set formatoptions+=mM
 set smartindent
 set autoindent
@@ -39,7 +41,6 @@ set list
 if !has('nvim')
     set listchars=eol:↩︎
 endif
-set laststatus=2
 set noswapfile
 set writebackup
 set nobackup
@@ -57,6 +58,12 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=r
     set guioptions-=R
     set guifont=NotoMonoforPowerline\ 14
+endif
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
 endif
 augroup Web
     autocmd!
