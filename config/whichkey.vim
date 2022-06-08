@@ -82,7 +82,6 @@ function! g:UnimpairedMapping()
                 \ 'e': 'Exchange the current line with n lines above it.',
                 \ 'n': 'tab previous',
                 \ }
-    call which_key#register('[', 'g:unimpaired_key_map')
     let g:unimpaired_key_map_convert={
                 \ 'a': 'next',
                 \ 'A': 'last',
@@ -101,7 +100,10 @@ function! g:UnimpairedMapping()
                 \ 'e': 'Exchange the current line with n lines below it.',
                 \ 'n': 'tab next',
                 \ }
-    call which_key#register(']', 'g:unimpaired_key_map_convert')
+    if g:vim_basic
+        call which_key#register('[', 'g:unimpaired_key_map')
+        call which_key#register(']', 'g:unimpaired_key_map_convert')
+    endif
 endfunction
 
 function! g:TagKeyMap()
@@ -656,6 +658,7 @@ function! OtherKey()
     nmap <silent><leader>q :call functions#bufQuit()<CR>
     nmap <silent> w <Plug>(coc-ci-w)
     nmap <silent> b <Plug>(coc-ci-b)
+    nmap <silent> e <Plug>(coc-ci-e)
 endfunction
 
 function BasicVimKeybinding()

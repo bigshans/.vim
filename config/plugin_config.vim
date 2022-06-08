@@ -9,6 +9,9 @@ let g:plug_timeout = 55
 let g:vim_lightline_artify = 1
 let g:vim_mode = 'full'
 let g:vimspector_enable_mappings = 'HUMAN'
+" in millisecond, used for both CursorHold and CursorHoldI,
+" use updatetime instead if not defined
+let g:cursorhold_updatetime = 100
 
 " }}
 
@@ -108,6 +111,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
+Plug 'antoinemadec/FixCursorHold.nvim'
 " Plug 'lambdalisue/fern.vim'
 
 " pure nvim plugin for nvim
@@ -192,6 +196,7 @@ endif
 " 用于测试插件
 " set runtimepath^=/projects/aerian/wp/coc-kite-cmp
 " set runtimepath^=/projects/aerian/wp/org-mode
+set runtimepath^=/projects/aerian/wp/coc-ci
 " {{ autocmd
 
 autocmd BufNew,BufEnter *.java execute "silent! CocDisable"

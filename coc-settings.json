@@ -107,8 +107,12 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
-    "suggest.noselect": true,
-    "suggest.enablePreselect": false,
+    "suggest.floatEnable": true,
+    "suggest.floatConfig": {
+        "border": true,
+        "shadow": true
+    },
+    "suggest.enablePreselect": true,
     "explorer.keyMappings.global": {
         "gk": "expandablePrev",
         "gj": "expandableNext",
@@ -226,5 +230,6 @@
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,
     "vimlsp.suggest.fromRuntimepath": true,
-    "colors.filetypes": ["vue", "javascript", "typescript", "lua", "rust", "php", "json", "html", "css", "less", "scss"]
+    "colors.filetypes": ["vue", "javascript", "typescript", "lua", "rust", "php", "json", "html", "css", "less", "scss", "c", "cpp"],
+    "highlight.disableLanguages": ["org"]
 }
