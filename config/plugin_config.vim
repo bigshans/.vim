@@ -112,6 +112,7 @@ Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'simnalamburt/vim-mundo'
 " Plug 'lambdalisue/fern.vim'
 
 " pure nvim plugin for nvim
