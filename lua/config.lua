@@ -11,6 +11,8 @@ local enable_plugin = {
     "indent_blank_line",
     "incline",
     "nvim_ts_autotag",
+    "todo_comments",
+    -- "winbar",
     -- "nvim_tree",
     -- "scrollview",
 }
@@ -56,7 +58,7 @@ function plugin_config:orgmode()
     })
 
     require("org-bullets").setup {
-        symbols = { "◉", "○", "✸", "✿" },
+        -- symbols = { "◉", "○", "✸", "✿" },
     }
 end
 
@@ -307,7 +309,39 @@ function plugin_config:nvim_tree()
 end
 
 function plugin_config:incline()
-    require('incline').setup()
+    require('incline').setup {
+        render = function (props)
+            local bufname = vim.api.nvim_buf_get_name(props.buf)
+            if bufname == "" then
+                return "[No Name]"
+            else
+                bufname = vim.fn.fnamemodify(bufname, ":.")
+            end
+            local icon = require("nvim-web-devicons").get_icon(bufname, nil, { default = true })
+            local max_len = vim.api.nvim_win_get_width(props.win) / 2
+
+            if #bufname > max_len then
+                return icon .. " …" .. string.sub(bufname, #bufname - max_len, -1)
+            else
+                return icon .. " " .. bufname
+            end
+        end,
+        window = {
+            zindex = 60,
+            width = "fit",
+            placement = { horizontal = "right", vertical = "top" },
+            margin = {
+                horizontal = { left = 1, right = 0 },
+                vertical = { bottom = 0, top = 1 },
+            },
+            padding = { left = 1, right = 1 },
+            padding_char = " ",
+        },
+        hide = {
+            cursorline = "focused_win",
+            focused_win = false,
+        }
+    }
 end
 
 function plugin_config:nvim_ts_autotag()
@@ -318,6 +352,51 @@ function plugin_config:scrollview()
     require('scrollview').setup({
         excluded_filetypes = {'nerdtree', 'coc-explorer', 'vista'},
     })
+end
+
+function plugin_config:todo_comments()
+    require("todo-comments").setup {}
+end
+
+function plugin_config:winbar()
+    require("winbar").setup {
+        enabled = true,
+
+        show_file_path = true,
+        show_symbols = true,
+
+        colors = {
+            path = '', -- You can customize colors like #c946fd
+            file_name = '',
+            symbols = '',
+        },
+
+        icons = {
+            file_icon_default = '',
+            seperator = '>',
+            editor_state = '●',
+            lock_icon = '',
+        },
+
+        exclude_filetype = {
+            'help',
+            'startify',
+            'dashboard',
+            'packer',
+            'neogitstatus',
+            'NvimTree',
+            'Trouble',
+            'alpha',
+            'lir',
+            'Outline',
+            'spectre_panel',
+            'toggleterm',
+            'qf',
+            'coc-explorer',
+            'which_key',
+            '',
+        }
+    }
 end
 
 for _,v in ipairs(enable_plugin) do

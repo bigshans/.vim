@@ -30,7 +30,16 @@ function! g:WhichLeaderKeyMap()
     let g:which_key_map['<CR>']='blank line to up'
     let g:which_key_map.S=WorkSpaceKey()
     let g:which_key_map.C=SpellCheck()
+    let g:which_key_map.z=Fold()
     call which_key#register('<Space>', "g:which_key_map")
+endfunction
+
+function! g:Fold()
+    nmap <leader>za :Fold<CR>
+    return {
+                \ 'name': 'fold',
+                \ 'z': { 'a': 'coc fold' },
+                \ }
 endfunction
 
 function! g:UnimpairedMapping()
@@ -126,12 +135,17 @@ function! CoCKey()
     nnoremap <silent><leader>jk :call <SID>show_documentation()<CR>
     nmap <leader>jr <Plug>(coc-rename)
     nmap <leader>ja <Plug>(coc-codeaction)
-    nmap <leader>jd :Clap coc_diagnostics<CR>
+    nmap <leader>jt :TodoTelescope<CR>
+    nmap <leader>jT :TodoLocList<CR>
+    " nmap <leader>jd :Clap coc_diagnostics<CR>
+    nmap <leader>jd :CocList diagnostics<CR>
     return {
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
                 \ 'f': 'Coc Fix it',
                 \ 'q': 'Coc Quickly Fix it',
+                \ 't': 'Show Todo Comment',
+                \ 'T': 'Show Todo Comment in current file',
                 \ 'j': {
                     \ 'name': '+Goto',
                     \ 't': 'Coc GottoTypeDefinition',

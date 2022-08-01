@@ -28,7 +28,7 @@ Plug 'bigshans/fcitx.vim'
 Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-sandwich'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'rakr/vim-one'
+" Plug 'rakr/vim-one'
 Plug 'mattn/emmet-vim'
 " Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/gko/vim-coloresque.git'
@@ -87,7 +87,7 @@ Plug 'mileszs/ack.vim'
 Plug 'arrufat/vala.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'voldikss/vim-translator'
+" Plug 'voldikss/vim-translator'
 Plug 'joshdick/onedark.vim'
 Plug 'kamykn/spelunker.vim', { 'for': '*' }
 Plug 'bkad/CamelCaseMotion'
@@ -131,6 +131,8 @@ if has('nvim')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     Plug 'b0o/incline.nvim'
     Plug 'windwp/nvim-ts-autotag'
+    Plug 'folke/todo-comments.nvim'
+    Plug 'fgheng/winbar.nvim'
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif
