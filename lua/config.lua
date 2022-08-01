@@ -208,10 +208,8 @@ function plugin_config:bufferline()
             if tab_group[tabId] then
                 local list = {}
                 for _, v in ipairs(tab_group[tabId]) do
-                    for _, sv in ipairs(buflist) do
-                        if v == sv then
-                            table.insert(list, v)
-                        end
+                    if buflisted(v) > 0 then
+                        table.insert(list, v)
                     end
                 end
                 tab_group[tabId] = list
