@@ -319,11 +319,12 @@ function plugin_config:incline()
             end
             local icon = require("nvim-web-devicons").get_icon(bufname, nil, { default = true })
             local max_len = vim.api.nvim_win_get_width(props.win) / 2
+            local render_modified = vim.api.nvim_buf_get_option(props.buf, 'modified') and '+' or ''
 
             if #bufname > max_len then
-                return icon .. " …" .. string.sub(bufname, #bufname - max_len, -1)
+                return icon .. " …" .. string.sub(bufname, #bufname - max_len, -1) .. render_modified
             else
-                return icon .. " " .. bufname
+                return icon .. " " .. bufname .. render_modified
             end
         end,
         window = {
@@ -342,6 +343,11 @@ function plugin_config:incline()
             focused_win = false,
         }
     }
+
+    vim.cmd[[
+    highlight InclineNormal ctermbg=0 guibg=#564D82
+    highlight InclineNormalNC ctermbg=0 guibg=#564D82
+    ]]
 end
 
 function plugin_config:nvim_ts_autotag()
