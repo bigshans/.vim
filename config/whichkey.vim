@@ -745,8 +745,8 @@ function BasicVimKeybinding()
     noremap k gk
     noremap <Up> gk
     noremap <Down> gj
-    inoremap <silent> <expr> <Up> pumvisible() ? '<Up>' : functions#Close_fcitx('<C-o>gk')
-    inoremap <silent> <expr> <Down> pumvisible() ? '<Down>' : functions#Close_fcitx('<C-o>gj')
+    " inoremap <silent> <expr> <Up> pumvisible() ? '<Up>' : functions#Close_fcitx('<C-o>gk')
+    " inoremap <silent> <expr> <Down> pumvisible() ? '<Down>' : functions#Close_fcitx('<C-o>gj')
     inoremap <silent> <expr> <M-Backspace> functions#Close_fcitx('<C-o>diw')
     nnoremap <leader>; :
     nmap <leader>q :q!<CR>
@@ -771,6 +771,29 @@ function BasicVimKeybinding()
     " }}
     imap <M-j><M-k> <Esc>
     imap <C-j><C-k> <Esc>
+
+    call g:CocRemap()
+endfunction
+
+function g:CocRemap()
+    " Remap <C-f> and <C-b> for scroll float windows/popups.
+    if has('nvim-0.4.0') || has('patch-8.2.0750')
+        nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+        nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+        inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+        inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+        vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+        vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    endif
+
+    inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+    inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+    inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+    inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : functions#Close_fcitx('<C-o>gk')
+    inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : functions#Close_fcitx('<C-o>gj')
+    inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+    inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+    inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
 endfunction
 
 if g:vim_basic == 1
