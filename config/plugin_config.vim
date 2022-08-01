@@ -209,4 +209,7 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.art set filetype=html
+
+hi CocSearch ctermfg=12 guifg=#18A3FF
+hi CocMenuSel ctermbg=109 guibg=#235A8A
 " }}

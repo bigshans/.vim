@@ -107,7 +107,6 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
-    "suggest.floatEnable": true,
     "suggest.floatConfig": {
         "border": true,
         "shadow": true

@@ -514,17 +514,16 @@ function! config#CocConfig()
 
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    function! CheckBackspace() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+    " remap for complete to use tab and <cr>
     inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ CheckBackspace() ? "\<TAB>" :
+                \ coc#pum#visible() ? coc#pum#next(1):
+                \ <SID>check_back_space() ? "\<Tab>" :
                 \ coc#refresh()
-    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    " inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+    inoremap <silent><expr> <c-space> coc#refresh()
     if has("patch-8.1.1564")
         " Recently vim can merge signcolumn and number column into one
         set signcolumn=number
