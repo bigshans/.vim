@@ -17,6 +17,19 @@ local enable_plugin = {
     -- "scrollview",
 }
 
+local function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
+
 function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
     require('orgmode').setup_ts_grammar()
@@ -163,6 +176,7 @@ function plugin_config:bufferline()
     local tab_group = {}
     local tabpagenr = vim.fn['tabpagenr'];
     local bufnr = vim.fn['bufnr']
+    local buflisted = vim.fn['buflisted']
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
         pattern = '*',
         callback = function ()
@@ -184,15 +198,21 @@ function plugin_config:bufferline()
         pattern = '*',
         callback = function ()
             local tabId = tabpagenr()
-            local buf = bufnr()
+            local max = bufnr('$')
+            local buflist = {}
+            for buf_num = 1,max do
+                if buflisted(buf_num) > 0 then
+                    table.insert(buflist, buf_num)
+                end
+            end
             if tab_group[tabId] then
                 local list = {}
                 for _, v in ipairs(tab_group[tabId]) do
-                    if v == buf then
-                        goto contine
+                    for _, sv in ipairs(buflist) do
+                        if v == sv then
+                            table.insert(list, v)
+                        end
                     end
-                    table.insert(list, v)
-                    ::contine::
                 end
                 tab_group[tabId] = list
             end
@@ -240,6 +260,7 @@ function plugin_config:bufferline()
                     return false
                 end
                 local tabId = tabpagenr()
+                print(dump(tab_group[tabId]), buf_number)
                 if tab_group[tabId] then
                     for _, p in ipairs(tab_group[tabId]) do
                         if p == buf_number then
@@ -251,12 +272,6 @@ function plugin_config:bufferline()
             end
         }
     };
-
-    -- vim.cmd(
-    -- [[
-    -- autocmd WinEnter,BufEnter,SessionLoadPost,FileChangedShellPost * call timer_start(200, { tid -> execute("lua require('bufferline.diagnostics').refresh_coc_diagnostics()")})
-    -- ]]
-    -- )
 end
 
 function plugin_config:nvim_tree()
