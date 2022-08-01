@@ -258,7 +258,6 @@ function plugin_config:bufferline()
                     return false
                 end
                 local tabId = tabpagenr()
-                print(dump(tab_group[tabId]), buf_number)
                 if tab_group[tabId] then
                     for _, p in ipairs(tab_group[tabId]) do
                         if p == buf_number then
