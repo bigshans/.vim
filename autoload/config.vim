@@ -960,48 +960,6 @@ function! config#FastFoldConfig()
 endfunction
 
 function! config#Dashboard()
-    let g:dashboard_default_executive ='telescope'
-    let g:dashboard_custom_section = {
-    \ 'b'         :{
-          \ 'description': [' Open last session                     SPC s l'],
-          \ 'command':function('dashboard#handler#last_session')},
-    \ 'c'   :{
-          \ 'description': [' Open org-agenda                       SPC o A'],
-          \ 'command': 'lua require("orgmode").action("agenda.prompt")'},
-    \ 'd'         :{
-          \ 'description': [' Recently opened files                 SPC f r'],
-          \ 'command':function('dashboard#handler#find_history')},
-    \ 'e'         :{
-          \ 'description': [' Open file                             SPC f f'],
-          \ 'command': 'Findr'},
-    \ 'f'   :{
-          \ 'description': [' Open plugin list                      SPC o p'],
-          \ 'command': 'edit $HOME/.vim/config/plugin_config.vim'},
-    \ 'g'   :{
-          \ 'description': [' Plugin update                         SPC P p'],
-          \ 'command': 'PlugUpdate'},
-    \ 'h'   :{
-          \ 'description': [' Plugin install                        SPC P i'],
-          \ 'command': 'PlugInstall'},
-    \ 'i'   :{
-          \ 'description': [' Change colorScheme                    SPC s C'],
-          \ 'command':function('dashboard#handler#change_colorscheme')},
-    \ }
-    source $HOME/.vim/config/logo.vim
-    if exists('g:aerian_s_vim_logo')
-        let g:dashboard_custom_header = g:aerian_s_vim_logo[Rand()%len(g:aerian_s_vim_logo)]
-    endif
-    let g:dashboard_custom_footer = ['type e to new a buffer or type q to exit']
     let g:dashboard_session_directory = $HOME . '/.cache/vim-session'
-    function SetTabline() abort
-        if &ft =~ 'dashboard'
-            set showtabline=0
-        else
-            if &showtabline != 2
-                set showtabline=2
-            endif
-        endif
-    endfunction
-    autocmd FileType dashboard nnoremap <silent><buffer>e :call dashboard#handler#new_file()<CR> | nmap <buffer>q :qa!<CR>
-    autocmd BufEnter,FileType * call SetTabline()
+    autocmd FileType dashboard nnoremap <silent><buffer>e :enew<CR> | nmap <buffer>q :qa!<CR>
 endfunction

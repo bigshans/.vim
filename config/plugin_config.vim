@@ -126,13 +126,14 @@ if has('nvim')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'phaazon/hop.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-    Plug 'bigshans/dashboard-nvim'
+    Plug 'glepnir/dashboard-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     Plug 'b0o/incline.nvim'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'folke/todo-comments.nvim'
     Plug 'fgheng/winbar.nvim'
+    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif

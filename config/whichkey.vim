@@ -31,6 +31,7 @@ function! g:WhichLeaderKeyMap()
     let g:which_key_map.S=WorkSpaceKey()
     let g:which_key_map.C=SpellCheck()
     let g:which_key_map.z=Fold()
+    let g:which_key_map.r=g:RunCode()
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
@@ -39,6 +40,15 @@ function! g:Fold()
     return {
                 \ 'name': 'fold',
                 \ 'z': { 'a': 'coc fold' },
+                \ }
+endfunction
+
+function! g:RunCode()
+    nnoremap <leader>rc :SnipRun<CR>
+    vnoremap <leader>rc :SnipRun<CR>
+    return {
+                \ 'name': 'run code',
+                \ 'c': 'run code'
                 \ }
 endfunction
 
@@ -180,6 +190,7 @@ function! OpenKey()
     nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
     nnoremap <leader>ov :e $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
+    nnoremap <leader>od :Files $HOME/.vim<CR>
     if has('nvim')
         nnoremap <silent><leader>of :<C-u>Findr<CR>
         nnoremap <silent><leader>ff :<C-u>Findr<CR>
@@ -199,6 +210,7 @@ function! OpenKey()
                 \ 'f': 'open files',
                 \ 't': 'open terminal',
                 \ 'o': 'open folder external',
+                \ 'd': 'open config dir',
                 \ }
 endfunction
 
@@ -788,12 +800,8 @@ function g:CocRemap()
 
     inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
     inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-    inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
     inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : functions#Close_fcitx('<C-o>gk')
-    inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : functions#Close_fcitx('<C-o>gj')
-    inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-    inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
-    inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+    inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : functions#Close_fcitx('<C-o>gj')
 endfunction
 
 if g:vim_basic == 1

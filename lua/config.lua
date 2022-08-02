@@ -358,6 +358,25 @@ function plugin_config:winbar()
     }
 end
 
+function plugin_config:dashboard()
+    local home = os.getenv('HOME')
+    local db = require("dashboard")
+    local get_logo = vim.fn['custom#logo#get']
+
+    db.custom_footer = {'type e to new a buffer or type q to exit'}
+    db.custom_header = get_logo()
+    db.session_directory = vim.g.dashboard_session_directory
+    db.custom_center = {
+        { icon = '  ', desc = 'Open last session                       ', shortcut = 'SPC s l', action = 'SessionLoad' },
+        { icon = '  ', desc = 'Open org-agenda                         ', shortcut = 'SPC o A' },
+        { icon = '  ', desc = 'Recently opened files                   ', shortcut = 'SPC f r' },
+        { icon = '  ', desc = 'Open file                               ', shortcut = 'SPC f f' },
+        { icon = '  ', desc = 'Plugin update                           ', shortcut = 'SPC P p' },
+        { icon = '  ', desc = 'Plugin install                          ', shortcut = 'SPC P i' },
+        { icon = '  ', desc = 'Open Personal dotfiles                  ', shortcut = 'SPC o d'}
+    }
+end
+
 
 local enable_plugin = {
     "treesitter",
@@ -370,6 +389,7 @@ local enable_plugin = {
     "incline",
     "nvim_ts_autotag",
     "todo_comments",
+    "dashboard",
     -- "winbar",
     -- "nvim_tree",
     -- "scrollview",
