@@ -961,5 +961,16 @@ endfunction
 
 function! config#Dashboard()
     let g:dashboard_session_directory = $HOME . '/.cache/vim-session'
+    function SetTabline() abort
+        if &ft =~ 'dashboard'
+            " 这里等号左右不能有空格，下面同理
+            set showtabline=0
+        else
+            if &showtabline != 2
+                set showtabline=2
+            endif
+        endif
+    endfunction
     autocmd FileType dashboard nnoremap <silent><buffer>e :enew<CR> | nmap <buffer>q :qa!<CR>
+    autocmd BufEnter,FileType * call SetTabline()
 endfunction
