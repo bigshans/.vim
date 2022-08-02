@@ -1,34 +1,5 @@
 -- init.lua
-
 local plugin_config = {}
-local enable_plugin = {
-    "treesitter",
-    "orgmode",
-    "npairs",
-    "telescope",
-    "hop",
-    "bufferline",
-    "indent_blank_line",
-    "incline",
-    "nvim_ts_autotag",
-    "todo_comments",
-    -- "winbar",
-    -- "nvim_tree",
-    -- "scrollview",
-}
-
-local function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
 
 function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
@@ -132,40 +103,10 @@ function plugin_config:telescope()
                 prompt_position = 'top',
             },
             sorting_strategy = "ascending",
-            mappings = {
-                i = {
-                    -- map actions.which_key to <C-h> (default: <C-/>)
-                    -- actions.which_key shows the mappings for your picker,
-                    -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                    ["<C-h>"] = "which_key"
-                }
-            }
         },
-        pickers = {
-            -- Default configuration for builtin pickers goes here:
-            -- picker_name = {
-            --   picker_config_key = value,
-            --   ...
-            -- }
-            -- Now the picker_config_key will be applied every time you call this
-            -- builtin picker
-        },
-        extensions = {
-            -- Your extension configuration goes here:
-            -- extension_name = {
-            --   extension_config_key = value,
-            -- }
-            -- please take a look at the readme of the extension you want to configure
-            fzf = {
-                fuzzy = true,                    -- false will only do exact matching
-                override_generic_sorter = true,  -- override the generic sorter
-                override_file_sorter = true,     -- override the file sorter
-                case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                -- the default case_mode is "smart_case"
-            }
-        }
+        pickers = {},
+        extensions = {},
     }
-    require('telescope').load_extension('fzf')
 end
 
 function plugin_config:hop()
@@ -416,6 +357,23 @@ function plugin_config:winbar()
         }
     }
 end
+
+
+local enable_plugin = {
+    "treesitter",
+    "orgmode",
+    "npairs",
+    "telescope",
+    "hop",
+    "bufferline",
+    "indent_blank_line",
+    "incline",
+    "nvim_ts_autotag",
+    "todo_comments",
+    -- "winbar",
+    -- "nvim_tree",
+    -- "scrollview",
+}
 
 for _,v in ipairs(enable_plugin) do
     plugin_config[v]()
