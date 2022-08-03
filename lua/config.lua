@@ -139,21 +139,20 @@ function plugin_config:bufferline()
         pattern = '*',
         callback = function ()
             local tabId = tabpagenr()
-            local max = bufnr('$')
-            local buflist = {}
-            for buf_num = 1,max do
-                if buflisted(buf_num) > 0 then
-                    table.insert(buflist, buf_num)
-                end
-            end
             if tab_group[tabId] then
-                local list = {}
-                for _, v in ipairs(tab_group[tabId]) do
-                    if buflisted(v) > 0 then
-                        table.insert(list, v)
+                local new_tab_group = {}
+                for k, tab_list in ipairs(tab_group) do
+                    local list = {}
+                    for _, v in ipairs(tab_list) do
+                        if buflisted(v) > 0 then
+                            table.insert(list, v)
+                        end
+                    end
+                    if #list ~= 0 then
+                        new_tab_group[k] = list
                     end
                 end
-                tab_group[tabId] = list
+                tab_group = new_tab_group
             end
         end
     })
