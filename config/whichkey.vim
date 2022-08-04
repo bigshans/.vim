@@ -136,36 +136,37 @@ function! g:TagKeyMap()
 endfunction
 
 function! CoCKey()
-    nnoremap <leader>jR :CocRestart<CR>
-    nmap <leader>jq  <Plug>(coc-fix-current)
-    nmap <leader>jf <Plug>(coc-fix-current)
+    nnoremap <silent><leader>jR :CocRestart<CR>
+    nmap <silent><leader>jf <Plug>(coc-fix-current)
+    xmap <silent><leader>jf <Plug>(coc-codeaction-selected)
     nmap <silent><leader>jjt <Plug>(coc-type-definition)
     nmap <silent><leader>jjf <Plug>(coc-implementation)
     nmap <silent><leader>jjr <Plug>(coc-references)
     nnoremap <silent><leader>jk :call <SID>show_documentation()<CR>
-    nmap <leader>jr <Plug>(coc-rename)
-    nmap <leader>ja <Plug>(coc-codeaction)
-    nmap <leader>jt :TodoTelescope<CR>
-    nmap <leader>jT :TodoLocList<CR>
+    nmap <silent><leader>jr <Plug>(coc-rename)
+    nmap <silent><leader>ja <Plug>(coc-codeaction)
+    nmap <silent><leader>jt :TodoTelescope<CR>
+    nmap <silent><leader>jT :TodoLocList<CR>
     " nmap <leader>jd :Clap coc_diagnostics<CR>
-    nmap <leader>jd :CocList diagnostics<CR>
+    nmap <silent><leader>jd :call CocAction('diagnosticInfo')<CR>
+    nmap <silent><leader>jD :CocList diagnostics<CR>
     return {
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
                 \ 'f': 'Coc Fix it',
-                \ 'q': 'Coc Quickly Fix it',
                 \ 't': 'Show Todo Comment',
                 \ 'T': 'Show Todo Comment in current file',
+                \ 'd': 'Show Current Diagnostics',
+                \ 'D': 'Show Diagnostics List',
+                \ 'r': 'Coc Rename',
+                \ 'k': 'Coc show_documentation',
+                \ 'a': 'Show All Action',
                 \ 'j': {
                     \ 'name': '+Goto',
                     \ 't': 'Coc GottoTypeDefinition',
                     \ 'f': 'Coc implementtation',
                     \ 'r': 'Coc references',
                     \ },
-                    \ 'k': 'Coc show_documentation',
-                    \ 'r': 'Coc Rename',
-                    \ 'a': 'Coc GotoDefinition',
-                    \ 'd': 'Show Coc Diagnostics',
                     \}
 endfunction
 function! GitKey()
@@ -188,6 +189,7 @@ function! OpenKey()
     nnoremap <leader>ob :e $HOME/.vim/config/basic.vim<CR>
     nnoremap <leader>oc :e $HOME/.vim/autoload/config.vim<CR>
     nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
+    nnoremap <leader>olc :e $HOME/.vim/lua/config.lua<CR>
     nnoremap <leader>ov :e $HOME/.vim/vimrc<CR>
     nnoremap <leader>ot :call TermToggle(12)<CR>
     nnoremap <leader>od :Files $HOME/.vim<CR>

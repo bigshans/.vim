@@ -265,19 +265,39 @@ function plugin_config:incline()
         render = function (props)
             local bufname = vim.api.nvim_buf_get_name(props.buf)
             if bufname == "" then
-                return "[No Name]"
+                local ft = vim.bo.filetype
+                local icon, color = require("nvim-web-devicons").get_icon_color_by_filetype(ft, nil, { default = true })
+                local render = {
+                    { icon, guifg = color },
+                    { " " },
+                }
+                if ft ~= "" then
+                    table.insert(render, { "*".. ft .." Buffer*" })
+                else
+                    icon, color = require("nvim-web-devicons").get_icon_color(bufname, nil, { default = true })
+                    render[1] = { icon, guifg = color }
+                    table.insert(render, { "*No Name*" })
+                end
+                table.insert(render, { ' ●', guifg = '#EACB64' })
+                return render
             else
                 bufname = vim.fn.fnamemodify(bufname, ":.")
             end
-            local icon = require("nvim-web-devicons").get_icon(bufname, nil, { default = true })
-            local max_len = vim.api.nvim_win_get_width(props.win) / 2
-            local render_modified = vim.api.nvim_buf_get_option(props.buf, 'modified') and '+' or ''
+            local icon, color = require("nvim-web-devicons").get_icon_color(bufname, nil, { default = true })
+            local max_len = vim.api.nvim_win_get_width(props.win) / 3
+            local modified_color = vim.api.nvim_buf_get_option(props.buf, 'modified') and '#EACB64' or '#759D57'
+            local render = {
+                { icon, guifg = color },
+                { " " },
+                { bufname },
+                { ' ●', guifg = modified_color },
+            }
 
             if #bufname > max_len then
-                return icon .. " …" .. string.sub(bufname, #bufname - max_len, -1) .. render_modified
-            else
-                return icon .. " " .. bufname .. render_modified
+                render[2] = { " …" }
+                render[3] = { string.sub(bufname, #bufname - max_len, -1) }
             end
+            return render
         end,
         window = {
             zindex = 60,
@@ -358,21 +378,21 @@ function plugin_config:winbar()
 end
 
 function plugin_config:dashboard()
-    local home = os.getenv('HOME')
     local db = require("dashboard")
     local get_logo = vim.fn['custom#logo#get']
 
     db.custom_footer = {'type e to new a buffer or type q to exit'}
     db.custom_header = get_logo()
     db.session_directory = vim.g.dashboard_session_directory
+
     db.custom_center = {
-        { icon = '  ', desc = 'Open last session                       ', shortcut = 'SPC s l', action = 'SessionLoad' },
-        { icon = '  ', desc = 'Open org-agenda                         ', shortcut = 'SPC o A' },
-        { icon = '  ', desc = 'Recently opened files                   ', shortcut = 'SPC f r' },
-        { icon = '  ', desc = 'Open file                               ', shortcut = 'SPC f f' },
-        { icon = '  ', desc = 'Plugin update                           ', shortcut = 'SPC P p' },
-        { icon = '  ', desc = 'Plugin install                          ', shortcut = 'SPC P i' },
-        { icon = '  ', desc = 'Open Personal dotfiles                  ', shortcut = 'SPC o d'}
+        { icon = '  ', desc = 'Open Last Session                       ', shortcut = 'SPC s l', action = 'SessionLoad' },
+        { icon = '  ', desc = 'Open Org Agenda                         ', shortcut = 'SPC o A' },
+        { icon = '  ', desc = 'Recently Opened Files                   ', shortcut = 'SPC f r' },
+        { icon = '  ', desc = 'Open File                               ', shortcut = 'SPC f f' },
+        { icon = '⚡ ', desc = 'Plugin Update                           ', shortcut = 'SPC P p' },
+        { icon = '✨ ', desc = 'Plugin Install                          ', shortcut = 'SPC P i' },
+        { icon = '  ', desc = 'Open Personal Dotfiles                  ', shortcut = 'SPC o d' },
     }
 end
 

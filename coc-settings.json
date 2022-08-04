@@ -111,7 +111,7 @@
         "border": true,
         "shadow": true
     },
-    "suggest.enablePreselect": true,
+    "suggest.enablePreselect": false,
     "explorer.keyMappings.global": {
         "gk": "expandablePrev",
         "gj": "expandableNext",
