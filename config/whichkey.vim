@@ -177,12 +177,24 @@ function! GitKey()
     nnoremap <leader>gr :Git restore %<CR>
     nnoremap <leader>gc :Git commit<CR>
     nnoremap <leader>gs :Git<CR>
+    nnoremap <leader>gg :Git<CR>
+    nnoremap <leader>gP :Git push<CR>
+    nnoremap <leader>gp :Git pull<CR>
+    augroup AU_NAME
+        autocmd!
+        autocmd FileType fugitive nmap <buffer><silent>q :q<CR>
+        autocmd FileType fugitive nmap <buffer><silent>lp :Git pull<CR>
+        autocmd FileType fugitive nmap <buffer><silent>lP :Git push<CR>
+    augroup END
     return {
                 \ 'name':'+git',
                 \ 'a': 'add current file',
                 \ 'r': 'recover current file',
                 \ 'c': 'commit',
-                \ 's': 'status'
+                \ 's': 'status',
+                \ 'g': 'fugitive',
+                \ 'p': 'pull',
+                \ 'P': 'push',
                 \ }
 endfunction
 
