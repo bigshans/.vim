@@ -148,8 +148,8 @@ function! CoCKey()
     nmap <silent><leader>jt :TodoTelescope<CR>
     nmap <silent><leader>jT :TodoLocList<CR>
     " nmap <leader>jd :Clap coc_diagnostics<CR>
-    nmap <silent><leader>jd :call CocAction('diagnosticInfo')<CR>
-    nmap <silent><leader>jD :CocList diagnostics<CR>
+    nmap <silent><leader>ji :call CocAction('diagnosticInfo')<CR>
+    nmap <silent><leader>jd :CocList diagnostics<CR>
     " Formatting selected code.
     xmap <leader>=  <Plug>(coc-format-selected)
     nmap <silent><leader>=  :call CocActionAsync('format')<CR>
@@ -159,8 +159,8 @@ function! CoCKey()
                 \ 'f': 'Coc Fix it',
                 \ 't': 'Show Todo Comment',
                 \ 'T': 'Show Todo Comment in current file',
-                \ 'd': 'Show Current Diagnostics',
-                \ 'D': 'Show Diagnostics List',
+                \ 'i': 'Show Current Diagnostics',
+                \ 'd': 'Show Diagnostics List',
                 \ 'r': 'Coc Rename',
                 \ 'k': 'Coc show_documentation',
                 \ 'a': 'Show All Action',
@@ -303,13 +303,15 @@ function! BuffersKey()
     nnoremap <silent><leader>bp  :bp<CR>
     nnoremap <silent><leader>bd  :bd<CR>
     nnoremap <silent><leader>bq  :bd<CR>
+    nnoremap <silent><leader>bi  :Telescope buffers<CR>
     nnoremap <silent><leader>bb  :Telescope current_buffer_fuzzy_find<CR>
     return {
                 \ 'name': '+Buffers',
                 \ 's': 'start buffer',
                 \ 'n': 'next buffer',
                 \ 'p': 'pervious buffer',
-                \ 'b': 'buffer search',
+                \ 'i': 'search buffer',
+                \ 'b': 'search in current buffer',
                 \ 'd': 'buffer kill',
                 \ 'q': 'buffer quit',
                 \ }
