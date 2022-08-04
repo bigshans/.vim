@@ -32,6 +32,7 @@ function! g:WhichLeaderKeyMap()
     let g:which_key_map.C=SpellCheck()
     let g:which_key_map.z=Fold()
     let g:which_key_map.r=g:RunCode()
+    let g:which_key_map['=']='coc format'
     call which_key#register('<Space>', "g:which_key_map")
 endfunction
 
@@ -152,7 +153,7 @@ function! CoCKey()
     nmap <silent><leader>jd :CocList diagnostics<CR>
     " Formatting selected code.
     xmap <leader>=  <Plug>(coc-format-selected)
-    nmap <silent><leader>=  :call CocActionAsync('format')<CR>
+    nmap <leader>=  <Plug>(coc-format-selected)
     return {
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
@@ -667,6 +668,8 @@ function! OtherKey()
             call CocActionAsync('doHover')
         endif
     endfunction
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
     xmap if <Plug>(coc-funcobj-i)
     omap if <Plug>(coc-funcobj-i)
     xmap af <Plug>(coc-funcobj-a)
