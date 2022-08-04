@@ -504,6 +504,7 @@ function! config#CocConfig()
                 \ 'coc-tabnine',
                 \ 'coc-ci',
                 \ 'coc-highlight',
+                \ 'coc-stylua',
                 \]
     set hidden
     " Add `:Format` command to format current buffer.

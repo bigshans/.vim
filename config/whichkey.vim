@@ -150,6 +150,9 @@ function! CoCKey()
     " nmap <leader>jd :Clap coc_diagnostics<CR>
     nmap <silent><leader>jd :call CocAction('diagnosticInfo')<CR>
     nmap <silent><leader>jD :CocList diagnostics<CR>
+    " Formatting selected code.
+    xmap <leader>=  <Plug>(coc-format-selected)
+    nmap <silent><leader>=  :call CocActionAsync('format')<CR>
     return {
                 \ 'name': '+Coc',
                 \ 'R': 'Coc server  restart',
@@ -272,16 +275,12 @@ function! FileKey()
     " nnoremap <silent><leader>ft :NvimTreeFindFileToggle<CR>
     " nnoremap <silent><leader>ft :NvimTreeToggle<CR>
     nnoremap <leader>fr :Telescope oldfiles<CR>
-    " Formatting selected code.
-    xmap <leader>fm  <Plug>(coc-format-selected)
-    nmap <silent><leader>fm  :call CocActionAsync('format')<CR>
     return {
                 \ 'name': '+files',
                 \ 's': 'save file',
                 \ 'S': 'sudo save',
                 \ 't': 'explorer toggle',
                 \ 'r': 'recent files',
-                \ 'm': 'format code',
                 \ 'f': 'open files',
                 \ }
 endfunction

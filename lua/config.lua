@@ -5,17 +5,28 @@ function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
     require('orgmode').setup_ts_grammar()
     -- Tree-sitter configuration
-    require'nvim-treesitter.configs'.setup {
+    require('nvim-treesitter.configs').setup({
         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
         ensure_installed = 'all',
-        ignore_install = { 'hcl', 'lua', 'vim', 'markdown', 'swift', 'typescript', 'javascript', 'rust', 'php', 'vue' },
+        ignore_install = {
+            'hcl',
+            'lua',
+            'vim',
+            'markdown',
+            'swift',
+            'typescript',
+            'javascript',
+            'rust',
+            'php',
+            'vue',
+        },
         sync_install = false,
         highlight = {
             enable = true,
-            disable = {'org', 'lua', 'vim', 'markdown', 'html', 'typescript', 'javascript', 'rust', 'php', 'vue'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-            additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
-        }
-    }
+            disable = { 'org', 'lua', 'vim', 'markdown', 'html', 'typescript', 'javascript', 'rust', 'php', 'vue' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+            additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
+        },
+    })
 end
 
 function plugin_config:orgmode()
@@ -27,23 +38,27 @@ function plugin_config:orgmode()
         org_capture_templates = {
             t = { description = 'Task', template = '* TODO %?\n %u', target = org_dir .. 'agenda.org' },
             T = { description = 'Todo', template = '* TODO %?\n %u', target = org_dir .. 'agenda.org' },
-            j = { description = 'Journal', template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?', target = org_dir .. 'journal.org' },
-            n = { description = 'Note', template = '* From %?', target = org_dir .. '笔记.org' }
+            j = {
+                description = 'Journal',
+                template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
+                target = org_dir .. 'journal.org',
+            },
+            n = { description = 'Note', template = '* From %?', target = org_dir .. '笔记.org' },
         },
         mappings = {
             global = {
-                org_agenda = {'<Leader>oA', '<Leader>oa'},
-                org_capture = 'gC'
+                org_agenda = { '<Leader>oA', '<Leader>oa' },
+                org_capture = 'gC',
             },
             org = {
-                org_todo = {'cit', 'mt'}
-            }
-        }
+                org_todo = { 'cit', 'mt' },
+            },
+        },
     })
 
-    require("org-bullets").setup {
+    require('org-bullets').setup({
         -- symbols = { "◉", "○", "✸", "✿" },
-    }
+    })
 end
 
 function plugin_config:npairs()
@@ -51,76 +66,77 @@ function plugin_config:npairs()
     local npairs = require('nvim-autopairs')
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
-    npairs.setup({map_cr = false})
-    npairs.remove_rule("'")
-    npairs.add_rule(
-    Rule("'", "'")
-    :with_pair(cond.not_before_regex_check("%w"))
-    :with_pair(function(_)
-        return vim.bo.filetype ~= "lisp" and vim.bo.filetype ~= "scheme"
-    end)
-    )
-    npairs.add_rule(
-    Rule("${", "}")
-    :with_pair(cond.before_regex("`.*"))
-    :with_pair(function(_)
+    npairs.setup({ map_cr = false })
+    npairs.remove_rule('\'')
+    npairs.add_rule(Rule('\'', '\''):with_pair(cond.not_before_regex_check('%w')):with_pair(function(_)
+        return vim.bo.filetype ~= 'lisp' and vim.bo.filetype ~= 'scheme'
+    end))
+    npairs.add_rule(Rule('${', '}'):with_pair(cond.before_regex('`.*')):with_pair(function(_)
         return vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript'
-    end)
-    )
-    Rule(">[%w%s]*$", "^%s*</",
-            { '-html', '-typescript', '-typescriptreact', '-javascript' , '-javascriptreact', '-svelte', '-vue', '-xml', '-rescript'})
+    end))
+    Rule('>[%w%s]*$', '^%s*</', {
+        '-html',
+        '-typescript',
+        '-typescriptreact',
+        '-javascript',
+        '-javascriptreact',
+        '-svelte',
+        '-vue',
+        '-xml',
+        '-rescript',
+    })
     -- skip it, if you use another global object
-    _G.MUtils= {}
+    _G.MUtils = {}
 
-    MUtils.completion_confirm=function()
-        if vim.fn["coc#pum#visible"]() ~= 0  then
-            return vim.fn["coc#pum#confirm"]()
+    MUtils.completion_confirm = function()
+        if vim.fn['coc#pum#visible']() ~= 0 then
+            return vim.fn['coc#pum#confirm']()
         else
             return npairs.autopairs_cr()
         end
     end
 
-    remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+    remap('i', '<CR>', 'v:lua.MUtils.completion_confirm()', { expr = true, noremap = true })
 end
 
 function plugin_config:indent_blank_line()
-    require("indent_blankline").setup {
+    require('indent_blankline').setup({
         -- for example, context is off by default, use this to turn it on
         show_current_context = true,
         show_current_context_start = false,
-        buftype_exclude = { "terminal" },
-        filetype_exclude = { "dashboard",  'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json' },
-        space_char_blankline = " ",
-    }
+        buftype_exclude = { 'terminal' },
+        filetype_exclude = { 'dashboard', 'startify', 'coc-explorer', 'which_key', 'markdown', 'help', 'json' },
+        space_char_blankline = ' ',
+    })
 end
 
 function plugin_config:telescope()
-    require('telescope').setup{
+    require('telescope').setup({
         defaults = {
             -- Default configuration for telescope goes here:
             -- config_key = value,
             layout_config = {
                 prompt_position = 'top',
             },
-            sorting_strategy = "ascending",
+            sorting_strategy = 'ascending',
         },
         pickers = {},
         extensions = {},
-    }
+    })
 end
 
 function plugin_config:hop()
-    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
 end
 
 function plugin_config:bufferline()
     local tab_group = {}
-    local tabpagenr = vim.fn['tabpagenr'];
+    local tabpagenr = vim.fn['tabpagenr']
     local bufnr = vim.fn['bufnr']
     local buflisted = vim.fn['buflisted']
-    vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         pattern = '*',
-        callback = function ()
+        callback = function()
             local tabId = tabpagenr()
             local buf = bufnr()
             if tab_group[tabId] then
@@ -133,11 +149,11 @@ function plugin_config:bufferline()
             else
                 tab_group[tabId] = { buf }
             end
-        end
+        end,
     })
-    vim.api.nvim_create_autocmd({ "BufDelete" }, {
+    vim.api.nvim_create_autocmd({ 'BufDelete' }, {
         pattern = '*',
-        callback = function ()
+        callback = function()
             local tabId = tabpagenr()
             if tab_group[tabId] then
                 local new_tab_group = {}
@@ -154,47 +170,47 @@ function plugin_config:bufferline()
                 end
                 tab_group = new_tab_group
             end
-        end
+        end,
     })
-    require('bufferline').setup{
+    require('bufferline').setup({
         options = {
             enforce_regular_tabs = false,
-            diagnostics = "coc",
+            diagnostics = 'coc',
             diagnostics_update_in_insert = true,
             diagnostics_indicator = function(count, level)
-                local icon = level:match("error") and " " or " "
-                return " " .. icon .. count
+                local icon = level:match('error') and ' ' or ' '
+                return ' ' .. icon .. count
             end,
             numbers = function(opts)
                 return string.format(' %s/%s', vim.fn['tabpagenr'](), opts.ordinal)
             end,
             offsets = {
                 {
-                    filetype = "NvimTree",
-                    text = "File Explorer",
-                    highlight = "Directory",
-                    text_align = "left"
+                    filetype = 'NvimTree',
+                    text = 'File Explorer',
+                    highlight = 'Directory',
+                    text_align = 'left',
                 },
                 {
-                    filetype = "coc-explorer",
+                    filetype = 'coc-explorer',
                     text = function()
                         return vim.fn.getcwd()
                     end,
-                    highlight = "Directory",
-                    text_align = "left"
+                    highlight = 'Directory',
+                    text_align = 'left',
                 },
                 {
                     filetype = 'vista',
                     text = function()
                         return vim.fn.getcwd()
                     end,
-                    highlight = "Tags",
-                    text_align = "right"
-                }
+                    highlight = 'Tags',
+                    text_align = 'right',
+                },
             },
-            separator_style = "slant",
-            custom_filter = function (buf_number)
-                if string.match(vim.fn['bufname'](buf_number), "term") then
+            separator_style = 'slant',
+            custom_filter = function(buf_number)
+                if string.match(vim.fn['bufname'](buf_number), 'term') then
                     return false
                 end
                 local tabId = tabpagenr()
@@ -206,120 +222,120 @@ function plugin_config:bufferline()
                     end
                 end
                 return false
-            end
-        }
-    };
+            end,
+        },
+    })
 end
 
 function plugin_config:nvim_tree()
-    require'nvim-tree'.setup {
+    require('nvim-tree').setup({
         view = {
             mappings = {
                 list = {
-                    { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
-                    { key = "<C-e>",                        action = "edit_in_place" },
-                    { key = {"O"},                          action = "edit_no_picker" },
-                    { key = {"<2-RightMouse>", "<C-]>"},    action = "cd" },
-                    { key = "E",                        action = "vsplit" },
-                    { key = "s",                        action = "split" },
-                    { key = "<C-t>",                        action = "tabnew" },
-                    { key = "<",                            action = "prev_sibling" },
-                    { key = ">",                            action = "next_sibling" },
-                    { key = "P",                            action = "parent_node" },
-                    { key = "<BS>",                         action = "close_node" },
-                    { key = "<Tab>",                        action = "preview" },
-                    { key = "K",                            action = "first_sibling" },
-                    { key = "J",                            action = "last_sibling" },
-                    { key = "I",                            action = "toggle_git_ignored" },
-                    { key = "H",                            action = "toggle_dotfiles" },
-                    { key = "R",                            action = "refresh" },
-                    { key = "a",                            action = "create" },
-                    { key = "d",                            action = "remove" },
-                    { key = "D",                            action = "trash" },
-                    { key = "r",                            action = "rename" },
-                    { key = "<C-r>",                        action = "full_rename" },
-                    { key = "x",                            action = "cut" },
-                    { key = "c",                            action = "copy" },
-                    { key = "p",                            action = "paste" },
-                    { key = "y",                            action = "copy_name" },
-                    { key = "Y",                            action = "copy_path" },
-                    { key = "gy",                           action = "copy_absolute_path" },
-                    { key = "[c",                           action = "prev_git_item" },
-                    { key = "]c",                           action = "next_git_item" },
-                    { key = "<BS>",                            action = "dir_up" },
-                    { key = "S",                            action = "system_open" },
-                    { key = "q",                            action = "close" },
-                    { key = "?",                           action = "toggle_help" },
-                    { key = "W",                            action = "collapse_all" },
-                    { key = "f",                            action = "search_node" },
-                    { key = "<C-k>",                        action = "toggle_file_info" },
-                    { key = ".",                            action = "run_file_command" }
-                }
-            }
-        }
-    }
+                    { key = { '<CR>', 'o', '<2-LeftMouse>' }, action = 'edit' },
+                    { key = '<C-e>', action = 'edit_in_place' },
+                    { key = { 'O' }, action = 'edit_no_picker' },
+                    { key = { '<2-RightMouse>', '<C-]>' }, action = 'cd' },
+                    { key = 'E', action = 'vsplit' },
+                    { key = 's', action = 'split' },
+                    { key = '<C-t>', action = 'tabnew' },
+                    { key = '<', action = 'prev_sibling' },
+                    { key = '>', action = 'next_sibling' },
+                    { key = 'P', action = 'parent_node' },
+                    { key = '<BS>', action = 'close_node' },
+                    { key = '<Tab>', action = 'preview' },
+                    { key = 'K', action = 'first_sibling' },
+                    { key = 'J', action = 'last_sibling' },
+                    { key = 'I', action = 'toggle_git_ignored' },
+                    { key = 'H', action = 'toggle_dotfiles' },
+                    { key = 'R', action = 'refresh' },
+                    { key = 'a', action = 'create' },
+                    { key = 'd', action = 'remove' },
+                    { key = 'D', action = 'trash' },
+                    { key = 'r', action = 'rename' },
+                    { key = '<C-r>', action = 'full_rename' },
+                    { key = 'x', action = 'cut' },
+                    { key = 'c', action = 'copy' },
+                    { key = 'p', action = 'paste' },
+                    { key = 'y', action = 'copy_name' },
+                    { key = 'Y', action = 'copy_path' },
+                    { key = 'gy', action = 'copy_absolute_path' },
+                    { key = '[c', action = 'prev_git_item' },
+                    { key = ']c', action = 'next_git_item' },
+                    { key = '<BS>', action = 'dir_up' },
+                    { key = 'S', action = 'system_open' },
+                    { key = 'q', action = 'close' },
+                    { key = '?', action = 'toggle_help' },
+                    { key = 'W', action = 'collapse_all' },
+                    { key = 'f', action = 'search_node' },
+                    { key = '<C-k>', action = 'toggle_file_info' },
+                    { key = '.', action = 'run_file_command' },
+                },
+            },
+        },
+    })
 end
 
 function plugin_config:incline()
-    require('incline').setup {
-        render = function (props)
+    require('incline').setup({
+        render = function(props)
             local bufname = vim.api.nvim_buf_get_name(props.buf)
-            if bufname == "" then
+            if bufname == '' then
                 local ft = vim.bo.filetype
-                local icon, color = require("nvim-web-devicons").get_icon_color_by_filetype(ft, nil, { default = true })
+                local icon, color = require('nvim-web-devicons').get_icon_color_by_filetype(ft, nil, { default = true })
                 local render = {
                     { icon, guifg = color },
-                    { " " },
+                    { ' ' },
                 }
-                if ft ~= "" then
-                    table.insert(render, { "*".. ft .." Buffer*" })
+                if ft ~= '' then
+                    table.insert(render, { '*' .. ft .. ' Buffer*' })
                 else
-                    icon, color = require("nvim-web-devicons").get_icon_color(bufname, nil, { default = true })
+                    icon, color = require('nvim-web-devicons').get_icon_color(bufname, nil, { default = true })
                     render[1] = { icon, guifg = color }
-                    table.insert(render, { "*No Name*" })
+                    table.insert(render, { '*No Name*' })
                 end
                 table.insert(render, { ' ●', guifg = '#EACB64' })
                 return render
             else
-                bufname = vim.fn.fnamemodify(bufname, ":.")
+                bufname = vim.fn.fnamemodify(bufname, ':.')
             end
-            local icon, color = require("nvim-web-devicons").get_icon_color(bufname, nil, { default = true })
+            local icon, color = require('nvim-web-devicons').get_icon_color(bufname, nil, { default = true })
             local max_len = vim.api.nvim_win_get_width(props.win) / 3
             local modified_color = vim.api.nvim_buf_get_option(props.buf, 'modified') and '#EACB64' or '#759D57'
             local render = {
                 { icon, guifg = color },
-                { " " },
+                { ' ' },
                 { bufname },
                 { ' ●', guifg = modified_color },
             }
 
             if #bufname > max_len then
-                render[2] = { " …" }
+                render[2] = { ' …' }
                 render[3] = { string.sub(bufname, #bufname - max_len, -1) }
             end
             return render
         end,
         window = {
             zindex = 60,
-            width = "fit",
-            placement = { horizontal = "right", vertical = "top" },
+            width = 'fit',
+            placement = { horizontal = 'right', vertical = 'top' },
             margin = {
                 horizontal = { left = 1, right = 0 },
                 vertical = { bottom = 0, top = 1 },
             },
             padding = { left = 1, right = 1 },
-            padding_char = " ",
+            padding_char = ' ',
         },
         hide = {
-            cursorline = "focused_win",
+            cursorline = 'focused_win',
             focused_win = false,
-        }
-    }
+        },
+    })
 
-    vim.cmd[[
+    vim.cmd([[
     highlight InclineNormal ctermbg=0 guibg=#564D82
     highlight InclineNormalNC ctermbg=0 guibg=#564D82
-    ]]
+    ]])
 end
 
 function plugin_config:nvim_ts_autotag()
@@ -328,16 +344,16 @@ end
 
 function plugin_config:scrollview()
     require('scrollview').setup({
-        excluded_filetypes = {'nerdtree', 'coc-explorer', 'vista'},
+        excluded_filetypes = { 'nerdtree', 'coc-explorer', 'vista' },
     })
 end
 
 function plugin_config:todo_comments()
-    require("todo-comments").setup {}
+    require('todo-comments').setup({})
 end
 
 function plugin_config:winbar()
-    require("winbar").setup {
+    require('winbar').setup({
         enabled = true,
 
         show_file_path = true,
@@ -373,20 +389,25 @@ function plugin_config:winbar()
             'coc-explorer',
             'which_key',
             '',
-        }
-    }
+        },
+    })
 end
 
 function plugin_config:dashboard()
-    local db = require("dashboard")
+    local db = require('dashboard')
     local get_logo = vim.fn['custom#logo#get']
 
-    db.custom_footer = {'type e to new a buffer or type q to exit'}
+    db.custom_footer = { 'type e to new a buffer or type q to exit' }
     db.custom_header = get_logo()
     db.session_directory = vim.g.dashboard_session_directory
 
     db.custom_center = {
-        { icon = '  ', desc = 'Open Last Session                       ', shortcut = 'SPC s l', action = 'SessionLoad' },
+        {
+            icon = '  ',
+            desc = 'Open Last Session                       ',
+            shortcut = 'SPC s l',
+            action = 'SessionLoad',
+        },
         { icon = '  ', desc = 'Open Org Agenda                         ', shortcut = 'SPC o A' },
         { icon = '  ', desc = 'Recently Opened Files                   ', shortcut = 'SPC f r' },
         { icon = '  ', desc = 'Open File                               ', shortcut = 'SPC f f' },
@@ -396,28 +417,27 @@ function plugin_config:dashboard()
     }
 end
 
-
 local enable_plugin = {
-    "treesitter",
-    "orgmode",
-    "npairs",
-    "telescope",
-    "hop",
-    "bufferline",
-    "indent_blank_line",
-    "incline",
-    "nvim_ts_autotag",
-    "todo_comments",
-    "dashboard",
-    -- "winbar",
-    -- "nvim_tree",
-    -- "scrollview",
+    'treesitter',
+    'orgmode',
+    'npairs',
+    'telescope',
+    'hop',
+    'bufferline',
+    'indent_blank_line',
+    'incline',
+    'nvim_ts_autotag',
+    'todo_comments',
+    'dashboard',
+    -- 'winbar',
+    -- 'nvim_tree',
+    -- 'scrollview',
 }
 
-for _,v in ipairs(enable_plugin) do
+for _, v in ipairs(enable_plugin) do
     plugin_config[v]()
 end
 
 -- for user
 
-require 'markdown_org'
+require('markdown_org')
