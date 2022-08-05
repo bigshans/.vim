@@ -522,7 +522,7 @@ function! config#CocConfig()
     inoremap <silent><expr> <TAB>
                 \ coc#pum#visible() ? coc#pum#next(1) :
                 \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-                \ CheckBackSpace() ? "\<TAB>" :
+                \ CheckBackspace() ? "\<TAB>" :
                 \ coc#refresh()
 
     " Make <CR> to accept selected completion item or notify coc.nvim to format
