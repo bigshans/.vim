@@ -969,8 +969,8 @@ function! config#Dashboard()
             " 这里等号左右不能有空格，下面同理
             set showtabline=0
         else
-            if &showtabline != 2
-                set showtabline=2
+            if &showtabline == 0
+                set showtabline=4
             endif
         endif
     endfunction

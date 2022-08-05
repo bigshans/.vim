@@ -2,7 +2,7 @@ let mapleader="\<Space>"
 filetype plugin indent on
 set ttimeoutlen=150
 set nocompatible
-set showtabline=2
+" set showtabline=4
 set nofoldenable
 set hidden
 set virtualedit=block

@@ -135,6 +135,7 @@ if has('nvim')
     Plug 'fgheng/winbar.nvim'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'numToStr/Comment.nvim'
+    Plug 'kevinhwang91/rnvimr'
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif

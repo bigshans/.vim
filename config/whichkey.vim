@@ -806,6 +806,7 @@ function BasicVimKeybinding()
     " }}
 
     call g:CocRemap()
+    call g:RangerNVIM()
 endfunction
 
 function g:CocRemap()
@@ -823,6 +824,16 @@ function g:CocRemap()
     inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
     inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : functions#Close_fcitx('<C-o>gk')
     inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : functions#Close_fcitx('<C-o>gj')
+endfunction
+
+function g:RangerNVIM()
+    tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+    nnoremap <silent> <M-o> :RnvimrToggle<CR>
+    tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+    augroup Ranger
+        autocmd!
+        autocmd FileType rnvimr nmap <buffer>q :q<CR>
+    augroup END
 endfunction
 
 if g:vim_basic == 1
