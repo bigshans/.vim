@@ -331,8 +331,15 @@ function! BuffersKey()
 endfunction
 
 function! CommentKey()
+    nmap <leader>ci gcc
+    vmap <leader>ci gc
+
+    nmap <leader>cb gbc
+    vmap <leader>cb gb
     return {
                 \ 'name':'+comment',
+                \ 'i': 'comment toggle current line',
+                \ 'b': 'comment toggle block line',
                 \ }
 endfunction
 
