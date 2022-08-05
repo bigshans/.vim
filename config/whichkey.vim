@@ -279,7 +279,7 @@ endfunction
 
 fun! g:XdgOpen(path) abort
     call system(printf('xdg-open %s &', shellescape(a:path)))
-endfun
+endfunction
 
 function! FileKey()
     nnoremap <leader>fs  :w!<CR>
@@ -806,8 +806,6 @@ function BasicVimKeybinding()
     inoremap <M-f> <C-Right>
     inoremap <M-b> <C-Left>
     " }}
-    imap <M-j><M-k> <Esc>
-    imap <C-j><C-k> <Esc>
 
     call g:CocRemap()
 endfunction

@@ -518,9 +518,11 @@ function! config#CocConfig()
 
     inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
     " remap for complete to use tab and <cr>
+    " add snippets expend and next snippet
     inoremap <silent><expr> <TAB>
-                \ coc#pum#visible() ? coc#pum#next(1):
-                \ CheckBackspace() ? "\<Tab>" :
+                \ coc#pum#visible() ? coc#pum#next(1) :
+                \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+                \ CheckBackSpace() ? "\<TAB>" :
                 \ coc#refresh()
 
     " Make <CR> to accept selected completion item or notify coc.nvim to format
