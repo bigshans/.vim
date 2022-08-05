@@ -89,6 +89,17 @@ function! ScreenCenterToggle()
         let g:screen_center_toggle_flag = 0
     endif
 endfunction
+
+function! ReadonlyToggle()
+    if &ro
+        set noro
+    else
+        set ro
+    endif
+endfunction
+
+command! Readonly call ReadonlyToggle()
+
 au! BufNew,BufEnter *.vim setlocal foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
 packadd termdebug

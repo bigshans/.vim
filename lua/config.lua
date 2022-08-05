@@ -280,12 +280,21 @@ function plugin_config:incline()
     require('incline').setup({
         render = function(props)
             local bufname = vim.api.nvim_buf_get_name(props.buf)
+            local ro = vim.api.nvim_buf_get_option(props.buf, 'readonly');
+            local suffix = function (color)
+                if ro then
+                    return { ' ', guifg = '#FF6578'}
+                else
+                    return { ' ●', guifg = color }
+                end
+            end
             if bufname == '' then
                 local ft = vim.bo.filetype
                 local icon, color = require('nvim-web-devicons').get_icon_color_by_filetype(ft, nil, { default = true })
                 local render = {
                     { icon, guifg = color },
                     { ' ' },
+                    suffix('#EACB64'),
                 }
                 if ft ~= '' then
                     table.insert(render, { '*' .. ft .. ' Buffer*' })
@@ -294,7 +303,6 @@ function plugin_config:incline()
                     render[1] = { icon, guifg = color }
                     table.insert(render, { '*No Name*' })
                 end
-                table.insert(render, { ' ●', guifg = '#EACB64' })
                 return render
             else
                 bufname = vim.fn.fnamemodify(bufname, ':.')
@@ -306,7 +314,7 @@ function plugin_config:incline()
                 { icon, guifg = color },
                 { ' ' },
                 { bufname },
-                { ' ●', guifg = modified_color },
+                suffix(modified_color),
             }
 
             if #bufname > max_len then
@@ -417,6 +425,10 @@ function plugin_config:dashboard()
     }
 end
 
+function plugin_config:comment()
+    require('Comment').setup()
+end
+
 local enable_plugin = {
     'treesitter',
     'orgmode',
@@ -429,6 +441,7 @@ local enable_plugin = {
     'nvim_ts_autotag',
     'todo_comments',
     'dashboard',
+    'comment',
     -- 'winbar',
     -- 'nvim_tree',
     -- 'scrollview',
