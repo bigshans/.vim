@@ -186,6 +186,7 @@ function! GitKey()
         autocmd FileType fugitive nmap <buffer><silent>q :q<CR>
         autocmd FileType fugitive nmap <buffer><silent>lp :Git pull<CR>
         autocmd FileType fugitive nmap <buffer><silent>lP :Git push<CR>
+        autocmd FileType fugitive nmap <buffer><leader><leader> a
     augroup END
     return {
                 \ 'name':'+git',
@@ -487,11 +488,11 @@ function! HopMovtionKey()
     nmap <silent> f :HopChar1CurrentLineAC<CR>
     nmap <silent> F :HopChar1CurrentLineBC<CR>
 
-    nmap <silent> <leader><leader>f :HopChar1MW<CR>
-    nmap <silent> <leader><leader>F :HopChar2MW<CR>
+    nmap <silent> ,f :HopChar1MW<CR>
+    nmap <silent> ,F :HopChar2MW<CR>
 
-    nmap <silent> <leader><leader>l :HopLineMW<CR>
-    nmap <silent> <leader><leader>w :HopWordMW<CR>
+    nmap <silent> ,l :HopLineMW<CR>
+    nmap <silent> ,w :HopWordMW<CR>
 
     " stil use easy motion
     " Gif config
@@ -627,8 +628,6 @@ function! OtherKey()
     nmap <leader>/ <plug>(fzf-maps-n)
     xmap <leader>/ <plug>(fzf-maps-x)
     omap <leader>/ <plug>(fzf-maps-o)
-    xmap ga <Plug>(EasyAlign)
-    nmap ga <Plug>(EasyAlign)
     nmap T <Plug>(coc-translator-p)
     vmap T <Plug>(coc-translator-pv)
     augroup Myfzf
@@ -715,7 +714,6 @@ endfunction
 function BasicVimKeybinding()
     call g:UnimpairedMapping()
     nmap <Tab> za
-    nmap <leader><leader><leader> <ESC>
     nnoremap J gJ
     nnoremap gp `[v`]
     nnoremap < <<

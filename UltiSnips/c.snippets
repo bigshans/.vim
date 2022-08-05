@@ -6,3 +6,12 @@ int main(int argc, char **argv) {
 	return 0;
 }
 endsnippet
+
+snippet #ifn "if not define"
+#ifndef $1
+#define $1
+
+$2
+
+#endif
+endsnippet

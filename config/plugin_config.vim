@@ -18,7 +18,7 @@ let g:cursorhold_updatetime = 100
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 Plug 'sainnhe/artify.vim'
 " Plug 'vim-ruby/vim-ruby'
 Plug 'https://github.com/honza/vim-snippets.git'
@@ -31,7 +31,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Plug 'rakr/vim-one'
 Plug 'mattn/emmet-vim'
 " Plug 'git://github.com/jiangmiao/auto-pairs.git'
-Plug 'https://github.com/gko/vim-coloresque.git'
+" Plug 'https://github.com/gko/vim-coloresque.git'
 " Plug 'marijnh/tern_for_vim'
 Plug 'lfv89/vim-interestingwords'
 " Plug 'maksimr/vim-jsbeautify'
@@ -60,7 +60,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
 " Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 " Plug 'junegunn/goyo.vim'
 " Plug 'amix/vim-zenroom2'
 Plug 'iamcco/mathjax-support-for-mkdp'
