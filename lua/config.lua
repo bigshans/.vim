@@ -429,6 +429,10 @@ function plugin_config:comment()
     require('Comment').setup()
 end
 
+function plugin_config:cmdline()
+    require('fine-cmdline').setup()
+end
+
 local enable_plugin = {
     'treesitter',
     'orgmode',

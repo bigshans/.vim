@@ -136,6 +136,9 @@ if has('nvim')
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'numToStr/Comment.nvim'
     Plug 'kevinhwang91/rnvimr'
+    " fine-cmdline 的依赖
+    Plug 'MunifTanjim/nui.nvim'
+    Plug 'VonHeikemen/fine-cmdline.nvim'
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif

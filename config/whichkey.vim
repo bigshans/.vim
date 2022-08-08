@@ -701,7 +701,7 @@ function! OtherKey()
     map ; <Plug>(wildfire-fuel)
     " This selects the previous closest text object.
     vmap ; <Plug>(wildfire-water)
-    nnoremap <M-x> :Commands<CR>
+    nnoremap <M-x> :FineCmdline<CR>
     call HopMovtionKey()
     call BasicVimKeybinding()
     " overwrite leader q
