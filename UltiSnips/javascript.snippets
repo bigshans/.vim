@@ -1,17 +1,26 @@
 snippet arb "async rust block"
-(async () => {
-	$1
+$1(async () => {
+	${2:// TODO}
 })();
 endsnippet
 
 snippet rb "rust block"
 (() => {
-	$1
+	${1:// TODO}
 })();
 endsnippet
 
 snippet forw "for await of"
 for await (const ${1:i} of ${2:iterable}) {
-	${3:// some code}
+	${3:// TODO}
 }
+endsnippet
+
+snippet reada "readable"
+${1:read}.on('readable', () => {
+	let chunk;
+	while ((chunk = $1.read()) !== null) {
+		${2:// TODO}
+	}
+});
 endsnippet
