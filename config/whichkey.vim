@@ -184,8 +184,9 @@ function! GitKey()
     augroup AU_NAME
         autocmd!
         autocmd FileType fugitive nmap <buffer><silent>q :q<CR>
-        autocmd FileType fugitive nmap <buffer><silent>lp :Git pull<CR>
-        autocmd FileType fugitive nmap <buffer><silent>lP :Git push<CR>
+        autocmd FileType fugitive nmap <buffer><silent><leader>p :Git pull<CR>
+        autocmd FileType fugitive nmap <buffer><silent><leader>P :Git push<CR>
+        autocmd FileType fugitive nmap <buffer><leader>c cc
         autocmd FileType fugitive nmap <buffer><leader><leader> a
     augroup END
     return {
