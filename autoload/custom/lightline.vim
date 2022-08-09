@@ -89,5 +89,12 @@ endfunction "}}}
 function custom#lightline#winnr() abort "{{{
   return '⌥ ' .. artify#convert(winnr(), 'bold')
 endfunction "}}}
+function custom#lightline#nearest_method_or_function() abort
+  let l:f = get(b:, 'vista_nearest_method_or_function', '')
+  if l:f != ''
+    return "\u0192 " .. l:f
+  endif
+  return ''
+endfunction
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

@@ -153,13 +153,6 @@ function! config#StartifyConfig()
                     \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
         return centered_lines
     endfunction
-    " start with NERDTree
-    " autocmd VimEnter *
-    " \   if !argc()
-    " \ |   Startify
-    " \ |   NERDTree
-    " \ |   wincmd w
-    " \ | endif
     let g:startify_custom_header = s:filter_header(g:startify_custom_header)
     let g:startify_session_autoload = 1
     let  g:startify_files_number = 15
@@ -175,13 +168,13 @@ function! config#StartifyConfig()
                 \ ]
 endfunction
 
-function! config#VimMulipleCursorsConfig()    
+function! config#VimMulipleCursorsConfig()
     "vim-mutliple-cursors
     highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
     highlight link multiple_cursors_visual Visual
 endfunction
 
-function! config#VimRepl()    
+function! config#VimRepl()
     "vim-repl
     let g:repl_program = {
                 \ "python": "python3",
@@ -624,17 +617,13 @@ endfunction
 
 function! config#VistaConfig()
     let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-    function! NearestMethodOrFunction() abort
-        return get(b:, 'vista_nearest_method_or_function', '')
-    endfunction
-
-    set statusline+=%{NearestMethodOrFunction()}
     autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
     let g:vista#renderer#enable_icon = 1
     let g:vista#renderer#icons = {
                 \   "function": "\uf794",
                 \   "variable": "\uf71b",
                 \  }
+    let g:vista_default_executive = 'coc'
 endfunction
 
 function! config#WorkSpace()
@@ -826,52 +815,20 @@ function! config#Lightline()
     let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
     let g:lightline#asyncrun#indicator_none = ''
     let g:lightline#asyncrun#indicator_run = 'Running...'
-    if g:vim_lightline_artify == 0
-        let g:lightline.active = {
-                    \ 'left': [ [ 'mode', 'winnr', 'paste', 'readonly' ],
-                    \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-                    \ 'right': [
-                        \ [ 'lineinfo' ],
-                    \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
-                    \           [ 'asyncrun_status', 'coc_status' ],
-                    \ ]
-                    \ }
-        let g:lightline.inactive = {
-                    \ 'left': [ [ 'filename', 'winnr' , 'modified', 'fileformat', 'devicons_filetype' ]],
-                    \ 'right': [ ['lineinfo',  'git_global' ] ]
-                    \ }
-        " let g:lightline.tabline = {
-                    " \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
-                    " \ 'right': [ [ 'git_global' ], ['git_buffer'],
-                    " \  ]
-                    " \ }
-        " let g:lightline.tab = {
-                    " \ 'active': [ 'tabnum', 'filename', 'modified' ],
-                    " \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
-    else
-        let g:lightline.active = {
-                    \ 'left': [ [ 'artify_mode', 'winnr', 'paste', 'readonly' ],
-                    \           ['filename', 'modified', 'fileformat', 'devicons_filetype' ]],
-                    \ 'right': [
-                        \ [ 'artify_lineinfo' ],
-                    \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
-                    \           [ 'asyncrun_status', 'coc_status' ],
-                        \ [ 'git_global' ],
-                    \ ]
-                    \ }
-        let g:lightline.inactive = {
-                    \ 'left': [ [ 'filename', 'winnr' , 'modified', 'fileformat', 'devicons_filetype' ]],
-                    \ 'right': [ ['artify_lineinfo',   'git_global' ] ]
-                    \ }
-        " let g:lightline.tabline = {
-                    " \ 'left': [ [ 'vim_logo', 'close', 'tabs' ] ],
-                    " \ 'right': [ [ 'git_global' ], ['git_buffer'],
-                    " \ ]
-                    " \ }
-        " let g:lightline.tab = {
-                    " \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
-                    " \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
-    endif
+    let g:lightline.active = {
+                \ 'left': [ [ 'artify_mode', 'winnr', 'paste', 'readonly' ],
+                \           ['filename', 'fileformat', 'devicons_filetype' ]],
+                \ 'right': [
+                \ [ 'artify_lineinfo' ],
+                \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
+                \           [ 'asyncrun_status', 'coc_status' ],
+                \ [ 'git_global' ],
+                \ ]
+                \ }
+    let g:lightline.inactive = {
+                \ 'left': [ [ 'filename', 'winnr', 'modified', 'fileformat', 'devicons_filetype' ]],
+                \ 'right': [ ['artify_lineinfo',   'git_global' ] ]
+                \ }
     let g:lightline.tab_component_function = {
                 \ 'artify_activetabnum': 'custom#lightline#artify_active_tabnum',
                 \ 'artify_inactivetabnum': 'custom#lightline#artify_inactive_tabnum',
@@ -898,7 +855,8 @@ function! config#Lightline()
                 \ }
     let g:lightline.component_function = {
                 \ 'devicons_filetype': 'custom#lightline#devicons',
-                \ 'coc_status': 'custom#lightline#coc_status'
+                \ 'coc_status': 'custom#lightline#coc_status',
+                \ 'method': 'custom#lightline#nearest_method_or_function',
                 \ }
     let g:lightline.component_expand = {
                 \ 'linter_warnings': 'custom#lightline#coc_diagnostic_warning',
