@@ -297,11 +297,11 @@ function plugin_config:incline()
                     suffix('#EACB64'),
                 }
                 if ft ~= '' then
-                    table.insert(render, { '*' .. ft .. ' Buffer*' })
+                    table.insert(render, { ' *' .. ft .. ' Buffer*' })
                 else
                     icon, color = require('nvim-web-devicons').get_icon_color(bufname, nil, { default = true })
                     render[1] = { icon, guifg = color }
-                    table.insert(render, { '*No Name*' })
+                    table.insert(render, { ' *No Name*' })
                 end
                 return render
             else
