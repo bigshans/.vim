@@ -149,6 +149,7 @@ function plugin_config:bufferline()
             else
                 tab_group[tabId] = { buf }
             end
+            print(tab_group)
         end,
     })
     vim.api.nvim_create_autocmd({ 'BufDelete' }, {
@@ -210,7 +211,7 @@ function plugin_config:bufferline()
             },
             separator_style = 'slant',
             custom_filter = function(buf_number)
-                if string.match(vim.fn['bufname'](buf_number), 'term') then
+                if string.match(vim.fn['bufname'](buf_number), '^term://') then
                     return false
                 end
                 local tabId = tabpagenr()
