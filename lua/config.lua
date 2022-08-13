@@ -149,7 +149,6 @@ function plugin_config:bufferline()
             else
                 tab_group[tabId] = { buf }
             end
-            print(tab_group)
         end,
     })
     vim.api.nvim_create_autocmd({ 'BufDelete' }, {
