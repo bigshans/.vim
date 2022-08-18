@@ -177,9 +177,19 @@ function plugin_config:bufferline()
             enforce_regular_tabs = false,
             diagnostics = 'coc',
             diagnostics_update_in_insert = true,
-            diagnostics_indicator = function(count, level)
-                local icon = level:match('error') and ' ' or ' '
-                return ' ' .. icon .. count
+            diagnostics_indicator = function()
+                local coc_warn = vim.fn['custom#lightline#coc_diagnostic_warning_num']
+                local coc_error = vim.fn['custom#lightline#coc_diagnostic_error_num']
+                local error = coc_error()
+                local warn = coc_warn()
+                if error ~= 0 or warn ~= 0 then
+                    if error ~= 0 then
+                        return ' ' .. error
+                    else
+                        return ' ' .. warn
+                    end
+                end
+                return ''
             end,
             numbers = function(opts)
                 return string.format(' %s/%s', vim.fn['tabpagenr'](), opts.ordinal)

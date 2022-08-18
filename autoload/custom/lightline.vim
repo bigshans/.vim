@@ -14,6 +14,14 @@ function custom#lightline#coc_diagnostic_warning() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
   return get(info, 'warning', 0) ==# 0 ? '' : "\uf529 " . info['warning']
 endfunction "}}}
+function custom#lightline#coc_diagnostic_error_num() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return info['error']
+endfunction "}}}
+function custom#lightline#coc_diagnostic_warning_num() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return info['warning']
+endfunction "}}}
 function custom#lightline#coc_diagnostic_ok() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
   if (get(info, 'error', 0) == 0) && (get(info, 'warning', 0) == 0)
