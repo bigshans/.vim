@@ -805,7 +805,10 @@ function BasicVimKeybinding()
     inoremap <M-f> <C-Right>
     inoremap <M-b> <C-Left>
     " }}
-
+    " real delete
+    nnoremap D "_d
+    nnoremap Dx "_x
+    xnoremap D "_d
     call g:CocRemap()
     call g:RangerNVIM()
 endfunction
