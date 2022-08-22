@@ -10,8 +10,28 @@ func main() {
 }
 endsnippet
 
-snippet funt "method for struct"
+snippet funct "method for struct"
 func (self *${1:Type}) ${2:funName}($3) $4{
 	$5
 }
+endsnippet
+
+snippet types "type for struct"
+type ${1:name} struct {$2}
+endsnippet
+
+snippet typei "type for interface"
+type ${1:name} interface {$2}
+endsnippet
+
+snippet ini "init func"
+func init() {
+	$1
+}
+endsnippet
+
+snippet rb "annymouse function exec"
+func() $1{
+	$2
+}()
 endsnippet
