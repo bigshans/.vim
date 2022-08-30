@@ -51,7 +51,7 @@ Plug 'tpope/vim-speeddating' " vim-orgmode的依赖
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'terryma/vim-expand-region'
 " Plug 'danro/rename.vim'
-" Plug 'posva/vim-vue'
+Plug 'posva/vim-vue'
 " Plug 'othree/html5.vim', {'for': ['html']}
 " Plug 'hail2u/vim-css3-syntax'
 Plug 'Shougo/echodoc.vim'
@@ -113,6 +113,7 @@ Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'lambdalisue/fern.vim'
 
 " pure nvim plugin for nvim
@@ -126,7 +127,7 @@ if has('nvim')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'phaazon/hop.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-    Plug 'glepnir/dashboard-nvim'
+    " Plug 'glepnir/dashboard-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     Plug 'b0o/incline.nvim'
@@ -192,7 +193,8 @@ call config#AutoPairsConfig()
 call config#VimClosetagConfig()
 call config#RelConfig()
 call config#FastFoldConfig()
-call config#Dashboard()
+" call config#Dashboard()
+call config#leaderf()
 
 let g:mw_no_mappings = 1
 

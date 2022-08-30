@@ -1,5 +1,6 @@
 let mapleader="\<Space>"
 filetype plugin indent on
+set shm+=I
 set ttimeoutlen=150
 set nocompatible
 " set showtabline=4

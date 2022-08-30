@@ -19,11 +19,12 @@ function plugin_config:treesitter()
             'rust',
             'php',
             'vue',
+            'html'
         },
         sync_install = false,
         highlight = {
             enable = true,
-            disable = { 'org', 'lua', 'vim', 'markdown', 'html', 'typescript', 'javascript', 'rust', 'php', 'vue' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+            disable = { 'org', 'lua', 'vim', 'markdown', 'typescript', 'javascript', 'rust', 'php', 'vue', 'html' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
             additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
         },
     })
@@ -116,9 +117,9 @@ function plugin_config:telescope()
             -- Default configuration for telescope goes here:
             -- config_key = value,
             layout_config = {
-                prompt_position = 'top',
+                prompt_position = 'bottom',
             },
-            sorting_strategy = 'ascending',
+            -- sorting_strategy = 'ascending',
         },
         pickers = {},
         extensions = {},
@@ -454,7 +455,7 @@ local enable_plugin = {
     'incline',
     'nvim_ts_autotag',
     'todo_comments',
-    'dashboard',
+    -- 'dashboard',
     'comment',
     -- 'winbar',
     -- 'nvim_tree',
