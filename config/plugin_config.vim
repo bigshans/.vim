@@ -78,9 +78,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi',{'branch':'test'}
 Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 Plug 'ryanoasis/vim-devicons' " 太卡了
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+" Plug 'peitalin/vim-jsx-typescript'
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
@@ -94,7 +94,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'honza/vim-snippets'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
-Plug 'othree/xml.vim'
+" Plug 'othree/xml.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'ollykel/v-vim'
 Plug 'gcmt/wildfire.vim'
@@ -195,6 +195,7 @@ call config#RelConfig()
 call config#FastFoldConfig()
 " call config#Dashboard()
 call config#leaderf()
+" call config#OnedarkConfig()
 
 let g:mw_no_mappings = 1
 

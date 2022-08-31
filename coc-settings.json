@@ -34,11 +34,6 @@
             "args": ["start"],
             "filetypes": ["sh"]
         },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
-        },
         "vala": {
             "command": "vala-language-server",
             "filetypes": ["vala", "genie"]
@@ -229,7 +224,7 @@
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,
     "vimlsp.suggest.fromRuntimepath": true,
-    "colors.filetypes": ["vue", "html", "javascript", "typescript", "lua", "rust", "php", "json", "css", "less", "scss", "c", "cpp"],
+    "colors.filetypes": ["html", "javascript", "typescript", "lua", "rust", "php", "json", "css", "less", "scss", "c", "cpp"],
     "highlight.disableLanguages": ["org"],
     "stylua.styluaPath": "/usr/bin/stylua",
     "stylua.configPath": "/home/aerian/.vim/stylua.toml"

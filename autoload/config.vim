@@ -498,6 +498,7 @@ function! config#CocConfig()
                 \ 'coc-ci',
                 \ 'coc-highlight',
                 \ 'coc-stylua',
+                \ 'coc-go',
                 \]
     set hidden
     " Add `:Format` command to format current buffer.
