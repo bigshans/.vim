@@ -17,3 +17,5 @@ nmap <buffer> <C-c><C-'> :EditBufferCodeBlock<CR>
 imap <buffer> <C-c><C-'> :EditBufferCodeBlock<CR>
 
 nmap <buffer> <tab> za
+
+setlocal colorcolumn=

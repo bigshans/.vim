@@ -113,7 +113,7 @@ Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'simnalamburt/vim-mundo'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'lambdalisue/fern.vim'
 
 " pure nvim plugin for nvim
@@ -194,7 +194,7 @@ call config#VimClosetagConfig()
 call config#RelConfig()
 call config#FastFoldConfig()
 " call config#Dashboard()
-call config#leaderf()
+" call config#leaderf()
 " call config#OnedarkConfig()
 
 let g:mw_no_mappings = 1
