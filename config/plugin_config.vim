@@ -113,6 +113,7 @@ Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'bigshans/coc-word'
 " Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'lambdalisue/fern.vim'
 
@@ -208,7 +209,8 @@ endif
 " 用于测试插件
 " set runtimepath^=/projects/aerian/wp/coc-kite-cmp
 " set runtimepath^=/projects/aerian/wp/org-mode
-set runtimepath^=/projects/aerian/wp/coc-ci
+" set runtimepath^=/projects/aerian/wp/coc-ci
+" set runtimepath^=/home/aerian/.vim/bundle/coc-word
 " {{ autocmd
 
 autocmd BufNew,BufEnter *.java execute "silent! CocDisable"

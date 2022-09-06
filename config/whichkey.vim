@@ -709,7 +709,6 @@ function! OtherKey()
     nmap <silent><leader>q :call functions#bufQuit()<CR>
     nmap <silent> w <Plug>(coc-ci-w)
     nmap <silent> b <Plug>(coc-ci-b)
-    nmap <silent> e <Plug>(coc-ci-e)
 endfunction
 
 function BasicVimKeybinding()

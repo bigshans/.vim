@@ -227,5 +227,6 @@
     "colors.filetypes": ["html", "javascript", "typescript", "lua", "rust", "php", "json", "css", "less", "scss", "c", "cpp"],
     "highlight.disableLanguages": ["org"],
     "stylua.styluaPath": "/usr/bin/stylua",
-    "stylua.configPath": "/home/aerian/.vim/stylua.toml"
+    "stylua.configPath": "/home/aerian/.vim/stylua.toml",
+    "coc.source.word.priority": -10
 }
