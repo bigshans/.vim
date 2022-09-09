@@ -71,6 +71,11 @@ augroup Web
     autocmd!
     autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js setlocal tabstop=2 shiftwidth=2 shiftwidth=2
 augroup END
+function WriteCreatingDirs()
+    execute ':silent !mkdir -p %:h'
+    write
+endfunction
+command! C :call WriteCreatingDirs()
 command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
 command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
 command! Hex :%!xxd
