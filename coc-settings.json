@@ -72,6 +72,12 @@
             "filetypes": [
                 "scheme"
             ]
+        },
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "filetypes": ["haskell", "lhaskell"]
         }
     },
     "suggest.completionItemKindLabels": {
@@ -104,7 +110,8 @@
     },
     "suggest.floatConfig": {
         "border": true,
-        "shadow": true
+        "rounded": true,
+        "winblend": 10
     },
     "suggest.enablePreselect": false,
     "explorer.keyMappings.global": {
