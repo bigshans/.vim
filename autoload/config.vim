@@ -483,7 +483,6 @@ function! config#CocConfig()
                 \ 'coc-json',
                 \ 'coc-rust-analyzer',
                 \ 'coc-snippets',
-                \ 'coc-metals',
                 \ 'coc-deno',
                 \ 'coc-svelte',
                 \ 'coc-calc',
