@@ -141,6 +141,7 @@ if has('nvim')
     " fine-cmdline 的依赖
     Plug 'MunifTanjim/nui.nvim'
     Plug 'VonHeikemen/fine-cmdline.nvim'
+    Plug 'NTBBloodbath/rest.nvim'
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'dstein64/nvim-scrollview'
 endif
