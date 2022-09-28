@@ -486,11 +486,11 @@ function! MovtionKey()
 endfunction
 
 function! HopMovtionKey()
-    nmap <silent> f :HopChar1CurrentLineAC<CR>
-    nmap <silent> F :HopChar1CurrentLineBC<CR>
+    nmap <silent> f :HopChar1AC<CR>
+    nmap <silent> F :HopChar1BC<CR>
 
-    nmap <silent> ,f :HopChar1MW<CR>
-    nmap <silent> ,F :HopChar2MW<CR>
+    nmap <silent> ,f :HopChar1<CR>
+    nmap <silent> ,F :HopChar2<CR>
 
     nmap <silent> ,l :HopLineMW<CR>
     nmap <silent> ,w :HopWordMW<CR>
