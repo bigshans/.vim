@@ -78,6 +78,11 @@
             "args": ["--lsp"],
             "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
             "filetypes": ["haskell", "lhaskell"]
+        },
+        "fortran": {
+            "command": "fortls",
+            "filetypes": ["fortran"],
+            "rootPatterns": [".fortls", ".git/"]
         }
     },
     "suggest.completionItemKindLabels": {
