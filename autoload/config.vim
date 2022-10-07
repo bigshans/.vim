@@ -515,8 +515,7 @@ function! config#CocConfig()
     inoremap <silent><expr> <TAB>
                 \ coc#pum#visible() ? coc#pum#next(1) :
                 \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-                \ CheckBackspace() ? "\<TAB>" :
-                \ coc#refresh()
+                \ "\<TAB>"
 
     " Make <CR> to accept selected completion item or notify coc.nvim to format
     " <C-g>u breaks current undo, please make your own choice.
