@@ -19,7 +19,8 @@ function plugin_config:treesitter()
             'rust',
             'php',
             'vue',
-            'html'
+            'html',
+            'twig'
         },
         sync_install = false,
         highlight = {
