@@ -786,10 +786,10 @@ function BasicVimKeybinding()
     nnoremap <leader>; :
     nmap <leader>q :q!<CR>
     nmap <leader>Q :qa!<CR>
-    nnoremap sy "+y
-    xnoremap sy "+y
-    xnoremap sp "+p
-    nnoremap sp "+p
+    nnoremap Y "+y
+    xnoremap Y "+y
+    xnoremap P "+p
+    nnoremap P "+p
     nnoremap <leader>y "+y
     xnoremap <leader>y "+y
     xnoremap <leader>p "+p
