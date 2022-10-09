@@ -110,11 +110,18 @@ command! Readonly call ReadonlyToggle()
 au! BufNew,BufEnter *.vim setlocal foldmethod=indent
 source $HOME/.vim/config/vim-org-enhance/enhance.vim
 packadd termdebug
-if has('nvim')
-    com -bar W exe 'w !pkexec tee > /dev/null %' | setl nomod
-else
-    com -bar W exe 'w !sudo tee > /dev/null %' | setl nomod
-endif
+function g:SudoSave() abort
+    if has('nvim')
+        if exists(':SudaWrite')
+            exe 'SudaWrite'
+        else
+            exe 'w !pkexec tee > /dev/null %' | setl nomod
+        endif
+    else
+        exe 'w !sudo tee > /dev/null $' | setl nomod
+    endif
+endfunction
+command! W :call g:SudoSave()
 set splitbelow
 " set completeopt=longest,menuone
 augroup html
