@@ -378,17 +378,14 @@ function! ApplicationKey()
     vnoremap <silent><leader>aqr :QuickRun -mode v<CR>
     nnoremap <leader>at :Vista!!<CR>
     nnoremap <leader>az :Goyo<CR>
-    nnoremap <leader>ad :IciFrom<CR>
     nnoremap <leader>ale :IndentLinesEnable<CR>
     nnoremap <leader>ald :IndentLinesDisable<CR>
     nnoremap <leader>all :IndentLinesToggle<CR>
     nnoremap <leader>apa :CocCommand addProject<CR>
     nnoremap <leader>apr :CocCommand removeProject<CR>
     nnoremap <leader>apl :CocList projectors<CR>
-    nmap <leader>af :CocFix<CR>
     return {
                 \ 'name': '+applications',
-                \ 'f': 'Fixed Code',
                 \ 'i': {
                 \ 'name':'+intertingword',
                 \ 'i': 'colored the word',
@@ -404,7 +401,6 @@ function! ApplicationKey()
                 \ 'name': 'vista',
                 \ },
                 \ 'z': 'vim zenroom2',
-                \ 'd': 'word means',
                 \ 'l': {
                 \ 'name': '+indentLine',
                 \ 'e': 'enable indentLine',
