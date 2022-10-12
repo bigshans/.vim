@@ -426,14 +426,12 @@ endfunction
 
 function! SearchKey()
     nnoremap <leader>sf :Telescope find_files<CR>
-    nnoremap <leader>ss :Telescope current_buffer_fuzzy_find<CR>
     nnoremap <leader>ss :BLines<CR>
     nnoremap <leader>sb :Telescope buffers<CR>
     nnoremap <leader>sC :Telescope colorscheme<CR>
     nnoremap <leader>sc :Telescope commands<CR>
     nnoremap <leader>sw :Clap windows<CR>
     nnoremap <leader>sa :Telescope live_grep<CR>
-    nnoremap <leader>st :Clap tags<CR>
     nnoremap <leader>st :Tags<CR>
     nnoremap <leader>si :Telescope builtin<CR>
     nmap <leader>se :SessionSave<CR>
@@ -705,8 +703,31 @@ function! OtherKey()
     call BasicVimKeybinding()
     " overwrite leader q
     nmap <silent><leader>q :call functions#bufQuit()<CR>
-    nmap <silent> w <Plug>(coc-ci-w)
-    nmap <silent> b <Plug>(coc-ci-b)
+    call CamelCaseMotion()
+    call InterestingWords()
+endfunction
+
+function CamelCaseMotion() abort
+    map <silent> w <Plug>CamelCaseMotion_w
+    map <silent> b <Plug>CamelCaseMotion_b
+    map <silent> e <Plug>CamelCaseMotion_e
+    map <silent> ge <Plug>CamelCaseMotion_ge
+    sunmap w
+    sunmap b
+    sunmap e
+    sunmap ge
+    omap <silent> sw <Plug>CamelCaseMotion_iw
+    xmap <silent> sw <Plug>CamelCaseMotion_iw
+    omap <silent> sb <Plug>CamelCaseMotion_ib
+    xmap <silent> sb <Plug>CamelCaseMotion_ib
+    omap <silent> se <Plug>CamelCaseMotion_ie
+    xmap <silent> se <Plug>CamelCaseMotion_ie
+    imap <silent> <S-Left> <C-o><Plug>CamelCaseMotion_b
+    imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
+endfunction
+
+function InterestingWords()
+    nnoremap <silent> * :call InterestingWords('n')<cr>
 endfunction
 
 function BasicVimKeybinding()

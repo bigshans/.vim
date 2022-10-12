@@ -251,6 +251,8 @@ function! config#VimQuickrunConfig()
 endfunction
 
 function! config#VimInterestingwordConfig()
+    " let g:interestingWordsDefaultMappings = 0
+    let g:interestingWordsRandomiseColors = 1
 endfunction
 
 function! config#UndotreeConfig()
@@ -494,7 +496,6 @@ function! config#CocConfig()
                 \ 'coc-marketplace',
                 \ 'coc-translator',
                 \ 'coc-tabnine',
-                \ 'coc-ci',
                 \ 'coc-highlight',
                 \ 'coc-stylua',
                 \ 'coc-go',
