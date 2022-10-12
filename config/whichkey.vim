@@ -427,12 +427,14 @@ endfunction
 function! SearchKey()
     nnoremap <leader>sf :Telescope find_files<CR>
     nnoremap <leader>ss :Telescope current_buffer_fuzzy_find<CR>
+    nnoremap <leader>ss :BLines<CR>
     nnoremap <leader>sb :Telescope buffers<CR>
     nnoremap <leader>sC :Telescope colorscheme<CR>
     nnoremap <leader>sc :Telescope commands<CR>
     nnoremap <leader>sw :Clap windows<CR>
     nnoremap <leader>sa :Telescope live_grep<CR>
     nnoremap <leader>st :Clap tags<CR>
+    nnoremap <leader>st :Tags<CR>
     nnoremap <leader>si :Telescope builtin<CR>
     nmap <leader>se :SessionSave<CR>
     nmap <leader>sl :<C-u>SessionLoad<CR>
