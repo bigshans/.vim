@@ -127,7 +127,7 @@ function! g:UnimpairedMapping()
 endfunction
 
 function! g:TagKeyMap()
-    nmap <leader>vt :Vista!!<CR>
+    nmap <leader>vt :Vista ctags<CR>
     nmap <leader>vc :Vista coc<CR>
     return {
                 \ 'name': '+Vista',
