@@ -39,3 +39,9 @@ endsnippet
 snippet varim "implement interface verify"
 var _ ${1:Interface} = (* ${2:Impl})(nil)
 endsnippet
+
+snippet ft "testing function"
+func Test$1(t *testing.T) {
+	$2
+}
+endsnippet	
