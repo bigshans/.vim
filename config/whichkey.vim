@@ -10,7 +10,7 @@ function! g:WhichLeaderKeyMap()
     endfor
     let g:which_key_map.c=CommentKey()
     let g:which_key_map.b=BuffersKey()
-    let g:which_key_map.t=TagKeyMap()
+    let g:which_key_map.v=TagKeyMap()
     let g:which_key_map.P=PluginKey()
     let g:which_key_map.e=EditKey()
     let g:which_key_map.a=ApplicationKey()
