@@ -115,6 +115,7 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'bigshans/coc-word'
 Plug 'lambdalisue/suda.vim'
+Plug 'hotoo/pangu.vim'
 " Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'lambdalisue/fern.vim'
 
