@@ -29,6 +29,7 @@ function plugin_config:treesitter()
             additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
         },
     })
+    require("nvim-treesitter.install").prefer_git = true
 end
 
 function plugin_config:orgmode()
