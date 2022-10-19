@@ -153,8 +153,6 @@ call plug#end()
 
 " {{ call config function
 
-" call config#NERDCommenterConfig()
-" call config#StartifyConfig()
 call config#VimMulipleCursorsConfig()
 call config#EmmetConfig()
 call config#VimInterestingwordConfig()
@@ -189,17 +187,12 @@ call config#SpelunkerConfig()
 call config#Lightline()
 call config#Wildfire()
 call config#BetterEscape()
-" call config#VimOrganizerConfig()
 call config#Sandwich()
-" call config#IndentLineConfig()
 call config#CodeRunnerConfig()
 call config#AutoPairsConfig()
 call config#VimClosetagConfig()
 call config#RelConfig()
 call config#FastFoldConfig()
-" call config#Dashboard()
-" call config#leaderf()
-" call config#OnedarkConfig()
 
 let g:mw_no_mappings = 1
 
