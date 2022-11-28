@@ -5,6 +5,10 @@ function plugin_config:treesitter()
     -- Load custom tree-sitter grammar for org filetype
     require('orgmode').setup_ts_grammar()
     -- Tree-sitter configuration
+    require("nvim-treesitter.install").command_extra_args = {
+        curl = { "--proxy", "http://127.0.0.1:8889" },
+    }
+
     require('nvim-treesitter.configs').setup({
         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
         ensure_installed = 'all',
@@ -20,12 +24,23 @@ function plugin_config:treesitter()
             'php',
             'vue',
             'html',
-            'twig'
+            'twig',
+            'diff',
+            'nickel',
         },
         sync_install = false,
         highlight = {
             enable = true,
-            disable = { 'org', 'lua', 'vim', 'markdown', 'typescript', 'javascript', 'rust', 'php', 'vue', 'html' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+            disable = function(lang, buf)
+                if lang ~= 'org' then
+                    return false
+                end
+                local max_filesize = 100 * 1024 -- 100 KB
+                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                if ok and stats and stats.size > max_filesize then
+                    return true
+                end
+            end,
             additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
         },
     })
@@ -483,6 +498,25 @@ function plugin_config:cmdline()
     require('fine-cmdline').setup()
 end
 
+function plugin_config:hydra()
+    local hydra = require('hydra')
+    hydra({
+        name = 'Windows',
+        config = {
+            invoke_on_body = true,
+        },
+        mode = 'n',
+        body = 'z',
+        heads = {
+            { 'h', '<C-w>h' },
+            { 'j', '<C-w>j' },
+            { 'k', '<C-w>k' },
+            { 'l', '<C-w>l' },
+            { '<Esc>', nil,  { exit = true, desc = false }}
+        }
+    })
+end
+
 local enable_plugin = {
     'treesitter',
     'orgmode',
@@ -494,9 +528,10 @@ local enable_plugin = {
     'incline',
     'nvim_ts_autotag',
     'todo_comments',
-    -- 'dashboard',
     'comment',
     'rest',
+    -- 'hydra',
+    -- 'dashboard',
     -- 'winbar',
     -- 'nvim_tree',
     -- 'scrollview',
