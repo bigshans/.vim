@@ -5,8 +5,8 @@ nnoremap <leader>q  :q!<CR>
 nnoremap <leader>fm :action ReformatCode<CR>
 nnoremap <leader>oi :action OptimizeImports<CR>
 nnoremap <space>oi :action OptimizeImports<CR>
-nnoremap <leader>y "+y
-nnoremap <leader>p "+p
+nnoremap Y "+y
+nnoremap P "+p
 inoremap <C-d>     <ESC>
 inoremap <C-j>     <Down>
 inoremap <C-k>     <Up>
