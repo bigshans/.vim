@@ -1,0 +1,27 @@
+snippet create "create table"
+CREATE TABLE $1 (
+    $2
+);
+endsnippet
+
+snippet createif "create table if not exists"
+CREATE TABLE IF NOT EXISTS $1 (
+    $2
+);
+endsnippet
+
+snippet insert "insert data"
+INSERT INTO ${1:table_name} ($2) VALUES ($3);
+endsnippet
+
+snippet insf "insert full data"
+INSERT INTO ${1:table_name} VALUES ($2);
+endsnippet
+
+snippet sel "select"
+SELECT ${1:*} FROM ${1:table_name}; 
+endsnippet
+
+snippet update "update data"
+UPDATE ${1:table_name} SET $2;
+endsnippet
