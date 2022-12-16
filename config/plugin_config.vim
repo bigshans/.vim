@@ -57,7 +57,7 @@ Plug 'posva/vim-vue'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-fugitive'
 " Plug 'rbong/vim-flog'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 't9md/vim-choosewin'
 " Plug 'vimwiki/vimwiki' , {'for' : ['wiki']}
 " Plug 'junegunn/vim-easy-align'
@@ -107,7 +107,7 @@ Plug 'jdhao/better-escape.vim'
 " Plug 'Yggdroot/indentLine'
 Plug 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " Plug 'bigshans/vim-code-runner'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 Plug 'bigshans/rel.vim'
 Plug 'bigshans/findr.vim'
 Plug 'vn-ki/coc-clap'
@@ -167,7 +167,7 @@ call config#UndotreeConfig()
 call config#RainbowParenthessConfig()
 call config#VimExpandRegionConfig()
 call config#NERDTreeGitPluginConfig()
-call config#EasymotionConfig()
+" call config#EasymotionConfig()
 call config#VimFollowMyLeadConfig()
 call config#VimClosetagConfig()
 call config#WhichKeyConfig()
@@ -220,3 +220,5 @@ au BufNewFile,BufRead *.art set filetype=html
 hi CocSearch ctermfg=12 guifg=#18A3FF
 hi CocMenuSel ctermbg=109 guibg=#235A8A
 " }}
+
+call config#hugefile()

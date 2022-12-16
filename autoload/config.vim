@@ -555,19 +555,6 @@ function! config#CocConfig()
         autocmd FileType nginx setlocal iskeyword+=$
         autocmd FileType nginx let b:coc_additional_keywords = ['$']
     augroup end
-    let g:trigger_size = 0.5 * 1048576
-    augroup hugefile
-        autocmd!
-        autocmd BufReadPre *
-                    \ let size = getfsize(expand(@%)) |
-                    \ if (size > g:trigger_size) || (size == -2) |
-                    \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
-                    \   exec 'CocDisable' |
-                    \ else |
-                    \   exec 'CocEnable' |
-                    \ endif |
-                    \ unlet size
-    augroup END
 endfunction
 
 function! config#VimOrganizerConfig()
@@ -953,4 +940,23 @@ function! config#leaderf()
     let g:Lf_PreviewInPopup = 1
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+endfunction
+
+function! config#hugefile()
+    let g:trigger_size = 0.5 * 1048576
+    augroup hugefile
+        autocmd!
+        autocmd BufReadPre *
+                    \ let size = getfsize(expand(@%)) |
+                    \ if (size > g:trigger_size) || (size == -2) |
+                    \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+                    \   let b:coc_enabled=0 |
+                    \   let g:enable_spelunker_vim=0 |
+                    \   exec 'RainbowParenthesesToggle' |
+                    \ else |
+                    \   let g:enable_spelunker_vim=1 |
+                    \   exec 'RainbowParenthesesActivate' |
+                    \ endif |
+                    \ unlet size
+    augroup END
 endfunction

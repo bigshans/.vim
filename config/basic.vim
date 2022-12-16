@@ -33,7 +33,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set wrap
+set nowrap
 set showbreak=<
 set shortmess+=c
 set formatoptions+=mM

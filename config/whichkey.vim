@@ -493,8 +493,8 @@ function! HopMovtionKey()
 
     " stil use easy motion
     " Gif config
-    map  <M-/> <Plug>(easymotion-sn)
-    omap <M-/> <Plug>(easymotion-tn)
+    " map  <M-/> <Plug>(easymotion-sn)
+    " omap <M-/> <Plug>(easymotion-tn)
 endfunction
 
 function! MuiltipleKey()
@@ -809,10 +809,7 @@ function BasicVimKeybinding()
     xnoremap Y "+y
     xnoremap P "+p
     nnoremap P "+p
-    nnoremap <leader>y "+y
-    xnoremap <leader>y "+y
-    xnoremap <leader>p "+p
-    nnoremap <leader>p "+p
+    nnoremap <silent><leader>y :<C-u>CocList -A --normal yank<CR>
     nnoremap <silent> <C-x><C-c> :source %<CR>
     vnoremap <silent> <C-x><C-c> :<C-u>for line in getline("'<", "'>") \| execute line \| endfor<CR>
     " Emacs like keybindings {{
