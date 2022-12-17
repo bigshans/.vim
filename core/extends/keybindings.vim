@@ -42,10 +42,14 @@ nmap <silent> gr <Plug>(coc-references)
 nmap T <Plug>(coc-translator-p)
 vmap T <Plug>(coc-translator-pv)
 nnoremap <silent> K :call ShowDocumentation()<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent><leader>ca <Plug>(coc-codeaction)
 nmap <silent><leader>cr <Plug>(coc-rename)
 nmap <silent><leader>cm <Plug>(coc-format-selected)
+nmap <silent><leader>cf <Plug>(coc-fix-current)
+nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
 xmap <silent><leader>cm <Plug>(coc-format-selected)
 nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
 
@@ -53,6 +57,8 @@ call whichkey#add("f.t", "open file tree")
 call whichkey#add('c.a', 'code action')
 call whichkey#add('c.r', 'rename')
 call whichkey#add('c.m', 'format')
+call whichkey#add('c.f', 'fix current')
+call whichkey#add('c.d', 'show diagnostics')
 " }}
 
 " git {{
@@ -134,4 +140,10 @@ call whichkey#add('r.c', 'run current code')
 
 " interestingwords {{
 nnoremap <silent> * :call InterestingWords('n')<cr>
+" }}
+
+" todo comments {{
+nnoremap <silent> <leader>tc :TodoLocList<CR>
+
+call whichkey#add('t.c', 'show todo comments')
 " }}

@@ -3,6 +3,12 @@ call whichkey#add("q", "quit")
 
 nmap <leader>fs :w!<CR>
 call whichkey#add("f.s", "save file")
+
+nnoremap <leader>wd :only<CR>
+nnoremap <leader>wh :split<CR>
+nnoremap <leader>ws :vsplit<CR>
+nnoremap <leader>wo :only<CR>
+
 nnoremap <C-a> ggVG
 nmap <Tab> za
 nnoremap J gJ

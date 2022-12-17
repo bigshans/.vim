@@ -34,6 +34,8 @@ P 'rgn', 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
 P 'multi', 'mg979/vim-visual-multi',{'branch':'test'}
 P 'sniprun', 'michaelb/sniprun', {'do': 'bash install.sh'}
+" dep for todo-comments
+P 'nvim-lua/plenary.nvim'
 
 PL 'kyazdani42/nvim-web-devicons'
 PL 'npairs', 'windwp/nvim-autopairs'
