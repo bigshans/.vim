@@ -1,14 +1,10 @@
-if !exists('g:vim_basic')
-    let g:vim_basic = 0
-endif
+let g:new_vim = 1
 
-augroup config
-    au!
-    source $HOME/.vim/config/basic.vim
-    if g:vim_basic == 1
-        source $HOME/.vim/config/plugin_config.vim
-    else
-        source $HOME/.vim/config/vim_plugin.vim
-    endif
-    source $HOME/.vim/config/whichkey.vim
-augroup END
+if g:new_vim == 1
+    source $HOME/.vim/core/mini.vim
+    source $HOME/.vim/core/preload.vim
+    source $HOME/.vim/core/plugin.vim
+    source $HOME/.vim/core/basickey.vim
+	source $HOME/.vim/core/extends/keybindings.vim
+    call whichkey#end()
+endif
