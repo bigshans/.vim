@@ -8,6 +8,8 @@ call whichkey#add("q", "quit")
 
 nmap <leader>fs :w!<CR>
 call whichkey#add("f.s", "save file")
+nmap <leader>fS :W<CR>
+call whichkey#add("f.S", "save file as sudo")
 
 nnoremap <leader>wd :only<CR>
 nnoremap <leader>wh :split<CR>
