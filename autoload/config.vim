@@ -1,5 +1,14 @@
 function! config#hugefile()
-    " let g:trigger_size = 1048576
+    let g:trigger_size = 1048576
+	augroup hugefile
+		autocmd!
+		autocmd BufReadPre *
+					\ let size = getfsize(expand(@%)) |
+					\ if (size > g:trigger_size) || (size == -2) |
+					\ setlocal nowrap |
+					\ endif |
+					\ unlet size
+	augroup END
     " augroup hugefile
     "     autocmd!
     "     autocmd BufReadPre *

@@ -41,8 +41,8 @@ set softtabstop=4
 " 设置 tab 和空格的转换
 set shiftwidth=4
 
-" 不折行
-set nowrap
+" 折行，大文件不折行
+set wrap
 if &wrap == 1
     set showbreak=<
     if !has('nvim')
