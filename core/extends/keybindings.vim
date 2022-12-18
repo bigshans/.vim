@@ -99,9 +99,11 @@ nnoremap <silent><M-9> <Cmd>BufferLineGoToBuffer 9<CR>
 
 nnoremap <silent><leader>bn  :BufferLineCycleNext<CR>
 nnoremap <silent><leader>bp  :BufferLineCyclePrev<CR>
+nnoremap <silent><leader>bd  :bdelete<CR>
 
 call whichkey#add('b.n', 'next buffer')
 call whichkey#add('b.p', 'prev buffer')
+call whichkey#add('b.d', 'delete buffer')
 " }}
 
 " comment {{
