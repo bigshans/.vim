@@ -1,3 +1,8 @@
+nnoremap <leader><leader> <esc>
+call whichkey#add("<space>", "cancel")
+nnoremap <leader>; :
+call whichkey#add(";", "command")
+
 nmap <silent><leader>q :call functions#bufQuit()<CR>
 call whichkey#add("q", "quit")
 
