@@ -13,7 +13,9 @@ call whichkey#add('s.f', 'search files')
 nnoremap <leader>op :e $HOME/.vim/core/plugin.vim<CR>
 nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
 nnoremap <leader>oc :FZF $HOME/.vim/core<CR>
+nnoremap <silent><leader>y :<C-u>CocList -A --normal yank<CR>
 
+call whichkey#add("y", "yank list")
 call whichkey#add('o.p', 'open plugin conf file')
 call whichkey#add('o.C', 'open coc conf file')
 call whichkey#add('o.c', 'open core config')
