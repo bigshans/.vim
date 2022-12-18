@@ -4,10 +4,9 @@ echo exists('Plug')
 
 P 'whichkey', 'liuchengxu/vim-which-key'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
-" 使用 Plug 来 load fzf
-P 'fzfp', 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 P 'fzf', 'junegunn/fzf.vim'
-P 'suda', 'lambdalisue/suda.vim'
+P 'lambdalisue/suda.vim'
 P 'bigshans/fcitx.vim'
 
 
@@ -18,7 +17,7 @@ P 'interestingwords', 'lfv89/vim-interestingwords'
 P 'https://github.com/kien/rainbow_parentheses.vim.git'
 
 P 't9md/vim-choosewin'
-P 'git', 'tpope/vim-fugitive'
+P 'tpope/vim-fugitive'
 P 'kevinhwang91/rnvimr'
 
 P 'ryanoasis/vim-devicons'
@@ -28,13 +27,13 @@ P 'albertomontesg/lightline-asyncrun'
 P 'sonokai', 'sainnhe/sonokai'
 P 'lightline', 'itchyny/lightline.vim'
 
-P 'tabular', 'godlygeek/tabular', { 'for': 'markdown' }
-P 'markdown', 'preservim/vim-markdown', { 'for': 'markdown' }
-P 'rgn', 'chrisbra/NrrwRgn', { 'for': 'markdown' }
+P 'godlygeek/tabular', { 'for': 'markdown' }
+P 'preservim/vim-markdown', { 'for': 'markdown' }
+P 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
 P 'multi', 'mg979/vim-visual-multi',{'branch':'test'}
-P 'sniprun', 'michaelb/sniprun', {'do': 'bash install.sh'}
-" dep for todo-comments
+P 'michaelb/sniprun', {'do': 'bash install.sh'}
+" dep by todo-comments
 P 'nvim-lua/plenary.nvim'
 
 PL 'kyazdani42/nvim-web-devicons'
