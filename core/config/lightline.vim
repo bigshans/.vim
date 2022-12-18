@@ -9,7 +9,7 @@ let g:lightline#asyncrun#indicator_none = ''
 let g:lightline#asyncrun#indicator_run = 'Running...'
 let g:lightline.active = {
             \ 'left': [ [ 'artify_mode', 'winnr', 'paste', 'readonly' ],
-            \           ['filename', 'fileformat', 'devicons_filetype' ]],
+            \           ['filename', 'fileformat', 'devicons_filetype', 'modified' ]],
             \ 'right': [
             \ [ 'artify_lineinfo' ],
             \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
