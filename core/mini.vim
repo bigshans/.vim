@@ -40,6 +40,8 @@ set tabstop=4
 set softtabstop=4
 " 设置 tab 和空格的转换
 set shiftwidth=4
+" 展开 tab 为空格
+set expandtab
 
 " 折行，大文件不折行
 set wrap
