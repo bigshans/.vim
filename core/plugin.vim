@@ -8,7 +8,7 @@ P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 P 'fzf', 'junegunn/fzf.vim'
 P 'lambdalisue/suda.vim'
 P 'bigshans/fcitx.vim'
-
+P 'grammarous', 'bigshans/vim-grammarous'
 
 P 'https://github.com/honza/vim-snippets.git'
 P 'emmet', 'mattn/emmet-vim'
@@ -20,6 +20,7 @@ P 't9md/vim-choosewin'
 P 'tpope/vim-fugitive'
 P 'kevinhwang91/rnvimr'
 
+" Appearance
 P 'ryanoasis/vim-devicons'
 P 'sainnhe/artify.vim'
 P 'josa42/vim-lightline-coc'

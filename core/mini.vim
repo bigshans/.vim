@@ -13,7 +13,7 @@ set colorcolumn=120
 " 信息缩写
 set shm+=Ic
 " 缩短超时时间
-set timeoutlen=300
+set timeoutlen=400
 set nofoldenable
 " 设置隐藏高亮
 set hidden
