@@ -7,6 +7,8 @@ nmap <leader>cc  <Plug>VSCodeCommentary
 omap <leader>ci  <Plug>VSCodeCommentary
 nmap <leader>ci <Plug>VSCodeCommentaryLine
 nmap <leader>ft :call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>
+nmap P "+p
+nmap Y "+y
 
 call plug#begin('~/.vim/bundle')
 

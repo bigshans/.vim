@@ -5,6 +5,12 @@ nmap <silent><leader>q :call functions#bufQuit()<CR>
 nmap <leader>fs :w!<CR>
 nmap <leader>fS :W<CR>
 nmap <leader>Q :qa!<CR>
+" 上引号
+" inoremap “ “”
+inoremap ” “”<Left>
+" 上引号
+" inoremap ‘ ‘’
+inoremap ’ ‘’<Left>
 
 nnoremap <silent><leader><Up> :res -1<CR>
 nnoremap <silent><leader><Down> :res +1<CR>
@@ -46,7 +52,7 @@ nnoremap zl <C-w><C-l>
 
 " editor improve {{
 " 全选
-nnoremap <C-a> ggVG
+nnoremap <M-a> ggVG
 " 折叠
 nmap <Tab> za
 " 连接下一行

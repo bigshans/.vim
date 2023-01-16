@@ -19,6 +19,10 @@ set nofoldenable
 set hidden
 " 高亮当前行
 set cursorline
+" 鼠标闪烁
+set guicursor=n-v-c:block,i-ci-ve:,r-cr:hor20,o:hor50
+            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+            \,sm:block-blinkwait175-blinkoff150-blinkon175
 " 设置虚拟编辑
 set virtualedit=block
 set t_Co=256

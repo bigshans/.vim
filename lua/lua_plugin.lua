@@ -83,6 +83,9 @@ function plugin_config:npairs()
     local npairs = require('nvim-autopairs')
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
+    local get_prev_char = function(opt)
+        return opt.line:sub(opt.col -1, opt.col + #opt.rule.start_pair -2)
+    end
     npairs.setup({ map_cr = false })
     npairs.remove_rule('\'')
     npairs.add_rule(Rule('\'', '\''):with_pair(cond.not_before_regex_check('%w')):with_pair(function(_)
@@ -91,6 +94,20 @@ function plugin_config:npairs()
     npairs.add_rule(Rule('${', '}'):with_pair(cond.before_regex('`.*')):with_pair(function(_)
         return vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript'
     end))
+    -- Chinese symbol supports
+    local chinese_symbols = {
+        -- has some problem
+        {'“', '”'},
+        {'‘', '’'},
+        {'（', '）'},
+        {'「', '」'},
+        {'《', '》'},
+        {'【', '】'},
+        {'〔', '〕'},
+    };
+    for _, value in ipairs(chinese_symbols) do
+        npairs.add_rule(Rule(value[1], value[2]))
+    end
     Rule('>[%w%s]*$', '^%s*</', {
         '-html',
         '-typescript',
