@@ -11,7 +11,6 @@ P 'bigshans/fcitx.vim'
 P 'grammarous', 'bigshans/vim-grammarous'
 
 P 'https://github.com/honza/vim-snippets.git'
-P 'emmet', 'mattn/emmet-vim'
 P 'sandwich', 'machakann/vim-sandwich'
 P 'interestingwords', 'lfv89/vim-interestingwords'
 P 'https://github.com/kien/rainbow_parentheses.vim.git'

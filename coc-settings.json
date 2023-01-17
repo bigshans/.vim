@@ -246,5 +246,9 @@
     "stylua.styluaPath": "/usr/bin/stylua",
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "coc.source.word.max": 4,
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    }
 }
