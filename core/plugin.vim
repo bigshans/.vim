@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/bundle')
 
-echo exists('Plug')
-
 P 'whichkey', 'liuchengxu/vim-which-key'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
