@@ -54,15 +54,19 @@ nmap <silent><leader>jr <Plug>(coc-rename)
 nmap <silent><leader>jf <Plug>(coc-fix-current)
 nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
 xmap <silent><leader>fm <Plug>(coc-format-selected)
-nmap <silent><leader>ef :Format<CR>
 nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
 
 call whichkey#add('j.a', 'code action')
 call whichkey#add('j.r', 'coc rename')
 call whichkey#add('j.f', 'fix current')
 call whichkey#add('j.d', 'show diagnostics')
-call whichkey#add('e.f', 'format')
 call whichkey#add("f.t", "open file tree")
+" }}
+
+" auto format {{
+nnoremap <leader>ef  :Autoformat<CR>
+vnoremap <leader>ef  :AutoformatLine<CR>
+call whichkey#add('e.f', 'format')
 " }}
 
 " git {{
