@@ -7,6 +7,7 @@ P 'fzf', 'junegunn/fzf.vim'
 P 'lambdalisue/suda.vim'
 P 'bigshans/fcitx.vim'
 P 'grammarous', 'bigshans/vim-grammarous'
+P 'cycle', 'bigshans/vim-cycle'
 
 P 'https://github.com/honza/vim-snippets.git'
 P 'sandwich', 'machakann/vim-sandwich'
