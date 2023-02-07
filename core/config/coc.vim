@@ -69,9 +69,3 @@ augroup custom_nginx
     autocmd FileType nginx setlocal iskeyword+=$
     autocmd FileType nginx let b:coc_additional_keywords = ['$']
 augroup end
-
-if has("patch-8.1.1564")
-	set signcolumn=number
-else
-	set signcolumn=yes
-endif
