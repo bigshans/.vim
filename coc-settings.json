@@ -193,6 +193,7 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
+    "semanticTokens.enable": true,
     "eslint.packageManager": "yarn",
     "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
