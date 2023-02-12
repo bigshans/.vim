@@ -95,19 +95,19 @@ function plugin_config:npairs()
         return vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript'
     end))
     -- Chinese symbol supports
-    local chinese_symbols = {
-        -- has some problem
-        {'“', '”'},
-        {'‘', '’'},
-        {'（', '）'},
-        {'「', '」'},
-        {'《', '》'},
-        {'【', '】'},
-        {'〔', '〕'},
-    };
-    for _, value in ipairs(chinese_symbols) do
-        npairs.add_rule(Rule(value[1], value[2]))
-    end
+    -- has some problem
+    -- local chinese_symbols = {
+    --     {'“', '”'},
+    --     {'‘', '’'},
+    --     {'（', '）'},
+    --     {'「', '」'},
+    --     {'《', '》'},
+    --     {'【', '】'},
+    --     {'〔', '〕'},
+    -- };
+    -- for _, value in ipairs(chinese_symbols) do
+    --     npairs.add_rule(Rule(value[1], value[2]))
+    -- end
     Rule('>[%w%s]*$', '^%s*</', {
         '-html',
         '-typescript',
