@@ -45,3 +45,9 @@ func Test$1(t *testing.T) {
 	$2
 }
 endsnippet	
+
+snippet impl "impl interface"
+type $1Impl struct{}
+
+var _ $1 = (*$1Impl)(nil)
+endsnippet
