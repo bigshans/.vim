@@ -5,7 +5,7 @@ P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 P 'fzf', 'junegunn/fzf.vim'
 P 'lambdalisue/suda.vim'
-P 'bigshans/fcitx.vim'
+P 'fcitx', 'bigshans/fcitx.vim'
 P 'grammarous', 'bigshans/vim-grammarous'
 P 'cycle', 'bigshans/vim-cycle'
 
