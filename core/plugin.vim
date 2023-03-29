@@ -8,6 +8,7 @@ P 'lambdalisue/suda.vim'
 P 'fcitx', 'bigshans/fcitx.vim'
 P 'grammarous', 'bigshans/vim-grammarous'
 P 'cycle', 'bigshans/vim-cycle'
+P 'liuchengxu/vista.vim'
 
 P 'https://github.com/honza/vim-snippets.git'
 P 'sandwich', 'machakann/vim-sandwich'
