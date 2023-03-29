@@ -225,7 +225,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": false,
+    "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
