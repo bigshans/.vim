@@ -37,9 +37,9 @@ P 'michaelb/sniprun', {'do': 'bash install.sh'}
 " dep by todo-comments
 P 'nvim-lua/plenary.nvim'
 
-PL 'kyazdani42/nvim-web-devicons'
+PL 'nvim-tree/nvim-web-devicons'
 PL 'npairs', 'windwp/nvim-autopairs'
-PL 'bufferline', 'akinsho/bufferline.nvim', { 'tag': '*' }
+PL 'bufferline', 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 PL 'comment', 'numToStr/Comment.nvim'
 PL 'todo_comments', 'folke/todo-comments.nvim'
 

@@ -211,6 +211,7 @@ function plugin_config:bufferline()
             enforce_regular_tabs = false,
             diagnostics = 'coc',
             diagnostics_update_in_insert = true,
+            buffer_close_icon = "",
             diagnostics_indicator = function()
                 local coc_warn = vim.fn['custom#lightline#coc_diagnostic_warning_num']
                 local coc_error = vim.fn['custom#lightline#coc_diagnostic_error_num']
