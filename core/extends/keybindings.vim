@@ -95,8 +95,24 @@ for s:i in range(1,9)
     exec 'nnoremap <silent><M-'.s:i.'> <Cmd>BufferLineGoToBuffer '.s:i.'<CR>'
 endfor
 
-nnoremap <silent><leader>bn  :BufferLineCycleNext<CR>
-nnoremap <silent><leader>bp  :BufferLineCyclePrev<CR>
+if has('nvim')
+    nnoremap <silent><leader>bn  :BufferLineCycleNext<CR>
+    nnoremap <silent><leader>bp  :BufferLineCyclePrev<CR>
+else
+    nmap <leader>bn   <Plug>lightline#bufferline#go_next()
+    nmap <leader>bp <Plug>lightline#bufferline#go_previous()
+    nmap <M-1> <Plug>lightline#bufferline#go(1)
+    nmap <M-2> <Plug>lightline#bufferline#go(2)
+    nmap <M-3> <Plug>lightline#bufferline#go(3)
+    nmap <M-4> <Plug>lightline#bufferline#go(4)
+    nmap <M-5> <Plug>lightline#bufferline#go(5)
+    nmap <M-6> <Plug>lightline#bufferline#go(6)
+    nmap <M-7> <Plug>lightline#bufferline#go(7)
+    nmap <M-8> <Plug>lightline#bufferline#go(8)
+    nmap <M-9> <Plug>lightline#bufferline#go(9)
+    nmap <M-0> <Plug>lightline#bufferline#go(10)
+endif
+
 nnoremap <silent><leader>bd  :bdelete<CR>
 
 call whichkey#add('b.n', 'next buffer')
@@ -105,14 +121,20 @@ call whichkey#add('b.d', 'delete buffer')
 " }}
 
 " comment {{
-nmap <leader>ci gcc
-vmap <leader>ci gc
+if has("nvim")
+    nmap <leader>ci gcc
+    vmap <leader>ci gc
 
-nmap <leader>cb gbc
-vmap <leader>cb gb
+    nmap <leader>cb gbc
+    vmap <leader>cb gb
+    call whichkey#add('c.i', 'comment line')
+    call whichkey#add('c.b', 'comment block')
+else
+    nmap <leader>ci <plug>NERDCommenterComment
+    vmap <leader>ci <plug>NERDCommenterComment
 
-call whichkey#add('c.i', 'comment line')
-call whichkey#add('c.b', 'comment block')
+    call whichkey#add('c.i', 'comment line')
+endif
 " }}
 
 " plugin {{

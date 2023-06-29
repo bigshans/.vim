@@ -6,9 +6,10 @@
     "diagnostic.infoSign": "⚡",
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualText": true,
-    "diagnostic.virtualTextCurrentLineOnly": true,
+    "diagnostic.virtualText": false,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.refreshOnInsertMode": true,
+    "inlayHint.enable": true,
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -78,18 +79,6 @@
             "args": ["--lsp"],
             "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
             "filetypes": ["haskell", "lhaskell"]
-        },
-        "tagls": {
-            "command": "python3",
-            "args": ["-m", "tagls"],
-            "filetypes": [
-                "vim",
-                "fortran"
-            ],
-            "initializationOptions": {
-                "cache_dir": "/tmp/gtags"
-            },
-            "settings": {}
         }
     },
     "suggest.completionItemKindLabels": {

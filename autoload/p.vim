@@ -18,6 +18,9 @@ function p#append(...)
 endfunction
 
 function p#append_lua(...)
+    if !has('nvim')
+        return
+    endif
     if a:0 == 1
         Plug a:1
     elseif a:0 == 2
@@ -41,10 +44,13 @@ endfunction
 function p#load_config() abort
     for config_name in s:config_list
         let config_file = g:user_core . "config/" . config_name . ".vim"
-        if filereadable(config_file) == 1
+        if filereadable(expand(config_file)) == 1
             exec "source " . config_file
         endif
     endfor
+    if !has('nvim')
+        return
+    endif
     for config_name in s:lua_config
         exec "lua require('lua_plugin')['" . config_name . "']()"
     endfor

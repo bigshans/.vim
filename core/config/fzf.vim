@@ -53,6 +53,6 @@ command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 let g:fzf_commands_expect = 'tab'
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-            \| nnoremap <buffer><esc> :q<CR>
+autocmd  FileType fzf set noshowmode noruler
+            \| nmap <buffer><esc> i<C-g>
             \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler

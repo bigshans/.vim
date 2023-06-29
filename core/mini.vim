@@ -14,6 +14,7 @@ set colorcolumn=120
 set shm+=Ic
 " 缩短超时时间
 set timeoutlen=400
+set ttimeoutlen=10
 set nofoldenable
 " 设置隐藏高亮
 set hidden
@@ -35,7 +36,7 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 set magic
 set encoding=UTF-8
-set laststatus=3
+set laststatus=2
 set updatetime=300
 set complete-=k
 " tab 宽度设置为 4 个空格
@@ -77,8 +78,13 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=L
     set guioptions-=r
     set guioptions-=R
+    set guioptions-=e
     set guifont=NotoMonoforPowerline\ 14
 endif
 
 " 符号列
 set signcolumn=yes
+
+if !has('nvim')
+    set showtabline=2
+endif

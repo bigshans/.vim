@@ -63,8 +63,8 @@ nnoremap < <<
 nnoremap > >>
 
 " 当前行移动
-nnoremap <silent><A-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap <silent><A-Down>  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap <silent><M-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap <silent><M-Down>  :<c-u>execute 'move +'. v:count1<cr>
 inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
 inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
 vnoremap <silent><C-Down> :m '>+1<CR>gv=gv

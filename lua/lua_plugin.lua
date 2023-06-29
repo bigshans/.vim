@@ -534,4 +534,8 @@ function plugin_config:hydra()
     })
 end
 
+function plugin_config:cscope_maps()
+    require('cscope_maps').setup({})
+end
+
 return plugin_config
