@@ -87,4 +87,5 @@ set signcolumn=yes
 
 if !has('nvim')
     set showtabline=2
+    set mouse=a
 endif

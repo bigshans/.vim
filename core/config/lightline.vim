@@ -76,5 +76,5 @@ let g:lightline.component_type = {
 
 let g:lightline.component_raw = {'buffers': 1}
 call custom#colorscheme#sonokai_atlantis()
-" autocmd VimEnter * call lightline#update()
-autocmd BufEnter * call lightline#update()
+autocmd VimEnter * call lightline#update()
+autocmd BufEnter * set laststatus=2

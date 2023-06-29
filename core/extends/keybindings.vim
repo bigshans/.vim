@@ -130,10 +130,14 @@ if has("nvim")
     call whichkey#add('c.i', 'comment line')
     call whichkey#add('c.b', 'comment block')
 else
-    nmap <leader>ci <plug>NERDCommenterComment
-    vmap <leader>ci <plug>NERDCommenterComment
+    nmap <leader>ci <plug>NERDCommenterToggle
+    vmap <leader>ci <plug>NERDCommenterToggle
 
-    call whichkey#add('c.i', 'comment line')
+    nmap <leader>cf <plug>NERDCommenterComment
+    vmap <leader>cf <plug>NERDCommenterComment
+
+    call whichkey#add('c.i', 'comment code')
+    call whichkey#add('c.f', 'comment force')
 endif
 " }}
 
