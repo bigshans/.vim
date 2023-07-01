@@ -92,16 +92,25 @@ xnoremap D "_d
 " Terminal Function {{
 let g:term_buf = 0
 let g:term_win = 0
+let s:prev_buf = 0
 function! TermToggle(height)
     if win_gotoid(g:term_win)
-        hide
+        exec "bdelete! " . s:prev_buf
     else
         botright new
         exec "resize " . a:height
         try
+            let s:prev_buf = bufnr("")
             exec "buffer " . g:term_buf
+            if !has('nvim')
+                exec "normal i"
+            endif
         catch
-            call termopen($SHELL, {"detach": 0})
+            if has('nvim')
+                call termopen($SHELL, {"detach": 0})
+            else
+                call term_start($SHELL, { 'curwin': 1 })
+            endif
             let g:term_buf = bufnr("")
             set nonumber
             set norelativenumber
@@ -114,11 +123,11 @@ endfunction
 " }}
 
 " terminal {{
-nnoremap <silent><A-t> :call TermToggle(12)<CR>
-inoremap <silent><A-t> <Esc>:call TermToggle(12)<CR>
-tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(12)<CR>
+nnoremap <silent><M-t> :call TermToggle(12)<CR>
+inoremap <silent><M-t> <Esc>:call TermToggle(12)<CR>
+tnoremap <silent><M-t> <C-\><C-n>:call TermToggle(12)<CR>
 tnoremap <ESC> <C-\><C-n>
-tnoremap <silent><A-t> <C-\><C-n>:call TermToggle(12)<CR>
+tnoremap <silent><M-t> <C-\><C-n>:call TermToggle(12)<CR>
 tnoremap :q! <C-\><C-n>:q!<CR>
 " }}
 

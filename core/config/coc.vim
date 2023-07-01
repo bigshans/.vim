@@ -56,7 +56,6 @@ function! CheckBackspace() abort
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" autocmd CursorHold * silent call CocActionAsync('diagnosticInfo', 'float')
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).

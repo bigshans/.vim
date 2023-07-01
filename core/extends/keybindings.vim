@@ -48,6 +48,7 @@ vmap T <Plug>(coc-translator-pv)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap gk :call CocActionAsync('diagnosticInfo', 'echo')<CR>
 
 nmap <silent><leader>ja <Plug>(coc-codeaction)
 nmap <silent><leader>jr <Plug>(coc-rename)
@@ -55,12 +56,14 @@ nmap <silent><leader>jf <Plug>(coc-fix-current)
 nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
 xmap <silent><leader>fm <Plug>(coc-format-selected)
 nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
+nnoremap <leader>hr :call CocActionAsync('highlight')<CR>
 
 call whichkey#add('j.a', 'code action')
 call whichkey#add('j.r', 'coc rename')
 call whichkey#add('j.f', 'fix current')
 call whichkey#add('j.d', 'show diagnostics')
 call whichkey#add("f.t", "open file tree")
+call whichkey#add("h.r", "refresh highlight")
 " }}
 
 " auto format {{
@@ -99,7 +102,7 @@ if has('nvim')
     nnoremap <silent><leader>bn  :BufferLineCycleNext<CR>
     nnoremap <silent><leader>bp  :BufferLineCyclePrev<CR>
 else
-    nmap <leader>bn   <Plug>lightline#bufferline#go_next()
+    nmap <leader>bn <Plug>lightline#bufferline#go_next()
     nmap <leader>bp <Plug>lightline#bufferline#go_previous()
     nmap <M-1> <Plug>lightline#bufferline#go(1)
     nmap <M-2> <Plug>lightline#bufferline#go(2)
@@ -162,10 +165,12 @@ augroup END
 " }}
 
 " run code {{
-nnoremap <leader>rc :SnipRun<CR>
-vnoremap <leader>rc :SnipRun<CR>
+if has('nvim')
+    nnoremap <leader>rc :SnipRun<CR>
+    vnoremap <leader>rc :SnipRun<CR>
 
-call whichkey#add('r.c', 'run current code')
+    call whichkey#add('r.c', 'run current code')
+endif
 " }}
 
 " interestingwords {{

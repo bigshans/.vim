@@ -23,7 +23,6 @@ P 'autoformat', 'vim-autoformat/vim-autoformat'
 
 P 't9md/vim-choosewin'
 P 'tpope/vim-fugitive'
-P 'kevinhwang91/rnvimr'
 
 " Appearance
 P 'ryanoasis/vim-devicons'
@@ -44,6 +43,7 @@ P 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 P 'multi', 'mg979/vim-visual-multi',{'branch':'test'}
 
 if has('nvim')
+    P 'kevinhwang91/rnvimr'
     P 'michaelb/sniprun', {'do': 'bash install.sh'}
     " dep by todo-comments
     P 'nvim-lua/plenary.nvim'
