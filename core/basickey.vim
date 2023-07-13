@@ -95,7 +95,12 @@ let g:term_win = 0
 let s:prev_buf = 0
 function! TermToggle(height)
     if win_gotoid(g:term_win)
-        exec "bdelete! " . s:prev_buf
+        hide
+        " 处理多出来的 buffer
+        " 只有 term 和前一个 buf 不一样时执行
+        if s:prev_buf != g:term_buf
+            exec "bd " . s:prev_buf
+        endif
     else
         botright new
         exec "resize " . a:height
