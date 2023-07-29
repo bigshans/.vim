@@ -1,4 +1,6 @@
-# Aerian's neoVim for Linux
+# Config for Vim
+
+Drop support for neovim.
 
 ## 快捷键
 
