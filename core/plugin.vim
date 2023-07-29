@@ -2,11 +2,12 @@ call plug#begin('~/.vim/bundle')
 
 P 'whichkey', 'liuchengxu/vim-which-key'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
-P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-P 'fzf', 'junegunn/fzf.vim'
+" P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" P 'fzf', 'junegunn/fzf.vim'
+P 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 P 'lambdalisue/suda.vim'
 P 'fcitx', 'bigshans/fcitx.vim'
-P 'grammarous', 'bigshans/vim-grammarous'
+" P 'grammarous', 'bigshans/vim-grammarous'
 P 'cycle', 'bigshans/vim-cycle'
 P 'liuchengxu/vista.vim'
 if !has('nvim')

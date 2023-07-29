@@ -49,13 +49,12 @@ inoremap <silent><expr> <c-space> coc#refresh()
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
-
 function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).

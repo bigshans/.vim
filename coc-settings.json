@@ -9,7 +9,7 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.refreshOnInsertMode": true,
-    "inlayHint.enable": true,
+    "inlayHint.enable": false,
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -240,5 +240,6 @@
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"
-    }
+    },
+    "colors.enable": false
 }

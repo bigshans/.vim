@@ -1,8 +1,13 @@
 " search {{
-nnoremap <leader>sb :Buffers<CR>
-nnoremap <leader>ss :BLines<CR>
-nnoremap <leader>hh :Helptags<CR>
-nnoremap <leader>sf :Files<CR>
+"nnoremap <leader>sb :Buffers<CR>
+"nnoremap <leader>ss :BLines<CR>
+"nnoremap <leader>hh :Helptags<CR>
+"nnoremap <leader>sf :Files<CR>
+
+"nnoremap <leader>sb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+nnoremap <leader>hh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 
 call whichkey#add('s.s', 'search lines')
 call whichkey#add('s.b', 'switch buffers')
@@ -12,7 +17,7 @@ call whichkey#add('s.f', 'search files')
 " open {{
 nnoremap <leader>op :e $HOME/.vim/core/plugin.vim<CR>
 nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
-nnoremap <leader>oc :FZF $HOME/.vim/core<CR>
+nnoremap <leader>oc :<C-U><C-R>=printf("Leaderf file %s", "~/.vim/core")<CR><CR>
 nnoremap <silent><leader>y :<C-u>CocList -A --normal yank<CR>
 
 call whichkey#add("y", "yank list")
@@ -22,7 +27,7 @@ call whichkey#add('o.c', 'open core config')
 " }}
 
 " file {{
-nnoremap <leader>fr :History<CR>
+nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 
 call whichkey#add('f.r', 'recently files')
 " }}
@@ -155,13 +160,15 @@ call whichkey#add('Pp', 'plugin update')
 " }}
 
 " ranger {{
-tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
-nnoremap <silent> <M-o> :RnvimrToggle<CR>
-tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
-augroup Ranger
-    autocmd!
-    autocmd FileType rnvimr nmap <buffer>q :q<CR>
-augroup END
+if has('nvim')
+    tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+    nnoremap <silent> <M-o> :RnvimrToggle<CR>
+    tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+    augroup Ranger
+        autocmd!
+        autocmd FileType rnvimr nmap <buffer>q :q<CR>
+    augroup END
+endif
 " }}
 
 " run code {{
@@ -178,9 +185,25 @@ nnoremap <silent> * :call InterestingWords('n')<cr>
 " }}
 
 " todo comments {{
-nnoremap <silent> <leader>tc :TodoLocList<CR>
-
-call whichkey#add('t.c', 'show todo comments')
+if has('nvim')
+    nnoremap <silent> <leader>tc :TodoLocList<CR>
+    call whichkey#add('t.c', 'show todo comments')
+else
+    noremap <leader>tr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+    noremap <leader>td :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+    noremap <leader>to :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+    noremap <leader>tn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+    noremap <leader>tp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+    noremap <leader>tu :<C-U><C-R>=printf("Leaderf gtags --update")<CR><CR>
+    noremap <leader>tt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+    call whichkey#add('t.r', 'gtags references')
+    call whichkey#add('t.d', 'gtags define')
+    call whichkey#add('t.o', 'gtags call')
+    call whichkey#add('t.n', 'gtags next')
+    call whichkey#add('t.p', 'gtags previous')
+    call whichkey#add("t.u", "gtags update")
+    call whichkey#add("t.t", "buffer tag")
+endif
 " }}
 
 " choosewin {{
@@ -192,29 +215,29 @@ call whichkey#add('w.c', 'swap win')
 " }}
 
 " grammarous {{
-let g:grammarous#hooks = {}
-function! g:grammarous#hooks.on_check(errs) abort
-    nmap <buffer><C-n> <Plug>(grammarous-move-to-next-error)
-    nmap <buffer><C-f> <Plug>(grammarous-fixit)
-    nmap <buffer><C-a> <Plug>(grammarous-fixall)
-    nmap <buffer><C-c> :GrammarousReset<CR>
-    nmap <buffer><C-p> <Plug>(grammarous-move-to-previous-error)
-    nmap <buffer><C-i> <Plug>(grammarous-open-info-window)
-endfunction
+" let g:grammarous#hooks = {}
+" function! g:grammarous#hooks.on_check(errs) abort
+    " nmap <buffer><C-n> <Plug>(grammarous-move-to-next-error)
+    " nmap <buffer><C-f> <Plug>(grammarous-fixit)
+    " nmap <buffer><C-a> <Plug>(grammarous-fixall)
+    " nmap <buffer><C-c> :GrammarousReset<CR>
+    " nmap <buffer><C-p> <Plug>(grammarous-move-to-previous-error)
+    " nmap <buffer><C-i> <Plug>(grammarous-open-info-window)
+" endfunction
 
-function! g:grammarous#hooks.on_reset(errs) abort
-    nunmap <buffer><C-n>
-    nunmap <buffer><C-f>
-    nunmap <buffer><C-a>
-    nunmap <buffer><C-c>
-    nunmap <buffer><C-p>
-    nunmap <buffer><C-i>
-endfunction
+" function! g:grammarous#hooks.on_reset(errs) abort
+    " nunmap <buffer><C-n>
+    " nunmap <buffer><C-f>
+    " nunmap <buffer><C-a>
+    " nunmap <buffer><C-c>
+    " nunmap <buffer><C-p>
+    " nunmap <buffer><C-i>
+" endfunction
 
-nmap <leader>GC :GrammarousCheck<CR>
-vmap <leader>GC :GrammarousCheck<CR>
-nmap <leader>GU :GrammarousReset<CR>
+" nmap <leader>GC :GrammarousCheck<CR>
+" vmap <leader>GC :GrammarousCheck<CR>
+" nmap <leader>GU :GrammarousReset<CR>
 
-call whichkey#add("G.C", "grammar check")
-call whichkey#add("G.U", "grammar check reset")
+" call whichkey#add("G.C", "grammar check")
+" call whichkey#add("G.U", "grammar check reset")
 " }}
