@@ -163,3 +163,15 @@ inoremap <C-a> <Esc>I
 nnoremap <silent> <C-x><C-c> :source %<CR>
 vnoremap <silent> <C-x><C-c> :<C-u>for line in getline("'<", "'>") \| execute line \| endfor<CR>
 " }}
+
+function! ClearAll()
+    let r = @/
+    if r != ''
+        " clear highlight
+        let @/ = ''
+    endif
+    " must use double quotes
+    call feedkeys("\<C-g>", "n")
+endfunction
+
+nmap <silent> <C-g> :call ClearAll()<CR>

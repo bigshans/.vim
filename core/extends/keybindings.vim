@@ -171,15 +171,3 @@ call whichkey#add('w.c', 'swap win')
 nmap F <Plug>(easymotion-overwin-f2)
 nmap f <Plug>(easymotion-overwin-f)
 " }}
-
-function! ClearAll()
-    let r = @/
-    if r != ''
-        " clear highlight
-        let @/ = ''
-    endif
-    " must use double quotes
-    call feedkeys("\<C-g>", "n")
-endfunction
-
-nmap <silent><expr> <C-g> ClearAll()
