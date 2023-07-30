@@ -168,5 +168,6 @@ call whichkey#add('w.c', 'swap win')
 " }}
 
 " easymotion {{
-nmap f <Plug>(easymotion-overwin-f2)
+nmap F <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f)
 " }}
