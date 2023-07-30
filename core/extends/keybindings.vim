@@ -85,6 +85,7 @@ nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gg :Git<CR>
 nnoremap <leader>gP :Git push<CR>
 nnoremap <leader>gp :Git pull<CR>
+nnoremap <leader>gh :GitGutterToggle<CR>
 
 " NO NEED to append keybinding desc
 

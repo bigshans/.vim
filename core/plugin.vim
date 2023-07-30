@@ -31,6 +31,7 @@ P 'sainnhe/artify.vim'
 P 'josa42/vim-lightline-coc'
 P 'albertomontesg/lightline-asyncrun'
 P 'sonokai', 'sainnhe/sonokai'
+P 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
 if !has('nvim')
     " conflict with bufferline
     P 'lightline-bufferline', 'mengelbrecht/lightline-bufferline'
