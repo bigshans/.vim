@@ -29,6 +29,7 @@ set virtualedit=block
 set t_Co=256
 set background=dark
 set number
+set incsearch
 set hlsearch
 set title
 set backspace=indent,eol,start

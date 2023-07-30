@@ -17,7 +17,6 @@ P 'sandwich', 'machakann/vim-sandwich'
 P 'interestingwords', 'lfv89/vim-interestingwords'
 P 'https://github.com/kien/rainbow_parentheses.vim.git'
 P 'autoformat', 'vim-autoformat/vim-autoformat'
-P 'markonm/traces.vim'
 
 P 't9md/vim-choosewin'
 P 'tpope/vim-fugitive'
