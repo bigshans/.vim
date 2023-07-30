@@ -171,3 +171,8 @@ call whichkey#add('w.c', 'swap win')
 nmap F <Plug>(easymotion-overwin-f2)
 nmap f <Plug>(easymotion-overwin-f)
 " }}
+
+" trace vim {{
+nmap <leader>/ :/
+nmap <leader>? :?
+" }}
