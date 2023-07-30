@@ -1,6 +1,10 @@
 call plug#begin('~/.vim/bundle')
 
 P 'whichkey', 'liuchengxu/vim-which-key'
+" required by vim-navigator
+" P 'skywind3000/vim-quickui'
+" no default keymap, wait. It's more stable than whichkey
+" P 'vim-navigator', 'skywind3000/vim-navigator'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 " P 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " P 'fzf', 'junegunn/fzf.vim'
