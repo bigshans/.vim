@@ -11,6 +11,7 @@ P 'drmikehenry/vim-fixkey'
 P 'nerdcomment', 'preservim/nerdcommenter'
 P 'LunarWatcher/auto-pairs'
 
+P 'MattesGroeger/vim-bookmarks'
 P 'https://github.com/honza/vim-snippets.git'
 P 'easy-motion', 'easymotion/vim-easymotion'
 P 'sandwich', 'machakann/vim-sandwich'
