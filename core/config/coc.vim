@@ -5,6 +5,7 @@ let g:coc_global_extensions = [
             \ '@yaegassy/coc-volar-tools',
             \ 'coc-angular',
             \ 'coc-calc',
+            \ 'coc-clangd',
             \ 'coc-cmake',
             \ 'coc-css',
             \ 'coc-deno',
@@ -54,7 +55,6 @@ function! CheckBackspace() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).

@@ -46,22 +46,35 @@ vmap T <Plug>(coc-translator-pv)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap gk :call CocActionAsync('diagnosticInfo', 'echo')<CR>
 
+nmap <silent><leader>jc <Plug>(coc-diagnostic-info)
 nmap <silent><leader>ja <Plug>(coc-codeaction)
 nmap <silent><leader>jr <Plug>(coc-rename)
 nmap <silent><leader>jf <Plug>(coc-fix-current)
 nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
 xmap <silent><leader>fm <Plug>(coc-format-selected)
 nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
-nnoremap <leader>hr :call CocActionAsync('highlight')<CR>
+nnoremap <leader>jl <Plug>(coc-codelens-action)
 
 call whichkey#add('j.a', 'code action')
 call whichkey#add('j.r', 'coc rename')
 call whichkey#add('j.f', 'fix current')
+call whichkey#add('j.c', 'check diagnostics')
 call whichkey#add('j.d', 'show diagnostics')
 call whichkey#add("f.t", "open file tree")
 call whichkey#add("h.r", "refresh highlight")
+call whichkey#add("j.l", "run codelens")
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 " }}
 
 " auto format {{
@@ -170,4 +183,9 @@ call whichkey#add('w.c', 'swap win')
 " easymotion {{
 nmap F <Plug>(easymotion-overwin-f2)
 nmap f <Plug>(easymotion-overwin-f)
+" }}
+
+" easymotion {{
+nmap <leader>fS :SudaWrite<CR>
+call whichkey#add("f.S", "save file as sudo")
 " }}

@@ -11,25 +11,6 @@
     "diagnostic.refreshOnInsertMode": true,
     "inlayHint.enable": false,
     "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls-cache"
-                },
-                "client": {
-                    "snippetSupport": true
-                }
-            }
-        },
         "bash": {
             "command": "bash-language-server",
             "args": ["start"],
@@ -46,10 +27,7 @@
         },
         "lua": {
             "command": "lua-language-server",
-            "args": [
-                "-E",
-                "/usr/lib/lua-language-server/bin/main.lua"
-            ],
+            "args": ["-E", "/usr/lib/lua-language-server/bin/main.lua"],
             "filetypes": ["lua"],
             "settings": {
                 "Lua": {
@@ -59,25 +37,26 @@
                         "/usr/share/nvim/runtime/lua/vim/lsp": true
                     },
                     "diagnostics": {
-                        "globals": [ "vim" ]
+                        "globals": ["vim"]
                     }
                 }
             }
         },
         "racket": {
             "command": "racket",
-            "args": [
-                "--lib",
-                "racket-langserver"
-            ],
-            "filetypes": [
-                "scheme"
-            ]
+            "args": ["--lib", "racket-langserver"],
+            "filetypes": ["scheme"]
         },
         "haskell": {
             "command": "haskell-language-server-wrapper",
             "args": ["--lsp"],
-            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "rootPatterns": [
+                "*.cabal",
+                "stack.yaml",
+                "cabal.project",
+                "package.yaml",
+                "hie.yaml"
+            ],
             "filetypes": ["haskell", "lhaskell"]
         }
     },
@@ -187,7 +166,6 @@
     "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
     "volar.autoClosingTags": true,
-    "volar.autoCompleteRefs": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
@@ -241,5 +219,14 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
-    "colors.enable": false
+    "colors.enable": false,
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--clang-tidy-checks=performance-*,bugprone-*",
+        "--completion-style=detailed",
+        "--all-scopes-completion",
+        "--header-insertion=iwyu",
+        "--pch-storage=disk"
+    ]
 }
