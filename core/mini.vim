@@ -53,9 +53,7 @@ set expandtab
 set wrap
 if &wrap == 1
     set showbreak=<
-    if !has('nvim')
-        set listchars=eol:↩︎
-    endif
+    set listchars=eol:↩︎
 endif
 
 set formatoptions+=mM
@@ -72,7 +70,7 @@ set nospell
 set pumheight=20
 
 " 菜单设置
-if has('gui_running') || exists('g:nyaovim_version')
+if has('gui_running')
     set guioptions-=T
     " set guioptions-=m
     set guioptions-=l
@@ -80,13 +78,12 @@ if has('gui_running') || exists('g:nyaovim_version')
     set guioptions-=r
     set guioptions-=R
     set guioptions-=e
-    set guifont=NotoMonoforPowerline\ 14
+    " set guifont=NotoMonoforPowerline\ 14
+    set guifont=Cascadia\ Code\ 14
 endif
 
 " 符号列
 set signcolumn=yes
 
-if !has('nvim')
-    set showtabline=2
-    set mouse=a
-endif
+set showtabline=2
+set mouse=a

@@ -1,9 +1,6 @@
 let g:vim_lightline_artify = 1
 let g:vim_mode = 'full'
 let g:lightline = { }
-if has('nvim')
-    let g:lightline = { 'enable': { 'tabline': 0 } }
-endif
 let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
 let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
