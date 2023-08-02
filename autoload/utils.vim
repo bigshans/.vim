@@ -6,7 +6,7 @@ function utils#sudo_save() abort
             exe 'w !pkexec tee > /dev/null %' | setl nomod
         endif
     else
-        exe 'w !sudo tee > /dev/null $' | setl nomod
+        exe 'w !sudo tee %' | setl nomod
     endif
 endfunction
 

@@ -3,7 +3,6 @@ nnoremap <leader><leader> <esc>
 nnoremap <leader>; :
 nmap <silent><leader>q :call functions#bufQuit()<CR>
 nmap <leader>fs :w!<CR>
-nmap <leader>fS :W<CR>
 nmap <leader>Q :qa!<CR>
 " 上引号
 " inoremap “ “”
@@ -27,6 +26,7 @@ call whichkey#add(";", "command")
 call whichkey#add("q", "quit buffer")
 call whichkey#add("Q", "quit vim")
 call whichkey#add("f.s", "save file")
+nmap <leader>fS :SudaWrite<CR>
 call whichkey#add("f.S", "save file as sudo")
 " }}
 
@@ -144,6 +144,13 @@ noremap k gk
 noremap <Up> gk
 noremap <Down> gj
 
+" 窗口间移动
+inoremap <C-j> <ESC><C-w><C-j>
+inoremap <C-k> <ESC><C-w><C-k>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+tmap <C-J> <C-W>j<C-W>_
+tmap <C-K> <C-W>k<C-W>_
 " 字移动
 imap <C-n> <Down>
 imap <C-p> <Up>
