@@ -178,7 +178,7 @@
     "explorer.git.icon.status.unmerged": "═",
     "explorer.git.icon.status.deleted": "✖",
     "explorer.file.reveal.auto": false,
-    "tsserver.npm": "/usr/bin/tsserver",
+    "tsserver.npm": "/usr/bin/typescript-language-server",
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": false,
     "svelte.enable-ts-plugin": true,

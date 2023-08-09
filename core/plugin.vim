@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/bundle')
 
-P 'whichkey', 'liuchengxu/vim-which-key'
+" P 'whichkey', 'liuchengxu/vim-which-key'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 P 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 P 'lambdalisue/suda.vim'
@@ -31,6 +31,8 @@ P 'sonokai', 'sainnhe/sonokai'
 P 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
 P 'lightline-bufferline', 'mengelbrecht/lightline-bufferline'
 P 'lightline', 'itchyny/lightline.vim'
+P 'skywind3000/vim-quickui'
+P 'vim-navigator', 'skywind3000/vim-navigator'
 
 P 'godlygeek/tabular', { 'for': 'markdown' }
 P 'preservim/vim-markdown', { 'for': 'markdown' }

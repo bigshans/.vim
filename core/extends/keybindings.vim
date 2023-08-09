@@ -1,10 +1,8 @@
-nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>hh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 
-call whichkey#add('s.s', 'search lines')
+call whichkey#add('s.l', 'search lines')
 call whichkey#add('s.b', 'switch buffers')
-call whichkey#add('s.f', 'search files')
 " }}
 
 " open {{
@@ -21,8 +19,10 @@ call whichkey#add('o.c', 'open core config')
 
 " file {{
 nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
 
 call whichkey#add('f.r', 'recently files')
+call whichkey#add('f.f', 'search files')
 " }}
 
 " coc {{
@@ -55,6 +55,11 @@ nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
 xmap <silent><leader>fm <Plug>(coc-format-selected)
 nnoremap <silent><leader>ft :CocCommand explorer --preset<CR>
 nnoremap <leader>jl <Plug>(coc-codelens-action)
+nmap <leader>jF <Plug>(coc-refactor)
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
 
 call whichkey#add('j.a', 'code action')
 call whichkey#add('j.r', 'coc rename')
@@ -64,6 +69,7 @@ call whichkey#add('j.d', 'show diagnostics')
 call whichkey#add("f.t", "open file tree")
 call whichkey#add("h.r", "refresh highlight")
 call whichkey#add("j.l", "run codelens")
+call whichkey#add("j.F", "refactor code action")
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server

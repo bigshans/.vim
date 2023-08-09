@@ -1,16 +1,20 @@
 let g:new_vim = 1
 
-let g:user_vim_config = fnamemodify(expand('<sfile>'), ':h')
-if !has('nvim')
-    let g:user_vim_config = '~/.vim'
+let s:curfile = expand("<sfile>")
+let s:curfiledir = fnamemodify(s:curfile, ":h")
+let g:user_vim_config = s:curfiledir
+
+if has("win32") || has("win64")
+    let g:user_core = g:user_vim_config . '\.vim\core\'
+else
+    let g:user_core = g:user_vim_config . '/.vim/core/'
 endif
-let g:user_core = g:user_vim_config . '/core/'
 
 if g:new_vim == 1
-    let s:start_scripts = ['mini.vim', 'preload.vim', 'plugin.vim', 'basickey.vim', 'extends/keybindings.vim']
+    let s:start_scripts = ['mini.vim', 'preload.vim', 'plugin.vim', 'bindings.vim']
     for script_path in s:start_scripts
         execute 'source ' g:user_core.script_path
     endfor
-    call whichkey#end()
-	call config#hugefile()
+    " call whichkey#end()
+    call config#hugefile()
 endif
