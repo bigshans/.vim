@@ -48,10 +48,13 @@ function s:MapNavigator(list, list_name, status)
     for key in keys(l:old)
         let parser_key = s:ParserKey(key)
         let a:list[parser_key] = a:list[key]
-        exec 'nmap ' . key . " :" . a:status ." " . a:list_name . "['" . parser_key . "']<CR>"
-        " call remove(a:list, key)
+        if a:status == 'normal'
+            exec 'nmap ' . key . " :Navigator " . a:list_name . "['" . parser_key . "']<CR>"
+        else
+            exec 'vmap ' . key . " :NavigatorVisual " . a:list_name . "['" . parser_key . "']<CR>"
+        endif
     endfor
 endfunction
 
-call s:MapNavigator(g:navigator, 'g:navigator', "Navigator")
-call s:MapNavigator(g:navigator_visual, 'g:navigator_visual', "NavigatorVisual")
+call s:MapNavigator(g:navigator, 'g:navigator', "normal")
+call s:MapNavigator(g:navigator_visual, 'g:navigator_visual', "visual")

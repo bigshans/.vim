@@ -21,12 +21,20 @@ let g:navigator[","] = {
             \ "<Right>": [":vertical res -1", "asc width"],
             \ "v": [":vsplit", "vsplit"],
             \ "s": [":split", "split"],
+            \ "c": {
+            \ "i": ["<KEY>*Ncgn", "change word"],
+            \ }
             \ }
 
 let g:navigator_visual[","] = {
             \ "=": ["FormatKey()", "format code"],
+            \ "c": {
+            \ "i": ["<KEY>y/<C-r>0<CR>Ncgn", "change word"],
+            \ }
             \ }
 
+nmap ,ci *Ncgn
+vmap ,ci y/<C-r>0<CR>Ncgn
 vmap ,= :call FormatKey<CR>
 nmap ,= :call FormatKey()<CR>
 nmap ,<Up> :res -1<CR>

@@ -1,7 +1,7 @@
 call DetectKeyMapRegister(g:navigator, "<leader>")
 call DetectKeyMapRegister(g:navigator, "<C-w>")
 
-nnoremap <silent> * :call InterestingWords('n')<cr>
+" nnoremap <silent> * :call InterestingWords('n')<cr>
 " easymotion {{
 nmap F <Plug>(easymotion-overwin-f2)
 nmap f <Plug>(easymotion-overwin-f)
@@ -46,14 +46,14 @@ nnoremap < <<
 nnoremap > >>
 
 " 当前行移动
-nnoremap <silent><C-Up>  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap <silent><C-Down>  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap <silent><M-k>  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap <silent><M-j>  :<c-u>execute 'move +'. v:count1<cr>
 
-inoremap <silent><C-Down> <Esc>:m .+1<CR>==gi
-inoremap <silent><C-Up> <Esc>:m .-2<CR>==gi
+inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
 
-vnoremap <silent><C-Down> :m '>+1<CR>gv=gv
-vnoremap <silent><C-Up> :m '<-2<CR>gv=gv
+vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+vnoremap <silent><M-k> :m '<-2<CR>gv=gv
 
 nnoremap <silent><CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 

@@ -38,6 +38,6 @@ P 'godlygeek/tabular', { 'for': 'markdown' }
 P 'preservim/vim-markdown', { 'for': 'markdown' }
 P 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
-P 'multi', 'mg979/vim-visual-multi',{'branch':'test'}
+P 'tpope/vim-repeat'
 
 call p#end()
