@@ -21,9 +21,8 @@ let g:navigator["<C-w>"] = {
             \ "j": ["<KEY><C-w><C-j>", "to down win"],
             \ "k": ["<KEY><C-w><C-k>", "to up win"],
             \ "l": ["<KEY><C-w><C-l>", "to right win"],
+            \ "0": [":only", "delete other win"],
             \ }
-
-nnoremap <C-x>d :only<CR>
 
 for i in range(1, 9)
     let g:navigator["<leader>"][i] = [":wincmd " . i, "goto win " . i]
