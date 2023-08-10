@@ -16,3 +16,16 @@ vmap <buffer> <M-l> sa(F(i[
 nmap <buffer> <tab> za
 
 setlocal colorcolumn=
+
+let g:_navigator_markdown = {'prefix': '<leader>' }
+
+let g:_navigator_markdown["m"] = {
+            \ 'name': 'markdown...',
+            \ 't': {
+            \ 'name': 'table...',
+            \ '=': [':TableFormat', 'table format']
+            \ }
+            \ }
+nmap <buffer><silent><leader>mt= :Tabularize<CR>
+let b:navigator = MakeLocal(g:navigator["<leader>"], g:_navigator_markdown)
+nmap <buffer><leader> :Navigator b:navigator<CR>

@@ -35,10 +35,6 @@ function! MakeLocal(da, db) abort
     return l:dc
 endfunction
 
-function! CallKey(key)
-    echo a:key
-endfunction
-
 for mode in ['search', 'open', 'file', 'coc', 'git', 'plugin', 'search', 'comment', 'tag', 'win', 'comma', 'others', 'buffer']
     exec "source " . s:binding_path . mode.'.vim'
 endfor
