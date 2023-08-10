@@ -15,7 +15,6 @@ P 'MattesGroeger/vim-bookmarks'
 P 'https://github.com/honza/vim-snippets.git'
 P 'easy-motion', 'easymotion/vim-easymotion'
 P 'sandwich', 'machakann/vim-sandwich'
-P 'interestingwords', 'lfv89/vim-interestingwords'
 P 'https://github.com/kien/rainbow_parentheses.vim.git'
 P 'autoformat', 'vim-autoformat/vim-autoformat'
 
