@@ -1,8 +1,9 @@
 call DetectKeyMapRegister(g:navigator, ",")
+call DetectKeyMapRegister(g:navigator_visual, ",")
 
 function! FormatKey()
     try
-        call CocActionAsync('format')
+        call CocAction('format')
     catch
         try
             exec 'Autoformat'
@@ -22,6 +23,11 @@ let g:navigator[","] = {
             \ "s": [":split", "split"],
             \ }
 
+let g:navigator_visual[","] = {
+            \ "=": ["FormatKey()", "format code"],
+            \ }
+
+vmap ,= :call FormatKey<CR>
 nmap ,= :call FormatKey()<CR>
 nmap ,<Up> :res -1<CR>
 nmap ,<Down> :res +1<CR>
