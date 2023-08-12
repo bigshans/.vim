@@ -1,12 +1,9 @@
 call plug#begin('~/.vim/bundle')
 
-" P 'whichkey', 'liuchengxu/vim-which-key'
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 P 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 P 'lambdalisue/suda.vim'
-if has('win32') || has('win64')
-    P 'im-select', 'brglng/vim-im-select'
-else
+if !has('win32') && !has('win64')
     P 'fcitx', 'bigshans/fcitx.vim'
 endif
 P 'cycle', 'bigshans/vim-cycle'
