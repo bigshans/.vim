@@ -79,7 +79,7 @@ if has('gui_running')
     set guioptions-=R
     set guioptions-=e
     " set guifont=NotoMonoforPowerline\ 14
-    set guifont=Cascadia\ Code\ 14
+    set guifont=Cascadia_Mono_PL:h11
 endif
 
 " 符号列
