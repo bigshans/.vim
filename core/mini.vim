@@ -87,3 +87,6 @@ set signcolumn=yes
 
 set showtabline=2
 set mouse=a
+
+set vb t_vb=
+au GUIEnter * set t_vb=
