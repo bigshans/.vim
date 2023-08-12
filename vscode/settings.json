@@ -1,0 +1,91 @@
+{
+    "vim.camelCaseMotion.enable": true,
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "1",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/fcitx5-remote",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/bin/fcitx5-remote -t {im}",
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+    "vim.statusBarColors.insert": "#BF616A",
+    "vim.statusBarColors.visual": "#B48EAD",
+    "vim.statusBarColors.visualline": "#B48EAD",
+    "vim.statusBarColors.visualblock": "#A3BE8C",
+    "vim.statusBarColors.replace": "#D08770",
+    "vim.statusBarColors.commandlineinprogress": "#007ACC",
+    "vim.statusBarColors.searchinprogressmode": "#007ACC",
+    "vim.statusBarColors.easymotionmode": "#007ACC",
+    "vim.statusBarColors.easymotioninputmode": "#007ACC",
+    "vim.statusBarColors.surroundinputmode": "#007ACC",
+    "vim.surround": true,
+    "vim.handleKeys": {
+      "<C-d>": true,
+      "<C-s>": false,
+      "<C-z>": false
+    },
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<C-e>"],
+        "after": ["<Esc>", "A"]
+      },
+      {
+        "before": ["<C-a>"],
+        "after": ["<Esc>", "I"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<C-g>"],
+        "commands": [":nohl"]
+      },
+      {
+        "before": ["<leader>", "f", "s"],
+        "commands": [":w!"]
+      },
+      {
+        "before": ["P"],
+        "after": ["\"", "+", "p"]
+      },
+      {
+        "before": ["f"],
+        "after": ["<leader>", "<leader>", "s"]
+      },
+      {
+        "before": ["F"],
+        "after": ["<leader>", "<leader>", "2","s"]
+      },
+      {
+        "before": ["s", "a"],
+        "after": ["<plugys>"]
+      },
+      {
+        "before": ["s", "r"],
+        "after": ["<plugcs>"]
+      },
+      {
+        "before": ["s", "d"],
+        "after": ["<plugds>"]
+      },
+      {
+        "before": ["<leader>", "c", "i"],
+        "after": ["g", "c", "c"]
+      },
+      {
+        "before": [",", "c", "w"],
+        "after": ["*", "N", "c", "g", "n"]
+      }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+      {
+        "before": ["Y"],
+        "after": ["\"", "+", "y"]
+      },
+      {
+        "before": ["<leader>", "c", "i"],
+        "after": ["g", "c"]
+      }
+    ]
+}
