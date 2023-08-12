@@ -1,9 +1,4 @@
 {
-    "vim.camelCaseMotion.enable": true,
-    "vim.autoSwitchInputMethod.enable": true,
-    "vim.autoSwitchInputMethod.defaultIM": "1",
-    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/fcitx5-remote",
-    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/bin/fcitx5-remote -t {im}",
     "vim.statusBarColorControl": true,
     "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
     "vim.statusBarColors.insert": "#BF616A",
@@ -44,6 +39,14 @@
       {
         "before": ["<leader>", "f", "s"],
         "commands": [":w!"]
+      },
+      {
+        "before": ["<leader>", "q"],
+        "commands": [":q!"]
+      },
+      {
+        "before": ["<leader>", "Q"],
+        "commands": [":qa!"]
       },
       {
         "before": ["P"],
@@ -87,5 +90,12 @@
         "before": ["<leader>", "c", "i"],
         "after": ["g", "c"]
       }
-    ]
+    ],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#B48EAD",
+        "statusBar.noFolderBackground": "#B48EAD",
+        "statusBar.debuggingBackground": "#B48EAD",
+        "statusBar.foreground": "#434C5E",
+        "statusBar.debuggingForeground": "#434C5E"
+    }
 }
