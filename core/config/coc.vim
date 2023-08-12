@@ -1,3 +1,6 @@
+if has('win32') || has('win64')
+    let g:coc_config_home = '~/.vim'
+endif
 " 控制 coc 插件安装
 let g:coc_global_extensions = [
             \ '@yaegassy/coc-intelephense',

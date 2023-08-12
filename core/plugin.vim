@@ -4,7 +4,11 @@ call plug#begin('~/.vim/bundle')
 P 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 P 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 P 'lambdalisue/suda.vim'
-P 'fcitx', 'bigshans/fcitx.vim'
+if has('win32') || has('win64')
+    P 'im-select', 'brglng/vim-im-select'
+else
+    P 'fcitx', 'bigshans/fcitx.vim'
+endif
 P 'cycle', 'bigshans/vim-cycle'
 P 'liuchengxu/vista.vim'
 P 'drmikehenry/vim-fixkey'
