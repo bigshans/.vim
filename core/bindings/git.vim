@@ -8,8 +8,11 @@ let g:navigator["<leader>"].g = {
             \ "d": [":Gvdiffsplit", "diff current file"],
             \ "r": [":Gread", "restore file"],
             \ "g": [":Git", "git"],
-            \ "P": [":Git push", "push"],
-            \ "p": [":Git pull", "pull"],
+            \ "p": {
+                \ "name": "push or pull..",
+                \ "s": [":Git! push", "push"],
+                \ "l": [":Git! pull", "pull"],
+            \ },
             \ "x": [":GitGutterToggle", "highlight diff"],
             \ "w": [":Gwrite", "store file"],
             \ }
@@ -28,8 +31,8 @@ nnoremap <leader>gc :Git commit<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gg :Git<CR>
-nnoremap <leader>gP :Git push<CR>
-nnoremap <leader>gp :Git pull<CR>
+nnoremap <leader>gps :Git! push<CR>
+nnoremap <leader>gpl :Git! pull<CR>
 nnoremap <leader>gx :GitGutterToggle<CR>
 nnoremap <leader>gw :Gwrite<CR>
 
