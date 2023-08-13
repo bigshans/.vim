@@ -2,13 +2,16 @@ call DetectKeyMapRegister(g:navigator, "<leader>")
 
 let g:navigator["<leader>"].g = {
             \ "name": "git...",
-            \ "a": [":Git add %", "add"],
+            \ "a": [":Git add .", "add all"],
+            \ "b": [":Git blame", "blame"],
             \ "c": [":Git commit", "commit"],
-            \ "r": [":Git store %", "restore"],
+            \ "d": [":Gvdiffsplit", "diff current file"],
+            \ "r": [":Gread", "restore file"],
             \ "g": [":Git", "git"],
             \ "P": [":Git push", "push"],
             \ "p": [":Git pull", "pull"],
-            \ "h": [":GitGutterToggle", "highlight diff"]
+            \ "x": [":GitGutterToggle", "highlight diff"],
+            \ "w": [":Gwrite", "store file"],
             \ }
 
 let g:_navigator_fugitive = { "prefix": "<leader>" }
@@ -19,17 +22,20 @@ let g:_navigator_fugitive["p"] = {
             \ "<Space>": ["<key>a", "all"],
             \ }
 
-nnoremap <leader>ga :Git add %<CR>
-nnoremap <leader>gr :Git restore %<CR>
+nnoremap <leader>ga :Git add .<CR>
+nnoremap <leader>gb :Git blame<CR>
 nnoremap <leader>gc :Git commit<CR>
-nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gg :Git<CR>
 nnoremap <leader>gP :Git push<CR>
 nnoremap <leader>gp :Git pull<CR>
-nnoremap <leader>gh :GitGutterToggle<CR>
+nnoremap <leader>gx :GitGutterToggle<CR>
+nnoremap <leader>gw :Gwrite<CR>
 
 augroup AU_GIT
     autocmd!
+    autocmd FileType git nmap <buffer><silent>q :q<CR>
     autocmd FileType fugitive nmap <buffer><silent>q :q<CR>
     autocmd FileType fugitive nmap <buffer><silent><leader>p :Git pull<CR>
     autocmd FileType fugitive nmap <buffer><silent><leader>P :Git push<CR>
