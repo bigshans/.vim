@@ -33,6 +33,8 @@ P 'lightline-bufferline', 'mengelbrecht/lightline-bufferline'
 P 'lightline', 'itchyny/lightline.vim'
 P 'skywind3000/vim-quickui'
 P 'vim-navigator', 'skywind3000/vim-navigator'
+P 'purescript-contrib/purescript-vim'
+P 'tpope/vim-speeddating'
 
 P 'godlygeek/tabular', { 'for': 'markdown' }
 P 'preservim/vim-markdown', { 'for': 'markdown' }
