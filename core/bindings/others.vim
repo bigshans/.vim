@@ -144,9 +144,13 @@ inoremap <C-f> <Right>
 inoremap <M-f> <C-Right>
 inoremap <M-b> <C-Left>
 
-" h行移动
+" 移动到行尾
 inoremap <C-e> <End>
+" 移动到行首
 inoremap <C-a> <Esc>I
+inoremap <C-d> <Esc>ddi
+" 向上新建一行
+inoremap <S-CR> <C-o>O
 " }}
 
 " exec {{
