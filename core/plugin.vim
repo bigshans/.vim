@@ -41,5 +41,6 @@ P 'preservim/vim-markdown', { 'for': 'markdown' }
 P 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
 P 'tpope/vim-repeat'
+P 'romainl/vim-cool'
 
 call p#end()
