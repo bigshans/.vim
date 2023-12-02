@@ -3,6 +3,8 @@
 let g:Lf_ShowDevIcons = 1
 " For GUI vim, the icon font can be specify like this, for example
 let g:Lf_DevIconsFot = "DroidSansM Nerd Font Mono"
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PopupPreviewPosition = 'top'
 
 let g:Lf_ShortcutF = '<leader>ff'
 let g:Lf_ShortcutB = '<leader>sb'
