@@ -1,12 +1,6 @@
 call DetectKeyMapRegister(g:navigator, "<leader>")
 call DetectKeyMapRegister(g:navigator, "<C-w>")
 
-" nnoremap <silent> * :call InterestingWords('n')<cr>
-" easymotion {{
-nmap F <Plug>(easymotion-overwin-f2)
-nmap f <Plug>(easymotion-overwin-f)
-" }}
-
 nnoremap <leader>; :
 nmap <silent><leader>q :call functions#bufQuit()<CR>
 nmap <leader>fs :w!<CR>
@@ -124,6 +118,8 @@ nnoremap <S-Up> k
 nnoremap <S-Down> j
 noremap j gj
 noremap k gk
+noremap 0 g0
+noremap $ g$
 noremap <Up> gk
 noremap <Down> gj
 
@@ -145,9 +141,9 @@ inoremap <M-f> <C-Right>
 inoremap <M-b> <C-Left>
 
 " 移动到行尾
-inoremap <C-e> <End>
+inoremap <C-e> <C-o>g0
 " 移动到行首
-inoremap <C-a> <Esc>I
+inoremap <C-a> <C-o>g$
 inoremap <C-d> <Esc>ddi
 " 向上新建一行
 inoremap <S-CR> <C-o>O
