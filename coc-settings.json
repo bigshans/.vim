@@ -175,6 +175,7 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
+    "explorer.file.cdCommand": "cd",
     "semanticTokens.enable": true,
     "eslint.packageManager": "yarn",
     "eslint.quiet": true,
