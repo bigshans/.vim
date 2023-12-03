@@ -6,10 +6,10 @@
     "diagnostic.infoSign": "⚡",
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualText": false,
-    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.refreshOnInsertMode": true,
-    "inlayHint.enable": false,
+    "inlayHint.enable": true,
     "languageserver": {
         "bash": {
             "command": "bash-language-server",
@@ -207,7 +207,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToVirtualText": false,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
@@ -243,5 +243,10 @@
         "--all-scopes-completion",
         "--header-insertion=iwyu",
         "--pch-storage=disk"
-    ]
+    ],
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "volar.autoCreateQuotes": true
 }
