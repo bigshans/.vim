@@ -141,9 +141,9 @@ inoremap <M-f> <C-Right>
 inoremap <M-b> <C-Left>
 
 " 移动到行尾
-inoremap <C-e> <C-o>g0
+inoremap <C-e> <C-o>g$
 " 移动到行首
-inoremap <C-a> <C-o>g$
+inoremap <C-a> <C-o>g0
 inoremap <C-d> <Esc>ddi
 " 向上新建一行
 inoremap <S-CR> <C-o>O
