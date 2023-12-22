@@ -21,6 +21,7 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
+PL 'tpope/vim-rsi'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'

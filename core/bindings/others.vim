@@ -133,18 +133,7 @@ tmap <C-K> <C-W>k<C-W>_
 " 字移动
 imap <C-n> <Down>
 imap <C-p> <Up>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
 
-" 词移动
-inoremap <M-f> <C-Right>
-inoremap <M-b> <C-Left>
-
-" 移动到行尾
-inoremap <C-e> <C-o>g$
-" 移动到行首
-inoremap <C-a> <C-o>g0
-inoremap <C-d> <Esc>ddi
 " 向上新建一行
 inoremap <S-CR> <C-o>O
 " }}
