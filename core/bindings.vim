@@ -1,10 +1,4 @@
-let s:core_path = expand("<sfile>:p:h")
-
-if has("win32") || has("win64")
-    let s:binding_path = s:core_path . '\bindings\'
-else
-    let s:binding_path = s:core_path . '/bindings/'
-endif
+command! -nargs=1 InitKey exec 'IncScript core/bindings/'.fnameescape("<args>.vim")
 
 let g:navigator = {}
 let g:navigator_visual = {}
@@ -35,10 +29,6 @@ function! MakeLocal(da, db) abort
     return l:dc
 endfunction
 
-for mode in ['search', 'open', 'file', 'coc', 'git', 'plugin', 'search', 'comment', 'tag', 'win', 'comma', 'others', 'buffer']
-    exec "source " . s:binding_path . mode.'.vim'
-endfor
-
 function s:MapNavigator(list, list_name, status)
     let l:old = deepcopy(a:list)
     for key in keys(l:old)
@@ -51,6 +41,20 @@ function s:MapNavigator(list, list_name, status)
         endif
     endfor
 endfunction
+
+InitKey search
+InitKey open
+InitKey file
+InitKey coc
+InitKey git
+InitKey plugin
+InitKey comment
+InitKey tag
+InitKey win
+InitKey comma
+InitKey others
+InitKey buffer
+
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")
 call s:MapNavigator(g:navigator_visual, 'g:navigator_visual', "visual")

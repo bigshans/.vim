@@ -1,7 +1,7 @@
 let s:config_list = []
 let s:lua_config = []
 
-function p#append(...)
+function plugin#append(...)
     if a:0 == 1
         Plug a:1
     elseif a:0 == 2
@@ -17,7 +17,7 @@ function p#append(...)
     endif
 endfunction
 
-function p#append_lua(...)
+function plugin#append_lua(...)
     if !has('nvim')
         return
     endif
@@ -36,14 +36,14 @@ function p#append_lua(...)
     endif
 endfunction
 
-function p#end()
+function plugin#end()
     call plug#end()
-    call p#load_config()
+    call plugin#load_config()
 endfunction
 
-function p#load_config() abort
+function plugin#load_config() abort
     for config_name in s:config_list
-        let config_file = g:user_core . "config/" . config_name . ".vim"
+        let config_file = g:vim_config_home . "/core/config/" . config_name . ".vim"
         if filereadable(expand(config_file)) == 1
             exec "source " . config_file
         endif
