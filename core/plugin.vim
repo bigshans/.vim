@@ -10,7 +10,7 @@ PL 'cycle', 'bigshans/vim-cycle'
 PL 'liuchengxu/vista.vim'
 PL 'drmikehenry/vim-fixkey'
 PL 'nerdcomment', 'preservim/nerdcommenter'
-PL 'LunarWatcher/auto-pairs'
+PL 'jiangmiao/auto-pairs'
 
 PL 'MattesGroeger/vim-bookmarks'
 PL 'https://github.com/honza/vim-snippets.git'
@@ -21,7 +21,6 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
-PL 'tpope/vim-rsi'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
