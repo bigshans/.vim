@@ -21,7 +21,6 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-lists',
             \ 'coc-marketplace',
-            \ 'coc-omnisharp',
             \ 'coc-pyright',
             \ 'coc-rust-analyzer',
             \ 'coc-snippets',
@@ -70,3 +69,6 @@ augroup custom_nginx
     autocmd FileType nginx setlocal iskeyword+=$
     autocmd FileType nginx let b:coc_additional_keywords = ['$']
 augroup end
+
+" Highlight the symbol and its references when holding the cursor
+" autocmd CursorHold * silent call CocActionAsync('highlight')

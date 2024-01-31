@@ -72,7 +72,7 @@ set pumheight=20
 " 菜单设置
 if has('gui_running')
     set guioptions-=T
-    " set guioptions-=m
+    set guioptions-=m
     set guioptions-=l
     set guioptions-=L
     set guioptions-=r
@@ -88,5 +88,6 @@ set signcolumn=yes
 set showtabline=2
 set mouse=a
 
+set termguicolors
 set vb t_vb=
 au GUIEnter * set t_vb=

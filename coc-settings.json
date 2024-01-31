@@ -8,9 +8,15 @@
     "diagnostic.enableMessage": "jump",
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": true,
+    "diagnostic.virtualTextLimitInOneLine": 10,
     "diagnostic.refreshOnInsertMode": true,
     "inlayHint.enable": true,
     "languageserver": {
+        "csharp-ls": {
+          "command": "csharp-ls",
+          "filetypes": ["cs"],
+          "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
+        },
         "bash": {
             "command": "bash-language-server",
             "args": ["start"],
@@ -176,7 +182,7 @@
         ">>": "gitUnstage"
     },
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": true,
+    "semanticTokens.enable": false,
     "eslint.packageManager": "yarn",
     "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
@@ -195,10 +201,11 @@
     "explorer.file.reveal.auto": false,
     "tsserver.npm": "/usr/bin/typescript-language-server",
     "tsserver.disableAutomaticTypeAcquisition": false,
-    "html.autoClosingTags": false,
+    "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
     "python.linting.enabled": true,
     "git.changedSign.text": "▌",
+    "git.changedSign.hlGroup": "CocGitChangeSign",
     "git.addedSign.text": "▌",
     "git.removedSign.text": "▁",
     "git.changeRemovedSign.text": "▁",
@@ -220,12 +227,11 @@
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "intelephense.progress.enable": false,
-    "omnisharp.path": "/usr/bin/omnisharp",
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,
     "vimlsp.suggest.fromRuntimepath": true,
-    "highlight.disableLanguages": ["org"],
+    "highlight.disableLanguages": ["org", "vue"],
     "stylua.styluaPath": "/usr/bin/stylua",
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
@@ -234,7 +240,6 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
-    "colors.enable": false,
     "clangd.arguments": [
         "--background-index",
         "--clang-tidy",
@@ -243,10 +248,5 @@
         "--all-scopes-completion",
         "--header-insertion=iwyu",
         "--pch-storage=disk"
-    ],
-    "javascript.inlayHints.variableTypes.enabled": true,
-    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-    "typescript.inlayHints.variableTypes.enabled": true,
-    "volar.autoCreateQuotes": true
+    ]
 }

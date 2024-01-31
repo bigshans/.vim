@@ -1,6 +1,6 @@
 let g:vim_lightline_artify = 1
 let g:vim_mode = 'full'
-let g:lightline = { }
+let g:lightline = {'colorscheme': 'onedark' }
 let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
 let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
 let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
@@ -72,7 +72,7 @@ let g:lightline.component_type = {
             \ }
 
 let g:lightline.component_raw = {'buffers': 1}
-call custom#colorscheme#sonokai_atlantis()
+" call custom#colorscheme#sonokai_atlantis()
 autocmd VimEnter * call lightline#update()
 autocmd BufEnter * set laststatus=2
 autocmd BufEnter which_key set laststatus
