@@ -13,6 +13,10 @@ if &ttimeoutlen == -1
   set ttimeoutlen=50
 endif
 
+inoremap <C-Q>  <Esc>:q!<CR>
+noremap <C-Q>  :q!<CR>
+inoremap <C-S> <C-o>:w!<CR>
+noremap <C-S> :w!<CR>
 inoremap        <C-A> <C-O>^
 inoremap   <C-X><C-A> <C-A>
 cnoremap        <C-A> <Home>
