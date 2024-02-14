@@ -6,9 +6,9 @@
     "diagnostic.infoSign": "⚡",
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualText": true,
+    "diagnostic.virtualText": false,
     "diagnostic.virtualTextCurrentLineOnly": true,
-    "diagnostic.virtualTextLimitInOneLine": 10,
+    "diagnostic.virtualTextLimitInOneLine": 1,
     "diagnostic.refreshOnInsertMode": true,
     "inlayHint.enable": true,
     "languageserver": {
@@ -182,7 +182,7 @@
         ">>": "gitUnstage"
     },
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": false,
+    "semanticTokens.enable": true, // Maybe slow in big project
     "eslint.packageManager": "yarn",
     "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
