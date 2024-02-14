@@ -7,7 +7,7 @@ if !has('win32') && !has('win64')
     PL 'fcitx', 'bigshans/fcitx.vim'
 endif
 PL 'cycle', 'bigshans/vim-cycle'
-PL 'liuchengxu/vista.vim'
+PL 'vista', 'liuchengxu/vista.vim'
 PL 'drmikehenry/vim-fixkey'
 PL 'nerdcomment', 'preservim/nerdcommenter'
 PL 'jiangmiao/auto-pairs'

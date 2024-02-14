@@ -54,7 +54,7 @@ InitKey win
 InitKey comma
 InitKey others
 InitKey buffer
-
+InitKey fold
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")
 call s:MapNavigator(g:navigator_visual, 'g:navigator_visual', "visual")

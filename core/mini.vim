@@ -15,7 +15,10 @@ set shm+=Ic
 " 缩短超时时间
 set timeoutlen=400
 set ttimeoutlen=10
-set nofoldenable
+" set nofoldenable
+set foldmethod=indent
+set foldlevel=999
+set foldmarker={,}
 " 设置隐藏高亮
 set hidden
 " 高亮当前行

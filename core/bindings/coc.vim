@@ -5,28 +5,48 @@ call DetectKeyMapRegister(g:navigator_x, "<leader>")
 let g:navigator["<leader>"].j = {
             \ 'name': "coc...",
             \ 'a': ['<plug>(coc-codeaction)', 'code action'],
-            \ 'c': ['<plug>(coc-diagnostic-info)', 'current position diagnostic'],
+            \ 'c': ['<plug>(coc-diagnostic-info)', 'diagnostic for current line'],
             \ 'd': [':CocList diagnostic', 'show diagnostic list'],
             \ 'e': ['<plug>(coc-codeaction-refactor)', 'refactor'],
             \ 'f': ['<plug>(coc-fix-current)', 'auto fix current'],
             \ 'l': ['<plug>(coc-codelens-action)', 'codelens-action'],
             \ 'r':  ['<plug>(coc-rename)', 'rename'],
+            \ 'o': [':call ToggleOutline()', 'toggle outline']
             \ }
 
 " leader {{
+  nmap <silent><leader>ja <Plug>(coc-codeaction)
+  nmap <silent><leader>jc <Plug>(coc-diagnostic-info)
+  nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
+  nmap <silent><leader>jf <Plug>(coc-fix-current)
+  nmap <silent><leader>jr <Plug>(coc-rename)
+  nnoremap <leader>jl <Plug>(coc-codelens-action)
+  " Remap keys for applying refactor code actions
+  nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
+  xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
 
-nmap <silent><leader>ja <Plug>(coc-codeaction)
-nmap <silent><leader>jc <Plug>(coc-diagnostic-info)
-nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
-nmap <silent><leader>jf <Plug>(coc-fix-current)
-nmap <silent><leader>jr <Plug>(coc-rename)
+" }}
+" {{ outline
+  autocmd BufEnter * call CheckOutline()
+  function! CheckOutline() abort
+    if &filetype ==# 'coctree' && winnr('$') == 1
+      if tabpagenr('$') != 1
+        close
+      else
+        bdelete
+      endif
+    endif
+  endfunction
 
-nnoremap <leader>jl <Plug>(coc-codelens-action)
-
-" Remap keys for applying refactor code actions
-nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
-
+  nnoremap <silent><nowait> <leader>jo  :call ToggleOutline()<CR>
+  function! ToggleOutline() abort
+    let winid = coc#window#find('cocViewId', 'OUTLINE')
+    if winid == -1
+      call CocActionAsync('showOutline', 1)
+    else
+      call coc#window#close(winid)
+    endif
+  endfunction
 " }}
 
 " Map function and class text objects
