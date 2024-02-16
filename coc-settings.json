@@ -78,6 +78,26 @@
                     "formatter": "purs-tidy"
                 }
             }
+        },
+        // 安装 npm i -g @delance/runtime
+        "delance": {
+            "command": "delance-langserver",
+            "args": ["--stdio"],
+            "filetypes": ["python"],
+            "initializationOptions": {},
+            "settings": {
+                "python": {
+                    "analysis": {
+                        "typeCheckingMode": "basic",
+                        "diagnosticMode": "openFilesOnly",
+                        "stubPath": "./typings",
+                        "autoSearchPaths": true,
+                        "extraPaths": [],
+                        "diagnosticSeverityOverrides": {},
+                        "useLibraryCodeForTypes": true
+                    }
+                }
+            }
         }
     },
     "suggest.completionItemKindLabels": {
