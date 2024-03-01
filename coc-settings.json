@@ -260,6 +260,7 @@
         "vue-html": "html",
         "javascript": "javascriptreact"
     },
+    "tabnine.limit": 3,
     "clangd.arguments": [
         "--background-index",
         "--clang-tidy",

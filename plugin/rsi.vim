@@ -22,15 +22,17 @@ inoremap   <C-X><C-A> <C-A>
 cnoremap        <C-A> <Home>
 cnoremap   <C-X><C-A> <C-A>
 
-inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+inoremap <M-v> <C-o><C-u>
+inoremap <M-u> <C-o><C-d>
+inoremap <C-B> <Left>
 cnoremap        <C-B> <Left>
 
 inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 
-inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <C-E> <End>
 
-inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+inoremap <C-F> <Right>
 cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
 function! s:transpose() abort

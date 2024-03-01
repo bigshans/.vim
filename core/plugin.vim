@@ -10,7 +10,7 @@ PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
 PL 'drmikehenry/vim-fixkey'
 PL 'nerdcomment', 'preservim/nerdcommenter'
-PL 'jiangmiao/auto-pairs'
+" PL 'jiangmiao/auto-pairs'
 PL 'skywind3000/vim-color-patch'
 
 PL 'MattesGroeger/vim-bookmarks'
