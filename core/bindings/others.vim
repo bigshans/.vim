@@ -66,50 +66,9 @@ nnoremap Dx "_x
 xnoremap D "_d
 " }}
 
-" Terminal Function {{
-let g:term_buf = 0
-let g:term_win = 0
-let s:prev_buf = 0
-function! TermToggle(height)
-    if win_gotoid(g:term_win)
-        hide
-        " 处理多出来的 buffer
-        " 只有 term 和前一个 buf 不一样时执行
-        if s:prev_buf != g:term_buf
-            exec "bd " . s:prev_buf
-        endif
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            let s:prev_buf = bufnr("")
-            exec "buffer " . g:term_buf
-            if !has('nvim')
-                exec "normal i"
-            endif
-        catch
-            if has('nvim')
-                call termopen($SHELL, {"detach": 0})
-            else
-                call term_start($SHELL, { 'curwin': 1 })
-            endif
-            let g:term_buf = bufnr("")
-            set nonumber
-            set norelativenumber
-            set signcolumn=no
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
-" }}
-
 " terminal {{
-nnoremap <silent><M-t> :call TermToggle(12)<CR>
-inoremap <silent><M-t> <Esc>:call TermToggle(12)<CR>
-tnoremap <silent><M-t> <C-\><C-n>:call TermToggle(12)<CR>
+let g:terminal_key="<M-t>"
 tnoremap <ESC> <C-\><C-n>
-tnoremap <silent><M-t> <C-\><C-n>:call TermToggle(12)<CR>
 tnoremap :q! <C-\><C-n>:q!<CR>
 " }}
 
