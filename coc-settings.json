@@ -9,8 +9,12 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.virtualTextLimitInOneLine": 1,
-    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.highlightLimit": 800,
+    "suggest.triggerCompletionWait": 20,
+    "suggest.timeout": 3000,
+    "suggest.maxCompleteItemCount": 100,
     "inlayHint.enable": true,
+    "yank.limit": 2,
     "languageserver": {
         "csharp-ls": {
           "command": "csharp-ls",
@@ -94,7 +98,14 @@
                         "autoSearchPaths": true,
                         "extraPaths": [],
                         "diagnosticSeverityOverrides": {},
-                        "useLibraryCodeForTypes": true
+                        "useLibraryCodeForTypes": true,
+                        "autoImportCompletions": true,
+                        "inlayHints": {
+                            "callArgumentNames": "partial"
+                        },
+                        "addImport": {
+                            "heuristics": true
+                        }
                     }
                 }
             }
@@ -202,9 +213,8 @@
         ">>": "gitUnstage"
     },
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": true, // Maybe slow in big project
+    "semanticTokens.enable": false, // Maybe slow in big project
     "eslint.packageManager": "yarn",
-    "eslint.quiet": true,
     "snippets.ultisnips.directories": ["$runtimepath/UltiSnips", "UltiSnips"],
     "volar.autoClosingTags": true,
     "explorer.icon.enableNerdfont": true,
@@ -223,7 +233,6 @@
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
-    "python.linting.enabled": true,
     "git.changedSign.text": "▌",
     "git.changedSign.hlGroup": "CocGitChangeSign",
     "git.addedSign.text": "▌",

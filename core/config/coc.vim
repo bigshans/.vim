@@ -5,7 +5,6 @@ endif
 let g:coc_global_extensions = [
             \ '@yaegassy/coc-intelephense',
             \ '@yaegassy/coc-volar',
-            \ '@yaegassy/coc-volar-tools',
             \ 'coc-angular',
             \ 'coc-calc',
             \ 'coc-clangd',
@@ -33,6 +32,7 @@ let g:coc_global_extensions = [
             \ 'coc-vimlsp',
             \ 'coc-xml',
             \ 'coc-yank',
+            \ 'coc-pairs'
             \]
 
 command! -nargs=0 Format :call CocActionAsync('format')

@@ -10,8 +10,8 @@ PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
 PL 'drmikehenry/vim-fixkey'
 PL 'nerdcomment', 'preservim/nerdcommenter'
-" PL 'jiangmiao/auto-pairs'
 PL 'skywind3000/vim-color-patch'
+PL 'ranger', 'francoiscabrol/ranger.vim'
 
 PL 'MattesGroeger/vim-bookmarks'
 PL 'https://github.com/honza/vim-snippets.git'
@@ -30,7 +30,7 @@ PL 'josa42/vim-lightline-coc'
 PL 'albertomontesg/lightline-asyncrun'
 " PL 'sonokai', 'sainnhe/sonokai'
 PL 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
-PL 'sheerun/vim-polyglot'
+" PL 'sheerun/vim-polyglot'
 PL 'onedark', 'joshdick/onedark.vim'
 PL 'lightline-bufferline', 'mengelbrecht/lightline-bufferline'
 PL 'lightline', 'itchyny/lightline.vim'
@@ -45,5 +45,7 @@ PL 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
 PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
+
+PL 'wakatime/vim-wakatime'
 
 call plugin#end()

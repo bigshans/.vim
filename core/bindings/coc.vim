@@ -9,6 +9,7 @@ let g:navigator["<leader>"].j = {
             \ 'd': [':CocList diagnostic', 'show diagnostic list'],
             \ 'e': ['<plug>(coc-codeaction-refactor)', 'refactor'],
             \ 'f': ['<plug>(coc-fix-current)', 'auto fix current'],
+            \ 'F': ["call CocActionAsync('fixAll')", 'auto fix all'],
             \ 'l': ['<plug>(coc-codelens-action)', 'codelens-action'],
             \ 'r':  ['<plug>(coc-rename)', 'rename'],
             \ 'o': [':call ToggleOutline()', 'toggle outline']
@@ -19,6 +20,7 @@ let g:navigator["<leader>"].j = {
   nmap <silent><leader>jc <Plug>(coc-diagnostic-info)
   nnoremap <silent><nowait> <leader>jd  :<C-u>CocList diagnostics<cr>
   nmap <silent><leader>jf <Plug>(coc-fix-current)
+  nmap <silent><leader>jF :call CocActionAsync('fixAll')<cr>
   nmap <silent><leader>jr <Plug>(coc-rename)
   nnoremap <leader>jl <Plug>(coc-codelens-action)
   " Remap keys for applying refactor code actions
