@@ -47,5 +47,6 @@ PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
 
 PL 'wakatime/vim-wakatime'
+PL 'ale', 'dense-analysis/ale'
 
 call plugin#end()
