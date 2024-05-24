@@ -22,12 +22,14 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
+PL 'ale', 'dense-analysis/ale'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
 PL 'sainnhe/artify.vim'
 PL 'josa42/vim-lightline-coc'
 PL 'albertomontesg/lightline-asyncrun'
+" PL 'maximbaz/lightline-ale'
 " PL 'sonokai', 'sainnhe/sonokai'
 PL 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
 " PL 'sheerun/vim-polyglot'
@@ -47,6 +49,5 @@ PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
 
 PL 'wakatime/vim-wakatime'
-PL 'ale', 'dense-analysis/ale'
 
 call plugin#end()

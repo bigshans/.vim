@@ -1,0 +1,21 @@
+cmdargs:
+  # Enable coloring
+  color: true
+
+  # Enable Neovim syntax
+  env:
+    neovim: false
+
+policies:
+  # 双引号
+  ProhibitUnnecessaryDoubleQuote:
+    enabled: false
+
+  ProhibitUsingUndeclaredVariable:
+    enabled: true
+
+  ProhibitSetNoCompatible:
+    enabled: true
+
+  ProhibitMissingScriptEncoding:
+    enabled: false

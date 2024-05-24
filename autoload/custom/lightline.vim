@@ -6,24 +6,36 @@
 " License: Anti-996 && MIT
 " =============================================================================
 
+function s:get_ale_linter_info() abort
+  if !custom#lightline#ale_linted()
+    return {}
+  endif
+  return ale#statusline#Count(bufnr(''))
+endfunction
+function s:get_diagnostic_info() abort
+  if !exists('b:coc_diagnostic_info')
+    return s:get_ale_linter_info()
+  endif
+  return get(b:, 'coc_diagnostic_info', {})
+endfunction
 function custom#lightline#coc_diagnostic_error() abort "{{{
-  let info = get(b:, 'coc_diagnostic_info', {})
+  let info = s:get_diagnostic_info()
   return get(info, 'error', 0) ==# 0 ? '' : "\uf659 " . info['error']
 endfunction "}}}
 function custom#lightline#coc_diagnostic_warning() abort "{{{
-  let info = get(b:, 'coc_diagnostic_info', {})
+  let info = s:get_diagnostic_info()
   return get(info, 'warning', 0) ==# 0 ? '' : "\uf529 " . info['warning']
 endfunction "}}}
 function custom#lightline#coc_diagnostic_error_num() abort "{{{
-  let info = get(b:, 'coc_diagnostic_info', {})
+  let info = s:get_diagnostic_info()
   return get(info, 'error', 0)
 endfunction "}}}
 function custom#lightline#coc_diagnostic_warning_num() abort "{{{
-  let info = get(b:, 'coc_diagnostic_info', {})
+  let info = s:get_diagnostic_info()
   return get(info, 'warning', 0)
 endfunction "}}}
 function custom#lightline#coc_diagnostic_ok() abort "{{{
-  let info = get(b:, 'coc_diagnostic_info', {})
+  let info = s:get_diagnostic_info()
   if (get(info, 'error', 0) == 0) && (get(info, 'warning', 0) == 0)
     let msg = "\uf00c"
   else
@@ -95,14 +107,21 @@ function custom#lightline#artify_column_num() abort "{{{
   return artify#convert(string(getcurpos()[2]), 'bold')
 endfunction "}}}
 function custom#lightline#winnr() abort "{{{
-  return '⌥ ' .. artify#convert(winnr(), 'bold')
+  return '⌥ ' . artify#convert(winnr(), 'bold')
 endfunction "}}}
 function custom#lightline#nearest_method_or_function() abort
   let l:f = get(b:, 'vista_nearest_method_or_function', '')
-  if l:f != ''
-    return "\u0192 " .. l:f
+  if l:f !=# ''
+    return "\u0192 " . l:f
   endif
   return ''
+endfunction
+
+function! custom#lightline#ale_linted() abort
+  return get(g:, 'ale_enabled', 0) == 1
+    \ && getbufvar(bufnr(''), 'ale_enabled', 1)
+    \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
+    \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
 endfunction
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
