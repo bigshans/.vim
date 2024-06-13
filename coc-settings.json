@@ -9,12 +9,11 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.virtualTextLimitInOneLine": 1,
-    "diagnostic.refreshOnInsertMode": true,
-    "diagnostic.displayByAle": true,
-    "suggest.triggerCompletionWait": 20,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.displayByAle": false,
     "suggest.timeout": 3000,
     "suggest.maxCompleteItemCount": 100,
-    "inlayHint.enable": true,
+    "inlayHint.enable": false,
     "yank.limit": 2,
     "languageserver": {
         "csharp-ls": {
@@ -177,7 +176,6 @@
         "operator": "\u03a8", // Ψ greek letter psi
         "constructor": "\uf0ad", //  wrench
         "function": "\u0192", // ƒ latin small letter F
-        "reference": "\ufa46", // 渚 retweet symbol
         "constant": "\uf8fe", //  greek letter pi
         "method": "\uf09a", //  facebook "f"
         "struct": "\ufb44", // פּ file tree
@@ -191,7 +189,6 @@
         "property": "\ue624", //  predator dots
         "field": "", // left-justified sorted lines
         "unit": "\uf475", //  negative-space ellipsis
-        "event": "\ufacd", // 鬒clock alert / clock with exclamation mark
         "file": "\uf15b", //  file / blank page
         "folder": "\uf07b", //  folder
         "snippet": "\ue60b", //  pair of curly braces
@@ -200,100 +197,19 @@
     },
     "suggest.floatConfig": {
         "border": true,
-        "rounded": true,
-        "winblend": 10
+        "rounded": true
     },
-    "suggest.enablePreselect": false,
-    "explorer.keyMappings.global": {
-        "gk": "expandablePrev",
-        "gj": "expandableNext",
-        "*": "toggleSelection",
-        "M": "actionMenu",
-        "h": "collapse",
-        "l": [
-            "expandable?",
-            "expand",
-            "open"
-        ],
-        "J": [
-            "toggleSelection",
-            "nodeNext"
-        ],
-        "K": [
-            "toggleSelection",
-            "nodePrev"
-        ],
-        "gl": "expandRecursive",
-        "gh": "collapseRecursive",
-        "<2-LeftMouse>": [
-            "expandable?",
-            [
-                "expanded?",
-                "collapse",
-                "expand"
-            ],
-            "open"
-        ],
-        "o": [
-            "expanded?",
-            "collapse",
-            "expand"
-        ],
-        "<cr>": [
-            "expandable?",
-            "cd",
-            "open"
-        ],
-        "<tab>": [
-            "expanded?",
-            "collapse",
-            "expand"
-        ],
-        "e": "open",
-        "s": "open:split",
-        "S": "open:split:plain",
-        "E": "open:vsplit",
-        "b": "open:tab",
-        "<bs>": "gotoParent",
-        "gp": "preview:labeling",
-        "y": "copyFilepath",
-        "Y": "copyFilename",
-        "c": "copyFile",
-        "m": "cutFile",
-        "p": "pasteFile",
-        "d": "delete",
-        "D": "deleteForever",
-        "a": "addFile",
-        "A": "addDirectory",
-        "r": "rename",
-        "i": "toggleHidden",
-        "R": "refresh",
-        "?": "help",
-        "q": "quit",
-        "<esc>": "esc",
-        "X": "systemExecute",
-        "gd": "listDrive",
-        "f": "search",
-        "F": "searchRecursive",
-        "gf": "gotoSource:file",
-        "gb": "gotoSource:buffer",
-        "[[": "sourcePrev",
-        "]]": "sourceNext",
-        "[d": "diagnosticPrev",
-        "]d": "diagnosticNext",
-        "[c": "gitPrev",
-        "]c": "gitNext",
-        "<<": "gitStage",
-        ">>": "gitUnstage"
-    },
+    "suggest.defaultSortMethod": "none",
+    "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": false, // Maybe slow in big project
+    "semanticTokens.enable": true, // Maybe slow in big project
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
         "UltiSnips"
     ],
     "volar.autoClosingTags": true,
+    "volar.autoCreateQuotes": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": true,
@@ -332,7 +248,6 @@
     "coc.source.buffer.ignoreGitignore": false,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
-    "intelephense.progress.enable": false,
     "translator.proxy": "socks://127.0.0.1:1080",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,

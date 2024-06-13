@@ -19,3 +19,6 @@ policies:
 
   ProhibitMissingScriptEncoding:
     enabled: false
+
+  ProhibitMissingScriptEncoding:
+    enabled: false

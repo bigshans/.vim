@@ -9,7 +9,10 @@ endif
 PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
 PL 'drmikehenry/vim-fixkey'
-PL 'nerdcomment', 'preservim/nerdcommenter'
+" PL 'nerdcomment', 'preservim/nerdcommenter'
+" PL 'tpope/vim-commentary'
+" PL 'suy/vim-context-commentstring'
+PL 'tomtom/tcomment_vim'
 PL 'skywind3000/vim-color-patch'
 PL 'ranger', 'francoiscabrol/ranger.vim'
 
@@ -22,7 +25,7 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
-PL 'ale', 'dense-analysis/ale'
+" PL 'ale', 'dense-analysis/ale'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
@@ -32,7 +35,7 @@ PL 'albertomontesg/lightline-asyncrun'
 " PL 'maximbaz/lightline-ale'
 " PL 'sonokai', 'sainnhe/sonokai'
 PL 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
-" PL 'sheerun/vim-polyglot'
+PL 'sheerun/vim-polyglot'
 PL 'onedark', 'joshdick/onedark.vim'
 PL 'lightline-bufferline', 'mengelbrecht/lightline-bufferline'
 PL 'lightline', 'itchyny/lightline.vim'
@@ -42,12 +45,14 @@ PL 'purescript-contrib/purescript-vim'
 PL 'tpope/vim-speeddating'
 
 PL 'godlygeek/tabular', { 'for': 'markdown' }
-PL 'preservim/vim-markdown', { 'for': 'markdown' }
+PL 'markdown', 'preservim/vim-markdown', { 'for': 'markdown' }
 PL 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 
 PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
 
 PL 'wakatime/vim-wakatime'
+PL 'prisma/vim-prisma'
+PL 'chemzqm/wxapp.vim'
 
 call plugin#end()

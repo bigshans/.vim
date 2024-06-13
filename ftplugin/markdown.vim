@@ -29,3 +29,4 @@ let g:_navigator_markdown["m"] = {
 nmap <buffer><silent><leader>mt= :Tabularize<CR>
 let b:navigator = MakeLocal(g:navigator["<leader>"], g:_navigator_markdown)
 nmap <buffer><leader> :Navigator b:navigator<CR>
+setlocal conceallevel=2

@@ -3,9 +3,7 @@ if has('win32') || has('win64')
 endif
 " 控制 coc 插件安装
 let g:coc_global_extensions = [
-            \ '@yaegassy/coc-intelephense',
             \ '@yaegassy/coc-volar',
-            \ 'coc-angular',
             \ 'coc-calc',
             \ 'coc-clangd',
             \ 'coc-cmake',
@@ -44,6 +42,7 @@ inoremap <silent><expr> <TAB>
             \ coc#pum#visible() ? coc#pum#next(1) :
             \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
             \ "\<TAB>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -70,4 +69,4 @@ augroup custom_nginx
 augroup end
 
 " Highlight the symbol and its references when holding the cursor
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')

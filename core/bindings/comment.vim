@@ -2,12 +2,8 @@ call DetectKeyMapRegister(g:navigator, "<leader>")
 
 let g:navigator["<leader>"].c = {
             \ "name": "comment",
-            \ "i": ["<plug>NERDCommenterToggle", "comment code"],
-            \ "f": ["<plug>NERDCommenterComment", "comment partial"],
+            \ "i": [":TComment", "comment code"],
             \ }
 
-nmap <leader>ci <plug>NERDCommenterToggle
-vmap <leader>ci <plug>NERDCommenterToggle
-
-nmap <leader>cf <plug>NERDCommenterComment
-vmap <leader>cf <plug>NERDCommenterComment
+nmap <silent> <leader>ci :TComment<CR>
+vmap <silent> <leader>ci :TComment<CR>
