@@ -31,8 +31,6 @@ else
     nmap <leader>bn <Plug>AirlineSelectPrevTab
     nmap <leader>bp <Plug>AirlineSelectNextTab
     nmap <leader>bd :bdelete<CR>
-    nmap <M-->bn <Plug>AirlineSelectPrevTab
-    nmap <M-=>bp <Plug>AirlineSelectNextTab
     nmap <M-1> <Plug>AirlineSelectTab1
     nmap <M-2> <Plug>AirlineSelectTab2
     nmap <M-3> <Plug>AirlineSelectTab3
