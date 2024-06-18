@@ -1,7 +1,5 @@
 # Config for Vim
 
-Drop support for neovim.
-
 ## 快捷键
 
 ### 常用的基础操作

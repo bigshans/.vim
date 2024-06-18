@@ -18,7 +18,7 @@ let g:navigator[","] = {
             \ "<Up>": [":res -1", "desc height"],
             \ "<Down>": [":res +1", "asc height"],
             \ "<Left>": [":vertical res -1", "desc width"],
-            \ "<Right>": [":vertical res -1", "asc width"],
+            \ "<Right>": [":vertical res +1", "asc width"],
             \ "m": {
             \   "m": [ "<KEY>:<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>", "macro"]
             \ },

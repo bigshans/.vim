@@ -1,3 +1,7 @@
+" let g:ale_linters_explicit = 1
+let g:ale_echo_delay = 100
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_info=""
 let g:ale_sign_error="✘"
 let g:ale_sign_warning="\uf529"
@@ -9,14 +13,22 @@ let g:ale_echo_msg_format = '[%linter%:] %s [%severity%]'
 let g:ale_virtualtext_cursor = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_deno_lsp_project_root = 'deno.json,deno.jsonc,import_map.json'
+" let g:ale_linters = {
+"     \ 'javascript': ['tsserver', 'eslint', 'prettier'],
+"     \ 'javascriptreact': ['tsserver', 'eslint', 'prettier'],
+"     \ 'typescript': ['tsserver', 'eslint', 'prettier'],
+"     \ 'typescriptreact': ['tsserver', 'eslint', 'prettier'],
+"   \ }
+
 " 禁用默认 linter ，以让 coc 生效。
-let s:js_linter = ['deno', 'tsserver', 'eslint', 'prettier']
-let g:ale_linters_ignore = {
-    \ 'typescript': s:js_linter,
-    \ 'typescriptreact': s:js_linter,
-    \ 'javascriptreact': s:js_linter,
-    \ 'javascript': s:js_linter,
-    \ }
+" let s:js_linter = ['deno', 'tsserver', 'eslint', 'prettier']
+" let g:ale_linters_ignore = {
+"     \ 'typescript': s:js_linter,
+"     \ 'typescriptreact': s:js_linter,
+"     \ 'javascriptreact': s:js_linter,
+"     \ 'javascript': s:js_linter,
+"     \ }
 
 " let g:lightline#ale#indicator_ok = "\uf00c "
 " let g:lightline#ale#indicator_warnings = "\uf529 "

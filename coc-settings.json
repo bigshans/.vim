@@ -1,6 +1,6 @@
 {
-    "diagnostic.enable": true,
-    "diagnostic.checkCurrentLine": true,
+    "diagnostic.enable": false,
+    "diagnostic.checkCurrentLine": false,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
@@ -10,8 +10,9 @@
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.virtualTextLimitInOneLine": 1,
     "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.displayByAle": false,
-    "suggest.timeout": 3000,
+    "diagnostic.displayByAle": true,
+    "signature.target": "echo",
+    "suggest.timeout": 5000,
     "suggest.maxCompleteItemCount": 100,
     "inlayHint.enable": false,
     "yank.limit": 2,
@@ -208,6 +209,14 @@
         "$runtimepath/UltiSnips",
         "UltiSnips"
     ],
+    "explorer.keyMappings.global": {
+        "<tab>": [
+            "expanded?",
+            "collapse",
+            "expand"
+        ],
+        "m": "actionMenu"
+    },
     "volar.autoClosingTags": true,
     "volar.autoCreateQuotes": true,
     "explorer.icon.enableNerdfont": true,
@@ -226,6 +235,7 @@
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
+    "git.enableGutters": false,
     "git.changedSign.text": "▌",
     "git.changedSign.hlGroup": "CocGitChangeSign",
     "git.addedSign.text": "▌",
