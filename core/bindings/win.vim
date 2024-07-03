@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].w = {
             \ "name": "windows",
             \ "0": [":ChooseWin", "goto"],

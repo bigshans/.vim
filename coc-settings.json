@@ -1,5 +1,7 @@
 {
     "diagnostic.enable": false,
+    "diagnostic.enableSign": false,
+    "diagnostic.highlightPriority": 200,
     "diagnostic.checkCurrentLine": false,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
@@ -158,16 +160,6 @@
                     }
                 }
             }
-        },
-        "efm": {
-            "command": "efm-langserver",
-            "args": [],
-            // custom config path
-            // "args": ["-c", "/path/to/your/config.yaml"],
-            "filetypes": [
-                "vim",
-                "markdown"
-            ]
         }
     },
     "suggest.completionItemKindLabels": {
@@ -221,7 +213,7 @@
     "volar.autoCreateQuotes": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
-    "explorer.git.enable": true,
+    "explorer.git.enable": false,
     "explorer.file.showHiddenFiles": true,
     "explorer.previewAction.onHover": false,
     "explorer.git.icon.status.modified": "✹",
@@ -235,7 +227,7 @@
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
-    "git.enableGutters": false,
+    "git.realtimeGutters": false,
     "git.changedSign.text": "▌",
     "git.changedSign.hlGroup": "CocGitChangeSign",
     "git.addedSign.text": "▌",
@@ -279,5 +271,6 @@
         "--all-scopes-completion",
         "--header-insertion=iwyu",
         "--pch-storage=disk"
-    ]
+    ],
+    "git.enableGutters": true
 }

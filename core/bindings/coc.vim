@@ -1,18 +1,15 @@
-" mode: coc
-call DetectKeyMapRegister(g:navigator, "<leader>")
-call DetectKeyMapRegister(g:navigator_x, "<leader>")
-
 let g:navigator["<leader>"].j = {
             \ 'name': "coc...",
             \ 'a': ['<plug>(coc-codeaction)', 'code action'],
-            \ 'c': ['<plug>(coc-diagnostic-info)', 'diagnostic for current line'],
-            \ 'd': [':CocList quickfix', 'show quickfix'],
+            \ 'c': ['<plug>(coc-diagnostic-info)', 'show diagnostics for current line'],
+            \ 'd': [':CocList quickfix', 'show diagnostics'],
             \ 'e': ['<plug>(coc-codeaction-refactor)', 'refactor'],
             \ 'f': ['<plug>(coc-fix-current)', 'auto fix current'],
             \ 'F': ["call CocActionAsync('fixAll')", 'auto fix all'],
             \ 'l': ['<plug>(coc-codelens-action)', 'codelens-action'],
             \ 'r':  ['<plug>(coc-rename)', 'rename'],
-            \ 'o': [':call ToggleOutline()', 'toggle outline']
+            \ 'o': [':call ToggleOutline()', 'toggle outline'],
+            \ 'k': [':call ShowDocumentation()', 'show hover']
             \ }
 let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
 
@@ -27,6 +24,7 @@ let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
   " Remap keys for applying refactor code actions
   nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
   xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
+  nmap <silent> <leader>jk :call ShowDocumentation()<CR>
 
 " }}
 " {{ outline

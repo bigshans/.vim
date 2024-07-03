@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].z = {
             \ 'name': 'fold...',
             \ 'c': ['<key>za', 'toggle current fold'],

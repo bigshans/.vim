@@ -1,9 +1,6 @@
-" mode: search
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator['<leader>'].s = {
             \ 'name': "search...",
-            \ 's': [':Leaderf line', 'search lines'],
+            \ 'l': [':Leaderf line', 'search lines'],
             \ 'b': [':Leaderf buffer', 'search buffers'],
             \ 'h': ['Leaderf help', 'search helptags'],
             \ 'r': ['Leaderf rg', 'search by rg'],
@@ -13,6 +10,7 @@ let g:navigator['<leader>'].s = {
 nnoremap <silent><plug>LeaderfCurFolderFile :<C-U><C-R>=printf("Leaderf file %s", expand('%:p:h'))<CR><CR>
 
 nnoremap <leader>sr :Leaderf rg<CR>
+nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
-nnoremap <leader>sd :LeaderfFile
+nnoremap <leader>sd :LeaderfFile<CR>

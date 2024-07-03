@@ -6,14 +6,15 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-set nocompatible
+" set nocompatible
 " 显示一列高亮行在第 120 个字符处，
 " 示意单行最大宽度
 set colorcolumn=120
 " 信息缩写
-set shm+=Ic
+set shortmess+=Ic
+" 改回默认值
 " 缩短超时时间
-set timeoutlen=300
+" set timeoutlen=300
 set nofoldenable
 " set foldmethod=indent
 " set foldlevel=999
@@ -39,6 +40,8 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 set magic
 set encoding=UTF-8
+set fileencoding=UTF-8
+scriptencoding UTF-8
 set laststatus=2
 set updatetime=300
 set complete-=k

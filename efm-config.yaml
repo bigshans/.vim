@@ -1,8 +1,10 @@
 version: 2
 tools:
-  vim:
-    lint-command: 'vint -'
-    lint-stdin: true
+  vim-vint:
+    lint-command: 'vint --color'
+    lint-stdin: false
+    lint-formats:
+      - '%f:%l:%c: %m'
 
   markdown-markdownlint:
     lint-command: 'markdownlint -s'

@@ -1,4 +1,4 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
+call DetectKeyMapRegister(g:navigator, '<leader>')
 call DetectKeyMapRegister(g:navigator, "<C-w>")
 
 nnoremap <leader>; :
@@ -70,6 +70,7 @@ xnoremap D "_d
 let g:terminal_key="<M-t>"
 tnoremap <ESC> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>
+tnoremap <silent><C-D> <C-\><C-n>:q!<CR>
 " }}
 
 " movtion {{

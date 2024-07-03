@@ -12,13 +12,10 @@ policies:
     enabled: false
 
   ProhibitUsingUndeclaredVariable:
-    enabled: true
+    enabled: false
 
   ProhibitSetNoCompatible:
+    enabled: false
+
+  ProhibitMissingScriptEncoding:
     enabled: true
-
-  ProhibitMissingScriptEncoding:
-    enabled: false
-
-  ProhibitMissingScriptEncoding:
-    enabled: false

@@ -34,13 +34,18 @@ function s:MapNavigator(list, list_name, status)
     for key in keys(l:old)
         let parser_key = s:ParserKey(key)
         let a:list[parser_key] = a:list[key]
-        if a:status == 'normal'
+        if a:status is# 'normal'
             exec 'nmap ' . key . " :Navigator " . a:list_name . "['" . parser_key . "']<CR>"
         else
             exec 'vmap ' . key . " :NavigatorVisual " . a:list_name . "['" . parser_key . "']<CR>"
         endif
     endfor
 endfunction
+
+call DetectKeyMapRegister(g:navigator, "<leader>")
+call DetectKeyMapRegister(g:navigator_x, "<leader>")
+call DetectKeyMapRegister(g:navigator, ",")
+call DetectKeyMapRegister(g:navigator_visual, ",")
 
 InitKey search
 InitKey open
@@ -49,12 +54,13 @@ InitKey coc
 InitKey git
 InitKey plugin
 InitKey comment
-InitKey tag
+InitKey terminal
 InitKey win
 InitKey comma
 InitKey others
 InitKey buffer
 InitKey fold
+" InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")
 call s:MapNavigator(g:navigator_visual, 'g:navigator_visual', "visual")

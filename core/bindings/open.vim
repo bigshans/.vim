@@ -1,6 +1,3 @@
-" mode: open
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].o = {
             \ 'name': "open the file...",
             \ 'p': [":e $HOME/.vim/core/plugin.vim", "open plugin.vim"],

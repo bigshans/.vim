@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].g = {
             \ "name": "git...",
             \ "a": [":Git add .", "add all"],

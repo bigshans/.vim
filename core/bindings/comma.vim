@@ -1,6 +1,3 @@
-call DetectKeyMapRegister(g:navigator, ",")
-call DetectKeyMapRegister(g:navigator_visual, ",")
-
 function! FormatKey()
     try
         call CocAction('format')
@@ -24,8 +21,8 @@ let g:navigator[","] = {
             \ },
             \ "v": [":vsplit", "vsplit"],
             \ "s": [":split", "split"],
-            \ "f": ["<plug>(easymotion-overwin-f)", "easymotion one char"],
-            \ "F": ["<plug>(easymotion-overwin-f2)", "easymotion two char"],
+            \ ",": ["<plug>(easymotion-overwin-f)", "easymotion one char"],
+            \ "f": ["<plug>(easymotion-overwin-f2)", "easymotion two char"],
             \ "c": {
             \ "i": ["<KEY>*Ncgn", "change word"],
             \ }
@@ -39,8 +36,8 @@ let g:navigator_visual[";"] = {
             \ }
 
 " easymotion {{
-nmap ,F <Plug>(easymotion-overwin-f2)
-nmap ,f <Plug>(easymotion-overwin-f)
+nmap ,f <Plug>(easymotion-overwin-f2)
+nmap ,, <Plug>(easymotion-overwin-f)
 " }}
 nmap ,ci *Ncgn
 vmap ,ci y/<C-r>0<CR>Ncgn

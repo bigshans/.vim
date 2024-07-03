@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].P = {
             \ "name": "plugin",
             \ "i": [":PlugInstall", "install"],

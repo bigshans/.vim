@@ -128,3 +128,4 @@ function! functions#bufQuit() abort
         execute 'quit!'
     endif
 endfunction
+

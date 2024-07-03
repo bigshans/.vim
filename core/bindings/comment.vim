@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 let g:navigator["<leader>"].c = {
             \ "name": "comment",
             \ "i": [":TComment", "comment code"],

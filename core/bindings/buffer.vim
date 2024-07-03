@@ -1,5 +1,3 @@
-call DetectKeyMapRegister(g:navigator, "<leader>")
-
 if exists('g:lightline')
     let g:navigator["<leader>"].b = {
                 \ 'name': 'buffers...',
