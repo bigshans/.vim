@@ -46,13 +46,15 @@
     },
     "suggest.floatConfig": {
         "border": true,
-        "rounded": true
+        "rounded": true,
+        "winblend": 10
     },
     "suggest.defaultSortMethod": "none",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
     "semanticTokens.enable": false, // Maybe slow in big project
     "eslint.packageManager": "npm",
+    "highlight.disableLanguages": ["vue"],
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
         "UltiSnips"

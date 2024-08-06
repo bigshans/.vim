@@ -46,7 +46,8 @@
     },
     "suggest.floatConfig": {
         "border": true,
-        "rounded": true
+        "rounded": true,
+        "winblend": 10
     },
     "suggest.defaultSortMethod": "none",
     "suggest.noselect": true,
@@ -79,7 +80,6 @@
     "explorer.git.icon.status.unmerged": "═",
     "explorer.git.icon.status.deleted": "✖",
     "explorer.file.reveal.auto": false,
-    "tsserver.npm": "/usr/bin/typescript-language-server",
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
@@ -114,6 +114,7 @@
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
+    "highlight.disableLanguages": ["vue"],
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"
