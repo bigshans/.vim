@@ -1,0 +1,17 @@
+snippet im "init main file template"
+#include <stdio.h>
+
+int main(int argc, char **argv) {
+	$1
+	return 0;
+}
+endsnippet
+
+snippet #ifn "if not define"
+#ifndef $1
+#define $1
+
+$2
+
+#endif
+endsnippet

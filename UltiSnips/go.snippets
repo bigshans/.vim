@@ -1,0 +1,53 @@
+snippet im "init single file"
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("Hello world!")$1
+}
+endsnippet
+
+snippet funct "method for struct"
+func (self *${1:Type}) ${2:funName}($3) $4{
+	$5
+}
+endsnippet
+
+snippet types "type for struct"
+type ${1:name} struct {$2}
+endsnippet
+
+snippet typei "type for interface"
+type ${1:name} interface {$2}
+endsnippet
+
+snippet ini "init func"
+func init() {
+	$1
+}
+endsnippet
+
+snippet rb "annymouse function exec"
+func() $1{
+	$2
+}()
+endsnippet
+
+snippet varim "implement interface verify"
+var _ ${1:Interface} = (* ${2:Impl})(nil)
+endsnippet
+
+snippet ft "testing function"
+func Test$1(t *testing.T) {
+	$2
+}
+endsnippet	
+
+snippet impl "impl interface"
+type $1Impl struct{}
+
+var _ $1 = (*$1Impl)(nil)
+endsnippet

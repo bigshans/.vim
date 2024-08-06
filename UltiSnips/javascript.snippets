@@ -1,0 +1,60 @@
+snippet arb "async rust block"
+$1(async () => {
+	${2:// TODO}
+})();
+endsnippet
+
+snippet pure "PURE comment"
+/* @__PURE__ */
+endsnippet
+
+snippet rb "rust block"
+(() => {
+	${1:// TODO}
+})();
+endsnippet
+
+snippet forw "for await of"
+for await (const ${1:i} of ${2:iterable}) {
+	${3:// TODO}
+}
+endsnippet
+
+snippet reada "readable"
+${1:read}.on('readable', () => {
+	let chunk;
+	while ((chunk = $1.read()) !== null) {
+		${2:// TODO}
+	}
+});
+endsnippet
+
+snippet desc "description comment"
+/**
+ * @description $1
+ */
+endsnippet
+
+snippet fn "arrow function"
+($1) => {$2}
+endsnippet
+
+snippet electron "electron starter"
+const { app, BrowserWindow } = require('electron')
+
+const createWindow = () => {
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            sandbox: true,
+
+        }
+    })
+    win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+    createWindow()
+})
+endsnippet
