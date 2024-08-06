@@ -1,10 +1,13 @@
+let s:core_folder = fnameescape(g:vim_config_home."/core")
+let s:plugin_file = fnameescape(s:core_folder."/plugin.vim")
+
 let g:navigator["<leader>"].o = {
             \ 'name': "open the file...",
-            \ 'p': [":e $HOME/.vim/core/plugin.vim", "open plugin.vim"],
+            \ 'p': [":e ".s:plugin_file, "open plugin.vim"],
             \ 'C': [":CocConfig", "open coc-setting.json"],
-            \ 'c': ["Leaderf file ~/.vim/core", "open core dir"]
+            \ 'c': [":Leaderf file ".s:core_folder, "open core dir"]
             \ }
 
-nnoremap <leader>op :e $HOME/.vim/core/plugin.vim<CR>
-nnoremap <leader>oC :e $HOME/.vim/coc-settings.json<CR>
-nnoremap <leader>oc :<C-U><C-R>=printf("Leaderf file %s", "~/.vim/core")<CR><CR>
+nnoremap <leader>oC :CocConfig<CR>
+exec 'nnoremap <leader>op :e '.s:plugin_file.'<CR>'
+exec 'nnoremap <leader>oc :Leaderf file '.s:core_folder.'<CR>'

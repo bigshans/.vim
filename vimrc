@@ -11,9 +11,8 @@ if has("win32") || has("win64")
     set pythondll=~/AppData/Local/Programs/Python/Python311/python311.dll
 endif
 
-IncScript core/mini.vim
 IncScript core/preload.vim
 IncScript core/plugin.vim
 IncScript core/bindings.vim
 
-call config#hugefile()
+" call config#hugefile()
