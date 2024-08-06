@@ -2,7 +2,7 @@ if has('win32') || has('win64')
     let g:coc_config_home = '~/vimfiles'
 endif
 if has('win32') || has('win64')
-    let g:coc_user_config = fnameescape(g:coc_config_home."/coc-settings.win.json")
+    let g:coc_user_config = fnameescape(g:coc_config_home."/coc-settings.win.json5")
 end
 " 控制 coc 插件安装
 let g:coc_global_extensions = [

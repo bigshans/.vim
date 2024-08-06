@@ -1,8 +1,8 @@
 {
-    "diagnostic.enable": false,
-    "diagnostic.enableSign": false,
+    "diagnostic.enable": true,
+    "diagnostic.enableSign": true,
     "diagnostic.highlightPriority": 200,
-    "diagnostic.checkCurrentLine": false,
+    "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
