@@ -258,6 +258,7 @@
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
+    "highlight.disableLanguages": ["vue"],
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"

@@ -54,6 +54,7 @@ PL 'wakatime/vim-wakatime'
 PL 'prisma/vim-prisma'
 PL 'chemzqm/wxapp.vim'
 PL 'voldikss/vim-floaterm'
+PL 'leafOfTree/vim-vue-plugin'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
 
