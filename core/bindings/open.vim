@@ -9,5 +9,5 @@ let g:navigator["<leader>"].o = {
             \ }
 
 nnoremap <leader>oC :CocConfig<CR>
-exec 'nnoremap <leader>op :e '.s:plugin_file
-exec 'nnoremap <leader>oc :Leaderf file '.s:core_folder
+exec 'nnoremap <leader>op :e '.s:plugin_file.'<CR>'
+exec 'nnoremap <leader>oc :Leaderf file '.s:core_folder.'<CR>'
