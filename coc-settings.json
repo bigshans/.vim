@@ -1,8 +1,8 @@
 {
-    "diagnostic.enable": false,
+    "diagnostic.enable": true,
     "diagnostic.enableSign": false,
     "diagnostic.highlightPriority": 200,
-    "diagnostic.checkCurrentLine": false,
+    "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
@@ -12,7 +12,7 @@
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.virtualTextLimitInOneLine": 1,
     "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.displayByAle": true,
+    "diagnostic.displayByAle": false,
     "signature.target": "echo",
     "suggest.timeout": 5000,
     "suggest.maxCompleteItemCount": 100,
@@ -51,8 +51,8 @@
     "suggest.defaultSortMethod": "none",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": true, // Maybe slow in big project
-    "eslint.packageManager": "yarn",
+    "semanticTokens.enable": false, // Maybe slow in big project
+    "eslint.packageManager": "npm",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
         "UltiSnips"

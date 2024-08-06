@@ -1,6 +1,6 @@
 " whcih key
 let g:which_key_sep = '➧ '
-let g:which_key_timeout=200
+let g:which_key_timeout=500
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> [      :<c-u>WhichKey '['<CR>
 nnoremap <silent> ]      :<c-u>WhichKey ']'<CR>

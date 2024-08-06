@@ -23,7 +23,7 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
-PL 'ale', 'bigshans/ale'
+" PL 'ale', 'bigshans/ale'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
@@ -54,7 +54,10 @@ PL 'romainl/vim-cool'
 PL 'prisma/vim-prisma'
 PL 'chemzqm/wxapp.vim'
 PL 'voldikss/vim-floaterm'
+" PL 'psliwka/vim-smoothie'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
+" PL 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
+
 
 call plugin#end()

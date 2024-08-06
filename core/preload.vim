@@ -13,7 +13,7 @@ set timeoutlen=300
 set nofoldenable
 set virtualedit=block
 set t_Co=256
-set background=dark
+" set background=dark
 set number
 set hlsearch
 set title
@@ -51,10 +51,31 @@ set signcolumn=yes
 
 set showtabline=2
 set mouse=a
+set guioptions-=T
+set guioptions-=m
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=e
+
+set showbreak=\\
+set nolist
+
+set guicursor+=a:blinkon0
 
 set termguicolors
 set vb t_vb=
 au GUIEnter * set t_vb=
+
+if has("win32")
+    set shell=pwsh.exe
+    " set shellcmdflag=-c
+    " set shellquote=\""
+    " set shellxquote=
+endif
+
+set guifont=Cascadia_Code_NF:h11:cANSI:qDRAFT
 
 command! C :call utils#mk_dir()
 command! Bigger :call utils#bigger()
