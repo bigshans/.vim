@@ -23,7 +23,7 @@ PL 'autoformat', 'vim-autoformat/vim-autoformat'
 
 PL 't9md/vim-choosewin'
 PL 'tpope/vim-fugitive'
-PL 'ale', 'bigshans/ale'
+" PL 'ale', 'bigshans/ale'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
