@@ -4,7 +4,9 @@ if has("win32") || has("win64")
 endif
 command! -nargs=1 IncScript exec 'so '. fnameescape(g:vim_config_home."/<args>")
 exec 'set rtp+='. fnameescape(g:vim_config_home)
-exec 'set rtp+=~/.vim'
+if has('win32') || has('win64')
+    exec 'set rtp+=~/.vim'
+endif
 
 IncScript core/preload.vim
 IncScript core/plugin.vim
