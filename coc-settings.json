@@ -1,6 +1,6 @@
 {
     "diagnostic.enable": true,
-    "diagnostic.enableSign": false,
+    "diagnostic.enableSign": true,
     "diagnostic.highlightPriority": 200,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "✘",
@@ -116,6 +116,7 @@
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
+    "highlight.disableLanguages": ["vue"],
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"

@@ -58,6 +58,9 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 set guioptions-=e
+if !has('nvim')
+    set iminsert=2
+endif
 
 set showbreak=\\
 set nolist
@@ -69,9 +72,9 @@ set vb t_vb=
 au GUIEnter * set t_vb=
 
 if has("win32")
-    set shell=pwsh.exe
+    " set shell=pwsh
     " set shellcmdflag=-c
-    " set shellquote=\""
+    " set shellquote=\"
     " set shellxquote=
 endif
 
