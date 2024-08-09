@@ -6,7 +6,7 @@ let g:navigator["<leader>"].f = {
             \ 'c': [":Ranger", "ranger"],
             \ 's': [":w!", "write file"],
             \ 'S': [":SudaWrite", "write file as sudo"],
-            \ 'm': ["::call mkdir(expand('%:p:h'), 'p')", 'mk dir']
+            \ 'm': [":call mkdir(expand('%:p:h'), 'p')", 'mk dir'],
             \ }
 
 if has('win32') || has('win64')
@@ -22,3 +22,4 @@ nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file
 nnoremap <leader>fs :w!<CR>
 nnoremap <leader>fS :SudaWrite<CR>
 nnoremap <leader>fm :call mkdir(expand("%:p:h"), "p")<CR>
+nnoremap <leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>

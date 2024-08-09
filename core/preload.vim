@@ -71,11 +71,8 @@ set termguicolors
 set vb t_vb=
 au GUIEnter * set t_vb=
 
-if has("win32")
-    " set shell=pwsh
-    " set shellcmdflag=-c
-    " set shellquote=\"
-    " set shellxquote=
+if has('neovide')
+    let g:neovide_cursor_animation_length = 0
 endif
 
 set guifont=Cascadia_Code_NF:h11:cANSI:qDRAFT

@@ -1,9 +1,8 @@
 if has('win32') || has('win64')
-    let g:coc_config_home = '~/vimfiles'
+    " let g:coc_config_home = fnameescape('~/vimfiles/win-coc')
+    let g:coc_node_path = fnameescape('~/AppData/Roaming/nvm/v20.15.0/node.exe')
 endif
-if has('win32') || has('win64')
-    let g:coc_user_config = fnameescape(g:coc_config_home."/win-coc")
-end
+
 " 控制 coc 插件安装
 let g:coc_global_extensions = [
             \ '@yaegassy/coc-volar',
