@@ -2,7 +2,7 @@ let g:navigator["<leader>"].j = {
             \ 'name': "coc...",
             \ 'a': ['<plug>(coc-codeaction)', 'code action'],
             \ 'c': ['<plug>(coc-diagnostic-info)', 'show diagnostics for current line'],
-            \ 'd': [':CocDiagnostics', 'show diagnostics'],
+            \ 'd': [':CocList diagnostics', 'show diagnostics'],
             \ 'e': ['<plug>(coc-codeaction-refactor)', 'refactor'],
             \ 'f': ['<plug>(coc-fix-current)', 'auto fix current'],
             \ 'F': ["call CocActionAsync('fixAll')", 'auto fix all'],
@@ -17,7 +17,7 @@ let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
   nmap <silent><leader>ja <Plug>(coc-codeaction)
   nmap <silent><leader>jc <Plug>(coc-diagnostic-info)
   " nnoremap <silent><nowait> <leader>jd  :<C-u>CocList quickfix<cr>
-  nnoremap <silent><nowait> <leader>jd  :<C-u>CocDiagnostics<cr>
+  nnoremap <silent><nowait> <leader>jd  :CocList diagnostics<cr>
   nmap <silent><leader>jf <Plug>(coc-fix-current)
   nmap <silent><leader>jF :call CocActionAsync('fixAll')<cr>
   nmap <silent><leader>jr <Plug>(coc-rename)
