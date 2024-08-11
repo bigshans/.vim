@@ -1,8 +1,13 @@
-let g:navigator["<leader>"].w = {
+let g:navigator["<C-w>"] = {
             \ "name": "windows",
-            \ "0": [":ChooseWin", "goto"],
-            \ "c": [":ChooseWinSwap", "swap win"],
+            \ "h": ["<KEY><C-w><C-h>", "to left win"],
+            \ "j": ["<KEY><C-w><C-j>", "to down win"],
+            \ "k": ["<KEY><C-w><C-k>", "to up win"],
+            \ "l": ["<KEY><C-w><C-l>", "to right win"],
+            \ "0": [":only", "delete other win"],
+            \ "c": [":ChooseWin", "goto"],
+            \ "<C-s>": [":ChooseWinSwap", "swap win"]
             \ }
 
-nnoremap <leader>w0 :ChooseWin<CR>
-nnoremap <leader>wc :ChooseWinSwap<CR>
+nnoremap <C-w>c :ChooseWin<CR>
+nnoremap <C-w><C-s> :ChooseWinSwap<CR>

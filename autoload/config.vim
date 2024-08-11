@@ -25,3 +25,9 @@ function! config#hugefile()
     "                 \ unlet size
     " augroup END
 endfunction
+
+function! config#changeToCurrentFolder()
+    let s = fnamemodify(resolve(expand('%:p')), ':h')
+    echo 'Now root is ' . s
+    exec 'cd ' . s
+endfunction

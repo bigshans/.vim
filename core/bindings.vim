@@ -44,8 +44,8 @@ endfunction
 
 call DetectKeyMapRegister(g:navigator, "<leader>")
 call DetectKeyMapRegister(g:navigator_x, "<leader>")
-call DetectKeyMapRegister(g:navigator, ",")
-call DetectKeyMapRegister(g:navigator_visual, ",")
+call DetectKeyMapRegister(g:navigator, ";")
+call DetectKeyMapRegister(g:navigator_visual, ";")
 
 InitKey search
 InitKey open
@@ -56,10 +56,11 @@ InitKey plugin
 InitKey comment
 InitKey terminal
 InitKey win
-InitKey comma
+InitKey localleader
 InitKey others
 InitKey buffer
 InitKey fold
+InitKey vimwiki
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")

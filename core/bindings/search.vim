@@ -5,6 +5,8 @@ let g:navigator['<leader>'].s = {
             \ 'h': ['Leaderf help', 'search helptags'],
             \ 'r': ['Leaderf rg', 'search by rg'],
             \ 'd': [':LeaderfFile', 'search current folder'],
+            \ 'p': [':ProjectList', 'search projects'],
+            \ 'w': [':VimwikiUISelect', 'search vimwiki'],
             \ }
 
 nnoremap <silent><plug>LeaderfCurFolderFile :<C-U><C-R>=printf("Leaderf file %s", expand('%:p:h'))<CR><CR>
@@ -14,3 +16,5 @@ nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 nnoremap <leader>sd :LeaderfFile<CR>
+nnoremap <leader>sp :ProjectList<CR>
+nnoremap <leader>sw <Plug>VimwikiUISelect

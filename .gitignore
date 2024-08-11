@@ -4,5 +4,6 @@ doc/
 .netrwhist
 .directory
 sessions/
+vim-project-config/
 
 spell/

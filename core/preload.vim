@@ -69,6 +69,7 @@ set list
 set noswapfile
 set writebackup
 set nobackup
+set backupdir=/tmp
 set spelllang=en,cjk
 set directory=.,$TEMP
 set nospell

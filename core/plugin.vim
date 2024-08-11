@@ -12,7 +12,9 @@ PL 'drmikehenry/vim-fixkey'
 " PL 'nerdcomment', 'preservim/nerdcommenter'
 PL 'tomtom/tcomment_vim'
 PL 'skywind3000/vim-color-patch'
-PL 'ranger', 'francoiscabrol/ranger.vim'
+" if !has('gui') || has('unix')
+"     PL 'ranger', 'francoiscabrol/ranger.vim'
+" endif
 
 PL 'MattesGroeger/vim-bookmarks'
 PL 'https://github.com/honza/vim-snippets.git'
@@ -55,6 +57,8 @@ PL 'prisma/vim-prisma'
 PL 'chemzqm/wxapp.vim'
 PL 'voldikss/vim-floaterm'
 PL 'leafOfTree/vim-vue-plugin'
+PL 'vim-project', 'leafOfTree/vim-project'
+PL 'vimwiki', 'vimwiki/vimwiki'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
 
