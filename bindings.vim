@@ -56,10 +56,12 @@ InitKey plugin
 InitKey comment
 InitKey terminal
 InitKey win
-InitKey comma
 InitKey others
 InitKey buffer
 InitKey fold
+InitKey vimwiki
+InitKey project
+InitKey localleader
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")
