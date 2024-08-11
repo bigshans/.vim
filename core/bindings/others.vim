@@ -10,17 +10,9 @@ let g:navigator["<leader>"][";"] = ["<key>:", "cmd"]
 let g:navigator["<leader>"]["Q"] = [":qa!", "quit all"]
 let g:navigator["<leader>"]["q"] = ["functions#bufQuit()", "quit"]
 
-let g:navigator["<C-w>"] = {
-            \ "h": ["<KEY><C-w><C-h>", "to left win"],
-            \ "j": ["<KEY><C-w><C-j>", "to down win"],
-            \ "k": ["<KEY><C-w><C-k>", "to up win"],
-            \ "l": ["<KEY><C-w><C-l>", "to right win"],
-            \ "0": [":only", "delete other win"],
-            \ }
-
-for i in range(1, 9)
-    let g:navigator["<leader>"][i] = [":wincmd " . i, "goto win " . i]
-endfor
+" for i in range(1, 9)
+"     let g:navigator["<leader>"][i] = [":wincmd " . i, "goto win " . i]
+" endfor
 
 nnoremap zh <C-w><C-h>
 nnoremap zj <C-w><C-j>
@@ -114,3 +106,5 @@ function! ClearAll()
 endfunction
 
 nmap <silent> <C-g> :call ClearAll()<CR>
+nmap cd :call config#changeToCurrentFolder()<CR>
+

@@ -1,4 +1,9 @@
-
+bundle/
+session/
+doc/
 .netrwhist
+.directory
+sessions/
+vim-project-config/
 
 sessions/

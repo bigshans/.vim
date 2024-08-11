@@ -4,12 +4,19 @@ let g:mapleader = " "
 
 filetype plugin indent on
 
+" 语法高亮设置
 syntax enable
 syntax on
-set nocompatible
+
+" set nocompatible
+" 显示一列高亮行在第 120 个字符处，
+" 示意单行最大宽度
 set colorcolumn=120
+" 信息缩写
 set shortmess+=Ic
-set timeoutlen=300
+" 改回默认值
+" 缩短超时时间
+" set timeoutlen=300
 set nofoldenable
 set virtualedit=block
 set t_Co=256
@@ -42,6 +49,7 @@ set list
 set noswapfile
 set writebackup
 set nobackup
+set backupdir=$TMP
 set spelllang=en,cjk
 set directory=.,$TEMP
 set nospell

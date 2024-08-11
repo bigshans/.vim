@@ -1,1 +1,3 @@
-let g:floaterm_shell = 'pwsh'
+if !has('unix')
+    let g:floaterm_shell = 'pwsh'
+endif

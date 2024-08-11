@@ -5,7 +5,7 @@ PL 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 PL 'lambdalisue/suda.vim'
 if !has('win32') && !has('win64')
     PL 'fcitx', 'bigshans/fcitx.vim'
-    PL 'ranger', 'francoiscabrol/ranger.vim'
+    " PL 'ranger', 'francoiscabrol/ranger.vim'
 endif
 PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
@@ -50,18 +50,14 @@ PL 'chrisbra/NrrwRgn', { 'for': 'markdown' }
 PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
 
-" PL 'wakatime/vim-wakatime'
+PL 'wakatime/vim-wakatime'
 PL 'prisma/vim-prisma'
 PL 'chemzqm/wxapp.vim'
 PL 'voldikss/vim-floaterm'
 PL 'leafOfTree/vim-vue-plugin'
-PL 'vifm/vifm.vim'
-" PL 'vimplugin/project.vim'
-PL 'leafOfTree/vim-project'
-" PL 'psliwka/vim-smoothie'
+PL 'vim-project', 'leafOfTree/vim-project'
+PL 'vimwiki', 'vimwiki/vimwiki'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
-" PL 'bigshans/coc-projector', {'do': 'yarn install --frozen-lockfile && yarn build'}
-
 
 call plugin#end()
