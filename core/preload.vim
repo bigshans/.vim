@@ -1,4 +1,6 @@
-let g:mapleader=" "
+scriptencoding UTF-8
+set encoding=UTF-8
+let g:mapleader = " "
 
 filetype plugin indent on
 
@@ -45,16 +47,15 @@ scriptencoding UTF-8
 set laststatus=2
 set updatetime=300
 set complete-=k
-" tab 宽度设置为 4 个空格
-set tabstop=4
-" 设置 4 个空格相当于 1 个 tab
-set softtabstop=4
-" 设置 tab 和空格的转换
-set shiftwidth=4
-" 展开 tab 为空格
-set expandtab
 
-" 折行，大文件不折行
+function g:SetTabSize(size)
+	exec 'set tabstop=' . a:size
+	exec 'set softtabstop=' . a:size
+	exec 'set shiftwidth=' . a:size
+endfunction
+
+call g:SetTabSize(4)
+set expandtab
 set wrap
 if &wrap == 1
     set showbreak=<

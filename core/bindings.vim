@@ -61,6 +61,7 @@ InitKey others
 InitKey buffer
 InitKey fold
 InitKey vimwiki
+InitKey project
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")

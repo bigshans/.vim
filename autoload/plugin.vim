@@ -55,3 +55,4 @@ function plugin#load_config() abort
         exec "lua require('lua_plugin')['" . config_name . "']()"
     endfor
 endfunction
+

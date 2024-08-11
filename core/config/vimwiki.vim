@@ -11,7 +11,7 @@ let nested_syntaxes = {
     \ 'tsx': 'typescriptreact',
   \ }
 let notes_wiki = {}
-let notes_wiki.path = '~/notes'
+let notes_wiki.path = '~/vimwiki'
 let g:vimwiki_list = [
     \ notes_wiki,
     \ ]
