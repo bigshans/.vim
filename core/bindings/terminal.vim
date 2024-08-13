@@ -6,5 +6,6 @@ let g:navigator["<leader>"].t = {
 
 nmap <leader>tr :FloatermNew ranger<CR>
 nmap <leader>tt :FloatermToggle<CR>
-
-let g:terminal_shell='pwsh'
+if !has('unix')
+	let g:terminal_shell='pwsh'
+endif

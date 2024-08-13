@@ -60,7 +60,8 @@ InitKey localleader
 InitKey others
 InitKey buffer
 InitKey fold
-InitKey vimwiki
+" InitKey vimwiki
+InitKey wiki
 InitKey project
 " InitKey gscope
 
