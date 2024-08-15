@@ -60,6 +60,8 @@ PL 'leafOfTree/vim-vue-plugin'
 PL 'vim-project', 'leafOfTree/vim-project'
 " PL 'vimwiki', 'vimwiki/vimwiki'
 PL 'wiki', 'bigshans/wiki.vim'
+PL 'junegunn/fzf.vim'
+PL 'kaarmu/typst.vim'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
 
