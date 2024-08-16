@@ -39,5 +39,9 @@ else
     nmap <M-8> <Plug>AirlineSelectTab8
     nmap <M-9> <Plug>AirlineSelectTab9
     nmap <M-0> <Plug>AirlineSelectTab0
+    for i in range(9)
+      let idx = i + 1
+      exec 'nmap <M-'.idx.'> <plug>AirlineSelectTab'.idx
+    endfor
 endif
 

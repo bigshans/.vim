@@ -65,6 +65,8 @@ let b:_navigator_wiki = {
             \ }
 
 let b:current_folder = fnamemodify(resolve(expand('%:p')), ':h')
+nn <buffer>= :HeaderIncrease<CR>
+nn <buffer>- :HeaderDecrease<CR>
 
 if stridx(fnamemodify(resolve(g:wiki_root), ':h'), b:current_folder) && exists('g:wiki_loaded')
     let b:_navigator_markdown["w"] = b:_navigator_wiki

@@ -25,7 +25,6 @@ let g:coc_global_extensions = [
             \ 'coc-solargraph',
             \ 'coc-stylua',
             \ 'coc-svelte',
-            \ 'coc-tabnine',
             \ 'coc-toml',
             \ 'coc-translator',
             \ 'coc-tsserver',

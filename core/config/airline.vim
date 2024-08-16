@@ -9,15 +9,8 @@ let g:airline#extensions#tabline#current_first = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '0 ',
-        \ '1': '1 ',
-        \ '2': '2 ',
-        \ '3': '3 ',
-        \ '4': '4 ',
-        \ '5': '5 ',
-        \ '6': '6 ',
-        \ '7': '7 ',
-        \ '8': '8 ',
-        \ '9': '9 '
-  \ }
+let g:airline#extensions#tabline#buffer_idx_format = {}
+
+for index in range(10)
+    let g:airline#extensions#tabline#buffer_idx_format[index] = index . ' '
+endfor
