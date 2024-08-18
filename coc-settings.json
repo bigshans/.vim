@@ -195,7 +195,7 @@
     "suggest.defaultSortMethod": "none",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": true, // Maybe slow in big project
+    "semanticTokens.enable": false, // Maybe slow in big project
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",

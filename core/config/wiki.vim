@@ -7,6 +7,9 @@ let s:tag_parser.re_findstart = '\v%(^|\s)#\zs[^# ]+'
 let s:tag_parser.re_parse = '\v^#\zs[^\s]+$'
 let s:tag_parser.make = {t, l -> empty(t) ? '' : join(map(t, '"#" . v:val'))}
 function! s:tag_parser.match(line) dict abort
+  if &filtype != 'markdown'
+      return false
+  endif
   return a:line =~# self.re_match
 endfunction
 
