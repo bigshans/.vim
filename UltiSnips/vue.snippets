@@ -9,3 +9,253 @@ $1
 <style lang="less">
 </style>
 endsnippet
+
+snippet crud:axt "Curd Template"
+<template>
+  <div class="basic-wrapper">
+    <SearchForm ref="searchRef" :list="searchList" />
+    <BtnGroup :list="btnList" @click="btnsHandle" />
+    <BaseTable :columns="columns" :data="tableData" :operation="operations" :params="pagination" @change="tableHandle" />
+  </div>
+</template>
+<script lang="ts" setup>
+import {BaseTableColumn} from '@/components/BaseTable/types';
+import {SearchInst, SearchItem} from '@/components/SearchForm/types';
+import {Common} from '@/typings/common';
+
+const searchRef = ref<SearchInst>()
+const searchList = ref<SearchItem[]>([])
+const searchParams = ref()
+const pagination = ref({
+  page: 0,
+  size: 10,
+  total: 0
+})
+
+function clearSearch() {
+  searchRef.value?.clearSearch()
+  pagination.value.page = 0
+  searchParams.value = searchRef.value?.paramsSearch()
+}
+async function search() {}
+
+const btnList = ref<Common.BtnItem[]>([
+  { label: "搜索", type: "primary", icon: "mingcute:search-3-fill" },
+  { label: "清空", icon: "mingcute:delete-2-fill", strong: true, secondary: true },
+])
+function btnsHandle(item: Common.BtnItem) {
+  switch (item.label) {
+    case '搜索':
+      pagination.value.page = 0
+      searchParams.value = searchRef.value?.paramsSearch()
+      search()
+      break
+    case '清空':
+      clearSearch()
+      search()
+      break
+  }
+}
+
+const columns = ref<BaseTableColumn[]>([
+  { title: '序号', align: 'center', key: 'index', width: 60, fixed: 'left', render: (_, index) => (index + 1) },
+])
+const operations = ref<Common.Operation[]>([])
+const tableData = ref([])
+function tableHandle(key: string, item: unknown) {
+  switch(key) {
+    case 'page':
+      pagination.value.page = item as number
+      search()
+      break
+    case 'limit':
+      pagination.value.page = 0
+      pagination.value.size = item as number
+      search()
+      break;
+  }
+}
+</script>
+endsnippet
+
+snippet modal:edit-axt "Edit Modal Template for axt Project"
+<template>
+  <BaseModal v-model:show="show" :title="title" @cancel="cancel">
+  <n-form ref="formRef" :model="data" inline label-placement="left" label-align="right" :label-width="85" :rules="rules">
+    <n-grid :cols="24" :x-gap="24">
+      <n-form-item-gi v-for="field in fields" :key="field.key" :label="field.label" :path="field.key" :span="field.span || 12">
+        <n-select v-if="field.type === 'select'" v-model:value="data[field.key]" :options="field.options"></n-select>
+        <n-input v-else-if="field.type === 'textarea'" type="textarea" v-model:value="data[field.key]"></n-input>
+        <BaseUploadImg v-else-if="field.type === 'upload-image'" v-model:value="data.image" ref="cloudImageRef" :max-length="1" />
+        <BaseUploadVideo v-else-if="field.type === 'upload-video'" v-model:value="data.video" ref="cloudVideoRef" :max-length="1" />
+        <n-input v-else v-model:value="data[field.key]"></n-input>
+      </n-form-item-gi>
+    </n-grid>
+  </n-form>
+    <template #footer>
+      <div class="flex justify-center mt-10px">
+        <n-button @click="cancel" strong secondary type="tertiary">取消</n-button>
+        <n-button @click="submit" type="info" :loading="loading" class="mx-20px mb-10px">确定</n-button>
+      </div>
+  </template>
+  </BaseModal>
+</template>
+<script lang="ts" generic="T extends any" setup>
+import {FormInst, FormRules} from 'naive-ui';
+import BaseUploadImg from '@/components/BaseUploadImg/index.vue'
+import BaseUploadVideo from '@/components/BaseUploadVideo/index.vue'
+
+const props = defineProps<{
+  visibility: boolean 
+  row?: T | null
+}>()
+const emits = defineEmits<{
+  'update:visibility': [v: boolean]
+  cancel: []
+  confirm: []
+}>()
+const show = computed({
+  get: () => props.visibility,
+  set: (v) => emits('update:visibility', v)
+})
+
+const isEdit = computed(() => props.row != null)
+const title = computed(() => isEdit.value ? '编辑$1' : '新增$1')
+
+const cloudImageRef = ref<InstanceType<typeof BaseUploadImg>>() // 上传图片实例
+const cloudVideoRef = ref<InstanceType<typeof BaseUploadVideo>>() // 上传视频实例
+
+const loading = ref(false)
+const deepClone = <T>(obj: T | null) => {
+  if (obj == null) {
+    return obj
+  }
+  return JSON.parse(JSON.stringify(obj))
+}
+
+const data = ref(deepClone(props.row) || {})
+watch(show, (n) => {
+  if (n) {
+    data.value = deepClone(props.row) || {}
+    console.log('open', data.value)
+  }
+})
+const formRef = ref<FormInst>()
+const rules = ref<FormRules>({})
+
+interface Field {
+  label: string
+  key: string
+  type: string
+  span?: number
+  options?: {
+    label: string
+    value: string 
+  }[]
+}
+const fields = ref<Field[]>([])
+
+function cancel() {
+  show.value = false
+  emits('cancel')
+}
+const submit = async () => {
+  await formRef.value?.validate()
+  await cloudImageRef.value?.upload() // 上传视频
+  await cloudVideoRef.value?.upload() // 上传视频封面
+  show.value = false
+  emits('confirm')
+}
+</script>
+<style lang="less" scoped>
+</style>
+endsnippet
+
+snippet modal:detail-axt "Detail Modal for axt"
+<template>
+  <BaseModal v-model:show="show" title="$1" @cancel="close">
+    <template v-if="row">
+      <BaseDescriptions :describe-list="descList" :data="row" :column="2" />
+    </template>
+    <template #footer>
+      <div class="flex justify-center mt-10px">
+        <n-button @click="close" type="info" class="mx-20px mb-10px">确定</n-button>
+      </div>
+  </template>
+    <n-modal v-model:show="showPlayer" class="w-600px" preset="card" title="查看视频" :bordered="false"
+      :mask-closable="false">
+      <div class="mt-20px h-500px">
+        <BaseVideo type="mp4" @cancel="showPlayer = false" :url="handleVideoUrl" />
+      </div>
+    </n-modal>
+  </BaseModal>
+</template>
+<script lang="ts" generic="T extends any" setup>
+import {ListType} from '@/components/BaseDescriptions/types';
+import BaseVideo from '@/components/BaseVideo/index.vue';
+import {UploadImageResponse} from '@/api/parenting/types';
+import SvgIcon from '@/components/SvgIcon/index.vue';
+
+const props = defineProps<{
+  visibility: boolean 
+  row: T | null
+}>()
+const emits = defineEmits<{
+  'update:visibility': [v: boolean]
+  close: []
+}>()
+const show = computed({
+  get: () => props.visibility,
+  set: (v) => emits('update:visibility', v)
+})
+
+const descList = ref<ListType[]>([])
+
+const showPlayer = ref(false)
+const handleVideoUrl = ref('')
+
+/** 渲染图片 */
+const renderImage = (images: UploadImageResponse[]) => {
+  return h('div', {
+    class: 'flex flex-wrap'
+  },
+    images.map((item: UploadImageResponse) => {
+      return h(NImage, { width: 64, height: 64, class: 'mr-3', src: import.meta.env.VITE_PROXY_URL + import.meta.env.VITE_BASE_API + item.url }, { default: () => { } })
+    })
+  )
+}
+
+/** 渲染视频播放器 */
+const renderVideoPlayer = (url: string): VNode => {
+  return h('div', {
+    class: 'relative w-100px cursor-pointer',
+  }, [
+    h('img', {
+      src: import.meta.env.VITE_PROXY_URL + import.meta.env.VITE_BASE_API + url,
+      alt: '视频封面',
+      width: 100,
+    }),
+    h(SvgIcon, {
+      icon: 'octicon-play-16',
+      style: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '30px',
+        color: "#fff",
+      },
+      onClick: () => showPlayer.value = true
+    })
+  ]
+  )
+}
+
+function close() {
+  show.value = false
+  emits('close')
+}
+</script>
+<style lang="less" scoped>
+</style>
+endsnippet

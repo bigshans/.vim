@@ -19,7 +19,7 @@ endif
 nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
 nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
-nnoremap <leader>fs :w!<CR>
+nnoremap <silent><leader>fs :w!<CR>
 nnoremap <leader>fS :SudaWrite<CR>
 nnoremap <leader>fm :call mkdir(expand("%:p:h"), "p")<CR>
 nnoremap <leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>

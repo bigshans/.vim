@@ -63,6 +63,8 @@ InitKey fold
 " InitKey vimwiki
 InitKey wiki
 InitKey project
+InitKey codeium
+InitKey clever-f
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")

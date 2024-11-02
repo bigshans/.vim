@@ -45,7 +45,7 @@ PL 'tpope/vim-speeddating'
 
 PL 'godlygeek/tabular', { 'for': 'markdown' }
 PL 'markdown', 'preservim/vim-markdown', { 'for': 'markdown' }
-PL 'chrisbra/NrrwRgn', { 'for': 'markdown' }
+PL 'chrisbra/NrrwRgn'
 
 PL 'tpope/vim-repeat'
 PL 'romainl/vim-cool'
@@ -58,9 +58,15 @@ PL 'leafOfTree/vim-vue-plugin'
 PL 'vim-project', 'leafOfTree/vim-project'
 " PL 'vimwiki', 'vimwiki/vimwiki'
 PL 'wiki', 'bigshans/wiki.vim'
-PL 'chrisbra/NrrwRgn'
-PL 'jceb/vim-orgmode'
+PL 'junegunn/fzf.vim'
+PL 'kaarmu/typst.vim'
 PL 'inkarkat/vim-SyntaxRange'
+PL 'vim-scripts/utl.vim'
+PL 'jceb/vim-orgmode'
+PL 'rhysd/clever-f.vim'
+PL 'catppuccin/vim', { 'as': 'catppuccin' }
+
+" PL 'codeium', 'Exafunction/codeium.vim'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
 

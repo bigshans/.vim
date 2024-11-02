@@ -1,5 +1,5 @@
 if has('win32') || has('win64')
-    " let g:coc_config_home = fnameescape('~/vimfiles/win-coc')
+    let g:coc_config_home = fnameescape('~/vimfiles/win-coc')
     let g:coc_node_path = fnameescape('~/AppData/Roaming/nvm/v20.15.0/node.exe')
 endif
 

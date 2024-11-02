@@ -7,6 +7,13 @@ inoremap <silent> <expr> <Plug>(coc-snippets-expand) coc#_insert_key('request', 
 inoremap <nowait> <silent> <expr> <BS> coc#_insert_key('request', 'i-PGJzPg==', 0)
 inoremap <silent> <expr> <Plug>(coc-calc-result-replace) coc#_insert_key('request', 'coc-calc-result-replace', 1)
 inoremap <silent> <expr> <Plug>(coc-calc-result-append) coc#_insert_key('request', 'coc-calc-result-append', 1)
+inoremap <silent> <Plug>(fzf-maps-i) :call fzf#vim#maps('i', 0)
+inoremap <expr> <Plug>(fzf-complete-buffer-line) fzf#vim#complete#buffer_line()
+inoremap <expr> <Plug>(fzf-complete-line) fzf#vim#complete#line()
+inoremap <expr> <Plug>(fzf-complete-file-ag) fzf#vim#complete#path('ag -l -g ""')
+inoremap <expr> <Plug>(fzf-complete-file) fzf#vim#complete#path('dir /s/b/a:-d')
+inoremap <expr> <Plug>(fzf-complete-path) fzf#vim#complete#path('dir /s/b')
+inoremap <expr> <Plug>(fzf-complete-word) fzf#vim#complete#word()
 noremap! <expr> <Plug>(StopHL) execute('nohlsearch')[-1]
 inoremap <Plug>(operator-sandwich-gv) gv
 inoremap <Plug>(operator-sandwich-g@) g@
@@ -121,6 +128,8 @@ nnoremap <silent>  :put =repeat(nr2char(10), v:count1)
 noremap  :q!
 noremap  :w!
 nmap  :Navigator g:navigator[';ltC-w;gt']
+nnoremap  :ChooseWinSwap
+nnoremap c :ChooseWin
 xmap  <Plug>SpeedDatingDown
 nmap  <Plug>SpeedDatingDown
 vnoremap <silent>  :for line in getline("'<", "'>") | execute line | endfor
@@ -167,6 +176,13 @@ map <silent> p <Plug>TComment_p
 vmap <silent>  <Plug>TComment_
 nmap <silent>  <Plug>TComment_
 omap <silent>  <Plug>TComment_
+nmap <silent>  w w <Plug>(wiki-journal)
+nmap <silent>  wn <Plug>(wiki-open)
+nmap <silent>  ww <Plug>(wiki-index)
+nmap <silent>  wx <Plug>(wiki-reload)
+xmap  Nr <Plug>NrrwrgnBangDo
+nmap  nr <Plug>NrrwrgnDo
+xmap  nr <Plug>NrrwrgnDo
 map <silent>  _s <Plug>TComment_ _s
 map <silent>  _n <Plug>TComment_ _n
 map <silent>  _a <Plug>TComment_ _a
@@ -181,6 +197,7 @@ smap <silent>  __ <Plug>TComment_ __
 omap <silent>  __ <Plug>TComment_ __
 nnoremap <silent>  sb :LeaderfBuffer
 nmap   :Navigator g:navigator[';ltleader;gt']
+nnoremap  pa :AddCurrentProject
 nmap  zo zR
 nmap  za zM
 nmap  zc za
@@ -190,8 +207,6 @@ nmap  bn <Plug>AirlineSelectPrevTab
 nmap  Q :qa!
 nmap <silent>  q :call functions#bufQuit()
 nnoremap  ; :
-nnoremap  wc :ChooseWinSwap
-nnoremap  w0 :ChooseWin
 nmap  tt :FloatermToggle
 nmap  tr :FloatermNew ranger
 vmap <silent>  ci :TComment
@@ -219,43 +234,45 @@ nnoremap  jl <Plug>(coc-codelens-action)
 nmap <silent>  jr <Plug>(coc-rename)
 nmap <silent>  jF :call CocActionAsync('fixAll')
 nmap <silent>  jf <Plug>(coc-fix-current)
-nnoremap <nowait> <silent>  jd :CocList diagnostics
+nnoremap <nowait> <silent>  jd :CocList diagnostics
 nmap <silent>  jc <Plug>(coc-diagnostic-info)
 nmap <silent>  ja <Plug>(coc-codeaction)
 nnoremap  fm :call mkdir(expand("%:p:h"), "p")
 nnoremap  fS :SudaWrite
 nmap  fs :w!
-nnoremap <silent>  fc :Ranger
-nnoremap <silent>  ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset
+nnoremap  ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset
 nnoremap  ff :=printf("Leaderf file %s", "")
 nnoremap  fr :=printf("Leaderf mru %s", "")
+nnoremap <silent>  fc :Lexplore
+nnoremap  ov :Leaderf file ~/vimfiles
 nnoremap  oc :Leaderf file ~/vimfiles/core
+nnoremap  op :e ~/vimfiles/core/plugin.vim
 nnoremap  oC :CocConfig
-nnoremap  op :e $HOME/vimfiles/core/plugin.vim
+nnoremap  sw <Plug>VimwikiUISelect
+nnoremap  sp :ProjectList
 nnoremap  sd :LeaderfFile
 nnoremap  sh :=printf("Leaderf help %s", "")
 nnoremap  ss :=printf("Leaderf line %s", "")
 nnoremap  sl :=printf("Leaderf line %s", "")
 nnoremap  sr :Leaderf rg
 noremap $ g$
-vmap , :NavigatorVisual g:navigator_visual[',']
-nmap , :Navigator g:navigator[',']
-nmap ,s :split
-nmap ,v :vsplit
-nmap ,<Right> :vertical res +1
-nmap ,<Left> :vertical res -1
-nmap ,<Down> :res +1
-nmap ,<Up> :res -1
-nmap ,= :call FormatKey()
-vmap ,= :call FormatKey
-vmap ,ci y/0Ncgn
-nmap ,ci *Ncgn
-nmap ,, <Plug>(easymotion-overwin-f)
-nmap ,f <Plug>(easymotion-overwin-f2)
 noremap 0 g0
 tnoremap :q! :q!
 vmap ; :NavigatorVisual g:navigator_visual[';']
+nmap ; :Navigator g:navigator[';']
 nnoremap ;mm :='let @'. v:register .' = '. string(getreg(v:register))<Left>
+nmap ;h :split
+nmap ;s :vsplit
+nmap ;<Right> :vertical res +1
+nmap ;<Left> :vertical res -1
+nmap ;<Down> :res +1
+nmap ;<Up> :res -1
+nmap ;= :call FormatKey()
+vmap ;= :call FormatKey
+vmap ;ci y/0Ncgn
+nmap ;ci *Ncgn
+nmap ;, <Plug>(easymotion-overwin-f)
+nmap ;f <Plug>(easymotion-overwin-f2)
 nnoremap < <<
 nnoremap > >>
 noremap!  
@@ -276,6 +293,9 @@ inoremap <silent> ê :m .+1==gi
 xnoremap D "_d
 nnoremap Dx "_x
 nnoremap D "_d
+omap F <Plug>(clever-f-F)
+xmap F <Plug>(clever-f-F)
+nmap F <Plug>(clever-f-F)
 nnoremap J gJ
 nnoremap <silent> K :call ShowDocumentation()
 nnoremap P "+p
@@ -294,10 +314,14 @@ omap ac <Plug>(coc-classobj-a)
 xmap ac <Plug>(coc-classobj-a)
 omap af <Plug>(coc-funcobj-a)
 xmap af <Plug>(coc-funcobj-a)
+nmap cd :call config#changeToCurrentFolder()
 nmap d<C-X> <Plug>SpeedDatingNowLocal
 nmap d <Plug>SpeedDatingNowLocal
 nmap d<C-A> <Plug>SpeedDatingNowUTC
 nmap d <Plug>SpeedDatingNowUTC
+omap f <Plug>(clever-f-f)
+xmap f <Plug>(clever-f-f)
+nmap f <Plug>(clever-f-f)
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 xmap <silent> g> <Plug>TComment_Comment
@@ -368,7 +392,7 @@ nnoremap zl 
 nnoremap zk 
 nnoremap zj <NL>
 nnoremap zh 
-nnoremap <SNR>175_: :=v:count ? v:count : ''
+nnoremap <SNR>192_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>(coc-explorer-key-v-ai) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ai'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-ii) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ii'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-al) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-al'])
@@ -519,8 +543,26 @@ nnoremap <silent> <Plug>(coc-calc-result-replace) :call coc#rpc#request('doKey
 nnoremap <silent> <Plug>(coc-calc-result-append) :call coc#rpc#request('doKeymap', ['coc-calc-result-append'])
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
+noremap <silent> <expr> <Plug>(clever-f-repeat-back) clever_f#repeat(1)
+noremap <silent> <expr> <Plug>(clever-f-repeat-forward) clever_f#repeat(0)
+noremap <silent> <expr> <Plug>(clever-f-reset) clever_f#reset()
+noremap <silent> <expr> <Plug>(clever-f-T) clever_f#find_with('T')
+noremap <silent> <expr> <Plug>(clever-f-t) clever_f#find_with('t')
+noremap <silent> <expr> <Plug>(clever-f-F) clever_f#find_with('F')
+noremap <silent> <expr> <Plug>(clever-f-f) clever_f#find_with('f')
+onoremap <silent> <Plug>(fzf-maps-o) :call fzf#vim#maps('o', 0)
+xnoremap <silent> <Plug>(fzf-maps-x) :call fzf#vim#maps('x', 0)
+nnoremap <silent> <Plug>(fzf-maps-n) :call fzf#vim#maps('n', 0)
+nnoremap <silent> <Plug>(wiki-tags) :WikiTags
+nnoremap <silent> <Plug>(wiki-pages) :WikiPages
+nnoremap <silent> <Plug>(wiki-reload) :WikiReload
+nnoremap <silent> <Plug>(wiki-journal) :WikiJournal
+nnoremap <silent> <Plug>(wiki-open) :WikiOpen
+nnoremap <silent> <Plug>(wiki-index) :WikiIndex
 tnoremap <expr> <Plug>(StopHL) execute('nohlsearch')[-1]
 noremap <silent> <Plug>(StopHL) :nohlsearch
+xnoremap <SNR>103_VisualNrrwBang :call nrrwrgn#NrrwRgn(visualmode(),'!')
+xnoremap <SNR>103_VisualNrrwRgn :call nrrwrgn#NrrwRgn(visualmode(),'')
 xmap <C-X> <Plug>SpeedDatingDown
 xmap <C-A> <Plug>SpeedDatingUp
 nmap <Plug>SpeedDatingFallbackDown <Plug>CyclePrevious
@@ -1262,6 +1304,8 @@ vnoremap <silent> <M-j> :m '>+1gv=gv
 nnoremap <silent> <M-j> :execute 'move +'. v:count1
 nnoremap <silent> <M-k> :execute 'move -1-'. v:count1
 nnoremap <M-a> ggVG
+nnoremap <C-W><C-S> :ChooseWinSwap
+nnoremap <C-W>c :ChooseWin
 nnoremap <silent> <Plug>LeaderfCurFolderFile :=printf("Leaderf file %s", expand('%:p:h'))
 smap <C-X> "*d
 vmap <C-Del> "*d
@@ -1351,7 +1395,9 @@ inoremap <nowait> <silent> <expr> } coc#_insert_key('request', 'i-fQ==', 1)
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set autoindent
+set background=dark
 set backspace=indent,eol,start
+set backupdir=~\\AppData\\Local\\Temp
 set directory=.,~\\AppData\\Local\\Temp
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -1386,16 +1432,28 @@ set runtimepath+=~\\.vim\\bundle\\vim-devicons
 set runtimepath+=~\\.vim\\bundle\\artify.vim
 set runtimepath+=~\\.vim\\bundle\\vim-airline
 set runtimepath+=~\\.vim\\bundle\\vim-airline-themes
+set runtimepath+=~\\.vim\\bundle\\onedark.vim
 set runtimepath+=~\\.vim\\bundle\\vim-quickui
 set runtimepath+=~\\.vim\\bundle\\vim-navigator
 set runtimepath+=~\\.vim\\bundle\\purescript-vim
 set runtimepath+=~\\.vim\\bundle\\vim-speeddating
 set runtimepath+=~\\.vim\\bundle\\vim-markdown
+set runtimepath+=~\\.vim\\bundle\\NrrwRgn
 set runtimepath+=~\\.vim\\bundle\\vim-repeat
 set runtimepath+=~\\.vim\\bundle\\vim-cool
+set runtimepath+=~\\.vim\\bundle\\vim-wakatime
 set runtimepath+=~\\.vim\\bundle\\vim-prisma
 set runtimepath+=~\\.vim\\bundle\\wxapp.vim
 set runtimepath+=~\\.vim\\bundle\\vim-floaterm
+set runtimepath+=~\\.vim\\bundle\\vim-vue-plugin
+set runtimepath+=~\\.vim\\bundle\\vim-project
+set runtimepath+=~\\.vim\\bundle\\wiki.vim
+set runtimepath+=~\\.vim\\bundle\\fzf.vim
+set runtimepath+=~\\.vim\\bundle\\typst.vim
+set runtimepath+=~\\.vim\\bundle\\vim-SyntaxRange
+set runtimepath+=~\\.vim\\bundle\\utl.vim
+set runtimepath+=~\\.vim\\bundle\\vim-orgmode
+set runtimepath+=~\\.vim\\bundle\\clever-f.vim
 set runtimepath+=C:\\Program\ Files\\Vim/vimfiles
 set runtimepath+=C:\\Program\ Files\\Vim\\vim91
 set runtimepath+=~/vimfiles/after
@@ -1407,7 +1465,6 @@ set runtimepath+=~\\.vim\\bundle\\wxapp.vim\\after
 set runtimepath+=~/.vim
 set runtimepath+=~\\AppData\\Local\\coc\\extensions\\node_modules\\coc-snippets
 set runtimepath+=~\\AppData\\Local\\coc\\extensions\\node_modules\\coc-explorer
-set shell=pwsh.exe
 set shiftwidth=4
 set shortmess=filnxtToOSIc
 set showbreak=\\
@@ -1415,13 +1472,15 @@ set showtabline=2
 set smartindent
 set softtabstop=4
 set spelllang=en,cjk
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.snap
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
 set tabstop=4
-set timeoutlen=300
 set title
 set ttimeout
 set ttimeoutlen=50
+set undodir=~\\AppData\\Local\\Temp
+set undofile
 set updatetime=300
 set virtualedit=block
 set visualbell
@@ -1431,7 +1490,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd ~\Desktop\project\rowell-iot-static-h5
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -1440,12 +1499,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +196 ~\Desktop\project\teenagers-infringed-static-web\src\views\reportMonitor\dataMonitor\index.vue
+badd +0 vue.config.js
 argglobal
 %argdel
-edit ~\Desktop\project\teenagers-infringed-static-web\src\views\reportMonitor\dataMonitor\index.vue
+edit vue.config.js
 argglobal
-balt ~\Desktop\project\teenagers-infringed-static-web\src\views\reportMonitor\dataMonitor\index.vue
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -1464,8 +1522,8 @@ setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 set colorcolumn=120
 setlocal colorcolumn=120
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
 setlocal completeslash=
@@ -1477,14 +1535,14 @@ setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
 setlocal cursorlineopt=both
-setlocal define=
+setlocal define=\\(^\\s*(*async\\s\\+function\\|(*function\\)\\|^\\s*\\(\\*\\|static\\|async\\|get\\|set\\|\\i\\+\\.\\)\\|^\\s*\\(\\ze\\i\\+\\)\\(([^)]*).*{$\\|\\s*[:=,]\\)\\|^\\s*\\(export\\s\\+\\|export\\s\\+default\\s\\+\\)*\\(var\\|let\\|const\\|function\\|class\\)\\|\\<as\\>
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'vue'
-setlocal filetype=vue
+if &filetype != 'javascript'
+setlocal filetype=javascript
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -1501,15 +1559,15 @@ setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatoptions=tcqmM
+setlocal formatoptions=mMcroql
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=HtmlIndent()
-setlocal indentkeys=o,O,<Return>,<>>,{,},!^F
+setlocal indentexpr=GetJavascriptIndent()
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,0],0)
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -1521,15 +1579,15 @@ setlocal nolist
 setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=.,,
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -1545,7 +1603,7 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 set signcolumn=yes
 setlocal signcolumn=yes
-setlocal smartindent
+setlocal nosmartindent
 setlocal nosmoothscroll
 setlocal softtabstop=2
 setlocal nospell
@@ -1554,11 +1612,11 @@ setlocal spellfile=
 setlocal spelllang=en,cjk
 setlocal spelloptions=
 setlocal statusline=%!airline#statusline(1)
-setlocal suffixesadd=
+setlocal suffixesadd=.js,.jsx,.es,.es6,.cjs,.mjs,.jsm,.vue,.json
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'vue'
-setlocal syntax=vue
+if &syntax != 'javascript'
+setlocal syntax=javascript
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -1571,7 +1629,7 @@ setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal thesaurusfunc=
-setlocal noundofile
+setlocal undofile
 setlocal undolevels=-123456
 setlocal varsofttabstop=
 setlocal vartabstop=
@@ -1583,12 +1641,13 @@ setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 196 - ((23 * winheight(0) + 22) / 45)
+let s:l = 1 - ((0 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 196
-normal! 020|
+keepjumps 1
+normal! 0
+lcd ~\Desktop\project\rowell-iot-static-h5
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf

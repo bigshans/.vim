@@ -48,7 +48,9 @@ set list
 
 set noswapfile
 set writebackup
-set nobackup
+" set nobackup
+set undofile
+set undodir=$TMP
 set backupdir=$TMP
 set spelllang=en,cjk
 set directory=.,$TEMP
@@ -67,7 +69,7 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=e
 if !has('nvim')
-    set iminsert=2
+    set iminsert=0
 endif
 
 set showbreak=\\

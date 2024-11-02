@@ -44,15 +44,11 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
-    "suggest.floatConfig": {
-        "border": true,
-        "rounded": true,
-        "winblend": 10
-    },
     "suggest.defaultSortMethod": "none",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": false, // Maybe slow in big project
+    "semanticTokens.enable": true, // Maybe slow in big project
+    "semanticTokens.highlightPriority": 2000,
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
