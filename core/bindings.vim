@@ -63,6 +63,7 @@ InitKey fold
 " InitKey vimwiki
 InitKey wiki
 InitKey project
+" InitKey jieba
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")

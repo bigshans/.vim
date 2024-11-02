@@ -21,11 +21,11 @@ let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
   nmap <silent><leader>jf <Plug>(coc-fix-current)
   nmap <silent><leader>jF :call CocActionAsync('fixAll')<cr>
   nmap <silent><leader>jr <Plug>(coc-rename)
-  nnoremap <leader>jl <Plug>(coc-codelens-action)
+  nnoremap <silent><nowait> <leader>jl <Plug>(coc-codelens-action)
   " Remap keys for applying refactor code actions
   nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
   xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
-  nmap <silent> <leader>jk :call ShowDocumentation()<CR>
+  nmap <silent><nowait>> <leader>jk :call ShowDocumentation()<CR>
 
 " }}
 " {{ outline
@@ -79,8 +79,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap T <Plug>(coc-translator-p)
 vmap T <Plug>(coc-translator-pv)
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent><nowait> K :call ShowDocumentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-nnoremap <silent><leader>y :<C-u>CocList -A --normal yank<CR>
+nnoremap <silent><nowait><leader>y :<C-u>CocList -A --normal yank<CR>

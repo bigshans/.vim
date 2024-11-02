@@ -4,25 +4,19 @@ endif
 " 控制 coc 插件安装
 let g:coc_global_extensions = [
             \ '@yaegassy/coc-volar',
-            \ 'coc-calc',
             \ 'coc-clangd',
-            \ 'coc-cmake',
             \ 'coc-css',
             \ 'coc-deno',
             \ 'coc-emmet',
             \ 'coc-eslint',
             \ 'coc-explorer',
-            \ 'coc-go',
-            \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-lists',
             \ 'coc-marketplace',
             \ 'coc-rust-analyzer',
             \ 'coc-snippets',
-            \ 'coc-solargraph',
             \ 'coc-stylua',
-            \ 'coc-svelte',
             \ 'coc-tabnine',
             \ 'coc-toml',
             \ 'coc-translator',
@@ -70,3 +64,4 @@ augroup end
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
+

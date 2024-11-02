@@ -14,5 +14,6 @@ endif
 IncScript core/preload.vim
 IncScript core/plugin.vim
 IncScript core/bindings.vim
+IncScript core/theme.vim
 
 " call config#hugefile()

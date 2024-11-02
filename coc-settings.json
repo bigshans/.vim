@@ -8,15 +8,14 @@
     "diagnostic.infoSign": "⚡",
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualText": false,
-    "diagnostic.virtualTextCurrentLineOnly": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.virtualTextLimitInOneLine": 1,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.displayByAle": false,
-    "signature.target": "echo",
+    "suggest.virtualText": true,
     "suggest.timeout": 5000,
-    "suggest.maxCompleteItemCount": 100,
-    "inlayHint.enable": false,
+    "inlayHint.enable": true,
     "yank.limit": 2,
     "languageserver": {
         "csharp-ls": {
@@ -188,14 +187,12 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
-    "suggest.floatConfig": {
-        "border": true,
-        "rounded": true
-    },
-    "suggest.defaultSortMethod": "none",
-    "suggest.noselect": true,
+    "suggest.removeDuplicateItems": true,
+    "suggest.selection": "first",
+    "suggest.defaultSortMethod": "alphabetical",
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": false, // Maybe slow in big project
+    "semanticTokens.enable": true, // Maybe slow in big project
+    "semanticTokens.highlightPriority": 2000,
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
@@ -209,11 +206,9 @@
         ],
         "m": "actionMenu"
     },
-    "volar.autoClosingTags": true,
-    "volar.autoCreateQuotes": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
-    "explorer.git.enable": false,
+    "explorer.git.enable": true,
     "explorer.file.showHiddenFiles": true,
     "explorer.previewAction.onHover": false,
     "explorer.git.icon.status.modified": "✹",
@@ -226,8 +221,6 @@
     "tsserver.npm": "/usr/bin/typescript-language-server",
     "tsserver.disableAutomaticTypeAcquisition": false,
     "html.autoClosingTags": true,
-    "svelte.enable-ts-plugin": true,
-    "git.realtimeGutters": false,
     "git.changedSign.text": "▌",
     "git.changedSign.hlGroup": "CocGitChangeSign",
     "git.addedSign.text": "▌",
@@ -238,7 +231,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": false,
+    "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
@@ -258,7 +251,6 @@
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
-    "highlight.disableLanguages": ["vue"],
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact"
