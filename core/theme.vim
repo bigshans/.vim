@@ -8,4 +8,4 @@ function s:setTheme(theme)
     endif
     highlight CocFloatingActive guibg=#363c58 guifg=#c7d3f5
 endfunction
-call s:setTheme('catppuccin_macchiato')
+call s:setTheme('catppuccin_mocha')

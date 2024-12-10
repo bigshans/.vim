@@ -8,12 +8,14 @@
     "diagnostic.infoSign": "⚡",
     "diagnostic.hintSign": "",
     "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualText": false,
-    "diagnostic.virtualTextCurrentLineOnly": true,
+    "diagnostic.format": " %message (%source%code)",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.virtualTextLimitInOneLine": 1,
+    // "diagnostic.virtualTextFormat": "🠶 %message",
+    "diagnostic.virtualTextFormat": "➤  %message",
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.displayByAle": false,
-    "signature.target": "echo",
     "suggest.timeout": 5000,
     "suggest.maxCompleteItemCount": 100,
     "inlayHint.enable": false,
@@ -44,11 +46,9 @@
         "typeParameter": "\uf728", //  file presentation box
         "default": "\uf29c" //  question mark in circle
     },
-    "suggest.defaultSortMethod": "none",
+    "suggest.defaultSortMethod": "length",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "semanticTokens.enable": true, // Maybe slow in big project
-    "semanticTokens.highlightPriority": 2000,
     "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
@@ -62,8 +62,6 @@
         ],
         "m": "actionMenu"
     },
-    "volar.autoClosingTags": true,
-    "volar.autoCreateQuotes": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": false,
@@ -77,6 +75,7 @@
     "explorer.git.icon.status.deleted": "✖",
     "explorer.file.reveal.auto": false,
     "tsserver.disableAutomaticTypeAcquisition": false,
+    "tsserver.useLocalTsdk": true,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
     "git.realtimeGutters": false,

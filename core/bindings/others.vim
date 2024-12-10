@@ -70,6 +70,8 @@ nnoremap <S-Up> k
 nnoremap <S-Down> j
 noremap j gj
 noremap k gk
+" nnoremap j jzz
+" nnoremap k kzz
 noremap 0 g0
 noremap $ g$
 noremap <Up> gk
@@ -108,3 +110,4 @@ endfunction
 nmap <silent> <C-g> :call ClearAll()<CR>
 nmap cd :call config#changeToCurrentFolder()<CR>
 
+nnoremap <silent> <C-n> :set relativenumber!<cr>

@@ -35,9 +35,9 @@ function s:MapNavigator(list, list_name, status)
         let parser_key = s:ParserKey(key)
         let a:list[parser_key] = a:list[key]
         if a:status is# 'normal'
-            exec 'nmap ' . key . " :Navigator " . a:list_name . "['" . parser_key . "']<CR>"
+            exec 'nmap ,,' . key . " :Navigator " . a:list_name . "['" . parser_key . "']<CR>"
         else
-            exec 'vmap ' . key . " :NavigatorVisual " . a:list_name . "['" . parser_key . "']<CR>"
+            exec 'vmap ,,' . key . " :NavigatorVisual " . a:list_name . "['" . parser_key . "']<CR>"
         endif
     endfor
 endfunction
@@ -61,7 +61,7 @@ InitKey others
 InitKey buffer
 InitKey fold
 " InitKey vimwiki
-InitKey wiki
+" InitKey wiki
 InitKey project
 InitKey codeium
 InitKey clever-f

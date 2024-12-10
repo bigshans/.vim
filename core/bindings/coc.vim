@@ -9,7 +9,8 @@ let g:navigator["<leader>"].j = {
             \ 'l': ['<plug>(coc-codelens-action)', 'codelens-action'],
             \ 'r':  ['<plug>(coc-rename)', 'rename'],
             \ 'o': [':call ToggleOutline()', 'toggle outline'],
-            \ 'k': [':call ShowDocumentation()', 'show hover']
+            \ 'k': [':call ShowDocumentation()', 'show hover'],
+            \ 't': [':Vista!!', 'toggle vista']
             \ }
 let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
 
@@ -26,6 +27,7 @@ let g:navigator["<leader>"].y = [':CocList -A --normal yank', 'coc yank']
   nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
   xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
   nmap <silent> <leader>jk :call ShowDocumentation()<CR>
+  nmap <leader>jt :Vista!!<CR>
 
 " }}
 " {{ outline

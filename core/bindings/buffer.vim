@@ -44,4 +44,3 @@ else
       exec 'nmap <M-'.idx.'> <plug>AirlineSelectTab'.idx
     endfor
 endif
-

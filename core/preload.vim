@@ -8,7 +8,7 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-" set nocompatible
+set nocompatible
 " 显示一列高亮行在第 120 个字符处，
 " 示意单行最大宽度
 set colorcolumn=120
@@ -21,7 +21,7 @@ set nofoldenable
 set virtualedit=block
 set t_Co=256
 " set background=dark
-set number
+set number 
 set hlsearch
 set title
 set backspace=indent,eol,start
@@ -50,7 +50,11 @@ set noswapfile
 set writebackup
 " set nobackup
 set undofile
-set undodir=$TMP
+if has('nvim')
+    set undodir=$TMP/nvim
+else
+    set undodir=$TMP
+endif
 set backupdir=$TMP
 set spelllang=en,cjk
 set directory=.,$TEMP

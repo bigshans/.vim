@@ -3,14 +3,13 @@ call plug#begin('~/.vim/bundle')
 PL 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 PL 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 PL 'lambdalisue/suda.vim'
-if !has('win32') && !has('win64')
+if !has('win32') || !has('win64')
     PL 'fcitx', 'bigshans/fcitx.vim'
     " PL 'ranger', 'francoiscabrol/ranger.vim'
 endif
 PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
-PL 'drmikehenry/vim-fixkey'
-" PL 'nerdcomment', 'preservim/nerdcommenter'
+" PL 'drmikehenry/vim-fixkey'
 PL 'tomtom/tcomment_vim'
 PL 'skywind3000/vim-color-patch'
 
@@ -27,7 +26,7 @@ PL 'tpope/vim-fugitive'
 
 " Appearance
 PL 'ryanoasis/vim-devicons'
-PL 'sainnhe/artify.vim'
+" PL 'sainnhe/artify.vim'
 " PL 'josa42/vim-lightline-coc'
 " PL 'albertomontesg/lightline-asyncrun'
 " PL 'sonokai', 'sainnhe/sonokai'
@@ -36,10 +35,10 @@ PL 'sainnhe/artify.vim'
 " PL 'lightline', 'itchyny/lightline.vim'
 PL 'airline', 'vim-airline/vim-airline'
 PL 'vim-airline/vim-airline-themes'
+" PL 'onedark', 'joshdick/onedark.vim'
 PL 'vimgitgutter', 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
-PL 'onedark', 'joshdick/onedark.vim'
-PL 'skywind3000/vim-quickui'
 PL 'vim-navigator', 'skywind3000/vim-navigator'
+PL 'skywind3000/vim-quickui'
 PL 'purescript-contrib/purescript-vim'
 PL 'tpope/vim-speeddating'
 
@@ -56,7 +55,6 @@ PL 'chemzqm/wxapp.vim'
 PL 'voldikss/vim-floaterm'
 PL 'leafOfTree/vim-vue-plugin'
 PL 'vim-project', 'leafOfTree/vim-project'
-" PL 'vimwiki', 'vimwiki/vimwiki'
 PL 'wiki', 'bigshans/wiki.vim'
 PL 'junegunn/fzf.vim'
 PL 'kaarmu/typst.vim'
@@ -65,7 +63,11 @@ PL 'vim-scripts/utl.vim'
 PL 'jceb/vim-orgmode'
 PL 'rhysd/clever-f.vim'
 PL 'catppuccin/vim', { 'as': 'catppuccin' }
+PL 'autopairs', 'LunarWatcher/auto-pairs'
+PL 'vim-closetag', 'alvan/vim-closetag'
+PL 'jeffkreeftmeijer/vim-numbertoggle'
 
+" PL 'vimwiki', 'vimwiki/vimwiki'
 " PL 'codeium', 'Exafunction/codeium.vim'
 " PL 'ludovicchabant/vim-gutentags'
 " PL 'gutentags_plus', 'skywind3000/gutentags_plus'
