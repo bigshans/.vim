@@ -43,3 +43,11 @@ nnoremap <leader>wjj <C-w><C-j>
 nnoremap <leader>wjk <C-w><C-k>
 nnoremap <leader>wjl <C-w><C-l>
 
+for i in range(1, 9)
+    let winn = i
+    execute 'nnoremap <leader>w' . i . ' :' . winn . 'wincmd w<CR>'
+    let g:navigator["<leader>"].w[i] = [":" . winn . "wincmd w", "jump to win " . winn]
+endfor
+
+nnoremap <leader>w0 :10wincmd w<CR>
+let g:navigator["<leader>"].w[0] = [":10wincmd w", "jump to win 10"]
