@@ -66,6 +66,9 @@ PL 'catppuccin/vim', { 'as': 'catppuccin' }
 PL 'autopairs', 'LunarWatcher/auto-pairs'
 PL 'vim-closetag', 'alvan/vim-closetag'
 PL 'jeffkreeftmeijer/vim-numbertoggle'
+PL 'mileszs/ack.vim'
+" PL 'wsdjeg/FlyGrep.vim'
+" PL 'yegappan/greplace'
 
 " PL 'vimwiki', 'vimwiki/vimwiki'
 " PL 'codeium', 'Exafunction/codeium.vim'

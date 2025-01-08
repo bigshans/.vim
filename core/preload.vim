@@ -89,7 +89,7 @@ if has('neovide')
     let g:neovide_cursor_animation_length = 0
 endif
 
-set guifont=Cascadia_Code_NF:h11:cANSI:qDRAFT
+set guifont=Cascadia_Code_NF:h10.5:cANSI:qDRAFT
 
 command! C :call utils#mk_dir()
 command! Bigger :call utils#bigger()

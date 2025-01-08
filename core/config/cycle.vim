@@ -4,3 +4,4 @@ call cycle#add_cycle(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'
 call cycle#add_cycle(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
 
 call cycle#add_cycle_filetype(['typescript', 'javascript', 'typescriptreact', 'javascriptreact'], ['var', 'let', 'const'])
+call cycle#add_cycle_filetype(['typescript', 'javascript', 'typescriptreact', 'javascriptreact'], ['true', 'false'])

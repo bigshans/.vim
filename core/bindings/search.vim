@@ -1,11 +1,11 @@
 let g:navigator['<leader>'].s = {
-            \ 'name': "search...",
-            \ 'l': [':Leaderf line', 'search lines'],
-            \ 'b': [':Leaderf buffer', 'search buffers'],
-            \ 'h': ['Leaderf help', 'search helptags'],
-            \ 'r': ['Leaderf rg', 'search by rg'],
-            \ 'd': [':LeaderfFile', 'search current folder'],
-            \ 'p': [':ProjectList', 'search projects'],
+            \ 'name': "[S]earch...",
+            \ 'l': [':Leaderf line', '[S]earch [L]ines'],
+            \ 'b': [':Leaderf buffer', '[S]earch [B]uffers'],
+            \ 'h': ['Leaderf help', '[S]earch [H]elptags'],
+            \ 'r': ['Leaderf rg', '[S]earch by [R]g'],
+            \ 'd': [':LeaderfFile', '[S]earch [D]ir file'],
+            \ 'p': [':ProjectList', '[S]earch [P]rojects'],
             \ 'w': [':VimwikiUISelect', 'search vimwiki'],
             \ }
 
