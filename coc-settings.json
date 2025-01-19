@@ -13,7 +13,8 @@
     "diagnostic.virtualTextLimitInOneLine": 1,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.displayByAle": false,
-    "suggest.virtualText": true,
+    "diagnostic.virtualTextFormat": "➤ %message",
+    "suggest.virtualText": false,
     "suggest.timeout": 5000,
     "inlayHint.enable": true,
     "yank.limit": 2,
@@ -231,7 +232,7 @@
     "git.stagedDecorator": " ",
     "git.untrackedDecorator": " ✩",
     "git.conflictedDecorator": "⇡⇣",
-    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToVirtualText": false,
     "git.virtualTextPrefix": " \ue729 ",
     "coc.source.file.shortcut": "F",
     "coc.source.file.priority": 89,
@@ -265,5 +266,7 @@
         "--header-insertion=iwyu",
         "--pch-storage=disk"
     ],
-    "git.enableGutters": true
+    "git.enableGutters": true,
+    "rust-analyzer.lens.run.enable": false,
+    "rust-analyzer.lens.debug.enable": false
 }

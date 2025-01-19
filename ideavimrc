@@ -1,3 +1,5 @@
+Plug 'justinmk/vim-sneak'
+
 let mapleader = " "
 nnoremap <leader>fs :w<CR>
 nnoremap <leader>q  :q!<CR>
@@ -16,10 +18,10 @@ inoremap <C-m>     <CR>
 inoremap <C-a>     <home>
 inoremap <C-e>     <end>
 inoremap <M-i><M-j> <Esc>
-noremap  <leader>h  <C-w><C-h>
-noremap  <leader>j  <C-w><C-j>
-noremap  <leader>k  <C-w><C-k>
-noremap  <leader>l  <C-w><C-l>
+noremap  zh  <C-w><C-h>
+noremap  zj  <C-w><C-j>
+noremap  zk  <C-w><C-k>
+noremap  zl  <C-w><C-l>
 noremap  <leader>a ggVG
 noremap  <leader>ci :action CommentByLineComment<CR>
 map      <A-/>     :action CodeCompletion<CR>
@@ -29,10 +31,10 @@ set smartindent
 set cmdheight=1
 set relativenumber
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smarttab
-set surround
+" set surround
 set multiple-cursors
 set commentary
 set easymotion
@@ -66,3 +68,5 @@ set keep-english-in-normal-and-restore-in-insert
 set NERDTree
 nmap <leader>ft :NERDTreeToggle<CR>
 
+set whick-key
+set sneak
