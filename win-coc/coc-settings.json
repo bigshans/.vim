@@ -1,0 +1,130 @@
+{
+    "diagnostic.enable": true,
+    "diagnostic.enableSign": true,
+    "diagnostic.highlightPriority": 200,
+    "diagnostic.checkCurrentLine": false,
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "⚡",
+    "diagnostic.hintSign": "",
+    "diagnostic.enableMessage": "jump",
+    "diagnostic.format": " %message (%source%code)",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualTextLimitInOneLine": 1,
+    // "diagnostic.virtualTextFormat": "🠶 %message",
+    "diagnostic.virtualTextFormat": "➤  %message",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.displayByAle": false,
+    "suggest.timeout": 5000,
+    "suggest.maxCompleteItemCount": 100,
+    "inlayHint.enable": false,
+    "yank.limit": 2,
+    "suggest.completionItemKindLabels": {
+        "keyword": "\uf1de", //  sliders
+        "variable": "\ue79b", //  isometric box
+        "value": "\uf89f", //  digits 123
+        "operator": "\u03a8", // Ψ greek letter psi
+        "constructor": "\uf0ad", //  wrench
+        "function": "\u0192", // ƒ latin small letter F
+        "constant": "\uf8fe", //  greek letter pi
+        "method": "\uf09a", //  facebook "f"
+        "struct": "\ufb44", // פּ file tree
+        "class": "\uf0e8", //  hierarchy / site map
+        "interface": "\uf417", //  git commit / line interrupted by circle
+        "text": "\ue612", //  left-justified lines
+        "enum": "\uf02c", //  pair of tags
+        "enumMember": "\uf02b", //  tag
+        "module": "\uf40d", //  code file / page showing angle brackets
+        "color": "\ue22b", //  palette
+        "property": "\ue624", //  predator dots
+        "field": "", // left-justified sorted lines
+        "unit": "\uf475", //  negative-space ellipsis
+        "file": "\uf15b", //  file / blank page
+        "folder": "\uf07b", //  folder
+        "snippet": "\ue60b", //  pair of curly braces
+        "typeParameter": "\uf728", //  file presentation box
+        "default": "\uf29c" //  question mark in circle
+    },
+    "suggest.defaultSortMethod": "length",
+    "suggest.noselect": true,
+    "explorer.file.cdCommand": "cd",
+    "eslint.packageManager": "yarn",
+    "snippets.ultisnips.directories": [
+        "$runtimepath/UltiSnips",
+        "UltiSnips"
+    ],
+    "explorer.keyMappings.global": {
+        "<tab>": [
+            "expanded?",
+            "collapse",
+            "expand"
+        ],
+        "m": "actionMenu"
+    },
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.source": "vim-devicons",
+    "explorer.git.enable": false,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.previewAction.onHover": false,
+    "explorer.git.icon.status.modified": "✹",
+    "explorer.git.icon.status.added": "✚",
+    "explorer.git.icon.status.untracked": "✭",
+    "explorer.git.icon.status.renamed": "➜",
+    "explorer.git.icon.status.unmerged": "═",
+    "explorer.git.icon.status.deleted": "✖",
+    "explorer.file.reveal.auto": false,
+    "tsserver.disableAutomaticTypeAcquisition": false,
+    // "tsserver.experimental.enableProjectDiagnostics": true,
+    "html.autoClosingTags": true,
+    "svelte.enable-ts-plugin": true,
+    "git.realtimeGutters": false,
+    "git.changedSign.text": "▌",
+    "git.changedSign.hlGroup": "CocGitChangeSign",
+    "git.addedSign.text": "▌",
+    "git.removedSign.text": "▁",
+    "git.changeRemovedSign.text": "▁",
+    "git.topRemovedSign.text": "▔",
+    "git.changedDecorator": " ",
+    "git.stagedDecorator": " ",
+    "git.untrackedDecorator": " ✩",
+    "git.conflictedDecorator": "⇡⇣",
+    "git.addGBlameToVirtualText": false,
+    "git.virtualTextPrefix": " \ue729 ",
+    "coc.source.file.shortcut": "F",
+    "coc.source.file.priority": 89,
+    "coc.source.file.ignoreHidden": false,
+    "coc.source.around.shortcut": "A",
+    "coc.source.around.priority": 88,
+    "coc.source.buffer.shortcut": "B",
+    "coc.source.buffer.priority": 87,
+    "coc.source.buffer.ignoreGitignore": false,
+    "codeLens.enable": true,
+    "codeLens.separator": "▸",
+    "translator.proxy": "socks://127.0.0.1:1080",
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "vimlsp.indexes.runtimepath": true,
+    "vimlsp.suggest.fromRuntimepath": true,
+    "stylua.styluaPath": "/usr/bin/stylua",
+    "stylua.configPath": "/home/aerian/.vim/stylua.toml",
+    "eslint.format.enable": true,
+    "snippets.ultisnips.pythonPrompt": false,
+    "highlight.disableLanguages": ["vue"],
+    "list.source.grep.useLiteral": false,
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    },
+    "tabnine.limit": 3,
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--clang-tidy-checks=performance-*,bugprone-*",
+        "--completion-style=detailed",
+        "--all-scopes-completion",
+        "--header-insertion=iwyu",
+        "--pch-storage=disk"
+    ],
+    "git.enableGutters": true,
+    "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe"
+}

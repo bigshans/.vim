@@ -1,11 +1,11 @@
 let g:navigator["<leader>"].g = {
-            \ "name": "git...",
-            \ "a": [":Git add .", "add all"],
-            \ "b": [":Git blame", "blame"],
-            \ "c": [":Git commit", "commit"],
-            \ "d": [":Gvdiffsplit", "diff current file"],
-            \ "r": [":Gread", "restore file"],
-            \ "g": [":Git", "git"],
+            \ "name": "[G]it...",
+            \ "a": [":Git add .", "[G]it [a]dd all"],
+            \ "b": [":Git blame", "[G]it [B]lame"],
+            \ "c": [":Git commit", "[G]it [C]ommit"],
+            \ "d": [":Gdiff", "diff current file"],
+            \ "r": [":Gread", "[G]it [R]estore file"],
+            \ "g": [":Git", "[G]it"],
             \ "p": {
                 \ "name": "push or pull..",
                 \ "s": [":Git! push", "push"],
@@ -36,7 +36,7 @@ nnoremap <leader>gw :Gwrite<CR>
 
 augroup AU_GIT
     autocmd!
-    autocmd FileType git nmap <buffer><silent>q :q<CR>
+    autocmd FileType git,fugitiveblame nmap <buffer><silent>q :q<CR>
     autocmd FileType fugitive nmap <buffer><silent>q :q<CR>
     autocmd FileType fugitive nmap <buffer><silent><leader>p :Git pull<CR>
     autocmd FileType fugitive nmap <buffer><silent><leader>P :Git push<CR>

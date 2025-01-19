@@ -74,7 +74,12 @@ PL 'joplin', 'tenfyzhong/joplin.vim/'
 " PL 'nord', 'nordtheme/vim'
 PL 'iceberg', 'cocopon/iceberg.vim'
 PL 'catppuccin/vim', { 'as': 'catppuccin' }
-" PL 'ludovicchabant/vim-gutentags'
-" PL 'gutentags_plus', 'skywind3000/gutentags_plus'
+PL 'mileszs/ack.vim'
+PL 'voldikss/LeaderF-floaterm'
+PL 'junegunn/fzf'
+PL 'fzf', 'junegunn/fzf.vim'
+" required by vim-session
+PL 'xolox/vim-misc'
+PL 'vim-session', 'xolox/vim-session'
 
 call plugin#end()

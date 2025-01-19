@@ -1,7 +1,6 @@
+let g:nvim_config_home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 if exists('g:vscode')
-    source $HOME/.vim/vscode/init.vim
-elseif has('nvim')
+    exec 'so ' . fnameescape(g:nvim_config_home."/vscode/init.vim")
 else
-    let g:vim_basic = 1
-    source $HOME/.vim/vimrc
+    exec 'so ' . fnameescape(g:nvim_config_home."/_vimrc")
 endif
