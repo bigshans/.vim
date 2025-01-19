@@ -31,6 +31,7 @@ let g:coc_global_extensions = [
             \ 'coc-vimlsp',
             \ 'coc-xml',
             \ 'coc-yank',
+            \ 'coc-unocss',
             \]
 
 command! -nargs=0 Format :call CocActionAsync('format')

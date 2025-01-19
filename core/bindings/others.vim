@@ -18,6 +18,8 @@ nnoremap zh <C-w><C-h>
 nnoremap zj <C-w><C-j>
 nnoremap zk <C-w><C-k>
 nnoremap zl <C-w><C-l>
+nnoremap <C-w><C-v> <C-w>v
+nnoremap <C-w><C-s> <C-w>s
 
 " editor improve {{
 " 全选

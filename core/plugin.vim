@@ -67,6 +67,12 @@ PL 'autopairs', 'LunarWatcher/auto-pairs'
 PL 'vim-closetag', 'alvan/vim-closetag'
 PL 'jeffkreeftmeijer/vim-numbertoggle'
 PL 'mileszs/ack.vim'
+PL 'voldikss/LeaderF-floaterm'
+PL 'junegunn/fzf'
+PL 'fzf', 'junegunn/fzf.vim'
+" required by vim-session
+PL 'xolox/vim-misc'
+PL 'vim-session', 'xolox/vim-session'
 " PL 'wsdjeg/FlyGrep.vim'
 " PL 'yegappan/greplace'
 

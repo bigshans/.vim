@@ -2,7 +2,7 @@
     "diagnostic.enable": true,
     "diagnostic.enableSign": true,
     "diagnostic.highlightPriority": 200,
-    "diagnostic.checkCurrentLine": true,
+    "diagnostic.checkCurrentLine": false,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "⚡",
@@ -75,7 +75,7 @@
     "explorer.git.icon.status.deleted": "✖",
     "explorer.file.reveal.auto": false,
     "tsserver.disableAutomaticTypeAcquisition": false,
-    "tsserver.useLocalTsdk": true,
+    // "tsserver.experimental.enableProjectDiagnostics": true,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
     "git.realtimeGutters": false,
@@ -99,7 +99,6 @@
     "coc.source.buffer.shortcut": "B",
     "coc.source.buffer.priority": 87,
     "coc.source.buffer.ignoreGitignore": false,
-    "volar.useWorkspaceTsdk": true,
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "translator.proxy": "socks://127.0.0.1:1080",
@@ -126,5 +125,6 @@
         "--header-insertion=iwyu",
         "--pch-storage=disk"
     ],
-    "git.enableGutters": true
+    "git.enableGutters": true,
+    "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe"
 }
