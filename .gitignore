@@ -4,6 +4,7 @@ doc/
 .netrwhist
 .directory
 sessions/
+session/
 vim-project-config/
 pack/
 
