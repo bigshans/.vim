@@ -116,6 +116,8 @@
         "javascript": "javascriptreact"
     },
     "tabnine.limit": 3,
+    "tabnine.shortcut": "TN",
+    "tabnine.priority": 999999,
     "clangd.arguments": [
         "--background-index",
         "--clang-tidy",

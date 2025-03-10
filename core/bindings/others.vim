@@ -113,3 +113,5 @@ nmap <silent> <C-g> :call ClearAll()<CR>
 nmap cd :call config#changeToCurrentFolder()<CR>
 
 nnoremap <silent> <C-n> :set relativenumber!<cr>
+
+tmap <S-Insert> <C-W>"+
