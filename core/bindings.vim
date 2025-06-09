@@ -65,6 +65,7 @@ InitKey fold
 InitKey project
 InitKey codeium
 InitKey clever-f
+InitKey augment
 " InitKey gscope
 
 call s:MapNavigator(g:navigator, 'g:navigator', "normal")

@@ -26,8 +26,8 @@ else
                 \ 'd': [":bdelete", "delete current buffer"],
                 \ }
 
-    nmap <leader>bn <Plug>AirlineSelectPrevTab
-    nmap <leader>bp <Plug>AirlineSelectNextTab
+    nmap <leader>bp <Plug>AirlineSelectPrevTab
+    nmap <leader>bn <Plug>AirlineSelectNextTab
     nmap <leader>bd :bdelete<CR>
     nmap <M-1> <Plug>AirlineSelectTab1
     nmap <M-2> <Plug>AirlineSelectTab2

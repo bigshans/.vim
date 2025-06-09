@@ -60,10 +60,13 @@
             "collapse",
             "expand"
         ],
-        "m": "actionMenu"
+        "m": "actionMenu",
+        "e": "open",
+        "s": "open:split",
+        "E": "open:vsplit",
+        "t": "open:tab",
     },
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source": "vim-devicons",
     "explorer.git.enable": false,
     "explorer.file.showHiddenFiles": true,
     "explorer.previewAction.onHover": false,
@@ -76,6 +79,8 @@
     "explorer.file.reveal.auto": false,
     "tsserver.disableAutomaticTypeAcquisition": false,
     // "tsserver.experimental.enableProjectDiagnostics": true,
+    "volar.tsLocale": "zh-cn",
+    "volar.middleware.provideCompletionItem.enable": true,
     "html.autoClosingTags": true,
     "svelte.enable-ts-plugin": true,
     "git.realtimeGutters": false,
@@ -127,6 +132,7 @@
         "--header-insertion=iwyu",
         "--pch-storage=disk"
     ],
+    "coc.preferences.triggerAfterInsertEnter": false,
     "git.enableGutters": true,
     "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe"
 }

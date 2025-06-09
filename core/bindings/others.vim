@@ -5,6 +5,7 @@ nnoremap <leader>; :
 nmap <silent><leader>q :call functions#bufQuit()<CR>
 nmap <leader>fs :w!<CR>
 nmap <leader>Q :qa!<CR>
+nmap <F11> :Goyo<CR>:Limelight!!<CR>
 
 let g:navigator["<leader>"][";"] = ["<key>:", "cmd"]
 let g:navigator["<leader>"]["Q"] = [":qa!", "quit all"]
@@ -111,7 +112,10 @@ endfunction
 
 nmap <silent> <C-g> :call ClearAll()<CR>
 nmap cd :call config#changeToCurrentFolder()<CR>
+nmap CD :ProjectRootCD<CR>
 
 nnoremap <silent> <C-n> :set relativenumber!<cr>
 
 tmap <S-Insert> <C-W>"+
+
+nnoremap <F2> :call functions#ToggleQF()<CR>

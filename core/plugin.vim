@@ -1,3 +1,4 @@
+packadd! cfilter
 call plug#begin('~/.vim/bundle')
 
 PL 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
@@ -25,7 +26,8 @@ PL 'tpope/vim-fugitive'
 " PL 'ale', 'bigshans/ale'
 
 " Appearance
-PL 'ryanoasis/vim-devicons'
+" PL 'ryanoasis/vim-devicons'
+PL 'lambdalisue/vim-nerdfont'
 " PL 'sainnhe/artify.vim'
 " PL 'josa42/vim-lightline-coc'
 " PL 'albertomontesg/lightline-asyncrun'
@@ -52,6 +54,7 @@ PL 'romainl/vim-cool'
 PL 'wakatime/vim-wakatime'
 PL 'prisma/vim-prisma'
 PL 'chemzqm/wxapp.vim'
+PL 'ptzz/lf.vim'
 PL 'voldikss/vim-floaterm'
 PL 'leafOfTree/vim-vue-plugin'
 PL 'vim-project', 'leafOfTree/vim-project'
@@ -75,6 +78,12 @@ PL 'xolox/vim-misc'
 PL 'vim-session', 'xolox/vim-session'
 PL 'matchup', 'andymass/vim-matchup'
 PL 'startify', 'mhinz/vim-startify'
+PL 'markonm/traces.vim'
+PL 'augment', 'augmentcode/augment.vim'
+PL 'dyng/ctrlsf.vim'
+PL 'dbakker/vim-projectroot'
+" PL 'junegunn/goyo.vim'
+" PL 'junegunn/limelight.vim'
 " PL 'wsdjeg/FlyGrep.vim'
 " PL 'yegappan/greplace'
 

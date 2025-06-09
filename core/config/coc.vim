@@ -1,6 +1,6 @@
 if has('win32') || has('win64')
     let g:coc_config_home = fnameescape('~/vimfiles/win-coc')
-    let g:coc_node_path = fnameescape('~/AppData/Roaming/nvm/v20.15.0/node.exe')
+    let g:coc_node_path = fnameescape('~/AppData/Roaming/nvm/v22.14.0/node.exe')
 endif
 
 " 控制 coc 插件安装
@@ -68,6 +68,9 @@ augroup custom_nginx
     autocmd FileType nginx setlocal iskeyword+=$
     autocmd FileType nginx let b:coc_additional_keywords = ['$']
 augroup end
+
+"" if only one buffer named 'coc-explorer' is shown, then exit
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | bd! | endif
 
 " Highlight the symbol and its references when holding the cursor
 " autocmd CursorHold * silent call CocActionAsync('highlight')

@@ -60,6 +60,7 @@ set spelllang=en,cjk
 set directory=.,$TEMP
 set nospell
 set pumheight=20
+set lazyredraw
 
 set signcolumn=yes
 
@@ -78,6 +79,7 @@ endif
 
 set showbreak=\\
 set nolist
+set wildignore+=*/node_modules/*,*.o,*.obj,*.pyc
 
 set guicursor+=a:blinkon0
 
@@ -89,7 +91,8 @@ if has('neovide')
     let g:neovide_cursor_animation_length = 0
 endif
 
-set guifont=Cascadia_Code_NF:h10.5:cANSI:qDRAFT
+" set guifont=Cascadia_Mono_NF:h9:cANSI:qDRAFT
+set guifont=JetBrainsMono_NFM:h9:cANSI:qDRAFT
 
 command! C :call utils#mk_dir()
 command! Bigger :call utils#bigger()
