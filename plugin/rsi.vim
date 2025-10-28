@@ -21,6 +21,8 @@ inoremap        <C-A> <C-O>^
 inoremap   <C-X><C-A> <C-A>
 cnoremap        <C-A> <Home>
 cnoremap   <C-X><C-A> <C-A>
+noremap <C-x>1 :execute "%bd\|e#"<CR>
+noremap <C-x>0 :bd<CR>
 
 inoremap <M-v> <C-o><C-u>
 inoremap <M-u> <C-o><C-d>

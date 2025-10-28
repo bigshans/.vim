@@ -7,6 +7,7 @@ let g:navigator["<leader>"].f = {
             \ 's': [":w!", "write file"],
             \ 'S': [":SudaWrite", "write file as sudo"],
             \ 'm': [":call mkdir(expand('%:p:h'), 'p')", 'mk dir'],
+            \ 'n': [":tabnew", 'create new tab']
             \ }
 
 if has('win32') || has('win64')
@@ -24,3 +25,5 @@ nnoremap <silent><leader>fs :w!<CR>
 nnoremap <leader>fS :SudaWrite<CR>
 nnoremap <leader>fm :call mkdir(expand("%:p:h"), "p")<CR>
 nnoremap <leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
+
+nnoremap <leader>fn :tabnew<CR>

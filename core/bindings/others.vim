@@ -119,3 +119,4 @@ nnoremap <silent> <C-n> :set relativenumber!<cr>
 tmap <S-Insert> <C-W>"+
 
 nnoremap <F2> :call functions#ToggleQF()<CR>
+nnoremap <C-S-F> :CtrlSF 

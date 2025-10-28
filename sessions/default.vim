@@ -2,13 +2,14 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
+inoremap <silent> <SNR>295_AutoPairsReturn =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsReturn')
 inoremap <silent> <expr> <Plug>(coc-snippets-expand-jump-async) coc#_insert_key('notify', 'coc-snippets-expand-jump-async', 1)
 inoremap <silent> <expr> <Plug>(coc-snippets-expand-jump) coc#_insert_key('request', 'coc-snippets-expand-jump', 1)
 inoremap <silent> <expr> <Plug>(coc-snippets-expand-async) coc#_insert_key('notify', 'coc-snippets-expand-async', 1)
 inoremap <silent> <expr> <Plug>(coc-snippets-expand) coc#_insert_key('request', 'coc-snippets-expand', 1)
 inoremap <silent> <expr> <Plug>(coc-calc-result-replace) coc#_insert_key('request', 'coc-calc-result-replace', 1)
 inoremap <silent> <expr> <Plug>(coc-calc-result-append) coc#_insert_key('request', 'coc-calc-result-append', 1)
-inoremap <silent> <SNR>196_AutoPairsReturn =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsReturn')
+inoremap <silent> <F3> :MaximizerToggle
 cnoremap <expr> <C-R><C-O><C-P> traces#check_b() ? "\\=traces#get_pfile()\" : "\\\"
 cnoremap <expr> <C-R><C-O><C-F> traces#check_b() ? "\\=traces#get_cfile()\" : "\\\"
 cnoremap <expr> <C-R><C-O><C-A> traces#check_b() ? "\\=traces#get_cWORD()\" : "\\\"
@@ -89,9 +90,9 @@ inoremap <Plug>TComment_<C-_><C-_> :TComment
 inoremap <Plug>TComment_ :TComment
 inoremap <silent> <expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
 inoremap <silent> <expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
-inoremap <silent> <expr> <C-Y> coc#pum#visible() ? coc#pum#confirm() : "\"
-inoremap <silent> <expr> <Up> coc#pum#visible() ? coc#pum#prev(0) : "\<Up>"
-inoremap <silent> <expr> <Down> coc#pum#visible() ? coc#pum#next(0) : "\<Down>"
+inoremap <silent> <expr> <C-Y> coc#pum#visible() ? coc#pum#confirm() : coc#inline#visible() ? coc#inline#accept() :"\"
+inoremap <silent> <expr> <Up> coc#pum#visible() ? coc#pum#prev(0) : coc#inline#visible() ? coc#inline#prev() :"\<Up>"
+inoremap <silent> <expr> <Down> coc#pum#visible() ? coc#pum#next(0) : coc#inline#visible() ? coc#inline#next() :"\<Down>"
 inoremap <M-K> k
 inoremap <M-J> j
 inoremap <M-L> l
@@ -134,7 +135,7 @@ map! <S-Insert> *
 xmap  <Plug>SpeedDatingUp
 nmap  <Plug>SpeedDatingUp
 tnoremap <silent>  :q!
-nnoremap  :Leaderf rg
+nnoremap  :CtrlSF 
 nmap <silent>  :call ClearAll()
 nmap 	 za
 tmap <NL> j_
@@ -152,6 +153,8 @@ nnoremap  s
 nnoremap c :ChooseWin
 xmap  <Plug>SpeedDatingDown
 nmap  <Plug>SpeedDatingDown
+noremap 0 :bd
+noremap 1 :execute "%bd|e#"
 vnoremap <silent>  :for line in getline("'<", "'>") | execute line | endfor
 nnoremap <silent>  :source %
 smap  "*d
@@ -200,6 +203,7 @@ nmap <silent>  w w <Plug>(wiki-journal)
 nmap <silent>  wn <Plug>(wiki-open)
 nmap <silent>  ww <Plug>(wiki-index)
 nmap <silent>  wx <Plug>(wiki-reload)
+map  f :Lf
 xmap  Nr <Plug>NrrwrgnBangDo
 nmap  nr <Plug>NrrwrgnDo
 xmap  nr <Plug>NrrwrgnDo
@@ -283,6 +287,7 @@ nmap <silent>  jf <Plug>(coc-fix-current)
 nnoremap <nowait> <silent>  jd :CocList diagnostics
 nmap <silent>  jc <Plug>(coc-diagnostic-info)
 nmap <silent>  ja <Plug>(coc-codeaction)
+nnoremap  fn :tabnew
 nnoremap  fm :call mkdir(expand("%:p:h"), "p")
 nnoremap  fS :SudaWrite
 nmap  fs :w!
@@ -385,8 +390,8 @@ nmap d <Plug>SpeedDatingNowUTC
 omap f <Plug>(clever-f-f)
 xmap f <Plug>(clever-f-f)
 nmap f <Plug>(clever-f-f)
-xmap gx <Plug>NetrwBrowseXVis
-nmap gx <Plug>NetrwBrowseX
+xnoremap gx <ScriptCmd>vim9.Open(getregion(getpos('v'), getpos('.'), { type: mode() })->join())
+nnoremap gx <ScriptCmd>vim9.Open(GetWordUnderCursor())
 omap <silent> g% <Ignore><Plug>(matchup-g%)
 xmap <silent> g% <Plug>(matchup-g%)
 nmap <silent> g% <Plug>(matchup-g%)
@@ -463,6 +468,144 @@ nnoremap zl 
 nnoremap zk 
 nnoremap zj <NL>
 nnoremap zh 
+vnoremap <silent> <Plug>(coc-explorer-key-v-ai) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ai'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-ii) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ii'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-al) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-al'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-m'])
+vnoremap <silent> <Plug>(coc-explorer-key-v->>) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v->>'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-<<) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-<<'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]C) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]C'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[C) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[C'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]c) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]c'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[c) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[c'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]D) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]D'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[D) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[D'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]d) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]d'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[d) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[d'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]m'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[m'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]i) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]i'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[i) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[i'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-]]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-]]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[[) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[['])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gb) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gb'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gf) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gf'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-F) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-F'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-f) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-f'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gd) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gd'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-X) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-X'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[esc]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[esc]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-q) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-q'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-?) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-?'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-R) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-R'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-g.) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-g.'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-zh) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-zh'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-r) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-r'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-A) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-A'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-a) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-a'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-dF) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-dF'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-df) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-df'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-P) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-P'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-p) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-p'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-d[space]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-d[space]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-da) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-da'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-dt) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-dt'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-dd) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-dd'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-y[space]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-y[space]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-ya) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ya'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-yt) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-yt'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-yy) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-yy'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-yn) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-yn'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-yp) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-yp'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-II) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-II'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-Ic) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-Ic'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-Il) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-Il'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-ic) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ic'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-il) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-il'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gs) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gs'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[bs]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[bs]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-t) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-t'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-E) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-E'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-s) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-s'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-e) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-e'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[cr]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[cr]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[2-LeftMouse]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[2-LeftMouse]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gh) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gh'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-gl) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-gl'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-K) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-K'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-J) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-J'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-l) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-l'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-h) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-h'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-[tab]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-[tab]'])
+vnoremap <silent> <Plug>(coc-explorer-key-v-*) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-*'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-m'])
+nnoremap <silent> <Plug>(coc-explorer-key-n->>) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n->>'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-<<) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-<<'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]C) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]C'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[C) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[C'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]c) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]c'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[c) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[c'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]D) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]D'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[D) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[D'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]d) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]d'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[d) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[d'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]m'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[m) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[m'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]i) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]i'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[i) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[i'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-]]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-]]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[[) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[['])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gb) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gb'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gf) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gf'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-F) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-F'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-f) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-f'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gd) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gd'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-X) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-X'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[esc]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[esc]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-q) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-q'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-?) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-?'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-R) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-R'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-g.) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-g.'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-zh) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-zh'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-r) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-r'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-A) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-A'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-a) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-a'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-dF) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-dF'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-df) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-df'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-P) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-P'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-p) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-p'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-d[space]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-d[space]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-da) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-da'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-dt) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-dt'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-dd) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-dd'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-y[space]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-y[space]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-ya) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-ya'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-yt) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-yt'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-yy) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-yy'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-yn) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-yn'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-yp) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-yp'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-II) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-II'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-Ic) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-Ic'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-Il) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-Il'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-ic) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-ic'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-il) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-il'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gs) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gs'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[bs]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[bs]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-t) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-t'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-E) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-E'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-s) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-s'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-e) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-e'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[cr]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[cr]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-o) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-o'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[2-LeftMouse]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[2-LeftMouse]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gh) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gh'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-gl) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-gl'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-K) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-K'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-J) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-J'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-l) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-l'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-h) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-h'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-[tab]) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-[tab]'])
+nnoremap <silent> <Plug>(coc-explorer-key-n-*) :call coc#rpc#request('doKeymap', ['coc-explorer-key-n-*'])
 vnoremap <silent> <Plug>(coc-translator-rv) :call coc#rpc#notify('doKeymap', ['coc-translator-rv'])
 nnoremap <silent> <Plug>(coc-translator-r) :call coc#rpc#notify('doKeymap', ['coc-translator-r'])
 vnoremap <silent> <Plug>(coc-translator-ev) :call coc#rpc#notify('doKeymap', ['coc-translator-ev'])
@@ -473,8 +616,11 @@ vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap',
 xnoremap <silent> <Plug>(coc-convert-snippet) :call coc#rpc#notify('doKeymap', ['coc-convert-snippet'])
 nnoremap <silent> <Plug>(coc-calc-result-replace) :call coc#rpc#request('doKeymap', ['coc-calc-result-replace'])
 nnoremap <silent> <Plug>(coc-calc-result-append) :call coc#rpc#request('doKeymap', ['coc-calc-result-append'])
-xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
+nnoremap <SNR>229_: :=v:count ? v:count : ''
+vnoremap <silent> <F3> :MaximizerTogglegv
+nnoremap <silent> <F3> :MaximizerToggle
+xnoremap <silent> <Plug>(Limelight) :Limelight
+nnoremap <silent> <Plug>(Limelight) :set opfunc=limelight#operatorg@
 nnoremap <Plug>CtrlSFQuickfixPrompt :CtrlSFQuickfix 
 nnoremap <Plug>CtrlSFPrompt :CtrlSF 
 nnoremap <silent> <Plug>(startify-open-buffers) :call startify#open_buffers()
@@ -486,24 +632,24 @@ onoremap <silent> <Plug>(matchup-i%) :call matchup#text_obj#delimited(1, 0, 'd
 xnoremap <silent> <Plug>(matchup-a%) :call matchup#text_obj#delimited(0, 1, 'delim_all')
 xnoremap <silent> <Plug>(matchup-i%) :call matchup#text_obj#delimited(1, 1, 'delim_all')
 onoremap <silent> <Plug>(matchup-Z%) :call matchup#motion#op('Z%')
-xnoremap <silent> <SNR>142_(matchup-Z%) :call matchup#motion#jump_inside_prev(1)
+xnoremap <silent> <SNR>143_(matchup-Z%) :call matchup#motion#jump_inside_prev(1)
 nnoremap <silent> <Plug>(matchup-Z%) <Cmd>call matchup#motion#jump_inside_prev(0)
 onoremap <silent> <Plug>(matchup-z%) :call matchup#motion#op('z%')
-xnoremap <silent> <SNR>142_(matchup-z%) :call matchup#motion#jump_inside(1)
+xnoremap <silent> <SNR>143_(matchup-z%) :call matchup#motion#jump_inside(1)
 nnoremap <silent> <Plug>(matchup-z%) <Cmd>call matchup#motion#jump_inside(0)
 onoremap <silent> <Plug>(matchup-[%) :call matchup#motion#op('[%')
 onoremap <silent> <Plug>(matchup-]%) :call matchup#motion#op(']%')
-xnoremap <silent> <SNR>142_(matchup-[%) :call matchup#motion#find_unmatched(1, 0)
-xnoremap <silent> <SNR>142_(matchup-]%) :call matchup#motion#find_unmatched(1, 1)
+xnoremap <silent> <SNR>143_(matchup-[%) :call matchup#motion#find_unmatched(1, 0)
+xnoremap <silent> <SNR>143_(matchup-]%) :call matchup#motion#find_unmatched(1, 1)
 nnoremap <silent> <Plug>(matchup-[%) <Cmd>call matchup#motion#find_unmatched(0, 0)
 nnoremap <silent> <Plug>(matchup-]%) <Cmd>call matchup#motion#find_unmatched(0, 1)
 onoremap <silent> <Plug>(matchup-g%) :call matchup#motion#op('g%')
-xnoremap <silent> <SNR>142_(matchup-g%) :call matchup#motion#find_matching_pair(1, 0)
+xnoremap <silent> <SNR>143_(matchup-g%) :call matchup#motion#find_matching_pair(1, 0)
 onoremap <silent> <Plug>(matchup-%) :call matchup#motion#op('%')
-xnoremap <silent> <SNR>142_(matchup-%) :call matchup#motion#find_matching_pair(1, 1)
+xnoremap <silent> <SNR>143_(matchup-%) :call matchup#motion#find_matching_pair(1, 1)
 nnoremap <silent> <Plug>(matchup-g%) <Cmd>call matchup#motion#find_matching_pair(0, 0)
 nnoremap <silent> <Plug>(matchup-%) <Cmd>call matchup#motion#find_matching_pair(0, 1)
-nnoremap <silent> <expr> <SNR>142_(wise) empty(g:v_motion_force) ? 'v' : g:v_motion_force
+nnoremap <silent> <expr> <SNR>143_(wise) empty(g:v_motion_force) ? 'v' : g:v_motion_force
 nnoremap <silent> <Plug>(matchup-hi-surround) :call matchup#matchparen#highlight_surrounding()
 tnoremap <silent> <Plug>(fzf-normal) 
 tnoremap <silent> <Plug>(fzf-insert) i
@@ -1240,6 +1386,8 @@ noremap <M-K> k
 noremap <M-J> j
 noremap <M-L> l
 noremap <M-H> h
+noremap <C-X>0 :bd
+noremap <C-X>1 :execute "%bd|e#"
 noremap <C-S> :w!
 noremap <C-Q> :q!
 nmap <M-0> <Plug>AirlineSelectTab0
@@ -1252,6 +1400,8 @@ nmap <M-4> <Plug>AirlineSelectTab4
 nmap <M-3> <Plug>AirlineSelectTab3
 nmap <M-2> <Plug>AirlineSelectTab2
 nmap <M-1> <Plug>AirlineSelectTab1
+nnoremap <C-S-F> :CtrlSF 
+nnoremap <F2> :call functions#ToggleQF()
 tmap <S-Insert> "+
 nnoremap <silent> <C-N> :set relativenumber!
 nmap <silent> <C-G> :call ClearAll()
@@ -1277,7 +1427,6 @@ nnoremap <C-W>0 :only
 nnoremap <C-W>q :close
 nnoremap <C-W><C-S> s
 nnoremap <C-W>c :ChooseWin
-nnoremap <C-S-F> :Leaderf rg
 nnoremap <silent> <Plug>LeaderfCurFolderFile :=printf("Leaderf file %s", expand('%:p:h'))
 smap <C-X> "*d
 vmap <C-Del> "*d
@@ -1318,7 +1467,7 @@ inoremap  :w!
 cnoremap  
 inoremap  
 inoremap <silent> <expr>  coc#pum#visible() ? coc#pum#stop() : "\\"
-inoremap <silent> <expr>  coc#pum#visible() ? coc#pum#confirm() : "\"
+inoremap <silent> <expr>  coc#pum#visible() ? coc#pum#confirm() : coc#inline#visible() ? coc#inline#accept() :"\"
 cnoremap <expr>  pumvisible() ? "\" : "\-"
 imap <silent> 9 <Plug>TComment_9
 imap <silent> 8 <Plug>TComment_8
@@ -1370,7 +1519,6 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 set autoindent
 set background=dark
-set backspace=indent,eol,start
 set backupdir=~\\AppData\\Local\\Temp
 set directory=.,~\\AppData\\Local\\Temp
 set expandtab
@@ -1416,6 +1564,7 @@ set runtimepath+=~\\.vim\\bundle\\vim-cool
 set runtimepath+=~\\.vim\\bundle\\vim-wakatime
 set runtimepath+=~\\.vim\\bundle\\vim-prisma
 set runtimepath+=~\\.vim\\bundle\\wxapp.vim
+set runtimepath+=~\\.vim\\bundle\\lf.vim
 set runtimepath+=~\\.vim\\bundle\\vim-floaterm
 set runtimepath+=~\\.vim\\bundle\\vim-vue-plugin
 set runtimepath+=~\\.vim\\bundle\\vim-project
@@ -1440,12 +1589,15 @@ set runtimepath+=~\\.vim\\bundle\\traces.vim
 set runtimepath+=~\\.vim\\bundle\\augment.vim
 set runtimepath+=~\\.vim\\bundle\\ctrlsf.vim
 set runtimepath+=~\\.vim\\bundle\\vim-projectroot
-set runtimepath+=~\\.vim\\bundle\\lf.vim
-set runtimepath+=~\\scoop\\apps\\vim\\current/vimfiles
-set runtimepath+=~\\scoop\\apps\\vim\\current\\pack\\dist\\opt\\cfilter
-set runtimepath+=~\\scoop\\apps\\vim\\current
+set runtimepath+=~\\.vim\\bundle\\goyo.vim
+set runtimepath+=~\\.vim\\bundle\\limelight.vim
+set runtimepath+=~\\.vim\\bundle\\vim-maximizer
+set runtimepath+=C:\\Program\ Files\\Vim/vimfiles
+set runtimepath+=C:\\Program\ Files\\Vim\\vim91
+set runtimepath+=C:\\Program\ Files\\Vim\\vim91\\pack\\dist\\opt\\netrw
+set runtimepath+=C:\\Program\ Files\\Vim\\vim91\\pack\\dist\\opt\\cfilter
 set runtimepath+=~/vimfiles/after
-set runtimepath+=~\\scoop\\apps\\vim\\current/vimfiles/after
+set runtimepath+=C:\\Program\ Files\\Vim/vimfiles/after
 set runtimepath+=~\\.vim\\bundle\\vim-sandwich\\after
 set runtimepath+=~\\.vim\\bundle\\purescript-vim\\after
 set runtimepath+=~\\.vim\\bundle\\vim-markdown\\after
@@ -1454,7 +1606,8 @@ set runtimepath+=~\\.vim\\bundle\\vim-matchup\\after
 set runtimepath+=~\\.vim\\bundle\\ctrlsf.vim\\after
 set runtimepath+=~/.vim
 set runtimepath+=~\\AppData\\Local\\coc\\extensions\\node_modules\\coc-snippets
-set shiftwidth=4
+set runtimepath+=~\\AppData\\Local\\coc\\extensions\\node_modules\\coc-explorer
+set shiftwidth=2
 set shortmess=filnxtToOScI
 set showbreak=\\
 set showtabline=2
@@ -1464,6 +1617,7 @@ set spelllang=en,cjk
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
 set tabstop=4
+set termguicolors
 set title
 set ttimeout
 set ttimeoutlen=50
@@ -1474,24 +1628,47 @@ set virtualedit=block
 set visualbell
 set whichwrap=b,s,<,>,h,l,[,]
 set wildignore=*/node_modules/*,*.o,*.obj,*.pyc
-set window=25
+set window=57
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd C:\Windows\System32
+cd ~\Desktop\project\axt-agency-static-web
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
-if &shortmess =~ 'A'
-  set shortmess=aoOA
-else
-  set shortmess=aoO
-endif
+set shortmess+=aoO
+badd +12 src\layouts\BasicLayout\components\GlobalIframe\index.vue
+badd +0 src\views\middleware\index.vue
 argglobal
 %argdel
+$argadd .\
+edit src\views\middleware\index.vue
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 40 + 137) / 274)
+exe 'vert 2resize ' . ((&columns * 137 + 137) / 274)
+exe 'vert 3resize ' . ((&columns * 95 + 137) / 274)
 argglobal
 enew
+file [coc-explorer]-1
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <C-P><C-E> =autopairs#AutoPairsIgnore()
@@ -1508,49 +1685,147 @@ inoremap <buffer> <silent> <C-P>] =autopairs#Keybinds#IgnoreInsertEnter('autop
 inoremap <buffer> <silent> <C-P>[ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '[')
 inoremap <buffer> <silent> <C-P>) =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ')')
 inoremap <buffer> <silent> <C-P>( =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '(')
-nnoremap <buffer> <nowait> <silent>  :call startify#open_buffers()
+nmap <buffer> 	 <Plug>(coc-explorer-key-n-[tab])
+vmap <buffer> 	 <Plug>(coc-explorer-key-v-[tab])
+nmap <buffer>  <Plug>(coc-explorer-key-n-[cr])
+vmap <buffer>  <Plug>(coc-explorer-key-v-[cr])
 noremap <buffer> <silent>  :call autopairs#AutoPairsJump()
 noremap <buffer> <silent>  :call autopairs#AutoPairsToggleMultilineClose()
 noremap <buffer> <silent>  :call autopairs#AutoPairsToggle()
-nnoremap <buffer> <nowait> <silent> 0 :call startify#open_buffers(19)
-nnoremap <buffer> <nowait> <silent> 19 :call startify#open_buffers(41)
-nnoremap <buffer> <nowait> <silent> 18 :call startify#open_buffers(40)
-nnoremap <buffer> <nowait> <silent> 17 :call startify#open_buffers(39)
-nnoremap <buffer> <nowait> <silent> 16 :call startify#open_buffers(38)
-nnoremap <buffer> <nowait> <silent> 15 :call startify#open_buffers(37)
-nnoremap <buffer> <nowait> <silent> 14 :call startify#open_buffers(36)
-nnoremap <buffer> <nowait> <silent> 13 :call startify#open_buffers(35)
-nnoremap <buffer> <nowait> <silent> 12 :call startify#open_buffers(34)
-nnoremap <buffer> <nowait> <silent> 11 :call startify#open_buffers(33)
-nnoremap <buffer> <nowait> <silent> 10 :call startify#open_buffers(32)
-nnoremap <buffer> <nowait> <silent> 1 :call startify#open_buffers(20)
-nnoremap <buffer> <nowait> <silent> 22 :call startify#open_buffers(44)
-nnoremap <buffer> <nowait> <silent> 21 :call startify#open_buffers(43)
-nnoremap <buffer> <nowait> <silent> 20 :call startify#open_buffers(42)
-nnoremap <buffer> <nowait> <silent> 2 :call startify#open_buffers(21)
-nnoremap <buffer> <nowait> <silent> 3 :call startify#open_buffers(22)
-nnoremap <buffer> <nowait> <silent> 4 :call startify#open_buffers(23)
-nnoremap <buffer> <nowait> <silent> 5 :call startify#open_buffers(24)
-nnoremap <buffer> <nowait> <silent> 6 :call startify#open_buffers(25)
-nnoremap <buffer> <nowait> <silent> 7 :call startify#open_buffers(26)
-nnoremap <buffer> <nowait> <silent> 8 :call startify#open_buffers(27)
-nnoremap <buffer> <nowait> <silent> 9 :call startify#open_buffers(28)
-nnoremap <buffer> <nowait> <silent> B :call startify#set_batchmode('B')
-nnoremap <buffer> <expr> N 'j '[v:searchforward].'N'
-nnoremap <buffer> <nowait> <silent> S :call startify#set_batchmode('S')
-nnoremap <buffer> <nowait> <silent> T :call startify#set_batchmode('T')
-nnoremap <buffer> <nowait> <silent> V :call startify#set_batchmode('V')
-nnoremap <buffer> <nowait> <silent> b :call startify#set_mark('B')
-nnoremap <buffer> <nowait> <silent> e :call startify#open_buffers(15)
-nnoremap <buffer> <nowait> <silent> i :enew | startinsert
-nnoremap <buffer> <expr> n ' j'[v:searchforward].'n'
-nnoremap <buffer> <nowait> <silent> q :call startify#open_buffers(46)
-nnoremap <buffer> <nowait> <silent> s :call startify#set_mark('S')
-nnoremap <buffer> <nowait> <silent> t :call startify#set_mark('T')
-nnoremap <buffer> <nowait> <silent> v :call startify#set_mark('V')
-nnoremap <buffer> <nowait> <silent> <MiddleMouse> :enew | execute 'normal! "'.(v:register=='"'?'*':v:register).'gp'
-nnoremap <buffer> <nowait> <silent> <2-LeftMouse> :call startify#open_buffers()
-nnoremap <buffer> <nowait> <silent> <Insert> :enew | startinsert
+nmap <buffer>  <Plug>(coc-explorer-key-n-[esc])
+vmap <buffer>  <Plug>(coc-explorer-key-v-[esc])
+nmap <buffer> * <Plug>(coc-explorer-key-n-*)
+vmap <buffer> * <Plug>(coc-explorer-key-v-*)
+nmap <buffer> << <Plug>(coc-explorer-key-n-<<)
+vmap <buffer> << <Plug>(coc-explorer-key-v-<<)
+nmap <buffer> >> <Plug>(coc-explorer-key-n->>)
+vmap <buffer> >> <Plug>(coc-explorer-key-v->>)
+nmap <buffer> ? <Plug>(coc-explorer-key-n-?)
+vmap <buffer> ? <Plug>(coc-explorer-key-v-?)
+nmap <buffer> A <Plug>(coc-explorer-key-n-A)
+vmap <buffer> A <Plug>(coc-explorer-key-v-A)
+nmap <buffer> E <Plug>(coc-explorer-key-n-E)
+vmap <buffer> E <Plug>(coc-explorer-key-v-E)
+nmap <buffer> F <Plug>(coc-explorer-key-n-F)
+vmap <buffer> F <Plug>(coc-explorer-key-v-F)
+nmap <buffer> Il <Plug>(coc-explorer-key-n-Il)
+nmap <buffer> Ic <Plug>(coc-explorer-key-n-Ic)
+nmap <buffer> II <Plug>(coc-explorer-key-n-II)
+vmap <buffer> Il <Plug>(coc-explorer-key-v-Il)
+vmap <buffer> Ic <Plug>(coc-explorer-key-v-Ic)
+vmap <buffer> II <Plug>(coc-explorer-key-v-II)
+nmap <buffer> J <Plug>(coc-explorer-key-n-J)
+vmap <buffer> J <Plug>(coc-explorer-key-v-J)
+nmap <buffer> K <Plug>(coc-explorer-key-n-K)
+vmap <buffer> K <Plug>(coc-explorer-key-v-K)
+nmap <buffer> P <Plug>(coc-explorer-key-n-P)
+vmap <buffer> P <Plug>(coc-explorer-key-v-P)
+nmap <buffer> R <Plug>(coc-explorer-key-n-R)
+vmap <buffer> R <Plug>(coc-explorer-key-v-R)
+nmap <buffer> X <Plug>(coc-explorer-key-n-X)
+vmap <buffer> X <Plug>(coc-explorer-key-v-X)
+nmap <buffer> [C <Plug>(coc-explorer-key-n-[C)
+nmap <buffer> [i <Plug>(coc-explorer-key-n-[i)
+nmap <buffer> [d <Plug>(coc-explorer-key-n-[d)
+nmap <buffer> [c <Plug>(coc-explorer-key-n-[c)
+nmap <buffer> [m <Plug>(coc-explorer-key-n-[m)
+nmap <buffer> [[ <Plug>(coc-explorer-key-n-[[)
+nmap <buffer> [D <Plug>(coc-explorer-key-n-[D)
+vmap <buffer> [C <Plug>(coc-explorer-key-v-[C)
+vmap <buffer> [i <Plug>(coc-explorer-key-v-[i)
+vmap <buffer> [d <Plug>(coc-explorer-key-v-[d)
+vmap <buffer> [c <Plug>(coc-explorer-key-v-[c)
+vmap <buffer> [m <Plug>(coc-explorer-key-v-[m)
+vmap <buffer> [[ <Plug>(coc-explorer-key-v-[[)
+vmap <buffer> [D <Plug>(coc-explorer-key-v-[D)
+nmap <buffer> ]D <Plug>(coc-explorer-key-n-]D)
+nmap <buffer> ]C <Plug>(coc-explorer-key-n-]C)
+nmap <buffer> ]m <Plug>(coc-explorer-key-n-]m)
+nmap <buffer> ]i <Plug>(coc-explorer-key-n-]i)
+nmap <buffer> ]d <Plug>(coc-explorer-key-n-]d)
+nmap <buffer> ]c <Plug>(coc-explorer-key-n-]c)
+nmap <buffer> ]] <Plug>(coc-explorer-key-n-]])
+vmap <buffer> ]D <Plug>(coc-explorer-key-v-]D)
+vmap <buffer> ]C <Plug>(coc-explorer-key-v-]C)
+vmap <buffer> ]m <Plug>(coc-explorer-key-v-]m)
+vmap <buffer> ]i <Plug>(coc-explorer-key-v-]i)
+vmap <buffer> ]d <Plug>(coc-explorer-key-v-]d)
+vmap <buffer> ]c <Plug>(coc-explorer-key-v-]c)
+vmap <buffer> ]] <Plug>(coc-explorer-key-v-]])
+nmap <buffer> a <Plug>(coc-explorer-key-n-a)
+vmap <buffer> al <Plug>(coc-explorer-key-v-al)
+vmap <buffer> ai <Plug>(coc-explorer-key-v-ai)
+vmap <buffer> a <Plug>(coc-explorer-key-v-a)
+nmap <buffer> dt <Plug>(coc-explorer-key-n-dt)
+nmap <buffer> df <Plug>(coc-explorer-key-n-df)
+nmap <buffer> dd <Plug>(coc-explorer-key-n-dd)
+nmap <buffer> da <Plug>(coc-explorer-key-n-da)
+nmap <buffer> dF <Plug>(coc-explorer-key-n-dF)
+nmap <buffer> d  <Plug>(coc-explorer-key-n-d[space])
+vmap <buffer> dt <Plug>(coc-explorer-key-v-dt)
+vmap <buffer> df <Plug>(coc-explorer-key-v-df)
+vmap <buffer> dd <Plug>(coc-explorer-key-v-dd)
+vmap <buffer> da <Plug>(coc-explorer-key-v-da)
+vmap <buffer> dF <Plug>(coc-explorer-key-v-dF)
+vmap <buffer> d  <Plug>(coc-explorer-key-v-d[space])
+nmap <buffer> e <Plug>(coc-explorer-key-n-e)
+vmap <buffer> e <Plug>(coc-explorer-key-v-e)
+nmap <buffer> f <Plug>(coc-explorer-key-n-f)
+vmap <buffer> f <Plug>(coc-explorer-key-v-f)
+nmap <buffer> g. <Plug>(coc-explorer-key-n-g.)
+nmap <buffer> gs <Plug>(coc-explorer-key-n-gs)
+nmap <buffer> gl <Plug>(coc-explorer-key-n-gl)
+nmap <buffer> gh <Plug>(coc-explorer-key-n-gh)
+nmap <buffer> gf <Plug>(coc-explorer-key-n-gf)
+nmap <buffer> gd <Plug>(coc-explorer-key-n-gd)
+nmap <buffer> gb <Plug>(coc-explorer-key-n-gb)
+vmap <buffer> g. <Plug>(coc-explorer-key-v-g.)
+vmap <buffer> gs <Plug>(coc-explorer-key-v-gs)
+vmap <buffer> gl <Plug>(coc-explorer-key-v-gl)
+vmap <buffer> gh <Plug>(coc-explorer-key-v-gh)
+vmap <buffer> gf <Plug>(coc-explorer-key-v-gf)
+vmap <buffer> gd <Plug>(coc-explorer-key-v-gd)
+vmap <buffer> gb <Plug>(coc-explorer-key-v-gb)
+nmap <buffer> h <Plug>(coc-explorer-key-n-h)
+vmap <buffer> h <Plug>(coc-explorer-key-v-h)
+nmap <buffer> il <Plug>(coc-explorer-key-n-il)
+nmap <buffer> ic <Plug>(coc-explorer-key-n-ic)
+vmap <buffer> il <Plug>(coc-explorer-key-v-il)
+vmap <buffer> ii <Plug>(coc-explorer-key-v-ii)
+vmap <buffer> ic <Plug>(coc-explorer-key-v-ic)
+nmap <buffer> l <Plug>(coc-explorer-key-n-l)
+vmap <buffer> l <Plug>(coc-explorer-key-v-l)
+nmap <buffer> m <Plug>(coc-explorer-key-n-m)
+vmap <buffer> m <Plug>(coc-explorer-key-v-m)
+nmap <buffer> o <Plug>(coc-explorer-key-n-o)
+nmap <buffer> p <Plug>(coc-explorer-key-n-p)
+vmap <buffer> p <Plug>(coc-explorer-key-v-p)
+nmap <buffer> q <Plug>(coc-explorer-key-n-q)
+vmap <buffer> q <Plug>(coc-explorer-key-v-q)
+nmap <buffer> r <Plug>(coc-explorer-key-n-r)
+vmap <buffer> r <Plug>(coc-explorer-key-v-r)
+nmap <buffer> s <Plug>(coc-explorer-key-n-s)
+vmap <buffer> s <Plug>(coc-explorer-key-v-s)
+nmap <buffer> t <Plug>(coc-explorer-key-n-t)
+vmap <buffer> t <Plug>(coc-explorer-key-v-t)
+nmap <buffer> y  <Plug>(coc-explorer-key-n-y[space])
+nmap <buffer> yy <Plug>(coc-explorer-key-n-yy)
+nmap <buffer> yt <Plug>(coc-explorer-key-n-yt)
+nmap <buffer> yp <Plug>(coc-explorer-key-n-yp)
+nmap <buffer> yn <Plug>(coc-explorer-key-n-yn)
+nmap <buffer> ya <Plug>(coc-explorer-key-n-ya)
+vmap <buffer> y  <Plug>(coc-explorer-key-v-y[space])
+vmap <buffer> yy <Plug>(coc-explorer-key-v-yy)
+vmap <buffer> yt <Plug>(coc-explorer-key-v-yt)
+vmap <buffer> yp <Plug>(coc-explorer-key-v-yp)
+vmap <buffer> yn <Plug>(coc-explorer-key-v-yn)
+vmap <buffer> ya <Plug>(coc-explorer-key-v-ya)
+nmap <buffer> zh <Plug>(coc-explorer-key-n-zh)
+vmap <buffer> zh <Plug>(coc-explorer-key-v-zh)
+nmap <buffer> <BS> <Plug>(coc-explorer-key-n-[bs])
+nmap <buffer> <2-LeftMouse> <Plug>(coc-explorer-key-n-[2-LeftMouse])
+vmap <buffer> <BS> <Plug>(coc-explorer-key-v-[bs])
+vmap <buffer> <2-LeftMouse> <Plug>(coc-explorer-key-v-[2-LeftMouse])
 noremap <buffer> <silent> <C-P><C-S> :call autopairs#AutoPairsJump()
 noremap <buffer> <silent> <C-P><C-M> :call autopairs#AutoPairsToggleMultilineClose()
 noremap <buffer> <silent> <C-P><C-T> :call autopairs#AutoPairsToggle()
@@ -1587,9 +1862,9 @@ setlocal balloonexpr=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=wipe
+setlocal bufhidden=hide
 setlocal nobuflisted
-setlocal buftype=
+setlocal buftype=nofile
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
@@ -1598,9 +1873,10 @@ setlocal cinwords=if,else,while,do,for,switch
 set colorcolumn=120
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal commentstring=/*\ %s\ */
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
+setlocal completeopt=
 setlocal completeslash=
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -1608,18 +1884,20 @@ setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
-setlocal nocursorline
+setlocal cursorline
 setlocal cursorlineopt=both
 setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
+setlocal eventignorewin=
 setlocal expandtab
-if &filetype != 'startify'
-setlocal filetype=startify
+if &filetype != 'coc-explorer'
+setlocal filetype=coc-explorer
 endif
 setlocal fillchars=
+setlocal findfunc=
 setlocal fixendofline
 setlocal foldcolumn=0
 set nofoldenable
@@ -1636,6 +1914,7 @@ setlocal formatexpr=
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatoptions=tcqmM
 setlocal formatprg=
+setlocal grepformat=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
@@ -1644,8 +1923,10 @@ setlocal includeexpr=
 setlocal indentexpr=
 setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal noinfercase
+setlocal isexpand=
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
+setlocal lhistory=10
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispoptions=
@@ -1654,8 +1935,8 @@ setlocal nolist
 setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
-setlocal matchpairs=
-setlocal modeline
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
 setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
@@ -1666,13 +1947,13 @@ setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
-setlocal noreadonly
+setlocal readonly
 setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
-setlocal shiftwidth=4
+setlocal shiftwidth=2
 setlocal noshortname
 setlocal showbreak=
 setlocal sidescrolloff=-1
@@ -1690,8 +1971,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'startify'
-setlocal syntax=startify
+if &syntax != 'coc-explorer'
+setlocal syntax=coc-explorer
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -1710,10 +1991,437 @@ setlocal varsofttabstop=
 setlocal vartabstop=
 setlocal virtualedit=
 setlocal wincolor=
+setlocal nowinfixbuf
+setlocal nowinfixheight
+setlocal winfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+lcd ~\Desktop\project\axt-agency-static-web
+wincmd w
+argglobal
+enew
+file ~\Desktop\project\axt-agency-static-web\__CtrlSF__
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <C-P><C-E> =autopairs#AutoPairsIgnore()
+inoremap <buffer> <silent> <C-P><C-S> :call autopairs#Keybinds#IgnoreInsertEnterCmd(":call autopairs#AutoPairsJump()")a
+inoremap <buffer> <silent> <expr> <C-P><C-M> autopairs#AutoPairsToggleMultilineClose()
+inoremap <buffer> <silent> <expr> <C-P><C-T> autopairs#AutoPairsToggle()
+inoremap <buffer> <silent> <C-F> =autopairs#AutoPairsFastWrap()
+inoremap <buffer> <silent> <BS> =autopairs#AutoPairsDelete()
+inoremap <buffer> <silent> <C-P>' =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '''')
+inoremap <buffer> <silent> <C-P>" =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '"')
+inoremap <buffer> <silent> <C-P>} =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '}')
+inoremap <buffer> <silent> <C-P>{ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '{')
+inoremap <buffer> <silent> <C-P>] =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ']')
+inoremap <buffer> <silent> <C-P>[ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '[')
+inoremap <buffer> <silent> <C-P>) =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ')')
+inoremap <buffer> <silent> <C-P>( =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '(')
+nnoremap <buffer> <silent>  :call ctrlsf#StopSearch()
+nnoremap <buffer> <silent> <NL> :call ctrlsf#NextMatch(1)
+nnoremap <buffer> <silent>  :call ctrlsf#NextMatch(0)
+nnoremap <buffer> <silent>  :call ctrlsf#JumpTo('open')
+nnoremap <buffer> <silent>  :call ctrlsf#NextMatch(1, 1)
+nnoremap <buffer> <silent>  :call ctrlsf#JumpTo('split')
+nnoremap <buffer> <silent>  :call ctrlsf#NextMatch(0, 1)
+noremap <buffer> <silent>  :call autopairs#AutoPairsJump()
+noremap <buffer> <silent>  :call autopairs#AutoPairsToggleMultilineClose()
+noremap <buffer> <silent>  :call autopairs#AutoPairsToggle()
+nnoremap <buffer> <silent>  :call ctrlsf#utils#FzfRun()
+nnoremap <buffer> <silent> M :call ctrlsf#SwitchViewMode()
+nnoremap <buffer> <silent> O :call ctrlsf#JumpTo('open_background')
+nnoremap <buffer> <silent> P :call ctrlsf#JumpTo('preview_foreground')
+nnoremap <buffer> <silent> T :call ctrlsf#JumpTo('tab_background')
+nnoremap <buffer> <silent> o :call ctrlsf#JumpTo('open')
+nnoremap <buffer> <silent> p :call ctrlsf#JumpTo('preview')
+nnoremap <buffer> <silent> q :call ctrlsf#Quit()
+nnoremap <buffer> <silent> t :call ctrlsf#JumpTo('tab')
+nnoremap <buffer> <silent> <C-T> :call ctrlsf#utils#FzfRun()
+nnoremap <buffer> <silent> <C-K> :call ctrlsf#NextMatch(0)
+nnoremap <buffer> <silent> <C-O> :call ctrlsf#JumpTo('split')
+nnoremap <buffer> <silent> <C-J> :call ctrlsf#NextMatch(1)
+nnoremap <buffer> <silent> <C-N> :call ctrlsf#NextMatch(1, 1)
+nnoremap <buffer> <silent> <C-C> :call ctrlsf#StopSearch()
+nnoremap <buffer> <silent> <2-LeftMouse> :call ctrlsf#JumpTo('open')
+nnoremap <buffer> <silent> <C-P> :call ctrlsf#NextMatch(0, 1)
+noremap <buffer> <silent> <C-P><C-S> :call autopairs#AutoPairsJump()
+noremap <buffer> <silent> <C-P><C-M> :call autopairs#AutoPairsToggleMultilineClose()
+noremap <buffer> <silent> <C-P><C-T> :call autopairs#AutoPairsToggle()
+inoremap <buffer> <silent>  =autopairs#AutoPairsFastWrap()
+inoremap <buffer> <silent>  =autopairs#AutoPairsIgnore()
+inoremap <buffer> <silent>  :call autopairs#Keybinds#IgnoreInsertEnterCmd(":call autopairs#AutoPairsJump()")a
+inoremap <buffer> <silent> <expr>  autopairs#AutoPairsToggleMultilineClose()
+inoremap <buffer> <silent> <expr>  autopairs#AutoPairsToggle()
+inoremap <buffer> <silent> ' =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '''')
+inoremap <buffer> <silent> " =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '"')
+inoremap <buffer> <silent> } =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '}')
+inoremap <buffer> <silent> { =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '{')
+inoremap <buffer> <silent> ] =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ']')
+inoremap <buffer> <silent> [ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '[')
+inoremap <buffer> <silent> ) =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ')')
+inoremap <buffer> <silent> ( =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '(')
+inoremap <buffer> <silent>   =autopairs#AutoPairsSpace()
+inoremap <buffer> <silent> " =autopairs#AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =autopairs#AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =autopairs#AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =autopairs#AutoPairsInsert(')')
+inoremap <buffer> <silent> [ =autopairs#AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =autopairs#AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =autopairs#AutoPairsInsert('`')
+inoremap <buffer> <silent> { =autopairs#AutoPairsInsert('{')
+inoremap <buffer> <silent> } =autopairs#AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=hide
+setlocal nobuflisted
+setlocal buftype=acwrite
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=120
+setlocal colorcolumn=120
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*\ %s\ */
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal completeopt=
+setlocal completeslash=
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal eventignorewin=
+setlocal expandtab
+if &filetype != 'ctrlsf'
+setlocal filetype=ctrlsf
+endif
+setlocal fillchars=
+setlocal findfunc=
+setlocal fixendofline
+setlocal foldcolumn=0
+set nofoldenable
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcqmM
+setlocal formatprg=
+setlocal grepformat=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal isexpand=
+setlocal iskeyword=@,48-57,_
+setlocal keywordprg=
+setlocal lhistory=10
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispoptions=
+setlocal lispwords=
+setlocal nolist
+setlocal listchars=
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+set signcolumn=yes
+setlocal signcolumn=yes
+setlocal smartindent
+setlocal nosmoothscroll
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en,cjk
+setlocal spelloptions=
+setlocal statusline=%!airline#statusline(2)
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'ctrlsf'
+setlocal syntax=ctrlsf
+endif
+setlocal tabstop=4
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+set termwinkey=<c-_>
+setlocal termwinkey=<c-_>
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal thesaurusfunc=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal virtualedit=
+setlocal wincolor=
+setlocal nowinfixbuf
+setlocal winfixheight
+setlocal winfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+lcd ~\Desktop\project\axt-agency-static-web
+wincmd w
+argglobal
+balt ~\Desktop\project\axt-agency-static-web\src\layouts\BasicLayout\components\GlobalIframe\index.vue
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <C-P><C-E> =autopairs#AutoPairsIgnore()
+inoremap <buffer> <silent> <C-P><C-S> :call autopairs#Keybinds#IgnoreInsertEnterCmd(":call autopairs#AutoPairsJump()")a
+inoremap <buffer> <silent> <expr> <C-P><C-M> autopairs#AutoPairsToggleMultilineClose()
+inoremap <buffer> <silent> <expr> <C-P><C-T> autopairs#AutoPairsToggle()
+inoremap <buffer> <silent> <C-F> =autopairs#AutoPairsFastWrap()
+inoremap <buffer> <silent> <BS> =autopairs#AutoPairsDelete()
+inoremap <buffer> <silent> <C-P>' =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '''')
+inoremap <buffer> <silent> <C-P>" =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '"')
+inoremap <buffer> <silent> <C-P>} =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '}')
+inoremap <buffer> <silent> <C-P>{ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '{')
+inoremap <buffer> <silent> <C-P>] =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ']')
+inoremap <buffer> <silent> <C-P>[ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '[')
+inoremap <buffer> <silent> <C-P>) =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ')')
+inoremap <buffer> <silent> <C-P>( =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '(')
+noremap <buffer> <silent>  :call autopairs#AutoPairsJump()
+noremap <buffer> <silent>  :call autopairs#AutoPairsToggleMultilineClose()
+noremap <buffer> <silent>  :call autopairs#AutoPairsToggle()
+noremap <buffer> <silent> <C-P><C-S> :call autopairs#AutoPairsJump()
+noremap <buffer> <silent> <C-P><C-M> :call autopairs#AutoPairsToggleMultilineClose()
+noremap <buffer> <silent> <C-P><C-T> :call autopairs#AutoPairsToggle()
+inoremap <buffer> <silent>  =autopairs#AutoPairsFastWrap()
+inoremap <buffer> <silent>  =autopairs#AutoPairsIgnore()
+inoremap <buffer> <silent>  :call autopairs#Keybinds#IgnoreInsertEnterCmd(":call autopairs#AutoPairsJump()")a
+inoremap <buffer> <silent> <expr>  autopairs#AutoPairsToggleMultilineClose()
+inoremap <buffer> <silent> <expr>  autopairs#AutoPairsToggle()
+inoremap <buffer> <silent> ' =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '''')
+inoremap <buffer> <silent> " =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '"')
+inoremap <buffer> <silent> } =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '}')
+inoremap <buffer> <silent> { =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '{')
+inoremap <buffer> <silent> ] =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ']')
+inoremap <buffer> <silent> [ =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '[')
+inoremap <buffer> <silent> ) =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', ')')
+inoremap <buffer> <silent> ( =autopairs#Keybinds#IgnoreInsertEnter('autopairs#AutoPairsMoveCharacter', '(')
+inoremap <buffer> <silent>   =autopairs#AutoPairsSpace()
+inoremap <buffer> <silent>  > >
+inoremap <buffer> <silent> " =autopairs#AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =autopairs#AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =autopairs#AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =autopairs#AutoPairsInsert(')')
+inoremap <buffer> <silent> [ =autopairs#AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =autopairs#AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =autopairs#AutoPairsInsert('`')
+inoremap <buffer> <silent> { =autopairs#AutoPairsInsert('{')
+inoremap <buffer> <silent> } =autopairs#AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=120
+setlocal colorcolumn=120
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*\ %s\ */
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal completeopt=
+setlocal completeslash=
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal eventignorewin=
+setlocal expandtab
+if &filetype != 'vue'
+setlocal filetype=vue
+endif
+setlocal fillchars=
+setlocal findfunc=
+setlocal fixendofline
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=Fixedgq(v:lnum,v:count)
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcqmM
+setlocal formatprg=
+setlocal grepformat=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetVueIndent()
+setlocal indentkeys=0{,0},0),0],0,,!^F,o,O,e,:,*<Return>,<>>,<<>,/
+setlocal noinfercase
+setlocal isexpand=
+setlocal iskeyword=@,48-57,_,192-255,-
+setlocal keywordprg=
+setlocal lhistory=10
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispoptions=
+setlocal lispwords=
+setlocal nolist
+setlocal listchars=
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+set signcolumn=yes
+setlocal signcolumn=yes
+setlocal nosmartindent
+setlocal nosmoothscroll
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en,cjk
+setlocal spelloptions=
+setlocal statusline=%!airline#statusline(3)
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'vue'
+setlocal syntax=vue
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+set termwinkey=<c-_>
+setlocal termwinkey=<c-_>
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal thesaurusfunc=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal virtualedit=
+setlocal wincolor=
+setlocal nowinfixbuf
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 21 - ((20 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 21
+normal! 028|
+lcd ~\Desktop\project\axt-agency-static-web
+wincmd w
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 40 + 137) / 274)
+exe 'vert 2resize ' . ((&columns * 137 + 137) / 274)
+exe 'vert 3resize ' . ((&columns * 95 + 137) / 274)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
@@ -1721,6 +2429,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 set shortmess=filnxtToOScI
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
