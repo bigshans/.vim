@@ -113,6 +113,7 @@ endfunction
 nmap <silent> <C-g> :call ClearAll()<CR>
 nmap cd :call config#changeToCurrentFolder()<CR>
 nmap CD :ProjectRootCD<CR>
+nmap cr :Rooter<CR>
 
 nnoremap <silent> <C-n> :set relativenumber!<cr>
 
