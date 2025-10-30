@@ -129,3 +129,12 @@ function! functions#bufQuit() abort
     endif
 endfunction
 
+function! functions#get_fern_cursor_path() abort
+  let l:helper = fern#helper#new()
+  " 获取光标下文件或目录的路径
+  let l:node = l:helper.sync.get_cursor_node()
+  if empty(l:node)
+      return ''
+  endif
+  return l:node._path
+endfunction

@@ -12,27 +12,40 @@ function! s:init_fern() abort
   nmap <buffer><expr>
             \ <Plug>(fern-my-open-or-enter)
             \ fern#smart#leaf(
-            \   "<Plug>(fern-action-open)",
+            \   "<Plug>(fern-action-open:select)",
             \   "<Plug>(fern-action-enter)",
             \ )
+
+  nmap <buffer><expr>
+              \ <Plug>(fern-my-open-or-expand:select)
+              \ fern#smart#leaf(
+              \   "<Plug>(fern-action-open:select)",
+              \   "<Plug>(fern-action-expand)",
+              \ )
+  nmap <buffer><expr> <Plug>(fern-my-open-external) FernOpenExternal()
   nmap <buffer> <CR> <Plug>(fern-my-open-or-enter)
   nmap <buffer> <BS> <Plug>(fern-action-leave)
-  nmap <buffer> <2-LeftMouse> <Plug>(fern-action-open-or-expand)
-  nmap <buffer> l <Plug>(fern-action-open-or-expand)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-or-expand:select)
+  nmap <buffer> l <Plug>(fern-my-open-or-expand:select)
   nmap <buffer> h <Plug>(fern-action-collapse)
   nmap <buffer> E <Plug>(fern-action-open:vsplit)
   nmap <buffer> e <Plug>(fern-action-open:split)
   nmap <buffer> t <Plug>(fern-action-open:tabedit)
   nmap <buffer> i <Plug>(fern-action-preview)
-  nmap <buffer> r <Plug>(fern-action-rename)
-  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> r <Plug>(fern-action-better-rename)
   nmap <buffer> a <Plug>(fern-action-new-file)
   nmap <buffer> A <Plug>(fern-action-new-dir)
+  nmap <buffer> - <Plug>(fern-action-mark:toggle)
   nmap <buffer> m <Plug>(fern-action-choice)
   nmap <buffer> R <Plug>(fern-action-reload)
   nmap <buffer> f <Plug>(fern-action-include)
   nmap <buffer> c <Plug>(fern-action-lcd)
+  nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
+  nmap <buffer> dd <Plug>(fern-action-clipboard-move)
+  nmap <buffer> p <Plug>(fern-action-clipboard-paste)
   nmap <buffer> D <Plug>(fern-action-remove)
+  nmap <buffer> C <Plug>(fern-action-clipboard-clear)
+  nmap <buffer> X <Plug>(fern-my-open-external)
   nmap <buffer> . <Plug>(fern-action-hidden:toggle)
   nmap <buffer> q :<C-u>quit<CR>
 endfunction
@@ -56,10 +69,12 @@ augroup my-fern-highlight
     autocmd User FernHighlight call s:on_highlight()
 augroup END
 
-
-function! FernOpenInFileManager() abort
+function! g:FernOpenExternal() abort
   " 获取光标下文件或目录的路径
-  let l:path = fern#internal#node#path(fern#helper#get_cursor_node())
+  let l:path = functions#get_fern_cursor_path()
+  if l:path == ''
+      return
+  endif
   " 判断你的系统，调用不同的外部命令
   if has('mac')
     call system('open ' . shellescape(l:path))
