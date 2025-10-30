@@ -107,11 +107,11 @@
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "translator.proxy": "socks://127.0.0.1:1080",
-    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    // "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,
     "vimlsp.suggest.fromRuntimepath": true,
-    "stylua.styluaPath": "/usr/bin/stylua",
-    "stylua.configPath": "/home/aerian/.vim/stylua.toml",
+    // "stylua.styluaPath": "/usr/bin/stylua",
+    // "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "snippets.ultisnips.pythonPrompt": false,
     "highlight.disableLanguages": ["vue"],
@@ -134,5 +134,5 @@
     ],
     "coc.preferences.triggerAfterInsertEnter": false,
     "git.enableGutters": true,
-    "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe"
+    "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe",
 }

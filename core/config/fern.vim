@@ -3,6 +3,12 @@ let g:fern#renderer = "nerdfont"
 let g:fern#default_hidden = 1
 let g:fern#drawer_width = 30
 let g:fern#disable_default_mappings = 1
+" ============ git-status ============
+
+let g:fern_git_stats#disable_ignored = 1
+let g:fern_git_stats#disable_untracked = 1
+
+"============ git-status-end ============
 
 nnoremap <silent> <leader>e :Fern . -drawer -toggle -width=30<CR>
 autocmd BufEnter * silent! call fern#reveal(expand('%:p'))
@@ -38,6 +44,7 @@ function! s:init_fern() abort
   nmap <buffer> - <Plug>(fern-action-mark:toggle)
   nmap <buffer> m <Plug>(fern-action-choice)
   nmap <buffer> R <Plug>(fern-action-reload)
+  nmap <buffer> F :call <SID>fern_leaderf_file()<CR>
   nmap <buffer> f <Plug>(fern-action-include)
   nmap <buffer> c <Plug>(fern-action-lcd)
   nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
@@ -84,4 +91,17 @@ function! g:FernOpenExternal() abort
   elseif has('win32')
     call system('explorer ' . substitute(l:path, '/', '\\', 'g'))
   endif
+endfunction
+
+function! s:fern_leaderf_file() abort
+  " 获取当前 fern 的根目录
+  let l:path = functions#get_fern_cursor_path()
+  if l:path == ''
+      return
+  elseif !isdirectory(l:path)
+      let l:path = fnamemodify(l:path, ':h')
+  endif
+
+  " 调用 LeaderF 文件搜索
+  execute 'LeaderfFile ' . fnameescape(l:path)
 endfunction
