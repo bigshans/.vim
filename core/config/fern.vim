@@ -14,20 +14,19 @@ nnoremap <silent> <leader>e :Fern . -drawer -toggle -width=30<CR>
 autocmd BufEnter * silent! call fern#reveal(expand('%:p'))
 
 function! s:init_fern() abort
-  " Perform 'open' on leaf node and 'enter' on branch node
   nmap <buffer><expr>
             \ <Plug>(fern-my-open-or-enter)
             \ fern#smart#leaf(
             \   "<Plug>(fern-action-open:select)",
             \   "<Plug>(fern-action-enter)",
             \ )
-
   nmap <buffer><expr>
               \ <Plug>(fern-my-open-or-expand:select)
               \ fern#smart#leaf(
               \   "<Plug>(fern-action-open:select)",
               \   "<Plug>(fern-action-expand)",
               \ )
+
   nmap <buffer><expr> <Plug>(fern-my-open-external) FernOpenExternal()
   nmap <buffer> <CR> <Plug>(fern-my-open-or-enter)
   nmap <buffer> <BS> <Plug>(fern-action-leave)
@@ -39,10 +38,10 @@ function! s:init_fern() abort
   nmap <buffer> t <Plug>(fern-action-open:tabedit)
   nmap <buffer> i <Plug>(fern-action-preview)
   nmap <buffer> r <Plug>(fern-action-better-rename)
-  nmap <buffer> a <Plug>(fern-action-new-file)
-  nmap <buffer> A <Plug>(fern-action-new-dir)
+  nmap <buffer> n <Plug>(fern-action-new-file)
+  nmap <buffer> N <Plug>(fern-action-new-dir)
   nmap <buffer> - <Plug>(fern-action-mark:toggle)
-  nmap <buffer> m <Plug>(fern-action-choice)
+  nmap <buffer> a <Plug>(fern-action-choice)
   nmap <buffer> R <Plug>(fern-action-reload)
   nmap <buffer> F :call <SID>fern_leaderf_file()<CR>
   nmap <buffer> f <Plug>(fern-action-include)
@@ -54,6 +53,8 @@ function! s:init_fern() abort
   nmap <buffer> C <Plug>(fern-action-clipboard-clear)
   nmap <buffer> X <Plug>(fern-my-open-external)
   nmap <buffer> . <Plug>(fern-action-hidden:toggle)
+  nmap <buffer><nowait> >> <Plug>(fern-action-git-stage)
+  nmap <buffer><nowait> << <Plug>(fern-action-git-unstage)
   nmap <buffer> q :<C-u>quit<CR>
 endfunction
 

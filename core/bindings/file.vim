@@ -10,6 +10,8 @@ let g:navigator["<leader>"].f = {
             \ 'n': [":tabnew", 'create new tab']
             \ }
 
+let g:navigator["<leader>"].f["t"][0] = ":Fern . -drawer -toggle -reveal=%"
+
 if has('win32') || has('win64')
     nnoremap <silent><leader>fc :Lexplore<CR>
     let g:navigator["<leader>"].f['c'] = [':Lexplore', 'toggle expolre']
@@ -19,12 +21,12 @@ endif
 
 nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
-nnoremap <silent> \| :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
-nnoremap <silent> \ :Fern . -drawer -toggle -width=50 -reveal=%<CR>
+" nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
+" nnoremap <silent> \| :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
+nnoremap <silent> \ :Fern . -drawer -toggle -reveal=%<CR>
 nnoremap <silent><leader>fs :w!<CR>
 nnoremap <leader>fS :SudaWrite<CR>
 nnoremap <leader>fm :call mkdir(expand("%:p:h"), "p")<CR>
-nnoremap <leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
+nnoremap <silent> <leader>ft :Fern . -drawer -toggle -reveal=%<CR>
 
 nnoremap <leader>fn :tabnew<CR>

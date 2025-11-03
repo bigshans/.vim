@@ -1,16 +1,25 @@
 packadd! cfilter
 call plug#begin('~/.vim/bundle')
 
-PL 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
+if exists('g:coc_off')
+    PL 'vimcomplete', 'girishji/vimcomplete'
+    " PL 'vim-lsp', 'prabirshrestha/vim-lsp'
+    PL 'yegappan/lsp'
+    PL 'mattn/vim-lsp-settings'
+    PL 'normen/vim-lsp-settings-adapter'
+else
+    PL 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
+endif
 PL 'leaderf', 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 PL 'lambdalisue/suda.vim'
+
 if !has('win32') || !has('win64')
     PL 'fcitx', 'bigshans/fcitx.vim'
-    " PL 'ranger', 'francoiscabrol/ranger.vim'
+    PL 'ranger', 'francoiscabrol/ranger.vim'
 endif
+
 PL 'cycle', 'bigshans/vim-cycle'
 PL 'vista', 'liuchengxu/vista.vim'
-" PL 'drmikehenry/vim-fixkey'
 PL 'tomtom/tcomment_vim'
 PL 'skywind3000/vim-color-patch'
 
@@ -58,12 +67,13 @@ PL 'ptzz/lf.vim'
 PL 'voldikss/vim-floaterm'
 PL 'leafOfTree/vim-vue-plugin'
 PL 'vim-project', 'leafOfTree/vim-project'
-PL 'wiki', 'bigshans/wiki.vim'
-PL 'junegunn/fzf.vim'
-PL 'kaarmu/typst.vim'
+" PL 'wiki', 'bigshans/wiki.vim'
+PL 'junegunn/fzf'
+PL 'fzf', 'junegunn/fzf.vim'
+" PL 'kaarmu/typst.vim'
 PL 'inkarkat/vim-SyntaxRange'
 PL 'vim-scripts/utl.vim'
-PL 'jceb/vim-orgmode'
+" PL 'jceb/vim-orgmode'
 PL 'rhysd/clever-f.vim'
 PL 'catppuccin/vim', { 'as': 'catppuccin' }
 PL 'autopairs', 'LunarWatcher/auto-pairs'
@@ -71,8 +81,6 @@ PL 'vim-closetag', 'alvan/vim-closetag'
 " PL 'jeffkreeftmeijer/vim-numbertoggle'
 PL 'mileszs/ack.vim'
 PL 'voldikss/LeaderF-floaterm'
-PL 'junegunn/fzf'
-PL 'fzf', 'junegunn/fzf.vim'
 " required by vim-session
 PL 'xolox/vim-misc'
 PL 'vim-session', 'xolox/vim-session'
@@ -86,20 +94,14 @@ PL 'junegunn/goyo.vim'
 PL 'junegunn/limelight.vim'
 PL 'dyng/ctrlsf.vim'
 PL 'szw/vim-maximizer'
-" PL 'justinmk/vim-dirvish'
+" fern related plugin
+PL 'airblade/vim-rooter'
+PL 'fern', 'lambdalisue/vim-fern'
 PL 'lambdalisue/fern-git-status.vim'
 PL 'lambdalisue/vim-glyph-palette'
-PL 'fern', 'lambdalisue/vim-fern'
 PL 'lambdalisue/vim-fern-renderer-nerdfont'
-PL 'airblade/vim-rooter'
-" PL 'LumaKernel/fern-mapping-fzf.vim'
-" PL 'preservim/nerdtree'
+PL 'lambdalisue/vim-fern-mapping-git'
 " PL 'wsdjeg/FlyGrep.vim'
 " PL 'yegappan/greplace'
-
-" PL 'vimwiki', 'vimwiki/vimwiki'
-" PL 'codeium', 'Exafunction/codeium.vim'
-" PL 'ludovicchabant/vim-gutentags'
-" PL 'gutentags_plus', 'skywind3000/gutentags_plus'
 
 call plugin#end()

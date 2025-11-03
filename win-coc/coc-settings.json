@@ -135,4 +135,6 @@
     "coc.preferences.triggerAfterInsertEnter": false,
     "git.enableGutters": true,
     "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe",
+    "volar.enable": true,
+    "vetur.enable": false 
 }
