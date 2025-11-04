@@ -5,8 +5,8 @@ if exists('g:coc_off')
     PL 'vimcomplete', 'girishji/vimcomplete'
     " PL 'vim-lsp', 'prabirshrestha/vim-lsp'
     PL 'yegappan/lsp'
-    PL 'mattn/vim-lsp-settings'
-    PL 'normen/vim-lsp-settings-adapter'
+    " PL 'mattn/vim-lsp-settings'
+    " PL 'normen/vim-lsp-settings-adapter'
 else
     PL 'coc', 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile'}
 endif

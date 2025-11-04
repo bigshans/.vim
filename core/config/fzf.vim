@@ -28,6 +28,7 @@ endfunction
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
 command! -bang -nargs=* GGrep
             \ call fzf#vim#grep(
             \   'git grep --line-number '.shellescape(<q-args>), 0,
@@ -48,7 +49,7 @@ command! -bang -nargs=* Rg
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
 command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({ 'options': ['--layout=reverse'] }), <bang>0)
 command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 let g:fzf_commands_expect = 'tab'
 autocmd! User FzfStatusLine call <SID>fzf_statusline()

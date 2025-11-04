@@ -14,19 +14,20 @@ nnoremap <silent> <leader>e :Fern . -drawer -toggle -width=30<CR>
 autocmd BufEnter * silent! call fern#reveal(expand('%:p'))
 
 function! s:init_fern() abort
+  " Perform 'open' on leaf node and 'enter' on branch node
   nmap <buffer><expr>
             \ <Plug>(fern-my-open-or-enter)
             \ fern#smart#leaf(
             \   "<Plug>(fern-action-open:select)",
             \   "<Plug>(fern-action-enter)",
             \ )
+
   nmap <buffer><expr>
               \ <Plug>(fern-my-open-or-expand:select)
               \ fern#smart#leaf(
               \   "<Plug>(fern-action-open:select)",
               \   "<Plug>(fern-action-expand)",
               \ )
-
   nmap <buffer><expr> <Plug>(fern-my-open-external) FernOpenExternal()
   nmap <buffer> <CR> <Plug>(fern-my-open-or-enter)
   nmap <buffer> <BS> <Plug>(fern-action-leave)
@@ -38,13 +39,13 @@ function! s:init_fern() abort
   nmap <buffer> t <Plug>(fern-action-open:tabedit)
   nmap <buffer> i <Plug>(fern-action-preview)
   nmap <buffer> r <Plug>(fern-action-better-rename)
-  nmap <buffer> n <Plug>(fern-action-new-file)
-  nmap <buffer> N <Plug>(fern-action-new-dir)
+  nmap <buffer> a <Plug>(fern-action-new-file)
+  nmap <buffer> A <Plug>(fern-action-new-dir)
   nmap <buffer> - <Plug>(fern-action-mark:toggle)
-  nmap <buffer> a <Plug>(fern-action-choice)
+  nmap <buffer> m <Plug>(fern-action-choice)
   nmap <buffer> R <Plug>(fern-action-reload)
-  nmap <buffer> F :call <SID>fern_leaderf_file()<CR>
-  nmap <buffer> f <Plug>(fern-action-include)
+  nmap <buffer><silent> f :call <SID>fern_fzf()<CR>
+  nmap <buffer> F <Plug>(fern-action-include)
   nmap <buffer> c <Plug>(fern-action-lcd)
   nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
   nmap <buffer> dd <Plug>(fern-action-clipboard-move)
@@ -53,8 +54,6 @@ function! s:init_fern() abort
   nmap <buffer> C <Plug>(fern-action-clipboard-clear)
   nmap <buffer> X <Plug>(fern-my-open-external)
   nmap <buffer> . <Plug>(fern-action-hidden:toggle)
-  nmap <buffer><nowait> >> <Plug>(fern-action-git-stage)
-  nmap <buffer><nowait> << <Plug>(fern-action-git-unstage)
   nmap <buffer> q :<C-u>quit<CR>
 endfunction
 
@@ -68,8 +67,10 @@ augroup my-glyph-palette
 augroup END
 
 function! s:on_highlight() abort
-    highlight link FernBranchText Title
-    highlight link FernBranchSymbol   Title
+    " highlight link FernBranchText Title
+    " highlight link FernBranchSymbol   Title
+    highlight FernBranchText guifg=#89b4fa ctermfg=111
+    highlight FernBranchSymbol guifg=#89b4fa ctermfg=111
 endfunction
 
 augroup my-fern-highlight
@@ -94,7 +95,23 @@ function! g:FernOpenExternal() abort
   endif
 endfunction
 
-function! s:fern_leaderf_file() abort
+function! BackToFern(isCancel) abort
+  if a:isCancel != v:true
+      return
+  endif
+  let l:fern_win = -1
+  for l:w in range(1, winnr('$'))
+    if getbufvar(winbufnr(l:w), '&filetype') ==# 'fern'
+      let l:fern_win = l:w
+      break
+    endif
+  endfor
+  if l:fern_win != -1
+      execute l:fern_win . 'wincmd w'
+  endif
+endfunction
+
+function! s:fern_fzf() abort
   " 获取当前 fern 的根目录
   let l:path = functions#get_fern_cursor_path()
   if l:path == ''
@@ -102,7 +119,48 @@ function! s:fern_leaderf_file() abort
   elseif !isdirectory(l:path)
       let l:path = fnamemodify(l:path, ':h')
   endif
+  " 获取所有窗口号
+  let l:windows = range(1, winnr('$'))
+  " 筛选出非 fern 的窗口
+  let l:normal_wins = filter(copy(l:windows), 'getbufvar(winbufnr(v:val), "&filetype") !=# "fern"')
 
-  " 调用 LeaderF 文件搜索
-  execute 'LeaderfFile ' . fnameescape(l:path)
+  " 记录 Fern 窗口号
+  let l:fern_win = -1
+  for l:w in range(1, winnr('$'))
+    if getbufvar(winbufnr(l:w), '&filetype') ==# 'fern'
+      let l:fern_win = l:w
+      break
+    endif
+  endfor
+
+  " 判断是否需要 choosewin
+  if len(l:normal_wins) == 0
+    echo "No normal windows available."
+    return
+  elseif len(l:normal_wins) == 1
+    let l:target_win = l:normal_wins[0]
+  else
+    let l:before = winnr()
+    ChooseWin
+    let l:after = winnr()
+    if l:before == l:after
+      " 用户取消选择
+      if l:fern_win > 0
+        execute l:fern_win . 'wincmd w'
+      endif
+      return
+    endif
+    let l:target_win = l:after
+  endif
+
+  " 切换窗口并执行 LeaderF
+  execute l:target_win . 'wincmd w'
+
+  call RegisterFzfCancelCb(function("BackToFern"))
+
+  execute 'Files ' . fnameescape(l:path)
+
+  " if exists('g:fzfCancel') && g:fzfCancel
+      " execute l:fern_win . 'wincmd w'
+  " endif
 endfunction
