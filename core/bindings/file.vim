@@ -12,6 +12,7 @@ let g:navigator["<leader>"].f = {
 nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
 nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
+nnoremap <silent>\ :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
 " if has('gui')
     nnoremap <silent><leader>fc :Lexplore<CR>
     let g:navigator["<leader>"]["c"] = [":Lexplore", "explore"]
