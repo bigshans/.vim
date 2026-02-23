@@ -1,110 +1,134 @@
+" =============================================================================
+" 基础编码设置
+" =============================================================================
 scriptencoding UTF-8
 set encoding=UTF-8
 let g:mapleader = " "
 
+" =============================================================================
+" 文件类型和语法
+" =============================================================================
 filetype plugin indent on
-
-" 语法高亮设置
 syntax enable
 syntax on
 
-" set nocompatible
-" 显示一列高亮行在第 120 个字符处，
-" 示意单行最大宽度
-set colorcolumn=120
-" 信息缩写
-set shortmess+=Ic
-" 改回默认值
-" 缩短超时时间
-" set timeoutlen=300
-set nofoldenable
-" set foldmethod=indent
-" set foldlevel=999
-" set foldmarker={,}
-" 设置隐藏高亮
-set hidden
-" 高亮当前行
-set cursorline
-" 鼠标闪烁
-set guicursor=n-v-c:block,i-ci-ve:,r-cr:hor20,o:hor50
-            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-            \,sm:block-blinkwait175-blinkoff150-blinkon175
-" 设置虚拟编辑
-set virtualedit=block
-set t_Co=256
-set background=dark
-set number
-set incsearch
-set hlsearch
-set title
-set backspace=indent,eol,start
-" 设置下一行跳转
-set whichwrap+=<,>,h,l,[,]
-set magic
-set encoding=UTF-8
-set fileencoding=UTF-8
-scriptencoding UTF-8
-set laststatus=2
-set updatetime=300
-set complete-=k
+" =============================================================================
+" 编辑器基本设置
+" =============================================================================
+set hidden          " 允许隐藏缓冲区
+set cursorline      " 高亮当前行
+set number          " 显示行号
+set title           " 显示标题
+set mouse=a         " 启用鼠标支持
+set virtualedit=block  " 虚拟编辑模式
+set t_Co=256        " 256色支持
+set background=dark " 深色背景
+set signcolumn=yes  " 显示符号列
+set showtabline=2   " 总是显示标签行
 
+" =============================================================================
+" 搜索设置
+" =============================================================================
+set incsearch       " 增量搜索
+set hlsearch        " 高亮搜索结果
+set magic           " 使用魔术模式
+
+" =============================================================================
+" 缩进和格式化
+" =============================================================================
 function g:SetTabSize(size)
-	exec 'set tabstop=' . a:size
-	exec 'set softtabstop=' . a:size
-	exec 'set shiftwidth=' . a:size
+    exec 'set tabstop=' . a:size
+    exec 'set softtabstop=' . a:size
+    exec 'set shiftwidth=' . a:size
 endfunction
 
 call g:SetTabSize(4)
-set expandtab
-set wrap
+set expandtab       " 使用空格代替制表符
+set smartindent     " 智能缩进
+set autoindent      " 自动缩进
+set formatoptions+=mM  " 格式化选项
+
+" =============================================================================
+" 换行和显示
+" =============================================================================
+set wrap            " 自动换行
 if &wrap == 1
-    set showbreak=<
-    set listchars=eol:↩︎
+    set showbreak=<     " 换行显示符号
+    set listchars=eol:↩︎  " 行尾符号
 endif
+set nolist          " 不显示特殊字符
+set colorcolumn=120 " 120列颜色标记
 
-set formatoptions+=mM
-set smartindent
-set autoindent
-set list
+" =============================================================================
+" 文件编码
+" =============================================================================
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,latin1
 
-set noswapfile
-set writebackup
-set nobackup
-set backupdir=/tmp
-set spelllang=en,cjk
-set directory=.,$TEMP
-set nospell
-set pumheight=20
+" =============================================================================
+" 键盘和导航
+" =============================================================================
+set backspace=indent,eol,start  " 退格键行为
+set whichwrap+=<,>,h,l,[,]      " 允许换行导航
+set shortmess+=Ic               " 简化消息显示
 
-" 菜单设置
+" =============================================================================
+" 备份和撤销
+" =============================================================================
+set noswapfile      " 不使用交换文件
+set writebackup     " 写入时备份
+set nobackup        " 不保留备份文件
+set backupdir=/tmp  " 备份目录
+set pumheight=20    " 弹出菜单高度
+
+try
+    set undodir=$HOME_VIM . '/undodir'  " 撤销目录
+    set undofile        " 启用持久撤销
+catch
+endtry
+
+" =============================================================================
+" GUI 设置
+" =============================================================================
 if has('gui_running')
-    set guioptions-=T
-    set guioptions-=m
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=e
-    set guifont=NotoMonoforPowerline\ 12
-    " set guifont=Hack_Nerd_Font_Mono:h11,Cascadia_Mono_PL:h11
+    set guioptions-=T   " 隐藏工具栏
+    set guioptions-=m   " 隐藏菜单栏
+    set guioptions-=l   " 隐藏左滚动条
+    set guioptions-=L   " 隐藏左滚动条
+    set guioptions-=r   " 隐藏右滚动条
+    set guioptions-=R   " 隐藏右滚动条
+    set guioptions-=e   " 隐藏标签页工具栏
+    set guifont=NotoMonoforPowerline\ 12  " 字体设置
 endif
 
-" 符号列
-set signcolumn=yes
+" =============================================================================
+" 终端和视觉效果
+" =============================================================================
+set termguicolors   " 终端真彩色支持
+set vb t_vb=        " 禁用响铃
+au GUIEnter * set t_vb=  " GUI启动时禁用响铃
 
-set showtabline=2
-set mouse=a
+" =============================================================================
+" 拼写检查
+" =============================================================================
+set spelllang=en,cjk  " 拼写检查语言
+set directory=.,$TEMP  " 临时目录
+set nospell           " 默认不启用拼写检查
 
-set termguicolors
-set vb t_vb=
-au GUIEnter * set t_vb=
+" =============================================================================
+" 状态行和更新
+" =============================================================================
+set laststatus=2      " 总是显示状态行
+set updatetime=300    " 更新时间间隔
+set complete-=k       " 移除关键字补全
 
+" =============================================================================
+" 自定义命令
+" =============================================================================
 command! C :call utils#mk_dir()
 command! Bigger :call utils#bigger()
 command! Smaller :call utils#smaller()
+command! ToggleReadOnly :call utils#toggle_readonly()
 command! Hex :%!xxd
 command! HexExit :%!xxd -r
 command! W :call utils#sudo_save()
-
-command! -nargs=+ -bar PL call plugin#append(<args>)
-command! -nargs=+ -bar PLL call plugin#append_lua(<args>)
+command! -nargs=+ -bar PA call plugin#append(<args>)
