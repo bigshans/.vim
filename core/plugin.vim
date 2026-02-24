@@ -101,6 +101,8 @@ PL 'lambdalisue/fern-git-status.vim'
 PL 'lambdalisue/vim-glyph-palette'
 PL 'lambdalisue/vim-fern-renderer-nerdfont'
 PL 'lambdalisue/vim-fern-mapping-git'
+PL 'mbbill/undotree'
+PL 'kblin/vim-fountain'
 " PL 'wsdjeg/FlyGrep.vim'
 " PL 'yegappan/greplace'
 

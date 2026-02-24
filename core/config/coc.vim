@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-deno',
             \ 'coc-emmet',
-            \ 'coc-eslint',
             \ 'coc-go',
             \ 'coc-highlight',
             \ 'coc-html',
@@ -126,7 +125,7 @@ function! LazySetupCocVue()
 endfunction
 
 " 当第一次打开 .vue 文件时执行检测
-autocmd BufReadPost *.vue call LazySetupCocVue()
+" autocmd BufReadPost *.vue call LazySetupCocVue()
 
 " 每当切换工作目录时，重置检测标记
-autocmd DirChanged * let g:vue_detect_done = 0
+" autocmd DirChanged * let g:vue_detect_done = 0

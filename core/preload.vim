@@ -9,11 +9,13 @@ syntax enable
 syntax on
 
 set nocompatible
+set incsearch
 " 显示一列高亮行在第 120 个字符处，
 " 示意单行最大宽度
 set colorcolumn=120
 " 信息缩写
 set shortmess+=Ic
+set showmatch
 " 改回默认值
 " 缩短超时时间
 " set timeoutlen=300
