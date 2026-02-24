@@ -1,5 +1,6 @@
 scriptencoding UTF-8
 set encoding=UTF-8
+set fileencodings=utf-8,gbk,gb18030,ucs-bom,latin1
 let g:mapleader = " "
 
 filetype plugin indent on
