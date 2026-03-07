@@ -48,21 +48,20 @@ PA 'chemzqm/wxapp.vim'
 PA 'voldikss/vim-floaterm'
 PA 'leafOfTree/vim-vue-plugin'
 PA 'vim-project', 'leafOfTree/vim-project'
-PA 'junegunn/fzf.vim'
 PA 'inkarkat/vim-SyntaxRange'
 PA 'vim-scripts/utl.vim'
 PA 'jceb/vim-orgmode'
 PA 'clever-f', 'rhysd/clever-f.vim'
-PA 'joplin', 'tenfyzhong/joplin.vim/'
+" PA 'joplin', 'tenfyzhong/joplin.vim/'
 PA 'iceberg', 'cocopon/iceberg.vim'
 PA 'catppuccin/vim', { 'as': 'catppuccin' }
 PA 'mileszs/ack.vim'
 PA 'voldikss/LeaderF-floaterm'
-PA 'junegunn/fzf'
 PA 'fzf', 'junegunn/fzf.vim'
 
 " required by vim-session
 PA 'xolox/vim-misc'
 PA 'vim-session', 'xolox/vim-session'
+PA 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plugin#end()

@@ -69,7 +69,6 @@ InitKey others
 InitKey buffer
 InitKey fold
 InitKey project
-" InitKey jieba
 " InitKey gscope
 
 " 应用导航映射

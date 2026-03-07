@@ -80,11 +80,13 @@ set nobackup        " 不保留备份文件
 set backupdir=/tmp  " 备份目录
 set pumheight=20    " 弹出菜单高度
 
-try
-    set undodir=$HOME_VIM . '/undodir'  " 撤销目录
-    set undofile        " 启用持久撤销
-catch
-endtry
+let s:undo_path = expand($HOME_VIM . '/undodir')
+if !isdirectory(s:undo_path)
+    call mkdir(s:undo_path, 'p')
+endif
+
+let &undodir = s:undo_path  " 使用变量设置选项
+set undofile                " 启用持久撤销
 
 " =============================================================================
 " GUI 设置
