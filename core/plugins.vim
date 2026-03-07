@@ -39,6 +39,7 @@ call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
 call packs#def('catppuccin/vim', { 'as': 'catppuccin' }, 'catppuccin')
+call packs#def('mhinz/vim-startify', 'startify')
 
 " ===============
 " Which key
@@ -66,7 +67,11 @@ call packs#def('alvan/vim-closetag', 'closetag')
 " ===============
 " Project
 " ===============
-call packs#def('leafOfTree/vim-project', 'vim-project')
+
+" vim-session required
+call packs#def('xolox/vim-misc')
+call packs#def('xolox/vim-session', 'vim-session')
+" call packs#def('leafOfTree/vim-project', 'vim-project')
 
 " ===============
 " Git

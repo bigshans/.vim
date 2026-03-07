@@ -4,6 +4,7 @@ let g:navigator = {
             \ "b": { "name": "buffers..." },
             \ "o": { "name": "opne..." },
             \ "P": { "name": "plugn..." },
+            \ "p": { "name": "project and session..." },
             \ "w": { "name": "window..." },
             \ "s": { "name": "search..." },
             \ "g": { "name": "git..."},
@@ -135,7 +136,6 @@ cal ExtendNavigator('leaderf', {
                 \ 'h': ['Leaderf help', '[S]earch [H]elptags'],
                 \ 'r': ['Leaderf rg', '[S]earch by [R]g'],
                 \ 'd': [':LeaderfFile', '[S]earch [D]ir file'],
-                \ 'p': [':ProjectList', '[S]earch [P]rojects'],
             \ },
             \ "o": {
                 \"c": [printf(":Leaderf file %s<CR>", $CORE_CONFIG), "open core config dir"]
@@ -184,4 +184,31 @@ call ExtendNavigator("comment", {
             \ "c": {
                 \ "i": ["<plug>(comment-toggle-line)", "comment current"]
               \ }
+  \ })
+
+" ===================
+" ./vim-project.vim
+" ===================
+
+" call ExtendNavigator("vim-project", {
+"             \ "s": {
+"                 \ 'p': [':ProjectList', '[S]earch [P]rojects'],
+"               \ }
+"   \ })
+
+" ==================
+" ./vim-session.vim
+" ==================
+
+call ExtendNavigator("vim-session", {
+            \ "p": {
+                \ "a": [":AddCurrentProject", "add current project"],
+                \ "s": ["<KEY>:SaveSession", "save session"],
+                \ "o": [":OpenSession", "open session"],
+                \ "d": [":DeleteSession", "delete session"],
+                \ "c": [":CloseSession", "close session"],
+              \ },
+             \ "s": {
+                 \ 'p': [':OpenSession', '[S]earch [P]rojects'],
+               \ }
   \ })

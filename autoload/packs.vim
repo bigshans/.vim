@@ -6,7 +6,7 @@ function! packs#begin(bundle)
 endfunction
 
 function! packs#add(plugin, ...)
-    exec 'packadd ' . a:plugin
+    exec printf("packadd! %s", a:plugin)
     if a:0 > 0
         call add(g:packs_config_list, a:1)
     endif
