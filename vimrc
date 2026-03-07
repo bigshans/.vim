@@ -1,21 +1,22 @@
-" 使用环境变量 HOME_VIM 作为配置主目录
 let $HOME_VIM = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 IncScript exec 'source '.fnameescape($HOME_VIM."/".<q-args>)
+let $CORE_CONFIG = fnameescape($HOME_VIM."/core")
 
 exec 'set rtp+='. fnameescape($HOME_VIM)
-if has("win32") || has("win64")
-    exec 'set rtp+=~/vimfiles'
-else
-    exec 'set rtp+=~/.vim'
-endif
+" if has("win32") || has("win64")
+"     exec 'set rtp+=~/vimfiles'
+" else
+"     exec 'set rtp+=~/.vim'
+" endif
 
 if has("win32") || has("win64")
     set pythondll=~/AppData/Local/Programs/Python/Python311/python311.dll
 endif
 
-IncScript core/preload.vim
-IncScript core/plugin.vim
-IncScript core/bindings.vim
-IncScript core/theme.vim
+function s:load(file)
+    exec 'source ' . fnameescape(a:file)
+endfunction
 
-" call config#hugefile()
+call s:load($CORE_CONFIG.'/options.vim')
+call s:load($CORE_CONFIG . '/commands.vim')
+call s:load($CORE_CONFIG . '/plugins.vim')
+call s:load($CORE_CONFIG . '/builtin.vim')

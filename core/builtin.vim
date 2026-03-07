@@ -1,0 +1,87 @@
+" ===================
+" Vim behaviour
+" ===================
+nmap <silent><leader>q :call utils#quit()<CR>
+nmap <leader>fs :w<CR>
+nmap <leader>fS :call utils#sudo_save()<CR>
+nmap <leader>Q :qa!<CR>
+nmap <C-s> :w<CR>
+
+function! ClearAll()
+    let r = @/
+    if r != ''
+        " clear highlight
+        let @/ = ''
+    endif
+    " must use double quotes
+    call feedkeys("\<C-g>", "n")
+endfunction
+
+nmap <silent> <C-g> :call ClearAll()<CR>
+nmap cd :call utils#cd()<CR>
+
+" =====================
+" copy & paste
+" =====================
+nnoremap Y "+y
+xnoremap Y "+y
+nnoremap P "+p
+xnoremap P "+p
+
+" =====================
+" window
+" =====================
+nnoremap zh <C-w><C-h>
+nnoremap zj <C-w><C-j>
+nnoremap zk <C-w><C-k>
+nnoremap zl <C-w><C-l>
+
+inoremap <C-j> <ESC><C-w><C-j>
+inoremap <C-k> <ESC><C-w><C-k>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+tmap <C-J> <C-W>j<C-W>_
+tmap <C-K> <C-W>k<C-W>_
+
+for i in range(10)
+    exec printf("nmap <leader>w%i :%iwincmd w<CR>", i, i)
+endfor
+
+nnoremap <leader>wc :close<CR>
+nnoremap <leader>ws :split<CR>
+nnoremap <leader>wv :vsplit<CR>
+
+" ===================
+" Edit
+" ===================
+nnoremap < <<
+nnoremap > >>
+
+imap <C-n> <Down>
+imap <C-p> <Up>
+
+nnoremap <silent><M-k>  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap <silent><M-j>  :<c-u>execute 'move +'. v:count1<cr>
+
+inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+
+vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+vnoremap <silent><M-k> :m '<-2<CR>gv=gv
+
+nnoremap <silent><CR>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+
+" ==================
+" Terminal
+" ==================
+
+let g:terminal_key="<M-t>"
+tnoremap <ESC> <C-\><C-n>
+tnoremap :q! <C-\><C-n>:q!<CR>
+tnoremap <silent><C-D> <C-\><C-n>:q!<CR>
+
+" ====================
+" Open
+" ====================
+
+exec printf("nnoremap <leader>op :e %s<CR>", fnameescape($CORE_CONFIG.'/plugins.vim'))

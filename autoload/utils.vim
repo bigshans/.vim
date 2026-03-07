@@ -1,31 +1,23 @@
 function utils#sudo_save() abort
-    if has('nvim')
-        if exists(':SudaWrite')
-            exe 'SudaWrite'
-        else
-            exe 'w !pkexec tee > /dev/null %' | setl nomod
-        endif
+    if exists(':SudaWrite')
+        exe 'SudaWrite'
+    elseif has('nvim')
+        exe 'w !pkexec tee > /dev/null %' | setl nomod
     else
         exe 'w !sudo tee %' | setl nomod
     endif
 endfunction
 
-function utils#toggle_readonly() abort
-    if &ro
-        set noro
+function utils#quit() abort
+    if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
+        execute 'bdelete!'
     else
-        set ro
+        execute 'quit!'
     endif
 endfunction
 
-function utils#mk_dir() abort
-    execute ':silent !mkdir -p %h'
-endfunction
-
-function utils#bigger() abort
-    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
-endfunction
-
-function utils#smaller() abort
-    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+function! utils#cd()
+    let s = fnamemodify(resolve(expand('%:p')), ':h')
+    echo 'Now root is ' . s
+    exec 'cd ' . s
 endfunction
