@@ -27,12 +27,14 @@ endif
 call packs#def('easymotion/vim-easymotion', 'easymotion')
 call packs#def('szw/vim-maximizer')
 call packs#def('habamax/vim-winlayout', 'vim-winlayout')
+call packs#def('andymass/vim-matchup', 'vim-matchup')
 
 " ===============
 " Floaterm
 " ==============
 
-call packs#def('voldikss/vim-floaterm')
+call packs#def('voldikss/LeaderF-floaterm', 'leaderF-Floaterm')
+call packs#def('voldikss/vim-floaterm', 'vim-floaterm')
 
 " ===============
 " Appearance

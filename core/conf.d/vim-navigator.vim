@@ -11,6 +11,7 @@ let g:navigator = {
             \ "e": { "name": "easymotion..." },
             \ "c": { "name": "comment..." },
             \ "a": { "name": "async run..." },
+            \ "t": { "name": "terminal..." }
             \ }
 
 let g:navigator.prefix = "<tab><tab>"
@@ -245,3 +246,29 @@ call ExtendNavigator("vim-winlayout", {
                 \ "p": ["<Plug>(WinlayoutForward)", "forward win layout"],
               \ }
   \ })
+
+" ==========================
+" ./vim-floaterm.vim
+" ==========================
+
+call ExtendNavigator("vim-floaterm", {
+            \ "t": {
+                \ "f": [":LeaderF floaterm", "search floaterm"],
+              \ }
+  \ })
+
+" ==========================
+" ./vim-floaterm.vim
+" ==========================
+
+call ExtendNavigator("vim-floaterm", {
+            \ "a": {
+                \ "f": ["<KEY>:FloatermNew --name=make<Space>", "run make in floaterm"],
+                \ "m": [":FloatermShow make", "show make floaterm"],
+              \ },
+              \ "t": {
+                  \ "t": [":FloatermToggle", "toggle floaterm"],
+                  \ "n": [":FloatermNew", "new floaterm"],
+                  \ "k": ["<KEY>:FloatermKill", "kill floaterm"],
+                \ }
+      \ })
