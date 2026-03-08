@@ -94,4 +94,9 @@ call packs#def('skywind3000/asyncrun.vim', 'asyncrun')
 
 call packs#def("tpope/vim-fugitive", "git")
 
+" ===============
+" Stuff
+" ===============
+call packs#def('wakatime/vim-wakatime')
+
 call packs#end()
