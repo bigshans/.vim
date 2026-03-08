@@ -30,4 +30,3 @@ let b:_navigator_markdown["m"] = {
             \ }
 nmap <buffer><silent><leader>mt= :Tabularize<CR>
 setlocal conceallevel=2
-setlocal foldlevel=99
