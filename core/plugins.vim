@@ -77,6 +77,7 @@ call packs#def('vim-autoformat/vim-autoformat', 'autoformat')
 call packs#def('machakann/vim-sandwich', 'sandwich')
 call packs#def('alvan/vim-closetag', 'closetag')
 call packs#def('preservim/nerdcommenter', 'nerdcommenter')
+call packs#def('preservim/vim-pencil', { 'on': 'Pencil' })
 
 " ===============
 " Project
@@ -97,6 +98,9 @@ call packs#def("tpope/vim-fugitive", "git")
 " ===============
 " Stuff
 " ===============
-call packs#def('wakatime/vim-wakatime')
+
+if has('win32') || has("win64")
+    call packs#def('wakatime/vim-wakatime')
+endif
 
 call packs#end()
