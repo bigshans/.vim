@@ -127,3 +127,9 @@ set timeoutlen=800    " 快捷键等待 0.5 秒，兼顾手速与响应
 
 " set ttimeout          " 开启键码超时检测
 set ttimeoutlen=10    " 极速识别 Esc 和功能键，消除退出延迟
+
+" =============================================================================
+" Session
+" =============================================================================
+
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize

@@ -10,6 +10,7 @@ let g:navigator = {
             \ "g": { "name": "git..."},
             \ "e": { "name": "easymotion..." },
             \ "c": { "name": "comment..." },
+            \ "a": { "name": "async run..." },
             \ }
 
 let g:navigator.prefix = "<tab><tab>"
@@ -186,6 +187,17 @@ call ExtendNavigator("comment", {
               \ }
   \ })
 
+" ================
+" ./nerdcommenter.vim
+" ================
+
+call ExtendNavigator("nerdcommenter", {
+            \ "c": {
+                \ "c": ["<plug>(NERDCommenterComment)", "comment current"],
+                \ "i": ["<plug>(NERDCommenterInvert)", "toggles the comment state"],
+                \ "s": ["<plug>(NERDCommenterSexy)", "Comments with a pretty layout."]
+              \ }
+  \ })
 " ===================
 " ./vim-project.vim
 " ===================
@@ -211,4 +223,25 @@ call ExtendNavigator("vim-session", {
              \ "s": {
                  \ 'p': [':OpenSession', '[S]earch [P]rojects'],
                \ }
+  \ })
+
+" ==================
+" ./asyncrun.vim
+" ==================
+
+call ExtendNavigator("asyncrun", {
+            \ "a" : {
+                \ "r": ["<KEY>:AsyncRun<Space>", "run cmd async"]
+              \ }
+  \ })
+
+" ==================
+" ./vim-winlayout.vim
+" ==================
+
+call ExtendNavigator("vim-winlayout", {
+            \ "w": {
+                \ "b": ["<Plug>(WinlayoutBackward)", "backward win layout"],
+                \ "p": ["<Plug>(WinlayoutForward)", "forward win layout"],
+              \ }
   \ })

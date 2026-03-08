@@ -31,7 +31,8 @@ function! s:get_random_fortune() abort
         \ ["Complexity is the enemy of reliability.", "Anonymous"],
         \ ["Moo! Have you committed your code today?", "Vim Cow"],
         \ ["Give a man a program, frustrate him for a day.", "Waseem Latif"],
-        \ ["Experience is the name everyone gives to their mistakes.", "Oscar Wilde"]
+        \ ["Experience is the name everyone gives to their mistakes.", "Oscar Wilde"],
+        \ ["麟亡星落，月死珠傷，瓶罄罍恥，芝焚蕙歎。", "庾信《思旧铭》"],
     \ ]
     " 使用微秒级时间生成随机索引
     let l:msec = str2nr(matchstr(reltimestr(reltime()), '\v\.\zs\d+'))
@@ -39,16 +40,40 @@ function! s:get_random_fortune() abort
     return l:fortunes[l:idx]
 endfunction
 
-" --- 构造 Startify 样式的对话框 ---
 function! s:get_cowsay_box(fortune) abort
-    let l:text = a:fortune[0]
+    let l:use_unicode = 1
+    let s:char_top_bottom   = ['-', '─'][l:use_unicode]
+    let s:char_sides        = ['|', '│'][l:use_unicode]
+    let s:char_top_left     = ['*', '╭'][l:use_unicode]
+    let s:char_top_right    = ['*', '╮'][l:use_unicode]
+    let s:char_bottom_right = ['*', '╯'][l:use_unicode]
+    let s:char_bottom_left  = ['*', '╰'][l:use_unicode]
+let l:text = a:fortune[0]
     let l:auth = "- " . a:fortune[1]
-    let l:width = max([len(l:text), len(l:auth) + 4])
     
-    let l:top    = "  " . repeat("_", l:width + 2)
-    let l:mid    = "( " . l:text . repeat(" ", l:width - len(l:text)) . " )"
-    let l:author = "(   " . l:auth . repeat(" ", l:width - len(l:auth) - 2) . " )"
-    let l:bottom = "  " . repeat("-", l:width + 2)
+    " 计算真实显示宽度 (支持中文)
+    let l:text_w = strdisplaywidth(l:text)
+    let l:auth_w = strdisplaywidth(l:auth)
+    " 这里的 max_w 是对话框内文字占据的最大物理宽度
+    " 我们多预留一点空间（比如 4 个空格）让内容不至于太贴边
+    let l:inner_w = max([l:text_w, l:auth_w + 4]) 
+    
+    " 1. 顶部边框
+    let l:top = "  " . s:char_top_left . repeat(s:char_top_bottom, l:inner_w + 2) . s:char_top_right
+    
+    " 2. 内容行 (居左，后面补齐)
+    " 格式：│ 内容 空格 │
+    let l:text_pad = repeat(" ", l:inner_w - l:text_w)
+    let l:mid = "  " . s:char_sides . " " . l:text . l:text_pad . " " . s:char_sides
+    
+    " 3. 作者行 (居右，前面补齐)
+    " 格式：│ 空格 - 作者 │
+    " 注意这里前后空格的分配，确保总长度等于 l:inner_w
+    let l:auth_pad = repeat(" ", l:inner_w - l:auth_w)
+    let l:author = "  " . s:char_sides . " " . l:auth_pad . l:auth . " " . s:char_sides
+    
+    " 4. 底部边框
+    let l:bottom = "  " . s:char_bottom_left . repeat(s:char_top_bottom, l:inner_w + 2) . s:char_bottom_right
     
     return [l:top, l:mid, l:author, l:bottom, 
           \ "          o", 
@@ -71,28 +96,32 @@ function! s:draw_dashboard()
     autocmd BufWinLeave <buffer> let &showtabline = b:old_showtabline
 
     " 布局配置
-    let l:left_margin = repeat(' ', 6)
+    let l:left_margin = ''
     let l:container_width = 65
     let b:dash_map = {}
 
     let l:sessions = map(split(globpath(expand(get(g:, 'session_directory', '~/.vim/sessions')), '*.vim'), '\n'), 'fnamemodify(v:val, ":t:r")')
-    let l:files = filter(copy(v:oldfiles), 'filereadable(fnamemodify(v:val, ":p"))')[0:9]
+    let l:files = filter(copy(v:oldfiles), 'filereadable(fnamemodify(v:val, ":p"))')[0:14]
 
     let l:output = []
     let l:item_idx = 0
-    call extend(l:output, [ "" ])
-    call extend(l:output, [ "" ])
     call extend(l:output, [ "" ])
 
     " --- 1. Header (随机语录生成) ---
     let l:fortune = s:get_random_fortune()
     let l:cow_lines = s:get_cowsay_box(l:fortune)
     
+    call add(l:output, "")
     for l:line in l:cow_lines
         " 直接叠加基础左边距，不再计算内部居中
         call add(l:output, l:left_margin . l:line)
     endfor
     call add(l:output, "")
+    call add(l:output, "")
+    call add(l:output, "")
+
+    call add(l:output, l:left_margin . "[e]  <empty buffer>")
+    let b:dash_map['e'] = "enew"
     call add(l:output, "")
 
     " --- 2. MRU (左对齐) ---
@@ -124,10 +153,8 @@ function! s:draw_dashboard()
     " --- 4. Actions ---
     call add(l:output, l:left_margin . "Actions")
     call add(l:output, "")
-    call add(l:output, l:left_margin . "[e]  Empty Buffer")
-    let b:dash_map['e'] = "enew"
     nnoremap <buffer> <silent> e :call <SID>dashboard_action('e')<CR>
-    call add(l:output, l:left_margin . "[q]  Quit")
+    call add(l:output, l:left_margin . "[q]  <quit>")
     nnoremap <buffer> <silent> q :call <SID>dashboard_action('q')<CR>
 
     setlocal modifiable
@@ -147,19 +174,27 @@ function! s:draw_dashboard()
     autocmd CursorMoved <buffer> call s:snap_cursor()
 
     " --- 5. 颜色定义 ---
+    highlight DashHeader   ctermfg=114 guifg=#89b4fa
+    highlight DashSection  ctermfg=66  guifg=#928374
+    highlight DashShortcut ctermfg=214 guifg=#fabd2f
+    highlight DashSpecial ctermfg=214 guifg=#9399b2
+    highlight DashPath     ctermfg=245 guifg=#665c54
+    highlight DashFile     ctermfg=223 guifg=#ebdbb2
     " 关联到 Vim 标准高亮组，这样换主题时颜色会同步变化
-    highlight link DashHeader   Statement    " 牛牛和对话框（通常是黄色/绿色）
-    highlight link DashSection  Type         " 分类标题（通常是橙色/紫色）
-    highlight link DashShortcut Special      " [数字] 快捷键（通常是红色/青色）
-    highlight link DashPath     Comment      " 路径部分（使用注释色，通常较暗）
-    highlight link DashFile     String       " 文件名部分（使用字符串色，通常较亮）
+    " highlight default link DashHeader   Statement    " 牛牛和对话框（通常是黄色/绿色）
+    " highlight default link DashSection  Type         " 分类标题（通常是橙色/紫色）
+    " highlight default link DashShortcut Special      " [数字] 快捷键（通常是红色/青色）
+    " highlight default link DashPath     Comment      " 路径部分（使用注释色，通常较暗）
+    " highlight default link DashComment  Comment      " 路径部分（使用注释色，通常较暗）
+    " highlight default link DashFile     String       " 文件名部分（使用字符串色，通常较亮）
 
     syntax clear
-    syntax match DashHeader   /\%<14l.*/
+    syntax match DashHeader   /\%<16l.*/
     syntax match DashSection  /^\s*\(MRU\|Sessions\|Actions\)/
     syntax match DashShortcut /\[[qe0-9]\+\]/
     syntax match DashPath     /\]\s\+\zs.*\//
     syntax match DashFile     /\/.\+$/
+    syntax match DashSpecial /\V<empty buffer>\|<quit>/
 endfunction
 
 function! s:manual_move(dir) abort

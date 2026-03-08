@@ -12,6 +12,7 @@ call packs#def('Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }, 'leade
 call packs#def('junegunn/fzf.vim', 'fzf')
 call packs#def('mileszs/ack.vim')
 call packs#def('vim-scripts/utl.vim')
+call packs#def('dyng/ctrlsf.vim', 'ctrlsf')
 
 " ===============
 " Behaviour
@@ -24,6 +25,8 @@ if !(has('win32') || has('win64'))
     call packs#def('bigshans/fcitx.vim', 'fcitx')
 endif
 call packs#def('easymotion/vim-easymotion', 'easymotion')
+call packs#def('szw/vim-maximizer')
+call packs#def('habamax/vim-winlayout', 'vim-winlayout')
 
 " ===============
 " Floaterm
@@ -39,12 +42,19 @@ call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
 call packs#def('catppuccin/vim', { 'as': 'catppuccin' }, 'catppuccin')
-call packs#def('mhinz/vim-startify', 'startify')
+" call packs#def('mhinz/vim-startify', 'startify')
+
+" ===============
+" File Manager
+" ===============
+" call packs#def('justinmk/vim-dirvish')
+" call packs#def('tpope/vim-vinegar')
+call packs#def('habamax/vim-dir', 'vim-dir')
 
 " ===============
 " Which key
 " ===============
-call packs#def('skywind3000/vim-quickui')
+call packs#def('skywind3000/vim-quickui', 'quickui')
 call packs#def('skywind3000/vim-navigator', 'vim-navigator')
 
 " ===============
@@ -59,10 +69,11 @@ call packs#def('chemzqm/wxapp.vim')
 " ===============
 call packs#def('tpope/vim-repeat')
 call packs#def('mg979/vim-visual-multi', { 'branch': 'master' }, 'vim-visual-multi')
-call packs#add('comment', 'comment')
+" call packs#add('comment', 'comment')
 call packs#def('vim-autoformat/vim-autoformat', 'autoformat')
 call packs#def('machakann/vim-sandwich', 'sandwich')
 call packs#def('alvan/vim-closetag', 'closetag')
+call packs#def('preservim/nerdcommenter', 'nerdcommenter')
 
 " ===============
 " Project
@@ -72,6 +83,7 @@ call packs#def('alvan/vim-closetag', 'closetag')
 call packs#def('xolox/vim-misc')
 call packs#def('xolox/vim-session', 'vim-session')
 " call packs#def('leafOfTree/vim-project', 'vim-project')
+call packs#def('skywind3000/asyncrun.vim', 'asyncrun')
 
 " ===============
 " Git

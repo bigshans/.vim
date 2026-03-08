@@ -85,3 +85,27 @@ tnoremap <silent><C-D> <C-\><C-n>:q!<CR>
 " ====================
 
 exec printf("nnoremap <leader>op :e %s<CR>", fnameescape($CORE_CONFIG.'/plugins.vim'))
+
+" ====================
+" QuickfixToggle
+" ====================
+
+function! QuickfixToggle()
+    " 检查当前窗口是否已经是 quickfix
+    if &buftype ==# 'quickfix'
+        cclose
+        return
+    endif
+
+    " 尝试在当前页面的所有窗口中寻找 quickfix
+    let l:qf_winid = getqflist({'winid' : 1}).winid
+    if l:qf_winid > 0
+        " 如果找到了已打开的 quickfix 窗口，则跳转过去
+        call win_gotoid(l:qf_winid)
+    else
+        " 如果没打开，则打开它
+        copen
+    endif
+endfunction
+
+nnoremap <silent> <F10> :call QuickfixToggle()<CR>

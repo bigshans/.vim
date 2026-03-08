@@ -21,3 +21,22 @@ function! utils#cd()
     echo 'Now root is ' . s
     exec 'cd ' . s
 endfunction
+
+function utils#add_key_literal_prefix(obj) abort
+    for [l:key, l:val] in items(a:obj)
+        " 1. 如果是字典，递归处理
+        if type(l:val) == v:t_dict
+            call utils#add_key_literal_prefix(l:val)
+            
+        " 2. 如果是数组且不为空
+        elseif type(l:val) == v:t_list && !empty(l:val)
+            " 3. 获取第一项并检查是否已经加过前缀（避免重复执行时叠加）
+            let l:first = l:val[0]
+            if type(l:first) == v:t_string && l:first !~ '^<key>'
+                " 直接拼接纯字符串 "<key>"
+                let a:obj[l:key][0] = '<key>' . l:first
+            endif
+        endif
+    endfor
+    return a:obj
+endfunction

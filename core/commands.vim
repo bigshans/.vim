@@ -3,3 +3,4 @@
 " =============================================================================
 command! Hex :%!xxd
 command! HexExit :%!xxd -r
+command! Bonly execute '%bd|e#|bd#'
