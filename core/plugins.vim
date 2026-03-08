@@ -44,6 +44,7 @@ call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
 call packs#def('catppuccin/vim', { 'as': 'catppuccin' }, 'catppuccin')
+call packs#def('sainnhe/sonokai', 'sonokai')
 " call packs#def('mhinz/vim-startify', 'startify')
 
 " ===============

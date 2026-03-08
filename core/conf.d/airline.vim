@@ -10,7 +10,8 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_idx_format = {}
-let g:airline_theme = 'catppuccin_frappe'
+" let g:airline_theme = 'catppuccin_frappe'
+let g:airline_theme = 'sonokai'
 
 for index in range(10)
     let g:airline#extensions#tabline#buffer_idx_format[index] = index . ' '
