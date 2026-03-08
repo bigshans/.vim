@@ -88,7 +88,8 @@ call ExtendNavigator('coc', {
                 \ 'l': ['<plug>(coc-codelens-action)', 'codelens-action'],
                 \ 'r':  ['<plug>(coc-rename)', 'rename'],
                 \ 'o': [':call ToggleOutline()', 'toggle outline'],
-                \ 'k': [':call ShowDocumentation()', 'show hover']
+                \ 'k': [':call ShowDocumentation()', 'show hover'],
+                \ 'D': ["<KEY>:let b:coc_suggest_disable = !get(b:, 'coc_suggest_disable', 0)<CR>", "toggle suggest in current buffer"]
             \ },
             \ "o": {
                 \ "C": [":CocConfig", "open coc-settings.json"]
