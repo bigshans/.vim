@@ -15,6 +15,8 @@ vmap <buffer> <M-l> sa(F(i[
 
 nmap <buffer> <tab> za
 
+let b:coc_suggest_disable = 1
+
 setlocal colorcolumn=
 
 let b:_navigator_markdown = {'prefix': '<leader>' }
@@ -28,3 +30,4 @@ let b:_navigator_markdown["m"] = {
             \ }
 nmap <buffer><silent><leader>mt= :Tabularize<CR>
 setlocal conceallevel=2
+setlocal foldlevel=99
