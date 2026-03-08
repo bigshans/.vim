@@ -16,6 +16,7 @@
     "diagnostic.virtualTextFormat": "➤ %message",
     "suggest.virtualText": false,
     "suggest.timeout": 5000,
+    "suggest.minTriggerInputLength": 2,
     "inlayHint.enable": true,
     "yank.limit": 2,
     "languageserver": {
