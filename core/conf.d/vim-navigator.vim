@@ -89,7 +89,8 @@ call ExtendNavigator('coc', {
                 \ 'r':  ['<plug>(coc-rename)', 'rename'],
                 \ 'o': [':call ToggleOutline()', 'toggle outline'],
                 \ 'k': [':call ShowDocumentation()', 'show hover'],
-                \ 'D': ["<KEY>:let b:coc_suggest_disable = !get(b:, 'coc_suggest_disable', 0)<CR>", "toggle suggest in current buffer"]
+                \ 'D': ["<KEY>:let b:coc_suggest_disable = !get(b:, 'coc_suggest_disable', 0)<CR>", "toggle suggest in current buffer"],
+                \ '=': [':Format', 'format code'],
             \ },
             \ "o": {
                 \ "C": [":CocConfig", "open coc-settings.json"]

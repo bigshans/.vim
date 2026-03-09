@@ -47,7 +47,7 @@ call packs#def('vim-airline/vim-airline-themes')
 " ===============
 " Theme 
 " ===============
-call packs#def('catppuccin/vim', { 'as': 'catppuccin' }, 'catppuccin')
+call packs#def('catppuccin/vim', { 'as': 'catppuccin' })
 call packs#def('sainnhe/sonokai', 'sonokai')
 call packs#def('dracula/vim', { 'as': 'dracula' })
 call packs#def('joshdick/onedark.vim')

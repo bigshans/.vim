@@ -77,7 +77,11 @@ set shortmess+=Ic               " 简化消息显示
 set noswapfile      " 不使用交换文件
 set writebackup     " 写入时备份
 set nobackup        " 不保留备份文件
-set backupdir=$TMP  " 备份目录
+if has('win32') || has('win64')
+    set backupdir=$TMP  " 备份目录
+else
+    set backupdir=/tmp
+endif
 set pumheight=20    " 弹出菜单高度
 
 let s:undo_path = expand($HOME_VIM . '/undodir')
@@ -99,7 +103,11 @@ if has('gui_running')
     set guioptions-=r   " 隐藏右滚动条
     set guioptions-=R   " 隐藏右滚动条
     set guioptions-=e   " 隐藏标签页工具栏
-    set guifont=JetBrainsMono_NFM:h9:cANSI:qDRAFT
+    if has('win32') || has('win64')
+        set guifont=JetBrainsMono_NFM:h9:cANSI:qDRAFT
+    else
+        set guifont=JetBrainsMono\ Nerd\ Font\ 12
+    endif
 endif
 
 " =============================================================================

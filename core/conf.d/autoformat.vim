@@ -4,3 +4,5 @@ let g:formatdef_nginx_style="nginxfmt -i 4"
 let g:formatters_vue = ['eslint_local', 'stylelint']
 let g:run_all_formatters_vue = 1
 let g:formatters_typescriptreact = ["eslint_local"]
+
+nmap ;= :Autoformat<CR>

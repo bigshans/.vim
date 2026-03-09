@@ -209,7 +209,7 @@
         "m": "actionMenu"
     },
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source": "vim-devicons",
+    "explorer.icon.source": "nerdfont.vim",
     "explorer.git.enable": true,
     "explorer.file.showHiddenFiles": true,
     "explorer.previewAction.onHover": false,

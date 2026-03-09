@@ -96,6 +96,7 @@ xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent><nowait>> <leader>jk :call ShowDocumentation()<CR>
 nnoremap <silent><nowait> <leader>jo  :call ToggleOutline()<CR>
 nnoremap <leader>jD :let b:coc_suggest_disable = !get(b:, 'coc_suggest_disable', 0)<CR>
+nnoremap <leader>j= :Format<CR>
 
 function! ShowDocumentation()
     if CocAction('hasProvider', 'hover')
