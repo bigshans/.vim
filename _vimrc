@@ -17,7 +17,7 @@ function s:load(file)
 endfunction
 
 call s:load($CORE_CONFIG.'/options.vim')
-call s:load($CORE_CONFIG . '/commands.vim')
 call s:load($CORE_CONFIG . '/plugins.vim')
 call s:load($CORE_CONFIG . '/builtin.vim')
 call s:load($CORE_CONFIG . '/theme.vim')
+call s:load($CORE_CONFIG . '/commands.vim')
