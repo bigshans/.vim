@@ -44,3 +44,11 @@ endfunction
 function! utils#stdpath(path)
   return substitute(a:path, '[/\\]', '/', 'g')
 endfunction
+
+function! utils#bigger() abort
+    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
+endfunction
+
+function! utils#smaller() abort
+    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+endfunction

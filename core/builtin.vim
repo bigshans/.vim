@@ -6,6 +6,8 @@ nmap <leader>fs :w<CR>
 nmap <leader>fS :call utils#sudo_save()<CR>
 nmap <leader>Q :qa!<CR>
 nmap <C-s> :w<CR>
+nmap j gj
+nmap k gk
 
 function! ClearAll()
     let r = @/
@@ -27,6 +29,8 @@ nnoremap Y "+y
 xnoremap Y "+y
 nnoremap P "+p
 xnoremap P "+p
+" paste to command mode
+cnoremap <C-v> <C-r>+
 
 " =====================
 " window

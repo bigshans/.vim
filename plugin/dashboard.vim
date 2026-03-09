@@ -94,6 +94,7 @@ function! s:draw_dashboard()
     let b:old_showtabline = &showtabline
     set showtabline=0
     autocmd BufWinLeave <buffer> let &showtabline = b:old_showtabline
+    autocmd BufLeave * if &filetype == 'dashboard' | let &showtabline = b:old_showtabline | endif
 
     " 布局配置
     let l:left_margin = ''
