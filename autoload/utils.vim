@@ -45,10 +45,19 @@ function! utils#stdpath(path)
   return substitute(a:path, '[/\\]', '/', 'g')
 endfunction
 
+function! utils#modify_font(delta) abort
+    let l:pattern = '\v\zs\d+$'
+    let l:current = matchstr(&guifont, l:pattern)
+    if l:current != ''
+        let l:new_size = l:current + a:delta
+        let &guifont = substitute(&guifont, l:pattern, l:new_size > 1 ? l:new_size : 1, '')
+    endif
+endfunction
+
 function! utils#bigger() abort
-    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
+    call utils#modify_font(1)
 endfunction
 
 function! utils#smaller() abort
-    let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+    call utils#modify_font(-1)
 endfunction
