@@ -19,33 +19,67 @@ function! s:apply_colors() abort
     highlight link DashKey      Number
     highlight link DashTitle    Type
     highlight link DashAction   Comment
+
+    " 定义蓝色
     highlight DashArt ctermfg=12 guifg=#00afff gui=none
 
     syntax clear
-    syntax match DashArt     /\%<15l.*/
+
+    " --- 暴力匹配：将前 18 行的所有非空行全部染蓝 ---
+    " 这会覆盖边框、名言文字、作者以及下方的牛牛
+    syntax match DashArt /\%<18l\s*\S.*/
+
+    " --- 修正：确保牛牛身上那些容易被默认语法抢色的符号也被捕获 ---
+    syntax match DashArt /\%<18l[\^__(oo)\\ \/\\|_w-]\+/
+
+    " --- 其他元素（从第 18 行之后开始，避免冲突） ---
     syntax match DashTitle   /^\s*\(RECENT FILES\|SESSIONS\)/
     syntax match DashBracket /\[\|\]/ contained
     syntax match DashKey     /[0-9eq]\+/ contained
     syntax match DashEntry   /\[[0-9eq]\+\]/ contains=DashBracket,DashKey
     syntax match DashDim     /\]\s\+\zs.*\//
     syntax match DashBright  /\/[^/]\+$/
-    syntax match DashAction /empty buffer\|quit/
+    syntax match DashAction  /empty buffer\|quit/
 endfunction
 
 " --- Header 生成 ---
 function! s:generate_header() abort
-    let l:quotes = [["Talk is cheap. Show me the code.", "Linus Torvalds"], ["每一个程序都是一份送给未来的礼物。", "Vim User"]]
-    let l:q = l:quotes[str2nr(matchstr(reltimestr(reltime()), '\v\.\zs\d+')) % len(l:quotes)]
-    let l:iw = max([strdisplaywidth(l:q[0]), strdisplaywidth("- " . l:q[1]) + 2])
+    let l:quotes = [
+                \ ["Talk is cheap. Show me the code.", "Linus Torvalds"],
+                \ ["One of my most productive days was throwing away 1000 lines of code.", "Ken Thompson"],
+                \ ["The world is beautiful, and outside it there is no salvation.", "Albert Camus"],
+                \ ["To live is to suffer, to survive is to find some meaning in the suffering.", "Nietzsche"],
+                \ ["Stay hungry, stay foolish.", ""],
+                \ ["Everything that is thought, is.", "Parmenides"],
+                \ ["Simplicity is the ultimate sophistication.", ""]
+                \ ]
+    let l:seed = str2nr(matchstr(reltimestr(reltime()), '\v\.\zs\d+'))
+    let l:q = l:quotes[l:seed % len(l:quotes)]
+    let l:text = l:q[0]
+    let l:author = l:q[1]
+
+    let l:tw = strdisplaywidth(l:text)
+    let l:aw = empty(l:author) ? 0 : strdisplaywidth("- " . l:author)
+    let l:iw = max([l:tw, l:aw])
     let l:pad = repeat(' ', s:indent)
-    return [
-        \ l:pad.s:cor_tl.repeat(s:border_h, l:iw+2).s:cor_tr,
-        \ l:pad.s:border_v." ".l:q[0].repeat(" ", l:iw-strdisplaywidth(l:q[0]))." ".s:border_v,
-        \ l:pad.s:border_v." ".repeat(" ", l:iw-strdisplaywidth("- ".l:q[1]))."- ".l:q[1]." ".s:border_v,
-        \ l:pad.s:cor_bl.repeat(s:border_h, l:iw+2).s:cor_br,
-        \ l:pad."          o", l:pad."           o   ^__^",
-        \ l:pad."            o  (oo)\\_______", l:pad."               (__)\\       )\\/\\",
-        \ l:pad."                   ||----w |", l:pad."                   ||     ||"]
+
+    let l:res = [
+                \ l:pad.s:cor_tl.repeat(s:border_h, l:iw+2).s:cor_tr,
+                \ l:pad.s:border_v." ".l:text.repeat(" ", l:iw-l:tw)." ".s:border_v
+                \ ]
+
+    if !empty(l:author)
+        call add(l:res, l:pad.s:border_v.repeat(" ", l:iw+2).s:border_v)
+        call add(l:res, l:pad.s:border_v." ".repeat(" ", l:iw-l:aw)."- ".l:author." ".s:border_v)
+    endif
+
+    call extend(l:res, [
+                \ l:pad.s:cor_bl.repeat(s:border_h, l:iw+2).s:cor_br,
+                \ l:pad."          o", l:pad."           o   ^__^",
+                \ l:pad."            o  (oo)\\_______", l:pad."               (__)\\       )\\/\\",
+                \ l:pad."                   ||----w |", l:pad."                   ||     ||"
+                \ ])
+    return l:res
 endfunction
 
 " --- 构建界面 ---
@@ -56,13 +90,11 @@ function! s:build() abort
 
     call append('$', ["", ""])
     call append('$', s:generate_header())
-    
-    " Actions (小写 + 灰色高亮)
+
     call append('$', ["", l:pad . "[e]  empty buffer"])
     let b:action_registry['e'] = 'enew'
     nnoremap <buffer><silent> e :enew<cr>
 
-    " Sessions (静默加载)
     let l:s_path = expand(g:dashboard_session_dir)
     if isdirectory(l:s_path)
         let l:ss = split(globpath(l:s_path, '*.vim'), '\n')
@@ -78,7 +110,6 @@ function! s:build() abort
         endif
     endif
 
-    " Recent Files (标准化路径 + 静默加载)
     let l:rs = filter(copy(v:oldfiles), 'filereadable(expand(v:val))')
     if !empty(l:rs)
         call append('$', ["", l:pad . "RECENT FILES", ""])
@@ -99,17 +130,16 @@ function! s:build() abort
     call append('$', ["", l:pad . "[q]  quit"])
     let b:action_registry['q'] = 'quit'
     setlocal nomodifiable | call s:apply_colors()
-    
+
     nnoremap <buffer><silent> <cr> :call <SID>handler()<cr>
     nnoremap <buffer><silent> j :call <SID>move(1)<cr>
     nnoremap <buffer><silent> k :call <SID>move(-1)<cr>
     nnoremap <buffer><silent> q :quit<cr>
-    
+
     let l:pos = search('\[')
     if l:pos > 0 | call cursor(l:pos, s:indent + 2) | endif
 endfunction
 
-" --- 辅助逻辑 ---
 function! s:handler() abort
     let l:k = matchstr(getline('.'), '\[\zs[qe0-9]\+\ze\]')
     let l:c = get(b:action_registry, l:k, '')
