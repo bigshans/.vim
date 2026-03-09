@@ -1,5 +1,5 @@
-function! SetTheme() abort
-    colorscheme dracula
+function! SetTheme(theme) abort
+    execute 'colorscheme ' . a:theme
 
     " ========================
     " Highlight
@@ -8,4 +8,4 @@ function! SetTheme() abort
     highlight Directory ctermfg=11 guifg=#89B4FA
 endfunction
 
-call SetTheme()
+call SetTheme('onedark')
