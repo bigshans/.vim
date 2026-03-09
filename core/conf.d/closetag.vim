@@ -6,17 +6,17 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.vue'
 
 " filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
 "
-let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_filetypes = 'html,xhtml,phtml,vue'
 
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,vue'
 
 " integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
@@ -31,6 +31,7 @@ let g:closetag_regions = {
     \ 'javascript.jsx': 'jsxRegion',
     \ 'typescriptreact': 'jsxRegion,tsxRegion',
     \ 'javascriptreact': 'jsxRegion',
+    \ 'vue': 'htmlTag,htmlTemplateBlock',
     \ }
 
 " Shortcut for closing tags, default is '>'
