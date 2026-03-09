@@ -1,5 +1,6 @@
 let g:asyncrun_open = 8
 nn <leader>ar :call RunCmdAsync()<CR>
+nn <leader>ad :AsyncStop<CR>
 " 每隔 100 毫秒刷新一次 Quickfix 窗口（默认是 200ms）
 let g:asyncrun_timer = 100
 

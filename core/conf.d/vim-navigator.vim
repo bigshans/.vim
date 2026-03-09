@@ -234,7 +234,8 @@ call ExtendNavigator("vim-session", {
 
 call ExtendNavigator("asyncrun", {
             \ "a" : {
-                \ "r": ["RunCmdAsync()", "run cmd async"]
+                \ "r": ["RunCmdAsync()", "run cmd async"],
+                \ "d": [":AsyncStop", "stop jobs"],
               \ }
   \ })
 
