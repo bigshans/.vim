@@ -130,7 +130,7 @@ function! s:draw_dashboard()
     for l:f in l:files
         let l:fpath = fnamemodify(l:f, ":~:h") . "/"
         let l:fname = fnamemodify(l:f, ":t")
-        call add(l:output, l:left_margin . printf("[%d]  %s%s", l:item_idx, l:fpath, l:fname))
+        call add(l:output, l:left_margin . printf("[%d]  %s%s", l:item_idx, utils#stdpath(l:fpath), l:fname))
         let b:dash_map[string(l:item_idx)] = "edit " . fnameescape(l:f)
         execute "nnoremap <buffer> <silent> " . l:item_idx . " :call <SID>dashboard_action('" . l:item_idx . "')<CR>"
         let l:item_idx += 1
