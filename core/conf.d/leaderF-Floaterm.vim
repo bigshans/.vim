@@ -1,1 +1,1 @@
-nmap <leader>tf :LeaderF floaterm<CR>
+nmap <leader>tf :Leaderf floaterm<CR>

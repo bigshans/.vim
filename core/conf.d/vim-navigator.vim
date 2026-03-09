@@ -234,7 +234,7 @@ call ExtendNavigator("vim-session", {
 
 call ExtendNavigator("asyncrun", {
             \ "a" : {
-                \ "r": ["<KEY>:AsyncRun<Space>", "run cmd async"]
+                \ "r": ["RunCmdAsync()", "run cmd async"]
               \ }
   \ })
 
@@ -250,12 +250,12 @@ call ExtendNavigator("vim-winlayout", {
   \ })
 
 " ==========================
-" ./vim-floaterm.vim
+" ./leaderF-Floaterm.vim
 " ==========================
 
-call ExtendNavigator("vim-floaterm", {
+call ExtendNavigator("leaderF-Floaterm", {
             \ "t": {
-                \ "f": [":LeaderF floaterm", "search floaterm"],
+                \ "f": [":Leaderf floaterm", "search floaterm"],
               \ }
   \ })
 
@@ -265,12 +265,12 @@ call ExtendNavigator("vim-floaterm", {
 
 call ExtendNavigator("vim-floaterm", {
             \ "a": {
-                \ "f": ["<KEY>:FloatermNew --name=make<Space>", "run make in floaterm"],
+                \ "f": ["FloatermCmd()", "run make in floaterm"],
                 \ "m": [":FloatermShow make", "show make floaterm"],
               \ },
               \ "t": {
                   \ "t": [":FloatermToggle", "toggle floaterm"],
                   \ "n": [":FloatermNew", "new floaterm"],
-                  \ "k": ["<KEY>:FloatermKill", "kill floaterm"],
+                  \ "k": ["FloatermKillCmd()", "kill floaterm"],
                 \ }
       \ })
