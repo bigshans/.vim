@@ -7,7 +7,7 @@ let s:cor_tl    = ['*', '╭'][g:dashboard_use_unicode]
 let s:cor_tr    = ['*', '╮'][g:dashboard_use_unicode]
 let s:cor_br    = ['*', '╯'][g:dashboard_use_unicode]
 let s:cor_bl    = ['*', '╰'][g:dashboard_use_unicode]
-let s:indent = 4
+let s:indent = 4 
 
 function! s:apply_colors() abort
     if &filetype != 'custom_dash' | return | endif
@@ -34,13 +34,13 @@ function! s:generate_header() abort
     let l:iw = max([strdisplaywidth(l:q[0]), strdisplaywidth("- " . l:q[1]) + 2])
     let l:pad = repeat(' ', s:indent)
     return [
-                \ l:pad.s:cor_tl.repeat(s:border_h, l:iw+2).s:cor_tr,
-                \ l:pad.s:border_v." ".l:q[0].repeat(" ", l:iw-strdisplaywidth(l:q[0]))." ".s:border_v,
-                \ l:pad.s:border_v." ".repeat(" ", l:iw-strdisplaywidth("- ".l:q[1]))."- ".l:q[1]." ".s:border_v,
-                \ l:pad.s:cor_bl.repeat(s:border_h, l:iw+2).s:cor_br,
-                \ l:pad."          o", l:pad."           o   ^__^",
-                \ l:pad."            o  (oo)\\_______", l:pad."               (__)\\       )\\/\\",
-                \ l:pad."                   ||----w |", l:pad."                   ||     ||"]
+        \ l:pad.s:cor_tl.repeat(s:border_h, l:iw+2).s:cor_tr,
+        \ l:pad.s:border_v." ".l:q[0].repeat(" ", l:iw-strdisplaywidth(l:q[0]))." ".s:border_v,
+        \ l:pad.s:border_v." ".repeat(" ", l:iw-strdisplaywidth("- ".l:q[1]))."- ".l:q[1]." ".s:border_v,
+        \ l:pad.s:cor_bl.repeat(s:border_h, l:iw+2).s:cor_br,
+        \ l:pad."          o", l:pad."           o   ^__^",
+        \ l:pad."            o  (oo)\\_______", l:pad."               (__)\\       )\\/\\",
+        \ l:pad."                   ||----w |", l:pad."                   ||     ||"]
 endfunction
 
 function! s:build() abort
@@ -75,9 +75,14 @@ function! s:build() abort
         let l:show = 0
         for l:f in l:rs
             if l:f =~# g:dashboard_session_dir | continue | endif
-            call append('$', l:pad.'['.l:idx.']'.repeat(' ', 2).fnamemodify(l:f, ":~:h")."/".fnamemodify(l:f, ":t"))
-            let b:action_registry[string(l:idx)] = 'edit '.fnameescape(l:f)
-            execute 'nnoremap <buffer><silent> '.l:idx.' :edit '.fnameescape(l:f).'<cr>'
+            " 使用标准化路径处理函数
+            let l:std_f = utils#stdpath(l:f)
+            let l:dir = utils#stdpath(fnamemodify(l:std_f, ":~:h")) . "/"
+            let l:name = fnamemodify(l:std_f, ":t")
+            
+            call append('$', l:pad.'['.l:idx.']'.repeat(' ', 2).l:dir.l:name)
+            let b:action_registry[string(l:idx)] = 'edit '.fnameescape(l:std_f)
+            execute 'nnoremap <buffer><silent> '.l:idx.' :edit '.fnameescape(l:std_f).'<cr>'
             let l:idx += 1 | let l:show += 1
             if l:show >= 10 | break | endif
         endfor
