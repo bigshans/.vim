@@ -142,7 +142,7 @@ cal ExtendNavigator('leaderf', {
                 \ 'd': [':LeaderfFile', '[S]earch [D]ir file'],
             \ },
             \ "o": {
-                \"c": [printf(":Leaderf file %s<CR>", $CORE_CONFIG), "open core config dir"]
+                \"c": [printf(":Leaderf file %s<CR>", $HOME_VIM), "open vim config"]
               \ }
             \ })
 

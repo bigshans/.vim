@@ -8,7 +8,7 @@ let s:cor_tl    = ['*', '╭'][g:dashboard_use_unicode]
 let s:cor_tr    = ['*', '╮'][g:dashboard_use_unicode]
 let s:cor_br    = ['*', '╯'][g:dashboard_use_unicode]
 let s:cor_bl    = ['*', '╰'][g:dashboard_use_unicode]
-let s:indent = 4 
+let s:indent = 4
 
 " --- 高亮与语法 ---
 function! s:apply_colors() abort

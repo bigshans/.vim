@@ -22,4 +22,4 @@ nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 nnoremap <leader>sd :LeaderfFile<CR>
 nnoremap <leader>sp :ProjectList<CR>
 
-exec printf("nnoremap <leader>oc :Leaderf file %s<CR>", fnameescape($CORE_CONFIG))
+exec printf("nnoremap <leader>oc :Leaderf file %s<CR>", fnameescape($HOME_VIM))
