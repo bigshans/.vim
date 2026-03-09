@@ -6,24 +6,20 @@ function! SetTheme(theme) abort
         return
     endtry
 
-    " ========================
-    " Coc / Pmenu 补全窗口美化
-    " ========================
+    highlight Normal guibg=#21252b guifg=#abb2bf
 
-    " 1. 补全菜单默认样式 (未选中)
-    highlight Pmenu guibg=#2C323C guifg=#ABB2BF
+    highlight LineNr guifg=#4b5263 guibg=#21252b
 
-    " 2. 选中项的样式 (关键：设置一个明显的背景色，如浅蓝色或紫色)
-    " guibg: 背景色  guifg: 文字颜色  gui=bold: 加粗
-    highlight PmenuSel guibg=#3E4452 guifg=#61AFEF gui=bold
+    highlight! clear CursorLineNr
+    highlight CursorLineNr guifg=#e5c07b guibg=#2c323c gui=bold cterm=bold
+    highlight CursorLine guibg=#2c323c gui=NONE cterm=NONE
 
-    " 3. 滚动条和边框
-    highlight PmenuSbar guibg=#2C323C
-    highlight PmenuThumb guibg=#4B5263
 
-    " 4. 针对 Coc 的浮动诊断窗口 (你之前列出的那部分)
-    highlight CocFloating guibg=#282C34
-    highlight CocFloatBorder guifg=#61AFEF
+    highlight Keyword guifg=#c678dd gui=italic
+    highlight String guifg=#98c379
+    
+    highlight Pmenu guibg=#282c34 guifg=#abb2bf
+    highlight PmenuSel guibg=#3e4452 guifg=#61afef gui=bold
 
     highlight Directory ctermfg=11 guifg=#89B4FA
 
@@ -33,4 +29,4 @@ function! SetTheme(theme) abort
 endfunction
 
 " 初始调用
-call SetTheme('onedark')
+call SetTheme('dracula')
