@@ -40,6 +40,7 @@ call packs#def('voldikss/vim-floaterm', 'vim-floaterm')
 " Appearance
 " ===============
 call packs#def('ryanoasis/vim-devicons')
+call packs#def('lambdalisue/vim-nerdfont')
 call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
