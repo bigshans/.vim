@@ -39,20 +39,16 @@ call packs#def('voldikss/vim-floaterm', 'vim-floaterm')
 " ===============
 " Appearance
 " ===============
-" call packs#def('ryanoasis/vim-devicons')
 call packs#def('lambdalisue/vim-nerdfont')
 call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
 call packs#def('catppuccin/vim', { 'as': 'catppuccin' }, 'catppuccin')
 call packs#def('sainnhe/sonokai', 'sonokai')
-" call packs#def('mhinz/vim-startify', 'startify')
 
 " ===============
 " File Manager
 " ===============
-" call packs#def('justinmk/vim-dirvish')
-" call packs#def('tpope/vim-vinegar')
 call packs#def('habamax/vim-dir', 'vim-dir')
 
 " ===============
@@ -67,18 +63,19 @@ call packs#def('skywind3000/vim-navigator', 'vim-navigator')
 call packs#def('godlygeek/tabular', { 'for': 'markdown' })
 call packs#def('preservim/vim-markdown', { 'for': 'markdown' }, 'markdown')
 call packs#def('chemzqm/wxapp.vim')
+call packs#def('leafOfTree/vim-vue-plugin', { 'for': 'vue' })
 
 " ===============
 " Edit
 " ===============
 call packs#def('tpope/vim-repeat')
 call packs#def('mg979/vim-visual-multi', { 'branch': 'master' }, 'vim-visual-multi')
-" call packs#add('comment', 'comment')
 call packs#def('vim-autoformat/vim-autoformat', 'autoformat')
 call packs#def('machakann/vim-sandwich', 'sandwich')
 call packs#def('alvan/vim-closetag', 'closetag')
 call packs#def('preservim/nerdcommenter', 'nerdcommenter')
 call packs#def('preservim/vim-pencil', { 'on': 'Pencil' })
+call packs#def('jiangmiao/auto-pairs')
 
 " ===============
 " Project
@@ -87,7 +84,6 @@ call packs#def('preservim/vim-pencil', { 'on': 'Pencil' })
 " vim-session required
 call packs#def('xolox/vim-misc')
 call packs#def('xolox/vim-session', 'vim-session')
-" call packs#def('leafOfTree/vim-project', 'vim-project')
 call packs#def('skywind3000/asyncrun.vim', 'asyncrun')
 
 " ===============

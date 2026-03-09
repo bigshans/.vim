@@ -18,7 +18,9 @@
     "diagnostic.displayByAle": false,
     "suggest.timeout": 5000,
     "suggest.maxCompleteItemCount": 100,
+    "vue.format.script.initialIndent": true,
     "inlayHint.enable": false,
+    "semanticTokens.enable": false,
     "yank.limit": 2,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de", //  sliders
@@ -49,7 +51,6 @@
     "suggest.defaultSortMethod": "length",
     "suggest.noselect": true,
     "explorer.file.cdCommand": "cd",
-    "eslint.packageManager": "yarn",
     "snippets.ultisnips.directories": [
         "$runtimepath/UltiSnips",
         "UltiSnips"
@@ -108,6 +109,8 @@
     "stylua.styluaPath": "/usr/bin/stylua",
     "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
+    "eslint.quiet": true,
+    "eslint.useESLintClass": true,
     "snippets.ultisnips.pythonPrompt": false,
     "highlight.disableLanguages": ["vue"],
     "list.source.grep.useLiteral": false,

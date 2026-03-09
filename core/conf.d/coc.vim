@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-deno',
             \ 'coc-emmet',
-            \ 'coc-eslint',
             \ 'coc-explorer',
             \ 'coc-html',
             \ 'coc-json',
@@ -28,7 +27,6 @@ let g:coc_global_extensions = [
             \ 'coc-vimlsp',
             \ 'coc-xml',
             \ 'coc-yank',
-            \ 'coc-pairs'
             \]
 "======================
 " Commands
@@ -78,6 +76,7 @@ let g:coc_snippet_prev = '<c-k>'
 nnoremap <silent>\ :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
 nnoremap <silent><leader>ft :CocCommand explorer --toggle --sources=buffer-,file+ --preset<CR>
 nnoremap <leader>oC :CocConfig<CR>
+nnoremap <leader>y :CocList -A --normal yank<CR>
 
 " =====================
 " LSP Keymap
