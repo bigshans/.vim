@@ -40,3 +40,7 @@ function utils#add_key_literal_prefix(obj) abort
     endfor
     return a:obj
 endfunction
+
+function! utils#stdpath(path)
+  return substitute(a:path, '[/\\]', '/', 'g')
+endfunction

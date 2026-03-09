@@ -65,7 +65,7 @@ call ExtendNavigator('builtin', {
                 \ "v": [":vsplit", "vsplit window"],
             \ },
             \ "o": {
-                \ "p": [printf(":e %s", fnameescape($CORE_CONFIG.'/plugins.vim')), "open plugin config"]
+                \ "p": [printf(":e %s", utils#stdpath(fnameescape($CORE_CONFIG.'/plugins.vim'))), "open plugin config"]
               \ },
             \ })
 

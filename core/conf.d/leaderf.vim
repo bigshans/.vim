@@ -11,6 +11,7 @@ let g:Lf_ShortcutB = '<leader>sb'
 " should use `Leaderf gtags --update` first
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_Gtagslabel = 'native-pygments'
+let g:Lf_UseCache = 0
 
 nnoremap <silent><plug>LeaderfCurFolderFile :<C-U><C-R>=printf("Leaderf file %s", expand('%:p:h'))<CR><CR>
 
