@@ -103,6 +103,7 @@ PL 'lambdalisue/vim-fern-renderer-nerdfont'
 PL 'lambdalisue/vim-fern-mapping-git'
 PL 'mbbill/undotree'
 PL 'kblin/vim-fountain'
+PL 'mg979/vim-visual-multi', {'branch': 'master'}
 " PL 'wsdjeg/FlyGrep.vim'
 " PL 'yegappan/greplace'
 
