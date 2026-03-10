@@ -71,8 +71,8 @@ function! s:enable_lock() abort
     nnoremap <buffer><silent> G  :call cursor(search('\[', 'bw'), stridx(getline(search('\[', 'bnw')), '[')+2)<cr>
     nnoremap <buffer><silent> <cr> :call <SID>handler()<cr>
     nnoremap <buffer><silent> q :quit<cr>
-    nnoremap <buffer><silent> <LeftMouse> <nop>
-    nnoremap <buffer><silent> <2-LeftMouse> <nop>
+    " nnoremap <buffer><silent> <LeftMouse> <nop>
+    nnoremap <buffer><silent> <2-LeftMouse> :call <SID>handler()<CR>
     if exists('b:action_registry')
         for l:key in keys(b:action_registry)
             execute 'nnoremap <buffer><silent> ' . l:key . ' :call <SID>handler_key("' . l:key . '")<cr>'
