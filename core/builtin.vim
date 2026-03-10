@@ -6,8 +6,8 @@ nmap <leader>fs :w<CR>
 nmap <leader>fS :call utils#sudo_save()<CR>
 nmap <leader>Q :qa!<CR>
 nmap <C-s> :w<CR>
-nmap j gj
-nmap k gk
+noremap j gj
+noremap k gk
 
 function! ClearAll()
     let r = @/
@@ -42,10 +42,10 @@ nnoremap zl <C-w><C-l>
 
 inoremap <C-j> <ESC><C-w><C-j>
 inoremap <C-k> <ESC><C-w><C-k>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-tmap <C-J> <C-W>j<C-W>_
-tmap <C-K> <C-W>k<C-W>_
+noremap <C-J> <C-W>j<C-W>_
+noremap <C-K> <C-W>k<C-W>_
+tnoremap <C-J> <C-W>j<C-W>_
+tnoremap <C-K> <C-W>k<C-W>_
 
 for i in range(10)
     exec printf("nmap <leader>w%i :%iwincmd w<CR>", i, i)
@@ -61,8 +61,8 @@ nnoremap <leader>wv :vsplit<CR>
 nnoremap < <<
 nnoremap > >>
 
-imap <C-n> <Down>
-imap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
 
 nnoremap <silent><M-k>  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap <silent><M-j>  :<c-u>execute 'move +'. v:count1<cr>
