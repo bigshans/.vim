@@ -30,7 +30,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 command! -bang -nargs=* GGrep
             \ call fzf#vim#grep(
             \   'git grep --line-number '.shellescape(<q-args>), 0,
-            \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)   
+            \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
 
 " command! -bang Colors
 " \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
@@ -55,3 +55,35 @@ autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler
             \| nmap <buffer><esc> i<C-g>
             \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+if index(g:packs_config_list, 'asynctasks') >= 0
+    function! s:fzf_sink(what)
+        let p1 = stridx(a:what, '<')
+        if p1 >= 0
+            let name = strpart(a:what, 0, p1)
+            let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
+            if name != ''
+                exec "AsyncTask ". fnameescape(name)
+            endif
+        endif
+    endfunction
+
+    function! s:fzf_task()
+        let rows = asynctasks#source(&columns * 48 / 100)
+        let source = []
+        for row in rows
+            let name = row[0]
+            let source += [name . '  ' . row[1] . '  : ' . row[2]]
+        endfor
+        let opts = { 'source': source, 'sink': function('s:fzf_sink'),
+                    \ 'options': '+m --nth 1 --inline-info --tac' }
+        if exists('g:fzf_layout')
+            for key in keys(g:fzf_layout)
+                let opts[key] = deepcopy(g:fzf_layout[key])
+            endfor
+        endif
+        call fzf#run(opts)
+    endfunction
+
+    command! -nargs=0 AsyncTaskFzf call s:fzf_task()
+endif

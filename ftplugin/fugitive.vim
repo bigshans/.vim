@@ -22,3 +22,4 @@ let b:naviagtor_menu = utils#add_key_literal_prefix({
 
 nn <buffer>m :Navigator b:naviagtor_menu<CR>
 nmap <buffer>q :q!<CR>
+unmap <buffer>P

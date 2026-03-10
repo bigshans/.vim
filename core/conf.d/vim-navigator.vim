@@ -33,8 +33,21 @@ endfunction
 
 nmap <tab><tab> :Navigator g:navigator<CR>
 
-function! ExtendNavigator(tag, src)
-    if a:tag == 'builtin' || index(g:packs_config_list, a:tag) >= 0
+function! ExtendNavigator(tag, src) abort
+    " 1. 统一转换为数组处理
+    let l:tags = type(a:tag) == v:t_list ? a:tag : [a:tag]
+    let l:should_merge = 0
+
+    " 2. 遍历标签，只要有一个匹配成功就标记为需要合并
+    for l:item in l:tags
+        if l:item ==# 'builtin' || index(g:packs_config_list, l:item) >= 0
+            let l:should_merge = 1
+            break
+        endif
+    endfor
+
+    " 3. 执行合并
+    if l:should_merge
         call DeepMerge(g:navigator, a:src)
     endif
 endfunction
@@ -135,15 +148,21 @@ call ExtendNavigator('vim-plug', {
 
 cal ExtendNavigator('leaderf', {
             \ "s": {
-                \ 'l': [':Leaderf line', '[S]earch [L]ines'],
-                \ 'b': [':Leaderf buffer', '[S]earch [B]uffers'],
-                \ 'h': ['Leaderf help', '[S]earch [H]elptags'],
-                \ 'r': ['Leaderf rg', '[S]earch by [R]g'],
-                \ 'd': [':LeaderfFile', '[S]earch [D]ir file'],
+                \ 'l': [':Leaderf line', 'search lines'],
+                \ 'b': [':Leaderf buffer', 'search buffers'],
+                \ 'h': ['Leaderf help', 'search helptags'],
+                \ 'r': ['Leaderf rg', 'search by rg'],
+                \ 'd': [':LeaderfFile', 'search dir file'],
             \ },
             \ "o": {
                 \"c": [printf(":Leaderf file %s<CR>", $HOME_VIM), "open vim config"]
               \ }
+            \ })
+
+call ExtendNavigator(['asynctasks', 'leaderf', 'floaterm'], {
+            \ "s": {
+            \ "t": [":Leaderf --nowrap task", "search tasks"]
+            \ }
             \ })
 
 " =============
@@ -152,12 +171,12 @@ cal ExtendNavigator('leaderf', {
 
 call ExtendNavigator("git", {
             \ "g": {
-                \ "a": [":Git add .", "[G]it [a]dd all"],
-                \ "b": [":Git blame", "[G]it [B]lame"],
-                \ "c": [":Git commit", "[G]it [C]ommit"],
+                \ "a": [":Git add .", "git add all"],
+                \ "b": [":Git blame", "git blame"],
+                \ "c": [":Git commit", "git commit"],
                 \ "d": [":Gdiff", "diff current file"],
-                \ "r": [":Gread", "[G]it [R]estore file"],
-                \ "g": [":Git", "[G]it"],
+                \ "r": [":Gread", "git restore file"],
+                \ "g": [":Git", "git"],
                 \ "p": {
                     \ "name": "push or pull..",
                     \ "s": [":Git! push", "push"],
@@ -243,7 +262,7 @@ call ExtendNavigator("asyncrun", {
 " ./asynctasks.vim
 " ==================
 
-call ExtendNavigator("asyncrun", {
+call ExtendNavigator(["asyncrun", "floaterm"], {
             \ "a" : {
                 \ "f": [":AsyncTask float-shell", "run cmd in floaterm"],
               \ }
@@ -264,7 +283,7 @@ call ExtendNavigator("vim-winlayout", {
 " ./leaderF-Floaterm.vim
 " ==========================
 
-call ExtendNavigator("leaderF-Floaterm", {
+call ExtendNavigator(["leaderF-Floaterm", "leaderf"], {
             \ "t": {
                 \ "f": [":Leaderf floaterm", "search floaterm"],
               \ }
