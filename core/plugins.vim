@@ -26,7 +26,7 @@ if !(has('win32') || has('win64'))
 endif
 call packs#def('easymotion/vim-easymotion', 'easymotion')
 call packs#def('szw/vim-maximizer')
-call packs#def('habamax/vim-winlayout', 'vim-winlayout')
+" call packs#def('habamax/vim-winlayout', 'vim-winlayout')
 call packs#def('andymass/vim-matchup', 'vim-matchup')
 
 " ===============
@@ -91,6 +91,7 @@ call packs#def('jiangmiao/auto-pairs')
 call packs#def('xolox/vim-misc')
 call packs#def('xolox/vim-session', 'vim-session')
 call packs#def('skywind3000/asyncrun.vim', 'asyncrun')
+call packs#def('skywind3000/asynctasks.vim', 'asynctasks')
 
 " ===============
 " Git

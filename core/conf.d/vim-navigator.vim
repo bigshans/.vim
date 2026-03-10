@@ -240,6 +240,16 @@ call ExtendNavigator("asyncrun", {
   \ })
 
 " ==================
+" ./asynctasks.vim
+" ==================
+
+call ExtendNavigator("asyncrun", {
+            \ "a" : {
+                \ "f": [":AsyncTask float-shell", "run cmd in floaterm"],
+              \ }
+  \ })
+
+" ==================
 " ./vim-winlayout.vim
 " ==================
 
@@ -265,10 +275,6 @@ call ExtendNavigator("leaderF-Floaterm", {
 " ==========================
 
 call ExtendNavigator("vim-floaterm", {
-            \ "a": {
-                \ "f": ["FloatermCmd()", "run make in floaterm"],
-                \ "m": [":FloatermShow make", "show make floaterm"],
-              \ },
               \ "t": {
                   \ "t": [":FloatermToggle", "toggle floaterm"],
                   \ "n": [":FloatermNew", "new floaterm"],
