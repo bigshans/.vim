@@ -61,3 +61,8 @@ endfunction
 function! utils#smaller() abort
     call utils#modify_font(-1)
 endfunction
+
+function! utils#get_highlight_group()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction

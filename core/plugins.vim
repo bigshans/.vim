@@ -43,6 +43,7 @@ call packs#def('lambdalisue/vim-nerdfont')
 call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
+call packs#def('junegunn/goyo.vim', 'goyo')
 
 " ===============
 " Theme 

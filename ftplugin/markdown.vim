@@ -30,3 +30,6 @@ let b:_navigator_markdown["m"] = {
             \ }
 nmap <buffer><silent><leader>mt= :Tabularize<CR>
 setlocal conceallevel=2
+setlocal linespace=6
+setlocal nornu
+setlocal nonu
