@@ -97,7 +97,7 @@ set undofile                " 启用持久撤销
 " =============================================================================
 if has('gui_running')
     set guioptions-=T   " 隐藏工具栏
-    " set guioptions-=m   " 隐藏菜单栏
+    set guioptions-=m   " 隐藏菜单栏
     set guioptions-=l   " 隐藏左滚动条
     set guioptions-=L   " 隐藏左滚动条
     set guioptions-=r   " 隐藏右滚动条
