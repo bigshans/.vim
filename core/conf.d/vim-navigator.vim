@@ -220,6 +220,15 @@ call ExtendNavigator("nerdcommenter", {
                 \ "s": ["<plug>(NERDCommenterSexy)", "Comments with a pretty layout."]
               \ }
   \ })
+
+" ================
+" ./tcomment.vim
+" ================
+call ExtendNavigator("tcomment", {
+            \ "c": {
+                \ "i": ["<plug>TComment_gcc", "comment current"]
+              \ }
+  \ })
 " ===================
 " ./vim-project.vim
 " ===================

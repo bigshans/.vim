@@ -80,7 +80,8 @@ call packs#def('mg979/vim-visual-multi', { 'branch': 'master' }, 'vim-visual-mul
 call packs#def('vim-autoformat/vim-autoformat', 'autoformat')
 call packs#def('machakann/vim-sandwich', 'sandwich')
 call packs#def('alvan/vim-closetag', 'closetag')
-call packs#def('preservim/nerdcommenter', 'nerdcommenter')
+" call packs#def('preservim/nerdcommenter', 'nerdcommenter')
+call packs#def('tomtom/tcomment_vim', 'tcomment')
 call packs#def('preservim/vim-pencil', { 'on': 'Pencil' })
 call packs#def('jiangmiao/auto-pairs')
 
