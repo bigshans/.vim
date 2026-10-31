@@ -34,9 +34,9 @@ endfunction
 " vim-airline 主题（插件自带的 inkstone airline 主题，随配色自动切换）
 let g:airline_theme = 'inkstone'
 
-" 默认变体：宣纸 xuanzhi（浅色）。可选：xuanmo / xuanmo-dimmed / canghai /
+" 默认变体：沧海 canghai（深色）。可选：xuanmo / xuanmo-dimmed /
 " xuanzhi / xuanzhi-dimmed / qingci；运行时用 :Inkstone <变体> 临时切换
 let g:inkstone_variant = 'canghai'
 
-" 初始调用（可改成 catppuccin_mocha / sonokai / dracula 等）
+" 初始调用（可换成 sonokai 等已安装的主题）
 call SetTheme('inkstone')

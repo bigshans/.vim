@@ -19,14 +19,5 @@ let b:coc_suggest_disable = 1
 
 setlocal colorcolumn=
 
-let b:_navigator_markdown = {'prefix': '<leader>' }
-
-let b:_navigator_markdown["m"] = {
-            \ 'name': 'markdown...',
-            \ 't': {
-            \ 'name': 'table...',
-            \ '=': [':TableFormat', 'table format']
-            \ }
-            \ }
 nmap <buffer><silent><leader>mt= :Tabularize<CR>
 setlocal conceallevel=2

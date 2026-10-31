@@ -10,8 +10,6 @@ call packs#def('neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }, 
 " ===============
 call packs#def('Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }, 'leaderf')
 call packs#def('junegunn/fzf.vim', 'fzf')
-call packs#def('mileszs/ack.vim')
-call packs#def('vim-scripts/utl.vim')
 call packs#def('dyng/ctrlsf.vim', 'ctrlsf')
 
 " ===============
@@ -25,7 +23,6 @@ if !(has('win32') || has('win64'))
     call packs#def('bigshans/fcitx.vim', 'fcitx')
 endif
 call packs#def('easymotion/vim-easymotion', {'on': '<Plug>(easymotion-overwin-f)'}, 'easymotion')
-call packs#def('szw/vim-maximizer')
 " call packs#def('habamax/vim-winlayout', 'vim-winlayout')
 call packs#def('andymass/vim-matchup', 'vim-matchup')
 
@@ -40,7 +37,6 @@ call packs#def('voldikss/vim-floaterm', 'vim-floaterm')
 " Appearance
 " ===============
 call packs#def('lambdalisue/vim-nerdfont')
-call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
 call packs#def('junegunn/goyo.vim', {'on': 'Goyo'}, 'goyo')
@@ -48,10 +44,7 @@ call packs#def('junegunn/goyo.vim', {'on': 'Goyo'}, 'goyo')
 " ===============
 " Theme 
 " ===============
-call packs#def('catppuccin/vim', { 'as': 'catppuccin' })
 call packs#def('sainnhe/sonokai', 'sonokai')
-call packs#def('dracula/vim', { 'as': 'dracula' })
-call packs#def('joshdick/onedark.vim')
 
 " ===============
 " File Manager

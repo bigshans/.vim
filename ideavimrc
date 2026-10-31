@@ -68,5 +68,5 @@ set keep-english-in-normal-and-restore-in-insert
 set NERDTree
 nmap <leader>ft :NERDTreeToggle<CR>
 
-set whick-key
+set which-key
 set sneak
