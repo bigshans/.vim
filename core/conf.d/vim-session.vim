@@ -9,5 +9,5 @@ nn <leader>pc :CloseSession<CR>
 
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
-let g:session_directory = fnameescape($HOME_VIM.'/sessions')
+let g:session_directory = $HOME_VIM . '/sessions'
 let g:session_lock_enabled = 0

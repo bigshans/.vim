@@ -1,6 +1,8 @@
 scriptencoding utf-8
-let g:dashboard_session_dir = get(g:, 'session_directory', '~/.vim/sessions')
-let g:dashboard_use_unicode = get(g:, 'dashboard_use_unicode', 1)
+let s:default_session_dir = empty($HOME_VIM) ? expand('~/.vim/sessions') : $HOME_VIM . '/sessions'
+let g:dashboard_session_dir = get(g:, 'session_directory', s:default_session_dir)
+let g:dashboard_use_unicode = get(g:, 'dashboard_use_unicode',
+            \ !(has('win32') && !has('gui_running')))
 
 let s:border_h  = ['-', '─'][g:dashboard_use_unicode]
 let s:border_v  = ['|', '│'][g:dashboard_use_unicode]
@@ -188,7 +190,8 @@ function! s:build() abort
     call extend(l:lines, s:generate_header())
     call extend(l:lines, ['', l:pad . '[e]  empty buffer'])
     let b:action_registry['e'] = 'enew'
-    let l:s_path = expand(g:dashboard_session_dir)
+    let l:s_path = substitute(expand(g:dashboard_session_dir), '\\', '/', 'g')
+    let l:s_prefix = substitute(l:s_path, '/\+$', '', '') . '/'
     if isdirectory(l:s_path)
         let l:ss = split(globpath(l:s_path, '*.vim'), '\n')
         if !empty(l:ss)
@@ -206,7 +209,8 @@ function! s:build() abort
         call extend(l:lines, ['', l:pad . 'RECENT FILES', ''])
         let l:cnt = 0
         for l:f in l:rs
-            if l:f =~# g:dashboard_session_dir | continue | endif
+            let l:f_norm = substitute(l:f, '\\', '/', 'g')
+            if stridx(l:f_norm, l:s_prefix) == 0 | continue | endif
             let l:dir = fnamemodify(l:f, ':~:h') . '/'
             let l:name = fnamemodify(l:f, ':t')
             call add(l:lines, l:pad.'['.l:idx.']'.repeat(' ', 2).l:dir.l:name)

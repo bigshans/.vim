@@ -2,10 +2,16 @@ scriptencoding utf-8
 function! utils#sudo_save() abort
     if exists(':SudaWrite')
         exe 'SudaWrite'
-    elseif has('nvim')
-        exe 'w !pkexec tee > /dev/null %' | setl nomod
+    elseif has('unix')
+        if has('nvim')
+            exe 'w !pkexec tee > /dev/null %' | setl nomod
+        else
+            exe 'w !sudo tee %' | setl nomod
+        endif
     else
-        exe 'w !sudo tee %' | setl nomod
+        echohl WarningMsg
+        echomsg 'Windows 下需要安装 suda.vim 才能以管理员身份保存'
+        echohl None
     endif
 endfunction
 
@@ -20,7 +26,7 @@ endfunction
 function! utils#cd() abort
     let s = fnamemodify(resolve(expand('%:p')), ':h')
     echo 'Now root is ' . s
-    exec 'cd ' . s
+    exec 'cd ' . fnameescape(s)
 endfunction
 
 function! utils#add_key_literal_prefix(obj) abort
@@ -60,11 +66,24 @@ function! utils#project_name() abort
 endfunction
 
 function! utils#modify_font(delta) abort
+    if empty(&guifont)
+        return
+    endif
+
+    " Windows/GUI 常见格式：JetBrainsMono_NFM:h9:cANSI:qDRAFT
+    let l:height = matchlist(&guifont, '\v:h(\d+)')
+    if !empty(l:height)
+        let l:new_size = max([str2nr(l:height[1]) + a:delta, 1])
+        let &guifont = substitute(&guifont, '\v:h\zs\d+', l:new_size, '')
+        return
+    endif
+
+    " 终端 GUIFont 常见格式：JetBrainsMono Nerd Font 12
     let l:pattern = '\v\zs\d+$'
     let l:current = matchstr(&guifont, l:pattern)
     if l:current !=# ''
-        let l:new_size = l:current + a:delta
-        let &guifont = substitute(&guifont, l:pattern, l:new_size > 1 ? l:new_size : 1, '')
+        let l:new_size = max([str2nr(l:current) + a:delta, 1])
+        let &guifont = substitute(&guifont, l:pattern, l:new_size, '')
     endif
 endfunction
 

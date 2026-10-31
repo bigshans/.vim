@@ -30,6 +30,30 @@ ln -sf ~/.vim/_vimrc ~/.vimrc
 vim +PlugInstall
 ```
 
+### Windows
+
+Windows 下 Vim 默认读取 `%USERPROFILE%\_vimrc`，不能直接照搬上面的 `ln -sf`。
+可以把仓库放在 `%USERPROFILE%\.vim`，再创建链接（需要开发者模式或管理员权限）：
+
+```powershell
+git clone <repo> $env:USERPROFILE\.vim
+cmd /c mklink "%USERPROFILE%\_vimrc" "%USERPROFILE%\.vim\_vimrc"
+```
+
+如果不能建链接，就在 `%USERPROFILE%\_vimrc` 放一个转发文件，不要把
+`_vimrc` 直接复制过去（复制后 `$HOME_VIM` 会变成用户目录，插件和 core 配置都会找不到）：
+
+```vim
+source $HOME/.vim/_vimrc
+```
+
+Neovim 建议用 `nvim -u $env:USERPROFILE\.vim\init.vim` 启动，或把 `init.vim` 链接到
+`%LOCALAPPDATA%\nvim\init.vim`（直接复制会让配置目录解析成 Neovim 配置目录）。
+
+Windows 下 coc 会读取仓库内的 `win-coc/`，需要 Node 在 PATH；floaterm 优先使用
+`pwsh`，没有则回退到 `powershell` / `cmd`；`<leader>fS` 以管理员身份保存依赖
+`suda.vim`。
+
 首次启动时 coc 会根据 `g:coc_global_extensions` 自动安装语言服务。之后日常更新：
 
 ```vim

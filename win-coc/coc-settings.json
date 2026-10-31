@@ -103,11 +103,8 @@
     "codeLens.enable": true,
     "codeLens.separator": "▸",
     "translator.proxy": "socks://127.0.0.1:1080",
-    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "vimlsp.indexes.runtimepath": true,
     "vimlsp.suggest.fromRuntimepath": true,
-    "stylua.styluaPath": "/usr/bin/stylua",
-    "stylua.configPath": "/home/aerian/.vim/stylua.toml",
     "eslint.format.enable": true,
     "eslint.quiet": true,
     "eslint.useESLintClass": true,
@@ -128,6 +125,5 @@
         "--header-insertion=iwyu",
         "--pch-storage=disk"
     ],
-    "git.enableGutters": true,
-    "coc.preferences.watchmanPath": "C:\\Users\\tengjp\\scoop\\shims\\watchman.exe"
+    "git.enableGutters": true
 }

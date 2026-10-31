@@ -18,7 +18,7 @@ if has("win32") || has("win64")
 endif
 
 function s:load(file)
-    exec 'source ' . utils#stdpath(fnameescape(a:file))
+    exec 'source ' . fnameescape(utils#stdpath(a:file))
 endfunction
 
 call s:load($CORE_CONFIG.'/options.vim')

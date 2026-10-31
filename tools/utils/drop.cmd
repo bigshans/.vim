@@ -5,7 +5,9 @@ if "%1" == "" GOTO help
 if "%VIM_EXE%" == "" GOTO missing
 
 REM Get absolute name
-for /f "delims=" %%i in ("%1") do set "NAME=%%~fi"
+set "NAME=%~f1"
+REM 单引号会破坏 Vim 表达式里的字符串，转义成两个单引号
+set "NAME=%NAME:'=''%"
 REM echo fullpath: %NAME%
 
 if "%NVIM_LISTEN_ADDRESS%" == "" GOTO vim
@@ -16,6 +18,8 @@ call "%VIM_EXE%" --servername "%VIM_SERVERNAME%" --remote-expr "Tapi_TerminalEdi
 goto end
 
 :neovim
+where nvr >nul 2>nul
+if errorlevel 1 goto nonvr
 call "nvr" --servername "%VIM_SERVERNAME%" --remote-expr "Tapi_TerminalEdit(0, '%NAME%')"
 goto end
 

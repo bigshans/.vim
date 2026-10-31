@@ -124,7 +124,11 @@ augroup END
 " 拼写检查
 " =============================================================================
 set spelllang=en,cjk  " 拼写检查语言
-set directory=.,$TEMP  " 临时目录
+if has('win32') || has('win64')
+    set directory=.,$TEMP  " 临时目录
+else
+    set directory=.,/tmp
+endif
 set nospell           " 默认不启用拼写检查
 
 " =============================================================================
@@ -143,4 +147,4 @@ set ttimeoutlen=10    " 极速识别 Esc 和功能键，消除退出延迟
 " Session
 " =============================================================================
 
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
+set sessionoptions=blank,buffers,curdir,folds,help,slash,tabpages,winsize

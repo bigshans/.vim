@@ -2,8 +2,12 @@
 " Coc Plugins
 "======================
 if has('win32') || has('win64')
-    let g:coc_config_home = fnameescape('~/vimfiles/win-coc')
-    let g:coc_node_path = fnameescape('~/AppData/Roaming/nvm/v22.14.0/node.exe')
+    if !exists('g:coc_config_home')
+        let g:coc_config_home = $HOME_VIM . '/win-coc'
+    endif
+    if !exists('g:coc_node_path') && executable('node')
+        let g:coc_node_path = exepath('node')
+    endif
 endif
 
 let g:coc_global_extensions = [

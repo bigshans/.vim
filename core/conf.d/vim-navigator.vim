@@ -82,7 +82,7 @@ call ExtendNavigator('builtin', {
                 \ 'v': [':vsplit', '垂直分屏'],
             \ },
             \ 'o': {
-                \ 'p': [printf(':e %s', utils#stdpath(fnameescape($CORE_CONFIG . '/plugins.vim'))), '插件清单'],
+                \ 'p': [printf(':e %s', fnameescape(utils#stdpath($CORE_CONFIG . '/plugins.vim'))), '插件清单'],
             \ },
             \ })
 
