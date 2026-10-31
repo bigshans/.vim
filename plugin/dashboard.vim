@@ -9,18 +9,60 @@ let s:cor_br    = ['*', '╯'][g:dashboard_use_unicode]
 let s:cor_bl    = ['*', '╰'][g:dashboard_use_unicode]
 let s:indent = 4
 
+" inkstone 配色下取主题调色板；其它配色返回空字典（沿用原来的 highlight link）
+function! s:palette() abort
+    if get(g:, 'colors_name', '') !~# '^inkstone' || !exists('*inkstone#Palette')
+        return {}
+    endif
+    return inkstone#Palette()
+endfunction
+
+function! s:hi(group, fg, attr) abort
+    execute 'highlight' a:group
+          \ 'guifg=' . a:fg . ' ctermfg=' . inkstone#Cterm(a:fg)
+          \ 'gui=' . (empty(a:attr) ? 'NONE' : a:attr)
+          \ 'cterm=' . (empty(a:attr) ? 'NONE' : a:attr)
+endfunction
+
 function! s:apply_colors() abort
     if &filetype != 'custom_dash' | return | endif
-    highlight link DashDim      Comment
-    highlight link DashBright   String
-    highlight link DashBracket  Delimiter
-    highlight link DashKey      Number
-    highlight link DashTitle    Type
-    highlight link DashAction   Comment
-    highlight DashArt ctermfg=12 guifg=#00afff gui=none
+    let l:p = s:palette()
+    if empty(l:p)
+        highlight link DashDim      Comment
+        highlight link DashBright   String
+        highlight link DashBracket  Delimiter
+        highlight link DashKey      Number
+        highlight link DashTitle    Type
+        highlight link DashAction   Comment
+        highlight link DashFrame    Delimiter
+        highlight link DashAuthor   Comment
+        highlight link DashQuote    Normal
+        highlight DashArt ctermfg=12 guifg=#00afff gui=none
+    else
+        " 墨观 Inkstone：纸底墨字，框线用极淡的界栏色，ASCII 小牛取水色
+        call s:hi('DashDim',     l:p.comment, '')
+        call s:hi('DashBright',  l:p.func,    '')
+        call s:hi('DashBracket', l:p.punct,   '')
+        call s:hi('DashKey',     l:p.num,     'bold')
+        call s:hi('DashTitle',   l:p.keyword, 'bold')
+        call s:hi('DashAction',  l:p.comment, 'italic')
+        call s:hi('DashFrame',   l:p.guide,   '')
+        call s:hi('DashAuthor',  l:p.comment, 'italic')
+        call s:hi('DashQuote',   l:p.prop,    'italic')
+        call s:hi('DashArt',     l:p.cursor,  '')
+    endif
     syntax clear
-    syntax match DashArt /\%<18l\s*\S.*/
-    syntax match DashArt /\%<18l[\^__(oo)\\ \/\\|_w-]\+/
+    if empty(l:p)
+        syntax match DashArt /\%<18l\s*\S.*/
+        syntax match DashArt /\%<18l[\^__(oo)\\ \/\\|_w-]\+/
+    else
+        " inkstone 下把引语框拆成三段：框线 / 正文 / 署名
+        syntax match DashFrame  /[│─╭╮╰╯]/
+        syntax match DashQuote  /\%(│ \)\@<=\s*\zs[^-|│ ].\{-}\ze *[│]$/
+        syntax match DashAuthor /\%(│ \)\@<=\s*\zs- .\{-}\ze *[│]$/
+    endif
+    " ASCII 小牛独占一个 region，避免误染正文里的 o/w/-
+    syntax region DashArt start=/^\s*o\s*$/ end=/^\s*||\s*||$/ keepend
     syntax match DashTitle   /^\s*\(RECENT FILES\|SESSIONS\)/
     syntax match DashBracket /\[\|\]/ contained
     syntax match DashKey     /[0-9eq]\+/ contained
