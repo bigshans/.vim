@@ -18,10 +18,13 @@ function! s:palette() abort
 endfunction
 
 function! s:hi(group, fg, attr) abort
+    let l:cterm = inkstone#Cterm(a:fg)
+    let l:cterm_part = empty(l:cterm) ? '' : ' ctermfg=' . l:cterm
+    let l:attr = empty(a:attr) ? 'NONE' : a:attr
     execute 'highlight' a:group
-          \ 'guifg=' . a:fg . ' ctermfg=' . inkstone#Cterm(a:fg)
-          \ 'gui=' . (empty(a:attr) ? 'NONE' : a:attr)
-          \ 'cterm=' . (empty(a:attr) ? 'NONE' : a:attr)
+          \ 'guifg=' . a:fg . l:cterm_part
+          \ 'gui=' . l:attr
+          \ 'cterm=' . l:attr
 endfunction
 
 function! s:apply_colors() abort

@@ -20,7 +20,7 @@ nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 nnoremap <leader>sd :LeaderfFile<CR>
-nnoremap <leader>sp :ProjectList<CR>
+" <leader>sp 由 core/conf.d/vim-session.vim 占用（OpenSession）
 
 exec printf("nnoremap <leader>oc :Leaderf file %s<CR>", fnameescape($HOME_VIM))
 

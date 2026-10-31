@@ -91,7 +91,7 @@ nnoremap <silent><nowait> <leader>jl <Plug>(coc-codelens-action)
 " Remap keys for applying refactor code actions
 nmap <silent> <leader>je <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>jF  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent><nowait>> <leader>jk :call ShowDocumentation()<CR>
+nmap <silent><nowait> <leader>jk :call ShowDocumentation()<CR>
 nnoremap <silent><nowait> <leader>jo  :call ToggleOutline()<CR>
 nnoremap <leader>jD :let b:coc_suggest_disable = !get(b:, 'coc_suggest_disable', 0)<CR>
 nnoremap <leader>j= :Format<CR>
@@ -104,7 +104,10 @@ function! ShowDocumentation()
     endif
 endfunction
 
-autocmd BufEnter * call CheckOutline()
+augroup coc_outline
+    autocmd!
+    autocmd BufEnter * call CheckOutline()
+augroup END
 function! CheckOutline() abort
     if &filetype ==# 'coctree' && winnr('$') == 1
         if tabpagenr('$') != 1
@@ -123,16 +126,6 @@ function! ToggleOutline() abort
         call coc#window#close(winid)
     endif
 endfunction
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap T <Plug>(coc-translator-p)
-vmap T <Plug>(coc-translator-pv)
-nnoremap <silent><nowait> K :call ShowDocumentation()<CR>
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

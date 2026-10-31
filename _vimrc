@@ -1,13 +1,19 @@
-let $HOME_VIM = utils#stdpath(fnamemodify(resolve(expand('<sfile>:p')), ':h'))
-let $CORE_CONFIG = utils#stdpath(fnameescape($HOME_VIM."/core"))
+let s:config_home = substitute(fnamemodify(resolve(expand('<sfile>:p')), ':h'), '\\', '/', 'g')
+" 先把配置目录加入 rtp，不再依赖 ~/.vim 恰好在默认 runtimepath 中
+if index(split(&runtimepath, ','), s:config_home) < 0
+    exec 'set rtp+=' . fnameescape(s:config_home)
+endif
 
-exec 'set rtp+='. fnameescape($HOME_VIM)
+let $HOME_VIM = s:config_home
+let $CORE_CONFIG = $HOME_VIM . '/core'
+
 " 墨观 Inkstone 主题插件 (本地开发，不在 vim-plug 管理范围内)
-exec 'set rtp+=' . fnameescape(substitute($HOME_VIM, "\n", '', 'g') . '/bundle/vim-inkstone')
+let s:inkstone = $HOME_VIM . '/bundle/vim-inkstone'
+if isdirectory(s:inkstone) && index(split(&runtimepath, ','), s:inkstone) < 0
+    exec 'set rtp+=' . fnameescape(s:inkstone)
+endif
 if has("win32") || has("win64")
     exec 'set rtp+=~/vimfiles'
-else
-    exec 'set rtp+=~/.vim'
 endif
 
 if has("win32") || has("win64")

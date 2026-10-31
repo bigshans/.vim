@@ -1,5 +1,5 @@
-let g:ale_airline#extensions#ale#enabled = 1
-let g:ale_airline#extensions#coc#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
@@ -10,8 +10,7 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_idx_format = {}
-" let g:airline_theme = 'catppuccin_frappe'
-let g:airline_theme = 'sonokai'
+" 主题统一由 core/theme.vim 决定，这里不再覆盖
 
 for index in range(10)
     let g:airline#extensions#tabline#buffer_idx_format[index] = index . ' '
@@ -34,16 +33,6 @@ endfor
 nmap <leader>bn <Plug>AirlineSelectPrevTab
 nmap <leader>bp <Plug>AirlineSelectNextTab
 nmap <leader>bd :bdelete<CR>
-nmap <M-1> <Plug>AirlineSelectTab1
-nmap <M-2> <Plug>AirlineSelectTab2
-nmap <M-3> <Plug>AirlineSelectTab3
-nmap <M-4> <Plug>AirlineSelectTab4
-nmap <M-5> <Plug>AirlineSelectTab5
-nmap <M-6> <Plug>AirlineSelectTab6
-nmap <M-7> <Plug>AirlineSelectTab7
-nmap <M-8> <Plug>AirlineSelectTab8
-nmap <M-9> <Plug>AirlineSelectTab9
-nmap <M-0> <Plug>AirlineSelectTab0
 
 nmap <leader>b1 <Plug>AirlineSelectTab1
 nmap <leader>b2 <Plug>AirlineSelectTab2

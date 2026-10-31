@@ -9,7 +9,6 @@ let g:mapleader = " "
 " 文件类型和语法
 " =============================================================================
 filetype plugin indent on
-syntax enable
 syntax on
 
 " =============================================================================
@@ -115,7 +114,10 @@ endif
 " =============================================================================
 set termguicolors   " 终端真彩色支持
 set vb t_vb=        " 禁用响铃
-au GUIEnter * set t_vb=  " GUI启动时禁用响铃
+augroup gui_tweaks
+    autocmd!
+    autocmd GUIEnter * set t_vb=  " GUI启动时禁用响铃
+augroup END
 
 " =============================================================================
 " 拼写检查
@@ -131,7 +133,7 @@ set laststatus=2      " 总是显示状态行
 set updatetime=100    " 更新时间间隔
 set complete-=k       " 移除关键字补全
 " set timeout           " 开启映射超时检测
-set timeoutlen=800    " 快捷键等待 0.5 秒，兼顾手速与响应
+set timeoutlen=800    " 快捷键等待 0.8 秒，兼顾手速与响应
 
 " set ttimeout          " 开启键码超时检测
 set ttimeoutlen=10    " 极速识别 Esc 和功能键，消除退出延迟
