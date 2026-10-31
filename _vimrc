@@ -14,9 +14,6 @@ if isdirectory(s:inkstone) && index(split(&runtimepath, ','), s:inkstone) < 0
 endif
 if has("win32") || has("win64")
     exec 'set rtp+=~/vimfiles'
-endif
-
-if has("win32") || has("win64")
     set pythondll=~/AppData/Local/Programs/Python/Python311/python311.dll
 endif
 
