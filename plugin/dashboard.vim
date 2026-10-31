@@ -130,7 +130,10 @@ function! s:enable_lock() abort
 endfunction
 
 function! s:disable_lock() abort
-    silent! mapclear <buffer>
+    call utils#unmap_buffer(['j', 'k', 'h', 'l', 'gg', 'G', '<CR>', 'q', '<2-LeftMouse>'])
+    if exists('b:action_registry')
+        call utils#unmap_buffer(keys(b:action_registry))
+    endif
     augroup dash_monitor
         autocmd! * <buffer>
     augroup END
@@ -180,18 +183,18 @@ function! s:build() abort
     if argc() > 0 || line2byte('$') != -1 | return | endif
     enew | setlocal buftype=nofile bufhidden=wipe noswapfile filetype=custom_dash nonumber norelativenumber cursorline
     let b:action_registry = {} | let l:idx = 0 | let l:pad = repeat(' ', s:indent)
-    call append('$', ["", ""])
-    call append('$', s:generate_header())
-    call append('$', ["", l:pad . "[e]  empty buffer"])
+    let l:lines = ['', '']
+    call extend(l:lines, s:generate_header())
+    call extend(l:lines, ['', l:pad . '[e]  empty buffer'])
     let b:action_registry['e'] = 'enew'
     let l:s_path = expand(g:dashboard_session_dir)
     if isdirectory(l:s_path)
         let l:ss = split(globpath(l:s_path, '*.vim'), '\n')
         if !empty(l:ss)
-            call append('$', ["", l:pad . "SESSIONS", ""])
+            call extend(l:lines, ['', l:pad . 'SESSIONS', ''])
             for l:s in l:ss
                 let l:n = fnamemodify(l:s, ':t:r')
-                call append('$', l:pad.'['.l:idx.']'.repeat(' ', 2).l:n)
+                call add(l:lines, l:pad.'['.l:idx.']'.repeat(' ', 2).l:n)
                 let b:action_registry[string(l:idx)] = 'silent! OpenSession '.fnameescape(l:n)
                 let l:idx += 1
             endfor
@@ -199,20 +202,21 @@ function! s:build() abort
     endif
     let l:rs = filter(copy(v:oldfiles), 'filereadable(expand(v:val))')
     if !empty(l:rs)
-        call append('$', ["", l:pad . "RECENT FILES", ""])
+        call extend(l:lines, ['', l:pad . 'RECENT FILES', ''])
         let l:cnt = 0
         for l:f in l:rs
             if l:f =~# g:dashboard_session_dir | continue | endif
-            let l:dir = fnamemodify(l:f, ":~:h") . "/"
-            let l:name = fnamemodify(l:f, ":t")
-            call append('$', l:pad.'['.l:idx.']'.repeat(' ', 2).l:dir.l:name)
+            let l:dir = fnamemodify(l:f, ':~:h') . '/'
+            let l:name = fnamemodify(l:f, ':t')
+            call add(l:lines, l:pad.'['.l:idx.']'.repeat(' ', 2).l:dir.l:name)
             let b:action_registry[string(l:idx)] = 'silent! edit '.fnameescape(l:f)
             let l:idx += 1 | let l:cnt += 1
             if l:cnt >= 12 | break | endif
         endfor
     endif
-    call append('$', ["", l:pad . "[q]  quit"])
+    call extend(l:lines, ['', l:pad . '[q]  quit'])
     let b:action_registry['q'] = 'quit'
+    call setline(1, l:lines)
     setlocal nomodifiable | call s:apply_colors()
     call s:enable_lock()
     let l:pos = search('\[')

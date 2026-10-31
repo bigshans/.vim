@@ -73,6 +73,24 @@ function! utils#get_highlight_group()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunction
 
+" 追加 buffer-local 清理命令到 b:undo_ftplugin
+function! utils#undo_append(cmds) abort
+    let l:undo = get(b:, 'undo_ftplugin', '')
+    let b:undo_ftplugin = empty(l:undo) ? a:cmds : l:undo . ' | ' . a:cmds
+endfunction
+
+" 安全删除 buffer-local 映射（silent! 在 Vim 9 不能抑制 E31）
+function! utils#unmap_buffer(keys) abort
+    for l:key in a:keys
+        for l:mode in ['n', 'x', 's', 'o', 'i', 'c', 't']
+            let l:m = maparg(l:key, l:mode, 0, 1)
+            if !empty(l:m) && get(l:m, 'buffer', 0)
+                execute 'silent! ' . l:mode . 'unmap <buffer> ' . l:key
+            endif
+        endfor
+    endfor
+endfunction
+
 " 把当前目录添加为项目：优先用 vim-project，否则退回 vim-session
 function! utils#add_current_project() abort
     if exists(':Project')
