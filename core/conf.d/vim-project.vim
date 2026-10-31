@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " vim-project: 按项目隔离 cwd、搜索、任务、git 和配置
 " 必须在插件加载前设置 g:vim_project_config
 let g:vim_project_config = {

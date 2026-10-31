@@ -1,18 +1,12 @@
+scriptencoding utf-8
 let g:packs_config_list = []
 
-function! packs#begin(bundle)
+function! packs#begin(bundle) abort
     let g:packs_config_list = ['vim-plug']
     call plug#begin(a:bundle)
 endfunction
 
-function! packs#add(plugin, ...)
-    exec printf("packadd! %s", a:plugin)
-    if a:0 > 0
-        call add(g:packs_config_list, a:1)
-    endif
-endfunction
-
-function! packs#def(repo, ...)
+function! packs#def(repo, ...) abort
     " a:0 表示额外参数的数量
     " a:1 第一个可选参数，a:2 第二个可选参数
 
@@ -42,7 +36,7 @@ function! packs#def(repo, ...)
     endif
 endfunction
 
-function! packs#end()
+function! packs#end() abort
     call plug#end()
     for l:config_name in g:packs_config_list
         " 确保 $HOME_VIM 已经定义，或者使用 expand('~/.vim')

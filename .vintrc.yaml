@@ -19,3 +19,7 @@ policies:
 
   ProhibitMissingScriptEncoding:
     enabled: true
+
+  # vint 在该策略上跨文件残留状态，会误报 options.vim 的 set encoding
+  ProhibitEncodingOptionAfterScriptEncoding:
+    enabled: false

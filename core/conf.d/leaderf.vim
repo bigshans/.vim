@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " let g:Lf_WindowPosition = 'popup'
 " Show icons, icons are shown by default
 let g:Lf_ShowDevIcons = 1
@@ -42,7 +43,7 @@ if index(g:packs_config_list, 'asynctasks') >= 0
         endif
         let name = strpart(a:line, 0, pos)
         let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
-        if name != ''
+        if name !=# ''
             exec "AsyncTask " . name
         endif
     endfunction

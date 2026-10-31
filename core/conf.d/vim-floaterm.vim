@@ -1,3 +1,4 @@
+scriptencoding utf-8
 nmap <leader>tt :FloatermToggle<CR>
 nmap <leader>tn :FloatermNew<CR>
 nmap <leader>tk :call FloatermKillCmd()<CR>

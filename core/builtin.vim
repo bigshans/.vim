@@ -11,7 +11,7 @@ noremap k gk
 
 function! ClearAll()
     let r = @/
-    if r != ''
+    if r !=# ''
         " clear highlight
         let @/ = ''
     endif

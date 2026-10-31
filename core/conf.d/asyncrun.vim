@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let g:asyncrun_open = 8
 nn <leader>ar :call RunCmdAsync()<CR>
 nn <leader>ad :AsyncStop<CR>

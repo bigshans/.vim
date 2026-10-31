@@ -1,3 +1,4 @@
+scriptencoding utf-8
 nnoremap <buffer> q :cclose<CR>
 nnoremap <buffer> <Esc> :cclose<CR>
 nnoremap <buffer> <CR> <CR>

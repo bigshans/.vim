@@ -1,3 +1,4 @@
+scriptencoding utf-8
 function! s:fzf_statusline()
     " Override statusline as you like
     highlight fzf1 ctermfg=161 ctermbg=251
@@ -67,7 +68,7 @@ if index(g:packs_config_list, 'asynctasks') >= 0
         if p1 >= 0
             let name = strpart(a:what, 0, p1)
             let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
-            if name != ''
+            if name !=# ''
                 exec "AsyncTask ". fnameescape(name)
             endif
         endif

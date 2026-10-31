@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let g:dashboard_session_dir = get(g:, 'session_directory', '~/.vim/sessions')
 let g:dashboard_use_unicode = get(g:, 'dashboard_use_unicode', 1)
 
@@ -28,7 +29,7 @@ function! s:hi(group, fg, attr) abort
 endfunction
 
 function! s:apply_colors() abort
-    if &filetype != 'custom_dash' | return | endif
+    if &filetype !=# 'custom_dash' | return | endif
     let l:p = s:palette()
     if empty(l:p)
         highlight link DashDim      Comment
@@ -107,7 +108,7 @@ function! s:generate_header() abort
 endfunction
 
 function! s:enable_lock() abort
-    if &filetype != 'custom_dash' | return | endif
+    if &filetype !=# 'custom_dash' | return | endif
     nnoremap <buffer><silent> j :call <SID>move(1)<cr>
     nnoremap <buffer><silent> k :call <SID>move(-1)<cr>
     nnoremap <buffer><silent> h <nop>
@@ -140,7 +141,7 @@ function! s:disable_lock() abort
 endfunction
 
 function! s:ensure_column() abort
-    if &filetype != 'custom_dash' || mode() != 'n' | return | endif
+    if &filetype !=# 'custom_dash' || mode() !=# 'n' | return | endif
     let l:line = getline('.')
     let l:s = stridx(l:line, '[')
     if l:s != -1
@@ -157,7 +158,7 @@ function! s:move(d) abort
     let l:curr = line('.')
     let l:t = l:curr + a:d
     while l:t >= 1 && l:t <= line('$')
-        if getline(l:t) =~ '\['
+        if getline(l:t) =~# '\['
             call cursor(l:t, stridx(getline(l:t), '[') + 2)
             return
         endif

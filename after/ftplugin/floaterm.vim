@@ -1,2 +1,3 @@
+scriptencoding utf-8
 " 在运行时 ftplugin 之后注册 undo，避免 b:undo_ftplugin 被覆盖
 call utils#undo_append('call utils#unmap_buffer(["<M-7>", "<M-p>", "<M-n>", "<M-t>", "<Esc>", "q", "<M-q>"])')

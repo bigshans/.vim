@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let g:sandwich#recipes = [
             \   {'buns': ['“', '”'],  'nesting': 1, 'input': ['c"']},
             \   {'buns': ['‘', '’'],  'nesting': 1, 'input': ["c'"]},

@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " vim-session 与 vim-project 二选一管理会话；项目切换用 <leader>pp
 nn <leader>pa :AddCurrentProject<CR>
 nn <leader>ps :SaveSession<CR>
