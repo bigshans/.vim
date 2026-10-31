@@ -45,6 +45,12 @@ function! utils#stdpath(path)
   return substitute(a:path, '[/\\]', '/', 'g')
 endfunction
 
+" 当前目录名转成可用的 session 名（用于 :AddCurrentProject）
+function! utils#project_name() abort
+  let l:name = fnamemodify(getcwd(), ':t')
+  return empty(l:name) ? 'root' : substitute(l:name, '[^[:alnum:]._-]', '_', 'g')
+endfunction
+
 function! utils#modify_font(delta) abort
     let l:pattern = '\v\zs\d+$'
     let l:current = matchstr(&guifont, l:pattern)
@@ -65,4 +71,17 @@ endfunction
 function! utils#get_highlight_group()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction
+
+" 把当前目录添加为项目：优先用 vim-project，否则退回 vim-session
+function! utils#add_current_project() abort
+    if exists(':Project')
+        execute 'Project ' . fnameescape(getcwd())
+    elseif exists(':SaveSession')
+        execute 'SaveSession ' . utils#project_name()
+    else
+        echohl WarningMsg
+        echomsg '需要 vim-project 或 vim-session'
+        echohl None
+    endif
 endfunction

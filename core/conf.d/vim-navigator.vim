@@ -182,7 +182,6 @@ call ExtendNavigator("git", {
                     \ "s": [":Git! push", "push"],
                     \ "l": [":Git! pull", "pull"],
                 \ },
-                \ "x": [":GitGutterToggle", "highlight diff"],
                 \ "w": [":Gwrite", "store file"],
             \ }
             \ })
@@ -233,11 +232,16 @@ call ExtendNavigator("tcomment", {
 " ./vim-project.vim
 " ===================
 
-" call ExtendNavigator("vim-project", {
-"             \ "s": {
-"                 \ 'p': [':ProjectList', '[S]earch [P]rojects'],
-"               \ }
-"   \ })
+call ExtendNavigator("vim-project", {
+            \ "p": {
+                \ "l": [":ProjectList", "list projects"],
+                \ "f": [":ProjectSearchFiles", "search files in project"],
+                \ "g": [":ProjectFindInFiles", "find in files"],
+                \ "r": [":ProjectRun", "run project task"],
+                \ "G": [":ProjectGitStatus", "project git status"],
+                \ "i": [":ProjectInfo", "project info"],
+              \ },
+  \ })
 
 " ==================
 " ./vim-session.vim

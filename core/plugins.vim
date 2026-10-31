@@ -24,7 +24,7 @@ call packs#def('rhysd/clever-f.vim', 'clever-f')
 if !(has('win32') || has('win64'))
     call packs#def('bigshans/fcitx.vim', 'fcitx')
 endif
-call packs#def('easymotion/vim-easymotion', 'easymotion')
+call packs#def('easymotion/vim-easymotion', {'on': '<Plug>(easymotion-overwin-f)'}, 'easymotion')
 call packs#def('szw/vim-maximizer')
 " call packs#def('habamax/vim-winlayout', 'vim-winlayout')
 call packs#def('andymass/vim-matchup', 'vim-matchup')
@@ -43,7 +43,7 @@ call packs#def('lambdalisue/vim-nerdfont')
 call packs#def('sainnhe/artify.vim')
 call packs#def('vim-airline/vim-airline', 'airline')
 call packs#def('vim-airline/vim-airline-themes')
-call packs#def('junegunn/goyo.vim', 'goyo')
+call packs#def('junegunn/goyo.vim', {'on': 'Goyo'}, 'goyo')
 
 " ===============
 " Theme 
@@ -77,7 +77,7 @@ call packs#def('leafOfTree/vim-vue-plugin', { 'for': 'vue' })
 " ===============
 call packs#def('tpope/vim-repeat')
 call packs#def('mg979/vim-visual-multi', { 'branch': 'master' }, 'vim-visual-multi')
-call packs#def('vim-autoformat/vim-autoformat', 'autoformat')
+call packs#def('vim-autoformat/vim-autoformat', {'on': 'Autoformat'}, 'autoformat')
 call packs#def('machakann/vim-sandwich', 'sandwich')
 call packs#def('alvan/vim-closetag', 'closetag')
 " call packs#def('preservim/nerdcommenter', 'nerdcommenter')
@@ -89,9 +89,10 @@ call packs#def('jiangmiao/auto-pairs')
 " Project
 " ===============
 
-" vim-session required
+" session / project
 call packs#def('xolox/vim-misc')
 call packs#def('xolox/vim-session', 'vim-session')
+call packs#def('leafOfTree/vim-project', 'vim-project')
 call packs#def('skywind3000/asyncrun.vim', 'asyncrun')
 call packs#def('skywind3000/asynctasks.vim', 'asynctasks')
 
