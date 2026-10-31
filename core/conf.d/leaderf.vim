@@ -17,7 +17,8 @@ let g:Lf_UseCache = 0
 nnoremap <silent><plug>LeaderfCurFolderFile :<C-U><C-R>=printf("Leaderf file %s", expand('%:p:h'))<CR><CR>
 
 nnoremap <leader>sr :Leaderf rg<CR>
-nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+nnoremap <leader>ss :<C-U><C-R>=printf("Leaderf line --all %s", "")<CR><CR>
+nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 nnoremap <leader>sd :LeaderfFile<CR>
 " <leader>sp 由 core/conf.d/vim-session.vim 占用（OpenSession）

@@ -1,7 +1,8 @@
 scriptencoding utf-8
 
 " vim-navigator：which-key 风格的分组菜单
-" 用 <tab><tab> 或 <leader>? 打开；条目与 core/builtin.vim、core/conf.d/*.vim 的键位保持一致。
+" 用 <tab><tab> 或 <leader>? 打开；打开后按与 <leader> 相同的后续键即可定位，
+" 例如 <tab><tab>pp = <leader>pp、<tab><tab>sr = <leader>sr。
 let g:navigator = {
             \ 'q': ['utils#quit()', '关闭当前缓冲区'],
             \ 'Q': [':qa!', '退出全部'],
@@ -66,6 +67,7 @@ call ExtendNavigator('builtin', {
                 \ 'e': [':blast', '最后一个缓冲区'],
             \ },
             \ 'w': {
+                \ '0': [':0wincmd w', '跳到窗口 0'],
                 \ '1': [':1wincmd w', '跳到窗口 1'],
                 \ '2': [':2wincmd w', '跳到窗口 2'],
                 \ '3': [':3wincmd w', '跳到窗口 3'],
@@ -116,6 +118,7 @@ call ExtendNavigator('coc', {
 " =============================================================================
 call ExtendNavigator('airline', {
             \ 'b': {
+                \ '0': ['<plug>AirlineSelectTab0', '标签 0'],
                 \ '1': ['<plug>AirlineSelectTab1', '标签 1'],
                 \ '2': ['<plug>AirlineSelectTab2', '标签 2'],
                 \ '3': ['<plug>AirlineSelectTab3', '标签 3'],
@@ -152,10 +155,12 @@ call ExtendNavigator('leaderf', {
                 \ 'l': [':Leaderf buffer', '缓冲区列表'],
             \ },
             \ 's': {
-                \ 'l': [':Leaderf line', '当前缓冲区行'],
-                \ 'h': [':Leaderf help', '帮助文档'],
-                \ 'r': [':Leaderf rg', '全项目搜索'],
+                \ 'b': [':Leaderf buffer', '缓冲区列表'],
                 \ 'd': [':LeaderfFile', '查找文件'],
+                \ 'h': [':Leaderf help', '帮助文档'],
+                \ 'l': [':Leaderf line', '当前缓冲区行'],
+                \ 'r': [':Leaderf rg', '全项目搜索'],
+                \ 's': [':Leaderf line --all', '所有缓冲区行'],
             \ },
             \ 'o': {
                 \ 'c': [printf(':Leaderf file %s', $HOME_VIM), 'Vim 配置'],
@@ -226,7 +231,7 @@ call ExtendNavigator('nerdcommenter', {
 " =============================================================================
 call ExtendNavigator('vim-project', {
             \ 'p': {
-                \ 'l': [':ProjectList', '项目列表'],
+                \ 'p': [':ProjectList', '项目列表'],
                 \ 'f': [':ProjectSearchFiles', '项目内查找文件'],
                 \ 'g': [':ProjectFindInFiles', '项目内全文搜索'],
                 \ 'r': [':ProjectRun', '运行项目任务'],
@@ -242,6 +247,9 @@ call ExtendNavigator('vim-session', {
                 \ 'o': [':OpenSession', '打开会话'],
                 \ 'd': [':DeleteSession', '删除会话'],
                 \ 'c': [':CloseSession', '关闭会话'],
+            \ },
+            \ 's': {
+                \ 'p': [':OpenSession', '打开会话（同 po）'],
             \ },
             \ })
 

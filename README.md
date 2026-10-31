@@ -88,7 +88,7 @@ vim +PlugInstall
 |---|---|---|
 | `<leader>f` | file / 文件 | `<leader>ff` 找文件、`<leader>fs` 保存 |
 | `<leader>j` | jump / LSP（coc） | `<leader>jr` 重命名、`<leader>jd` 诊断 |
-| `<leader>s` | search | `<leader>sr` 全文搜索、`<leader>ss` 搜当前 buffer |
+| `<leader>s` | search | `<leader>sr` 全文搜索、`<leader>sl` 搜当前 buffer |
 | `<leader>p` | project / session | `<leader>pp` 项目列表、`<leader>ps` 保存会话 |
 | `<leader>t` | terminal | `<leader>tt` 切换 floaterm |
 | `<leader>g` | git | `<leader>gc` commit、`<leader>gd` diff |
@@ -148,7 +148,8 @@ vim +PlugInstall
 | `<leader>ff` | 找文件（LeaderF） |
 | `<leader>sb` | buffer 列表 |
 | `<leader>sr` | 全项目 ripgrep 搜索 |
-| `<leader>ss` | 搜索当前 buffer 的行 |
+| `<leader>ss` | 搜索所有 buffer 的行 |
+| `<leader>sl` | 搜索当前 buffer 的行 |
 | `<leader>sh` | 搜索 help |
 | `<leader>sd` | LeaderF file |
 | `<leader>st` | 搜索 asynctasks 任务 |
@@ -229,9 +230,10 @@ vim +PlugInstall
 |---|---|
 | `<tab><tab>` 或 `<leader>?` | 打开 which-key 风格导航菜单 |
 
-菜单按用途分组（文件、LSP、缓冲区/标签、搜索、Git、项目/会话、终端等），
-条目描述与上面的键位表一致。忘记快捷键时，打开菜单按对应首字母即可继续查找；
-也可以用 `<tab><tab>` 进入分组后再按具体键，或随时按 `Esc` 退出。
+菜单本质上是 `<leader>` 映射的查询入口：打开后按与 `<leader>` 后续相同的键即可，
+例如 `<tab><tab>pp` 对应 `<leader>pp`（项目列表）、`<tab><tab>sr` 对应 `<leader>sr`
+（全项目搜索）。菜单按用途分组，条目描述与上面的键位表一致；忘记快捷键时逐层按键
+查找即可，随时按 `Esc` 退出。
 
 ## 插件管理
 
