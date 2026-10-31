@@ -52,3 +52,15 @@ function! packs#end()
         endif
     endfor
 endfunction
+
+" 返回 core/conf.d 下未被任何 packs#def 引用的配置名（休眠配置）
+function! packs#dormant() abort
+    let l:dormant = []
+    for l:file in globpath($CORE_CONFIG . '/conf.d', '*.vim', 0, 1)
+        let l:name = fnamemodify(l:file, ':t:r')
+        if index(g:packs_config_list, l:name) < 0
+            call add(l:dormant, l:name)
+        endif
+    endfor
+    return l:dormant
+endfunction
