@@ -3,12 +3,10 @@ session/
 doc/
 .netrwhist
 .directory
-session/
 vim-project-config/
 pack/
 
 spell/
 sessions/
 undodir/
-!.gitkeep
 !.gitkeep

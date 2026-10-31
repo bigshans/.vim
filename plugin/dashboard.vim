@@ -192,7 +192,7 @@ function! s:build() abort
             for l:s in l:ss
                 let l:n = fnamemodify(l:s, ':t:r')
                 call append('$', l:pad.'['.l:idx.']'.repeat(' ', 2).l:n)
-                let b:action_registry[string(l:idx)] = 'silent! OpenSession '.l:n
+                let b:action_registry[string(l:idx)] = 'silent! OpenSession '.fnameescape(l:n)
                 let l:idx += 1
             endfor
         endif

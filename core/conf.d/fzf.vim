@@ -50,11 +50,16 @@ command! -bang -nargs=? -complete=dir Files
             \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 let g:fzf_commands_expect = 'tab'
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
-autocmd! FileType fzf
-autocmd  FileType fzf set noshowmode noruler
-            \| nmap <buffer><esc> i<C-g>
-            \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup fzf_status
+    autocmd!
+    autocmd User FzfStatusLine call <SID>fzf_statusline()
+augroup END
+augroup fzf_ft
+    autocmd!
+    autocmd FileType fzf set noshowmode noruler
+                \| nmap <buffer><esc> i<C-g>
+                \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
 
 if index(g:packs_config_list, 'asynctasks') >= 0
     function! s:fzf_sink(what)

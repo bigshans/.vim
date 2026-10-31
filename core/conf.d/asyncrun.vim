@@ -8,7 +8,7 @@ let g:asyncrun_timer = 100
 augroup MyAsyncRun
     autocmd!
     " 任务结束后自动跳转到 Quickfix 窗口
-    autocmd User AsyncRunStop copen | wincmd p | cwindow | wincmd j
+    autocmd User AsyncRunStop silent! execute 'copen | wincmd p | cwindow | wincmd j'
 augroup END
 
 function! RunCmdAsync() abort

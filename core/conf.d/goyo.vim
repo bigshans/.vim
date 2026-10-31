@@ -8,5 +8,8 @@ function! s:goyo_leave()
     call SetTheme(s:old_theme)
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup goyo_restore
+    autocmd!
+    autocmd User GoyoEnter nested call <SID>goyo_enter()
+    autocmd User GoyoLeave nested call <SID>goyo_leave()
+augroup END
