@@ -20,18 +20,6 @@
     "inlayHint.enable": true,
     "yank.limit": 2,
     "languageserver": {
-        "csharp-ls": {
-            "command": "csharp-ls",
-            "filetypes": [
-                "cs"
-            ],
-            "rootPatterns": [
-                "*.csproj",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ]
-        },
         "bash": {
             "command": "bash-language-server",
             "args": [
@@ -161,7 +149,20 @@
                     }
                 }
             }
-        }
+        },
+        "dart": {
+            "command": "dart",
+            "args": [
+                "language-server",
+                "--lsp",
+                "--client-id",
+                "vim",
+                "--client-version",
+                "coc.nvim",
+            ],
+            "filetypes": ["dart"],
+            "trace.server": "verbose"
+        },
     },
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de", //  sliders
@@ -265,8 +266,12 @@
         "--completion-style=detailed",
         "--all-scopes-completion",
         "--header-insertion=iwyu",
-        "--pch-storage=disk"
+        "--pch-storage=disk",
+        "--function-arg-placeholders=0"
     ],
+    "[c][cpp]": {
+        "inlayHint.enable": false
+    },
     "git.enableGutters": true,
     "rust-analyzer.lens.run.enable": false,
     "rust-analyzer.lens.debug.enable": false
