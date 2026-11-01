@@ -15,7 +15,7 @@
     "diagnostic.displayByAle": false,
     "diagnostic.virtualTextFormat": "➤ %message",
     "suggest.virtualText": false,
-    "suggest.timeout": 5000,
+    "suggest.timeout": 500,
     "suggest.minTriggerInputLength": 2,
     "inlayHint.enable": true,
     "yank.limit": 2,
@@ -158,10 +158,17 @@
                 "--client-id",
                 "vim",
                 "--client-version",
-                "coc.nvim",
+                "coc.nvim"
             ],
             "filetypes": ["dart"],
-            "trace.server": "verbose"
+            "rootPatterns": ["pubspec.yaml"],
+            "trace.server": "off",
+            "initializationOptions": {
+                // 只分析被打开文件所属的项目，避免全量后台索引
+                "onlyAnalyzeProjectsWithOpenFiles": true,
+                // 不在补全里混入未 import 的库
+                "suggestFromUnimportedLibraries": false
+            }
         },
     },
     "suggest.completionItemKindLabels": {
@@ -271,6 +278,12 @@
     ],
     "[c][cpp]": {
         "inlayHint.enable": false
+    },
+    "[dart]": {
+        // Dart 的 inlayHint/codeLens 流量大且对 vim 用户价值低
+        "inlayHint.enable": false,
+        "codeLens.enable": false,
+        "suggest.autoTrigger": "trigger"
     },
     "git.enableGutters": true,
     "rust-analyzer.lens.run.enable": false,
