@@ -7,6 +7,23 @@ scriptencoding UTF-8
 let g:mapleader = " "
 
 " =============================================================================
+" Windows 外部命令环境
+" =============================================================================
+" Vim 9.1+ 在 Windows 上会读 $SHELL，导致 &shell 随启动环境漂移：
+"   从 Git Bash 启 → shell=pwsh/bash + shellcmdflag=-c + shellredir=>
+"   从 cmd/PowerShell 启 → shell=cmd.exe + /c + shellredir=>%s 2>&1
+" 后者才是插件（fzf/ctrlsf/fugitive/AsyncRun）普遍假定的环境，这里固定下来
+if has('win32') || has('win64')
+    if !empty($COMSPEC) && filereadable($COMSPEC)
+        let &shell = $COMSPEC
+    endif
+    set shellcmdflag=/c
+    set shellredir=>%s\ 2>&1
+    set shellpipe=>%s\ 2>&1
+    set shellxquote=(
+endif
+
+" =============================================================================
 " 文件类型和语法
 " =============================================================================
 " filetype 由 vim-plug 的 plug#end() 统一开启，避免 filetype.vim 被加载两次
@@ -21,7 +38,10 @@ set number          " 显示行号
 set title           " 显示标题
 set mouse=a         " 启用鼠标支持
 set virtualedit=block  " 虚拟编辑模式
-set t_Co=256        " 256色支持
+" t_Co 在 GUI 下无意义，仅在终端里强制 256 色（Linux 下行为保持原样）
+if !(has('gui_running') && (has('win32') || has('win64')))
+    set t_Co=256    " 256色支持
+endif
 set background=dark " 深色背景
 set signcolumn=yes  " 显示符号列
 set showtabline=2   " 总是显示标签行
@@ -78,7 +98,16 @@ set noswapfile      " 不使用交换文件
 set writebackup     " 写入时备份
 set nobackup        " 不保留备份文件
 if has('win32') || has('win64')
-    set backupdir=$TMP  " 备份目录
+    " 直接 set backupdir=$TMP 时：$TMP 未定义会变字面量目录，路径含空格会被拆成多项，
+    " 且会整体覆盖掉默认回退列表。这里显式取值 + 转义
+    let s:win_tmp = empty($TMP) ? $TEMP : $TMP
+    if empty(s:win_tmp)
+        let s:win_tmp = expand('~/AppData/Local/Temp')
+    endif
+    if !empty(s:win_tmp) && isdirectory(s:win_tmp)
+        let &backupdir = escape(s:win_tmp, ' ,')
+    endif
+    unlet! s:win_tmp
 else
     set backupdir=/tmp
 endif
@@ -105,6 +134,8 @@ if has('gui_running')
     set guioptions-=e   " 隐藏标签页工具栏
     if has('win32') || has('win64')
         set guifont=JetBrainsMono_NFM:h9:cANSI:qDRAFT
+        " gvim 下 Alt+字母 默认会被菜单吃掉，导致 <M-j>/<M-k>/<M-t> 等大量映射失效
+        set winaltkeys=no
     else
         set guifont=JetBrainsMono\ Nerd\ Font\ 12
     endif
@@ -113,7 +144,14 @@ endif
 " =============================================================================
 " 终端和视觉效果
 " =============================================================================
-set termguicolors   " 终端真彩色支持
+" 终端真彩色支持；终端不支持 24 位彩色（如输出被重定向）时会抛 E954，
+" 捕获后静默退回 cterm 配色，避免启动时弹「按 ENTER」
+if exists('+termguicolors')
+    try
+        set termguicolors
+    catch /^Vim\%((\a\+)\)\=:E954/
+    endtry
+endif
 set vb t_vb=        " 禁用响铃
 augroup gui_tweaks
     autocmd!
@@ -125,7 +163,15 @@ augroup END
 " =============================================================================
 set spelllang=en,cjk  " 拼写检查语言
 if has('win32') || has('win64')
-    set directory=.,$TEMP  " 临时目录
+    " 同上：避免 $TEMP 未定义 / 含空格时 directory 被拆坏
+    let s:win_tmp = empty($TEMP) ? $TMP : $TEMP
+    if empty(s:win_tmp)
+        let s:win_tmp = expand('~/AppData/Local/Temp')
+    endif
+    if !empty(s:win_tmp) && isdirectory(s:win_tmp)
+        let &directory = '.,' . escape(s:win_tmp, ' ,')
+    endif
+    unlet! s:win_tmp
 else
     set directory=.,/tmp
 endif

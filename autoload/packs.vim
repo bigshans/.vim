@@ -39,8 +39,9 @@ endfunction
 function! packs#end() abort
     call plug#end()
     for l:config_name in g:packs_config_list
-        " 确保 $HOME_VIM 已经定义，或者使用 expand('~/.vim')
-        let l:config_file = expand($HOME_VIM . "/core/conf.d/" . l:config_name . ".vim")
+        " 不用 expand()：它会把 / 换成 \，且路径含 *?[] 时返回空字符串，
+        " 导致配置静默不加载
+        let l:config_file = $HOME_VIM . "/core/conf.d/" . l:config_name . ".vim"
         if filereadable(l:config_file)
             execute "source " . fnameescape(l:config_file)
         endif

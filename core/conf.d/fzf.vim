@@ -27,11 +27,15 @@ let g:fzf_colors =
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" Windows 下没有 ~/.local/share，放到配置目录旁边
+let g:fzf_history_dir = (has('win32') || has('win64'))
+            \ ? $HOME_VIM . '/.fzf-history'
+            \ : '~/.local/share/fzf-history'
+" 非 git 仓库时 systemlist 返回空 list，直接取 [0] 会抛 E684
 command! -bang -nargs=* GGrep
-            \ call fzf#vim#grep(
-            \   'git grep --line-number '.shellescape(<q-args>), 0,
-            \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+            \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0,
+            \   { 'dir': get(filter(systemlist('git rev-parse --show-toplevel'),
+            \                        'v:val !=# ""'), 0, '') }, <bang>0)
 
 " command! -bang Colors
 " \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)

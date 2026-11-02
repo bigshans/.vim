@@ -4,6 +4,9 @@ function! SetTheme(theme) abort
     catch /^Vim\%((\a\+)\)\=:E185/
         echohl ErrorMsg | echo "未找到主题: " . a:theme | echohl None
         return
+    catch /^Vim\%((\a\+)\)\=:E954/
+        " 终端不支持 24 位彩色（如输出被重定向、TERM 为 dumb）：
+        " inkstone 会自己 set termguicolors，失败后按 cterm 降级即可，不当作启动错误
     endtry
 
     " inkstone 等自带完整配色的主题不再叠加这些覆盖色

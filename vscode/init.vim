@@ -11,7 +11,8 @@ nmap gr :call VSCodeNotify("editor.action.goToReferences")<CR>
 nmap P "+p
 vmap Y "+y
 
-call plug#begin('~/.vim/bundle')
+" Windows 上 bundle 目录是 ~/vimfiles/bundle，不是 ~/.vim/bundle
+call plug#begin(has('win32') || has('win64') ? '~/vimfiles/bundle' : '~/.vim/bundle')
 
 Plug 'machakann/vim-sandwich'
 Plug 'unblevable/quick-scope'

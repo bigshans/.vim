@@ -1,4 +1,4 @@
-if index(g:packs_config_list, "git") <= 0
+if index(g:packs_config_list, "git") < 0
     finish
 endif
 

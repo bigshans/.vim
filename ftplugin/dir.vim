@@ -1,4 +1,4 @@
-if index(g:packs_config_list, "vim-navigator") <= 0
+if index(g:packs_config_list, "vim-navigator") < 0
     finish
 endif
 

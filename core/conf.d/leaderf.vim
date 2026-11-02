@@ -2,8 +2,14 @@ scriptencoding utf-8
 " let g:Lf_WindowPosition = 'popup'
 " Show icons, icons are shown by default
 let g:Lf_ShowDevIcons = 1
-" For GUI vim, the icon font can be specify like this, for example
-let g:Lf_DevIconsFot = "DroidSansM Nerd Font Mono"
+" 图标字体：留空 = 跟随当前 guifont（本机 guifont = JetBrainsMono NFM，自带 Nerd Font 图标）。
+" 不要照抄上游 README 的 "DroidSansM Nerd Font Mono"——本机没装这个字族，
+" 设了反而会退回默认字体，图标变成方块/未知字形。
+" 终端下该选项不起作用：图标字形由终端（Windows Terminal 等）配的字体决定。
+" 需要显式指定时用已安装的字族名，如：let g:Lf_DevIconsFont = 'JetBrainsMono NFM'
+if !exists('g:Lf_DevIconsFont')
+    let g:Lf_DevIconsFont = ''
+endif
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PopupPreviewPosition = 'top'
 
@@ -22,6 +28,7 @@ nnoremap <leader>sl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>sh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 nnoremap <leader>sd :LeaderfFile<CR>
 " <leader>sp 由 core/conf.d/vim-session.vim 占用（OpenSession）
+nnoremap <leader>fr :LeaderfMru<CR>
 
 exec printf("nnoremap <leader>oc :Leaderf file %s<CR>", fnameescape($HOME_VIM))
 
