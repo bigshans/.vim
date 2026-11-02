@@ -6,6 +6,8 @@ nmap <leader>fs :w<CR>
 nmap <leader>fS :call utils#sudo_save()<CR>
 nmap <leader>Q :qa!<CR>
 nmap <C-s> :w<CR>
+nmap <leader><leader> <C-d>
+nmap gu <C-u>
 noremap j gj
 noremap k gk
 

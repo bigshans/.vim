@@ -99,8 +99,10 @@ call packs#def("tpope/vim-fugitive", "git")
 " Stuff
 " ===============
 
+call packs#def("fresh2dev/zellij.vim")
+
 if has('win32') || has("win64")
-    call packs#def('wakatime/vim-wakatime')
+    call packs#def('wakatime/vim-wakatime', 'wakatime')
 endif
 
 call packs#end()

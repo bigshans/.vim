@@ -1,0 +1,31 @@
+diff --git a/plugin/wakatime.vim b/plugin/wakatime.vim
+index 9c905ec..bf13257 100644
+--- a/plugin/wakatime.vim
++++ b/plugin/wakatime.vim
+@@ -628,6 +628,11 @@ EOF
+         if s:has_async
+             if !s:IsWindows()
+                 let job_cmd = [&shell, &shellcmdflag, s:JoinArgs(cmd)]
++            elseif executable(s:wakatime_cli)
++                " [local patch] 直接执行 CLI，绕开 &shell。
++                " $SHELL 指向含空格的路径时 &shell 会带双引号（如 pwsh），
++                " job_start() 不接受带引号的程序名 -> job 立即 fail -> E906
++                let job_cmd = cmd
+             elseif &shell =~ 'sh\(\.exe\)\?$'
+                 let job_cmd = [&shell, '-c', s:JoinArgs(cmd)]
+             else
+@@ -638,7 +643,13 @@ EOF
+                 \ 'callback': {channel, output -> s:AsyncHandler(output, cmd)}})
+             if !empty(extra_heartbeats)
+                 let channel = job_getchannel(job)
+-                call ch_sendraw(channel, extra_heartbeats . "\n")
++                if ch_status(channel) ==# 'open'
++                    try
++                        call ch_sendraw(channel, extra_heartbeats . "\n")
++                    catch
++                        " [local patch] CLI 可能已退出，忽略即可，不要让 CursorHold 报错
++                    endtry
++                endif
+             endif
+         elseif s:nvim_async
+             if s:IsWindows()
